@@ -824,15 +824,15 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q002",
-      "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the 4 in the underlined number represent?",
+      "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the 20 in [110/20] represent?",
       "choices": [
-        "The 4 represents the administrative distance.",
-        "The 4 represents the protocol.",
-        "The 4 represents the metric.",
-        "The 4 represents the position in the routing table."
+        "The administrative distance",
+        "The protocol identifier",
+        "The metric (OSPF cost)",
+        "The position in the routing table"
       ],
       "correctIndex": 2,
-      "explanation": "",
+      "explanation": "IOS shows [AD/metric]. In [110/20], 110 is administrative distance (OSPF) and 20 is the metric (OSPF cost).",
       "type": "application",
       "difficulty": "hard",
       "concept": "routing table",
@@ -855,22 +855,22 @@ export const CLEAN_QUESTIONS = {
             "choiceIndex": 0,
             "explanation": "Administrative distance is the first number inside the brackets (110 for OSPF) — the post-slash value is metric.",
             "misconceptionTested": "Reading post-slash value as administrative distance",
-            "whatItDoes": "The 4 represents the administrative distance. points to a related idea, but not the specific behavior or value required for routing table.",
-            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the administrative distance. does not."
+            "whatItDoes": "The administrative distance is the left number in [AD/metric], not the 20 after the slash.",
+            "whyWrongHere": "For [110/20], 20 is metric — 110 is administrative distance."
           },
           {
             "choiceIndex": 1,
             "explanation": "The leading route code (O) identifies the protocol — the bracketed numbers are AD and metric, not protocol ID.",
             "misconceptionTested": "Interpreting bracket digits as protocol identifier",
-            "whatItDoes": "The 4 represents the protocol. points to a related idea, but not the specific behavior or value required for routing table.",
-            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the protocol. does not."
+            "whatItDoes": "The protocol identifier is the route code O, not a digit inside the brackets.",
+            "whyWrongHere": "For [110/20], 20 is metric — protocol is shown by code O."
           },
           {
             "choiceIndex": 3,
             "explanation": "Route position in the table is not encoded in [AD/metric] — that tuple is trust and cost for the prefix.",
             "misconceptionTested": "Treating bracket values as table row index",
-            "whatItDoes": "The 4 represents the position in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the position in the routing table. does not."
+            "whatItDoes": "The position in the routing table is not what [AD/metric] encodes.",
+            "whyWrongHere": "For [110/20], 20 is metric — not a table row index."
           }
         ],
         "examTip": "show ip route brackets: [AD / metric] — slash separates trust from protocol cost."
@@ -1065,13 +1065,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-3.1-source-q005",
       "question": "Which route statement is configured when an IP address of 203.80.53.22/19 is configured on an interface?",
       "choices": [
-        "S 203.80.16.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.32.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.48.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.53.22/19 is directly connected, Serial 0/0/0"
+        "C 203.80.16.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.32.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.48.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.53.22/19 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 1,
-      "explanation": "",
+      "explanation": "Configuring 203.80.53.22/19 installs a connected (C) route for network 203.80.32.0/19 — not a static (S) route.",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "routing table",
@@ -1085,32 +1085,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "203.80.53.22/19 → network is 203.80.32.0/19 (third octet: 32–63 block). Connected route shows that prefix."
+          "explanation": "203.80.53.22/19 → network is 203.80.32.0/19 (third octet: 32–63 block). Connected routes use code C, not S."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
             "explanation": "203.80.16.0/19 is the prior /19 block (16–31) — .53 falls in 32–63.",
             "misconceptionTested": "Wrong /19 boundary for .53",
-            "whatItDoes": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.16.0/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 203.80.16.0/19 is directly connected, Serial 0/0/0 uses the wrong /19 network boundary.",
+            "whyWrongHere": "Correct connected network is 203.80.32.0/19 — not 203.80.16.0/19."
           },
           {
             "choiceIndex": 2,
-            "explanation": "203.80.48.0/19 is the next /19 block (48–63) — .53 is in 32–63 which starts at .32.",
+            "explanation": "203.80.48.0/19 is not the /19 that contains .53 — .53 is in 32–63 which starts at .32.",
             "misconceptionTested": "Misaligned /19 starting at .48",
-            "whatItDoes": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.48.0/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 203.80.48.0/19 is directly connected, Serial 0/0/0 uses the wrong /19 network boundary.",
+            "whyWrongHere": "Correct connected network is 203.80.32.0/19 — not 203.80.48.0/19."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Host address with /19 is not a valid network route — IOS shows the network prefix .32.0/19.",
+            "explanation": "Host address with /19 is not a valid network route — IOS shows the network prefix .32.0/19 as C (plus L /32 for the host).",
             "misconceptionTested": "Host address as network route",
-            "whatItDoes": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.53.22/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 203.80.53.22/19 is directly connected, Serial 0/0/0 invents a host-as-network connected line.",
+            "whyWrongHere": "Connected network route is 203.80.32.0/19 (C), not the host address with /19."
           }
         ],
-        "examTip": "/19 boundaries: 0, 32, 64, 96… | .53 is in 32–63 → network 203.80.32.0/19."
+        "examTip": "/19 boundaries: 0, 32, 64, 96… | .53 is in 32–63 → C 203.80.32.0/19 (directly connected = C, not S)."
       },
       "regeneratedIncorrect": [
         {
@@ -1298,15 +1298,15 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q008",
-      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next hop for a destination address of 192.168.4.85?",
+      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
       "choices": [
-        "Interface Serial 0/2/0",
-        "IP address 192.168.4.2",
-        "Interface Serial 0/0/1",
-        "IP address 198.22.34.3"
+        "10.0.0.2",
+        "192.168.4.2",
+        "10.0.0.1",
+        "198.22.34.3"
       ],
       "correctIndex": 2,
-      "explanation": "",
+      "explanation": "192.168.4.85 matches the static route 192.168.4.0/24 with next-hop 10.0.0.1 from the running-config.",
       "type": "application",
       "difficulty": "hard",
       "concept": "routing table",
@@ -1322,32 +1322,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The static route to 192.168.4.0/24 points to next-hop 10.0.0.1 — if that resolves via Serial 0/0/1, traffic exits there."
+          "explanation": "The static route to 192.168.4.0/24 points to next-hop 10.0.0.1 — that is the next hop for 192.168.4.85."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Serial 0/2/0 is not the exit interface for the route matching 192.168.4.85.",
-            "misconceptionTested": "Wrong serial interface for destination",
-            "whatItDoes": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length."
+            "explanation": "10.0.0.2 is the next hop for 192.168.5.0/24, not 192.168.4.0/24.",
+            "misconceptionTested": "Wrong static next-hop for destination",
+            "whatItDoes": "10.0.0.2 is configured for a different destination prefix.",
+            "whyWrongHere": "192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1, not 10.0.0.2."
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.4.2 is in the destination network, not the next hop or exit interface.",
+            "explanation": "192.168.4.2 is in the destination network, not the next hop configured in the static route.",
             "misconceptionTested": "Destination IP as next hop",
-            "whatItDoes": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 satisfies what this question tests — IP address 192.168.4.2 does not."
+            "whatItDoes": "IP address 192.168.4.2 confuses destination host with next-hop.",
+            "whyWrongHere": "Next hop is 10.0.0.1 from the ip route statement — not a host in 192.168.4.0/24."
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.22.34.3 does not appear in the routing table excerpt for this destination.",
+            "explanation": "198.22.34.3 does not appear in the running-config excerpt for this destination.",
             "misconceptionTested": "Random IP as route exit",
-            "whatItDoes": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 satisfies what this question tests — IP address 198.22.34.3 does not."
+            "whatItDoes": "IP address 198.22.34.3 is unrelated to the configured static routes.",
+            "whyWrongHere": "Configured next hop for 192.168.4.0/24 is 10.0.0.1."
           }
         ],
-        "examTip": "Static route → follow next-hop recursion to find actual exit interface in show ip route."
+        "examTip": "Match longest prefix in config/table → read the next-hop IP from that route statement."
       },
       "regeneratedIncorrect": [
         {
@@ -9216,13 +9216,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-3.3-source-q027",
       "question": "Which route statement is configured when an IP address of 208.43.34.17/29 is configured on an interface?",
       "choices": [
-        "S 208.43.34.17/32 is directly connected, Serial 0/0/0",
-        "S 208.43.34.24/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.8/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.17/29 is directly connected, Serial 0/0/0"
+        "L 208.43.34.17/32 is directly connected, Serial 0/0/0",
+        "C 208.43.34.24/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.8/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.17/29 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "",
+      "explanation": "Configuring an interface IP installs a local (L) /32 host route for that address, plus a connected (C) network route — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -9236,32 +9236,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "IOS adds a host /32 route for the configured address — 208.43.34.17/32 on Serial 0/0/0 (display may show connected/local codes)."
+          "explanation": "IOS adds a local host /32 route for the configured address — L 208.43.34.17/32 on Serial 0/0/0 (connected network would be C 208.43.34.16/29)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "208.43.34.24/29 is not the host route for .17/29 — IOS installs /32 for the configured IP.",
-            "misconceptionTested": "Network /29 route instead of host /32",
-            "whatItDoes": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.24/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "explanation": "208.43.34.24/29 is not the network or host route for .17/29 — wrong /29 boundary.",
+            "misconceptionTested": "Wrong /29 network boundary",
+            "whatItDoes": "C 208.43.34.24/29 is directly connected, Serial 0/0/0 uses an incorrect network prefix for .17/29.",
+            "whyWrongHere": "The keyed host entry is L 208.43.34.17/32 — not 208.43.34.24/29."
           },
           {
             "choiceIndex": 2,
-            "explanation": "208.43.34.8/29 is the network prefix — the keyed table line for the configured IP is the /32 host entry.",
-            "misconceptionTested": "Subnet network route as primary host entry",
-            "whatItDoes": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.8/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "explanation": "208.43.34.8/29 is a different /29 block — .17 falls in .16/29. The stem keys the local /32 for the configured IP.",
+            "misconceptionTested": "Wrong subnet network route as host entry",
+            "whatItDoes": "C 208.43.34.8/29 is directly connected, Serial 0/0/0 is the wrong connected network for .17/29.",
+            "whyWrongHere": "Configured IP installs L …/32 for the host; connected network would be .16/29, not .8/29."
           },
           {
             "choiceIndex": 3,
-            "explanation": "208.43.34.17/29 is invalid host prefix length — configured /29 address gets /32 local route.",
+            "explanation": "208.43.34.17/29 is not how IOS displays the host route — configured /29 address gets L /32 local route.",
             "misconceptionTested": "/29 host route in RIB",
-            "whatItDoes": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.17/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 208.43.34.17/29 is directly connected, Serial 0/0/0 invents a host-as-/29 connected line.",
+            "whyWrongHere": "Local host route is L 208.43.34.17/32, not C with /29 on the host address."
           }
         ],
-        "examTip": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L."
+        "examTip": "Interface IP → connected network (C) + local /32 (L) for the exact address — never code S for directly connected."
       },
       "regeneratedIncorrect": [
         {
@@ -9450,13 +9450,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-3.3-source-q030",
       "question": "Which route statement is configured when an IP address of 194.22.34.54/28 is configured on an interface?",
       "choices": [
-        "S 194.22.34.48/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.64/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.54/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.32/28 is directly connected, Serial 0/0/0"
+        "C 194.22.34.48/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.64/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.54/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.32/28 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "",
+      "explanation": "Configuring 194.22.34.54/28 installs connected (C) route 194.22.34.48/28 — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -9470,32 +9470,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "194.22.34.54/28 belongs to 194.22.34.48/28 network — connected route shows that /28 prefix on the interface."
+          "explanation": "194.22.34.54/28 belongs to 194.22.34.48/28 — connected routes use code C, not S."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
             "explanation": "194.22.34.64/28 is the next /28 block — .54 falls in .48/28.",
             "misconceptionTested": "Wrong /28 network boundary",
-            "whatItDoes": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.64/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.64/28 uses the wrong /28 boundary.",
+            "whyWrongHere": "Correct connected network is C 194.22.34.48/28."
           },
           {
             "choiceIndex": 2,
             "explanation": "194.22.34.54/28 is not a valid network route line — IOS shows network /28 + host /32.",
             "misconceptionTested": "Host address as /28 network route",
-            "whatItDoes": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.54/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.54/28 invents a host-as-network connected line.",
+            "whyWrongHere": "Connected network is 194.22.34.48/28 (C), not the host with /28."
           },
           {
             "choiceIndex": 3,
             "explanation": "194.22.34.32/28 is the prior subnet — .54 is in .48–.63 range.",
             "misconceptionTested": "Misaligned /28 subnet for .54",
-            "whatItDoes": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.32/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.32/28 uses the wrong /28 boundary.",
+            "whyWrongHere": "Correct connected network is C 194.22.34.48/28."
           }
         ],
-        "examTip": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28."
+        "examTip": "/28 boundaries: increment 16 — .48, .64… | .54 → C 194.22.34.48/28 (directly connected = C, not S)."
       },
       "regeneratedIncorrect": [
         {

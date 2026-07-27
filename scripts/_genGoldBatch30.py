@@ -31,13 +31,13 @@ HAND = {
   },
   "obj-4.9-source-q003": {
     "correct": {
-      "choiceIndex": 3,
-      "explanation": "**`boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin`** \u2014 image filename **before** the TFTP URL in global config."
+      "choiceIndex": 2,
+      "explanation": "**`boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin`** \u2014 Cisco-style **TFTP URL then image filename** in global config."
     },
     "incorrect": [
       {
         "choiceIndex": 0,
-        "explanation": "**`boot tftp://`** is privileged EXEC syntax \u2014 boot commands belong in **global config**.",
+        "explanation": "**`boot tftp://`** is privileged EXEC syntax \u2014 boot commands belong in **global config** and need the image name.",
         "misconceptionTested": "Exec-mode boot for TFTP image"
       },
       {
@@ -46,8 +46,8 @@ HAND = {
         "misconceptionTested": "boot without system keyword"
       },
       {
-        "choiceIndex": 2,
-        "explanation": "URL before filename reverses IOS argument order \u2014 **filename then location** on the `boot system` line.",
+        "choiceIndex": 3,
+        "explanation": "Filename before the TFTP URL reverses the usual **`boot system tftp://… <filename>`** order.",
         "misconceptionTested": "Reversed boot system argument order"
       }
     ],
@@ -2235,7 +2235,7 @@ HAND = {
         "misconceptionTested": "XML for Ansible modules"
       }
     ],
-    "examTip": "SDN planes: **data** = forward | **control** = routing protocols/STP | **management** = SNMP/syslog/CDP."
+    "examTip": "Ansible: playbooks = **YAML**; custom modules = **Python**."
   },
   "obj-6.7-source-q001": {
     "correct": {
@@ -2455,14 +2455,14 @@ HAND = {
   },
   "obj-6.7-source-q010": {
     "correct": {
-      "choiceIndex": 1,
-      "explanation": "Inside the `routes` array, objects must be separate \u2014 need **`]`** or `},{` between route entries; missing **comma/bracket** structure."
+      "choiceIndex": 0,
+      "explanation": "The `routes` array packs two route entries in one object without a delimiter \u2014 valid JSON needs a **comma** between members, typically as separate objects: **`},{`**."
     },
     "incorrect": [
       {
-        "choiceIndex": 0,
-        "explanation": "Comma after `routes` array isn't the core issue \u2014 **objects inside array** are malformed.",
-        "misconceptionTested": "Comma after routes key only"
+        "choiceIndex": 1,
+        "explanation": "Square brackets already wrap the `routes` array \u2014 the real bug is the missing **comma / `},{`** between the two route objects.",
+        "misconceptionTested": "Missing square brackets around second route"
       },
       {
         "choiceIndex": 2,
@@ -2471,11 +2471,11 @@ HAND = {
       },
       {
         "choiceIndex": 3,
-        "explanation": "JSON is invalid \u2014 missing delimiter between array objects.",
+        "explanation": "JSON is invalid \u2014 two route properties collide without a comma or separate objects.",
         "misconceptionTested": "Valid JSON exhibit"
       }
     ],
-    "examTip": "SDN planes: **data** = forward | **control** = routing protocols/STP | **management** = SNMP/syslog/CDP."
+    "examTip": "JSON arrays of objects: **`[{…},{…}]`** \u2014 missing commas between members are a classic exam trap."
   },
   "obj-6.7-source-q011": {
     "correct": {

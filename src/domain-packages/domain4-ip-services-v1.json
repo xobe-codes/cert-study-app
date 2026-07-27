@@ -795,8 +795,8 @@
             "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
             "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
           ],
-          "correctIndex": 3,
-          "explanation": "The source maps this item to answer D. The correct selection is: RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
+          "correctIndex": 2,
+          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
           "ckuIds": [
             "CKU-NAT"
           ]

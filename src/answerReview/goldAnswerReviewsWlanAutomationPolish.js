@@ -3,14 +3,14 @@ export const WLAN_AUTOMATION_POLISH_GOLD = {
   'obj-6.3-source-q005': {
     correct: {
       choiceIndex: 1,
-      explanation: '**Southbound** APIs (NETCONF/RESTCONF) push configuration from controller to devices — that is how SDN programs the network.',
+      explanation: '**Cisco SD-WAN** (Viptela) connects branch/ROBO sites to applications over an optimized WAN overlay — the right SDN product when remote offices need direct app access.',
     },
     incorrect: [
-      { choiceIndex: 0, explanation: 'Northbound APIs face applications/orchestration — they do not program ASICs directly.', misconceptionTested: 'Swapping northbound and southbound' },
-      { choiceIndex: 2, explanation: 'SNMP is legacy monitoring — SDN southbound is model-driven config (YANG/NETCONF), not SNMP SETs.', misconceptionTested: 'Using SNMP as SDN southbound' },
-      { choiceIndex: 3, explanation: 'CDP discovers neighbors — unrelated to controller-to-device configuration.', misconceptionTested: 'Discovery protocol as SDN API' },
+      { choiceIndex: 0, explanation: 'APIC-EM is a legacy campus/enterprise SDN controller — not the branch WAN overlay for ROBO app access.', misconceptionTested: 'Using campus SDN controller for WAN branch use case' },
+      { choiceIndex: 2, explanation: 'Prime Infrastructure is traditional NMS — not an SD-WAN overlay for branch connectivity.', misconceptionTested: 'Selecting NMS instead of SD-WAN solution' },
+      { choiceIndex: 3, explanation: 'OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.', misconceptionTested: 'Picking generic open controller for Cisco ROBO scenario' },
     ],
-    examTip: 'Northbound = apps → controller. Southbound = controller → devices (NETCONF/RESTCONF/OpenFlow).',
+    examTip: 'Branch offices need direct app access → **Cisco SD-WAN**, not campus APIC-EM or Prime.',
   },
   'obj-6.4-source-q003': {
     correct: {

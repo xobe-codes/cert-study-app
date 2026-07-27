@@ -1732,13 +1732,13 @@
       "id": "obj-3.3-source-q027",
       "question": "Which route statement is configured when an IP address of 208.43.34.17/29 is configured on an interface?",
       "choices": [
-        "S 208.43.34.17/32 is directly connected, Serial 0/0/0",
-        "S 208.43.34.24/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.8/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.17/29 is directly connected, Serial 0/0/0"
+        "L 208.43.34.17/32 is directly connected, Serial 0/0/0",
+        "C 208.43.34.24/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.8/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.17/29 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "",
+      "explanation": "Configuring an interface IP installs a local (L) /32 host route for that address, plus a connected (C) network route — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -1752,32 +1752,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "IOS adds a host /32 route for the configured address — 208.43.34.17/32 on Serial 0/0/0 (display may show connected/local codes)."
+          "explanation": "IOS adds a local host /32 route for the configured address — L 208.43.34.17/32 on Serial 0/0/0 (connected network would be C 208.43.34.16/29)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "208.43.34.24/29 is not the host route for .17/29 — IOS installs /32 for the configured IP.",
-            "misconceptionTested": "Network /29 route instead of host /32",
-            "whatItDoes": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.24/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "explanation": "208.43.34.24/29 is not the network or host route for .17/29 — wrong /29 boundary.",
+            "misconceptionTested": "Wrong /29 network boundary",
+            "whatItDoes": "C 208.43.34.24/29 is directly connected, Serial 0/0/0 uses an incorrect network prefix for .17/29.",
+            "whyWrongHere": "The keyed host entry is L 208.43.34.17/32 — not 208.43.34.24/29."
           },
           {
             "choiceIndex": 2,
-            "explanation": "208.43.34.8/29 is the network prefix — the keyed table line for the configured IP is the /32 host entry.",
-            "misconceptionTested": "Subnet network route as primary host entry",
-            "whatItDoes": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.8/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "explanation": "208.43.34.8/29 is a different /29 block — .17 falls in .16/29. The stem keys the local /32 for the configured IP.",
+            "misconceptionTested": "Wrong subnet network route as host entry",
+            "whatItDoes": "C 208.43.34.8/29 is directly connected, Serial 0/0/0 is the wrong connected network for .17/29.",
+            "whyWrongHere": "Configured IP installs L …/32 for the host; connected network would be .16/29, not .8/29."
           },
           {
             "choiceIndex": 3,
-            "explanation": "208.43.34.17/29 is invalid host prefix length — configured /29 address gets /32 local route.",
+            "explanation": "208.43.34.17/29 is not how IOS displays the host route — configured /29 address gets L /32 local route.",
             "misconceptionTested": "/29 host route in RIB",
-            "whatItDoes": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.17/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 208.43.34.17/29 is directly connected, Serial 0/0/0 invents a host-as-/29 connected line.",
+            "whyWrongHere": "Local host route is L 208.43.34.17/32, not C with /29 on the host address."
           }
         ],
-        "examTip": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L."
+        "examTip": "Interface IP → connected network (C) + local /32 (L) for the exact address — never code S for directly connected."
       }
     },
     {
@@ -1888,13 +1888,13 @@
       "id": "obj-3.3-source-q030",
       "question": "Which route statement is configured when an IP address of 194.22.34.54/28 is configured on an interface?",
       "choices": [
-        "S 194.22.34.48/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.64/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.54/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.32/28 is directly connected, Serial 0/0/0"
+        "C 194.22.34.48/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.64/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.54/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.32/28 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "",
+      "explanation": "Configuring 194.22.34.54/28 installs connected (C) route 194.22.34.48/28 — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -1908,32 +1908,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "194.22.34.54/28 belongs to 194.22.34.48/28 network — connected route shows that /28 prefix on the interface."
+          "explanation": "194.22.34.54/28 belongs to 194.22.34.48/28 — connected routes use code C, not S."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
             "explanation": "194.22.34.64/28 is the next /28 block — .54 falls in .48/28.",
             "misconceptionTested": "Wrong /28 network boundary",
-            "whatItDoes": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.64/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.64/28 uses the wrong /28 boundary.",
+            "whyWrongHere": "Correct connected network is C 194.22.34.48/28."
           },
           {
             "choiceIndex": 2,
             "explanation": "194.22.34.54/28 is not a valid network route line — IOS shows network /28 + host /32.",
             "misconceptionTested": "Host address as /28 network route",
-            "whatItDoes": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.54/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.54/28 invents a host-as-network connected line.",
+            "whyWrongHere": "Connected network is 194.22.34.48/28 (C), not the host with /28."
           },
           {
             "choiceIndex": 3,
             "explanation": "194.22.34.32/28 is the prior subnet — .54 is in .48–.63 range.",
             "misconceptionTested": "Misaligned /28 subnet for .54",
-            "whatItDoes": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.32/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.32/28 uses the wrong /28 boundary.",
+            "whyWrongHere": "Correct connected network is C 194.22.34.48/28."
           }
         ],
-        "examTip": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28."
+        "examTip": "/28 boundaries: increment 16 — .48, .64… | .54 → C 194.22.34.48/28 (directly connected = C, not S)."
       }
     },
     {

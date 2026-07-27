@@ -1493,32 +1493,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Southbound APIs (NETCONF/RESTCONF) push configuration from controller to devices — that is how SDN programs the network."
+          "explanation": "Cisco SD-WAN (Viptela) connects branch/ROBO sites to applications over an optimized WAN overlay — the right SDN product when remote offices need direct app access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Northbound APIs face applications/orchestration — they do not program ASICs directly.",
-            "misconceptionTested": "Swapping northbound and southbound",
-            "whatItDoes": "Cisco APIC-EM points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco APIC-EM does not."
+            "explanation": "APIC-EM is a legacy campus/enterprise SDN controller — not the branch WAN overlay for ROBO app access.",
+            "misconceptionTested": "Using campus SDN controller for WAN branch use case",
+            "whatItDoes": "Names Cisco's older enterprise LAN SDN controller.",
+            "whyWrongHere": "Remote office app access maps to Cisco SD-WAN, not APIC-EM."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP is legacy monitoring — SDN southbound is model-driven config (YANG/NETCONF), not SNMP SETs.",
-            "misconceptionTested": "Using SNMP as SDN southbound",
-            "whatItDoes": "Cisco Prime Infrastructure points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco Prime Infrastructure does not."
+            "explanation": "Prime Infrastructure is traditional NMS — not an SD-WAN overlay for branch connectivity.",
+            "misconceptionTested": "Selecting NMS instead of SD-WAN solution",
+            "whatItDoes": "Names a legacy network management platform.",
+            "whyWrongHere": "The stem asks for a Cisco SDN WAN solution for ROBO — Cisco SD-WAN."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CDP discovers neighbors — unrelated to controller-to-device configuration.",
-            "misconceptionTested": "Discovery protocol as SDN API",
-            "whatItDoes": "OpenDaylight points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — OpenDaylight does not."
+            "explanation": "OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.",
+            "misconceptionTested": "Picking generic open controller for Cisco ROBO scenario",
+            "whatItDoes": "Names a generic open-source SDN controller.",
+            "whyWrongHere": "Cisco ROBO direct app access → Cisco SD-WAN."
           }
         ],
-        "examTip": "Northbound = apps → controller. Southbound = controller → devices (NETCONF/RESTCONF/OpenFlow)."
+        "examTip": "Branch offices need direct app access → Cisco SD-WAN, not campus APIC-EM or Prime."
       },
       "regeneratedIncorrect": [
         {
@@ -6809,11 +6809,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "YAML",
         "CSV",
-        "JSON",
+        "Python",
         "XML"
       ],
       "correctIndex": 2,
-      "explanation": "",
+      "explanation": "Custom Ansible modules are written in Python — playbooks use YAML.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "configuration management",
@@ -6828,32 +6828,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Custom Ansible modules are written in Python — extends Ansible's task library."
+          "explanation": "Custom Ansible modules are written in Python — that extends Ansible's task library."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "YAML writes playbooks — modules are Python.",
+            "explanation": "YAML writes playbooks and inventories — custom modules are Python.",
             "misconceptionTested": "YAML for custom modules",
-            "whatItDoes": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
-            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — YAML does not."
+            "whatItDoes": "Names the playbook/inventory format.",
+            "whyWrongHere": "YAML authors playbooks; a custom Ansible module itself is written in Python."
           },
           {
             "choiceIndex": 1,
-            "explanation": "CSV isn't module format.",
+            "explanation": "CSV is a flat data table format — not how Ansible custom modules are authored.",
             "misconceptionTested": "CSV module format",
-            "whatItDoes": "CSV points to a related idea, but not the specific behavior or value required for configuration management.",
-            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — CSV does not."
+            "whatItDoes": "Names a spreadsheet-style data format.",
+            "whyWrongHere": "CSV cannot express Ansible module logic — modules are Python code."
           },
           {
             "choiceIndex": 3,
-            "explanation": "XML isn't the Ansible custom module language.",
+            "explanation": "XML is not the Ansible custom-module language.",
             "misconceptionTested": "XML for Ansible modules",
-            "whatItDoes": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
-            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — XML does not."
+            "whatItDoes": "Names a markup data format.",
+            "whyWrongHere": "XML is data markup; Ansible extends its library with Python modules, not XML."
           }
         ],
-        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
+        "examTip": "Ansible: playbooks = YAML; custom modules = Python."
       },
       "regeneratedIncorrect": [
         {
@@ -7576,13 +7576,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-6.7-source-q010",
       "question": "which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
       "choices": [
-        "The interface data is incorrect because it is missing a comma after the routes.",
+        "The interface data is incorrect because it is missing a comma (or },{) between the two route objects.",
         "The interface data is incorrect because it is missing a set of square brackets around the second route.",
         "The interface data is incorrect because it contains an illegal underscore character.",
         "Nothing is wrong with the exhibit."
       ],
-      "correctIndex": 1,
-      "explanation": "",
+      "correctIndex": 0,
+      "explanation": "Inside the routes array, two route properties sit in one object without a comma — they must be separate objects separated by },{ (or at least a comma between members).",
       "type": "scenario",
       "difficulty": "hard",
       "concept": "json",
@@ -7595,33 +7595,33 @@ export const CLEAN_QUESTIONS = {
       "exhibitConverted": true,
       "answerReview": {
         "correct": {
-          "choiceIndex": 1,
-          "explanation": "Inside the routes array, objects must be separate — need ] or },{ between route entries; missing comma/bracket structure."
+          "choiceIndex": 0,
+          "explanation": "The routes array packs two route entries in one object without a delimiter — valid JSON needs a comma between members, typically as separate objects: },{."
         },
         "incorrect": [
           {
-            "choiceIndex": 0,
-            "explanation": "Comma after routes array isn't the core issue — objects inside array are malformed.",
-            "misconceptionTested": "Comma after routes key only",
-            "whatItDoes": "The interface data is incorrect because it is missing a comma after the routes. points to a related idea, but not the specific behavior or value required for ipaddress.",
-            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — The interface data is incorrect because it is missing a comma after the routes. does not."
+            "choiceIndex": 1,
+            "explanation": "Square brackets already wrap the routes array — the real bug is the missing comma / },{ between the two route objects.",
+            "misconceptionTested": "Missing square brackets around second route",
+            "whatItDoes": "Claims the second route needs its own square brackets.",
+            "whyWrongHere": "The array brackets are fine; the object members lack a comma (or },{)."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Underscores in keys are valid JSON.",
+            "explanation": "Underscores in keys (subnet_mask, defaultgw) are valid JSON.",
             "misconceptionTested": "Underscore invalid in JSON",
-            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. points to a related idea, but not the specific behavior or value required for ipaddress.",
-            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — The interface data is incorrect because it contains an illegal underscore character. does not."
+            "whatItDoes": "Claims underscore characters make JSON illegal.",
+            "whyWrongHere": "The syntax error is the missing comma between route entries, not underscores."
           },
           {
             "choiceIndex": 3,
-            "explanation": "JSON is invalid — missing delimiter between array objects.",
+            "explanation": "JSON is invalid — two route properties collide without a comma or separate objects.",
             "misconceptionTested": "Valid JSON exhibit",
-            "whatItDoes": "Nothing is wrong with the exhibit. points to a related idea, but not the specific behavior or value required for ipaddress.",
-            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — Nothing is wrong with the exhibit. does not."
+            "whatItDoes": "Claims the exhibit is already valid.",
+            "whyWrongHere": "Parsers fail without a comma or },{ between the route entries."
           }
         ],
-        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
+        "examTip": "JSON arrays of objects: [{…},{…}] — missing commas between members are a classic exam trap."
       },
       "regeneratedIncorrect": [
         {

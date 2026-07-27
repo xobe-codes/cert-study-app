@@ -84,6 +84,9 @@ This file did not exist before 2026-07-13; entries below reconstruct the evening
 | 2026-07-15 | Evening | 5 (found+resolved incl. schema-regression fix for 132 prior entries) | 33 (net new, same range as this run's discarded draft) | 203/914 |
 | 2026-07-15 | (this run) | 0 (already resolved by earlier concurrent runs) | 33 (net new, after 2nd collision) | 231/914 (235 total incl. 4 surviving flagged) |
 | 2026-07-17 | Full deterministic closeout | 0 (no active flags in this pass) | 679 backfilled from validated learner-visible runtime reviews | **914/914** |
+| 2026-07-20 | Afternoon | 6 (found+resolved; 2 full rewrites, 4 re-verified/no rewrite needed) | 0 (pool already complete, claim skipped) | 914/914 |
+| 2026-07-21 | Morning | 0 (all 7 already resolved by prior Afternoon run) | 0 (pool already complete, claim skipped) | 914/914 |
+| 2026-07-21 | Evening | 0 (all 7 live flags already covered by prior afternoon fix; re-verified content present, no new complaints) | 0 (pool already complete, claim returned empty) | 914/914 |
 
 ## 2026-07-17 — full backlog closeout
 
@@ -92,3 +95,24 @@ This file did not exist before 2026-07-13; entries below reconstruct the evening
 - Added 679 question entries / 2,031 distractor explanations using the validated runtime review as the curated source; no external API or live AI was used.
 - Added `validate:regen-coverage`: **914/914 questions**, **2,712/2,712 distractors**, zero missing entries, zero schema/template/mechanism errors.
 - `validate:answer-reviews` and `validate:mechanism-language` remain green across all 914 learner-visible reviews.
+
+## 2026-07-20 AFTERNOON (report: `REGEN_REPORT_2026-07-20_AFTERNOON.md`)
+
+- Flagged priority: checked production D1 directly — **7 flagged questions found, 6 actionable** (`obj-3.1-source-q005` skipped, already resolved at its current flag count). Verified every actionable question's answer key against its exhibit — **no genuine wrong-key bugs found**; all `wrong_key` flags were learner confusion on questions with correct keys.
+  - **2 questions got a full rewrite** (`obj-3.1-source-q008`, `obj-3.4-source-q041`): both still had generic template boilerplate left over from the 2026-07-17 backlog closeout despite `q008` showing as "fixed" in the ledger from an earlier typo-only pass. Rewrote all 6 wrong-choice explanations (3 each) to genuine 99-spec quality.
+  - **4 questions needed no explanation rewrite** (`obj-3.1-source-q002`, `q004`, `q007`, `obj-2.8-source-q007`): already 99-spec quality from prior fixes; only re-verified against new flag reasons and updated in the ledger.
+  - **Found a likely root cause for the `bad_display` flags**: `obj-3.1-source-q004` and `obj-3.4-source-q041` both have their exhibit text duplicated verbatim inside the `question` field in `ccnaCleanQuestions.js` — a source-data bug outside the scope of explanation regeneration. Logged in the report's Manual Review section; not fixed this run.
+- Regular batch: claimed 0 (pool already 914/914 since 2026-07-17 closeout) — step skipped per instructions, no claim/release needed.
+- Cumulative (regular pool): **914/914**, unchanged.
+- No failures.
+
+## 2026-07-21 MORNING (report: `REGEN_REPORT_2026-07-21_MORNING.md`)
+
+- Flagged priority: checked production D1 directly — same 7 flagged questions as the 2026-07-20 Afternoon run, **0 newly actionable**. All 7 already in the ledger with `flagCountAtFix` matching the live count (6 fixed by that prior run, 1 — `obj-3.1-source-q005` — correctly skipped both times, no new complaints). No writes made to the ledger or `regeneratedExplanations.json` this run.
+- Regular batch: claimed 0 (pool still 914/914) — step skipped per instructions, no claim/release needed.
+- Cumulative (regular pool): **914/914**, unchanged.
+- No failures. Noted for the record: repo has an unrelated large uncommitted change set ("Weekend study QA — 6-domain audit" per `ai-improvement-logs/ACTIVE_HANDOFF.md`) touching 30+ source-data/gold-review files; this run did not touch any of it. Also noted `ACTIVE_HANDOFF.md`'s caution against running `npm run compile:clean-questions` until `build:question-health`'s mass-exclusion bug is investigated.
+
+## 2026-07-21 MORNING — re-verification pass (scheduled task fired twice)
+
+The `regenerate-questions-morning` scheduled task fired a second time for the same date (or across a UTC boundary). Re-ran all checks fresh: same 7 live D1 flags, all already in the ledger with matching `flagCountAtFix` (0 actionable); `regeneratedExplanations.json` confirmed still 914/914; `claimQuestionBatch.mjs claim` returned empty again, nothing to release. No writes made. Findings appended to `REGEN_REPORT_2026-07-21_MORNING.md` rather than duplicated in a new dated report, since nothing changed. Flagged for the scheduler owner: this task appears to double-fire — worth checking the cron config.

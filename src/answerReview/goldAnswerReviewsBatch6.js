@@ -171,26 +171,26 @@ export const BATCH6_GOLD = {
   'obj-3.6-depth-q6': {
     "correct": {
       "choiceIndex": 1,
-      "explanation": "Adjacency without routes — area mismatch, network statements, or passive intf."
+      "explanation": "On multi-access OSPF, **2-Way between DROTHERs is often normal**. Full adjacency (LSDB exchange) is with the **DR/BDR**. Still verify **area / network statement / passive** when routes are missing."
     },
     "incorrect": [
       {
         "choiceIndex": 0,
-        "explanation": "VTP manages VLAN databases on switches — OSPF neighbors up without routes point to area or network statement mismatch, not VTP.",
-        "misconceptionTested": "Checking VTP domain for missing OSPF routes"
+        "explanation": "**2-Way is not always a failure** — DROTHER-to-DROTHER neighbors commonly stay 2-Way while still learning routes via the DR.",
+        "misconceptionTested": "Treating any 2-Way state as a broken adjacency"
       },
       {
         "choiceIndex": 2,
-        "explanation": "Telnet timeout is a management setting — OSPF route learning requires matching areas and non-passive interfaces on the link.",
+        "explanation": "Telnet timeout is a management setting — unrelated to OSPF neighbor states or LSA exchange.",
         "misconceptionTested": "Blaming Telnet timeout for OSPF route absence"
       },
       {
         "choiceIndex": 3,
-        "explanation": "PoE budget powers devices — it does not prevent OSPF from advertising networks when adjacency is already formed.",
+        "explanation": "PoE budget powers devices — it does not control OSPF adjacency or route advertisement.",
         "misconceptionTested": "Equating PoE budget with OSPF route propagation"
       }
     ],
-    "examTip": "OSPF neighbors up, no routes → **area / network statement / passive**."
+    "examTip": "OSPF **2-Way on LAN** \u2192 check if peers are **DROTHER** (expected) vs stuck before **Full** with DR; missing routes \u2192 also **area / network / passive**."
   },
   'obj-3.6-depth-q7': {
     "correct": {

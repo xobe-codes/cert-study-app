@@ -31,7 +31,7 @@ export const IMPORTED_QUESTIONS = {
         "Switch(config)#cdp disable",
         "Switch(config-if)#no cdp enable",
         "Switch(config)#no cdp",
-        "Switch(config-if)#no cdp run"
+        "Switch(config)#no cdp run"
       ],
       "correctIndex": 3,
       "explanation": "no cdp run disables CDP globally.",
@@ -1314,15 +1314,15 @@ export const IMPORTED_QUESTIONS = {
       ]
     },
     {
-      "question": "What is the transition of states when PortFast is configured?",
+      "question": "With PortFast enabled on an access port, what happens on link up?",
       "choices": [
-        "Forwarding, listening, learning, blocking",
-        "Listening, forwarding, learning, blocking",
-        "Listening, learning, forwarding, blocking",
-        "Blocking, listening, learning, forwarding"
+        "Transitions immediately to forwarding",
+        "Blocks until root election completes",
+        "Must wait through listening then learning",
+        "Stays blocking unless a BPDU is received"
       ],
       "correctIndex": 0,
-      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "explanation": "PortFast skips listening/learning wait times — an access port with PortFast goes directly to forwarding on link up.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "stp",
@@ -1418,12 +1418,12 @@ export const IMPORTED_QUESTIONS = {
       "question": "Which command would you use to remove BPDU Guard from an interface?",
       "choices": [
         "Switch(config-if)#switchport bdpugaurd disable",
-        "Switch(config-if)#spanning-tree bpduguard disable",
+        "Switch(config-if)#spanning-tree portfast disable",
         "Switch(config-if)#no switchport bpduguard",
-        "Switch(config-if)#spanning-tree bpduguard disable"
+        "Switch(config-if)#no spanning-tree bpduguard"
       ],
       "correctIndex": 3,
-      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "explanation": "Remove BPDU Guard on an interface with no spanning-tree bpduguard (spanning-tree namespace — not switchport).",
       "type": "definition",
       "difficulty": "medium",
       "concept": "stp",
@@ -5362,15 +5362,15 @@ export const IMPORTED_QUESTIONS = {
       ]
     },
     {
-      "question": "You review a routing table and see the entry in the following exhibit. What does the 4 in the underlined number represent?",
+      "question": "Routing table entry shows O 192.168.10.0/24 [110/20]. What does the 20 in [110/20] represent?",
       "choices": [
-        "The 4 represents the administrative distance.",
-        "The 4 represents the protocol.",
-        "The 4 represents the metric.",
-        "The 4 represents the position in the routing table."
+        "The administrative distance",
+        "The protocol identifier",
+        "The metric (OSPF cost)",
+        "The position in the routing table"
       ],
       "correctIndex": 2,
-      "explanation": "The source answer is C. The correct selection is: The 4 represents the metric.",
+      "explanation": "IOS shows [AD/metric]. In [110/20], 110 is AD and 20 is the metric (OSPF cost).",
       "type": "application",
       "difficulty": "hard",
       "concept": "routing table",
@@ -5429,13 +5429,13 @@ export const IMPORTED_QUESTIONS = {
     {
       "question": "Which route statement is configured when an IP address of 203.80.53.22/19 is configured on an interface?",
       "choices": [
-        "S 203.80.16.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.32.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.48.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.53.22/19 is directly connected, Serial 0/0/0"
+        "C 203.80.16.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.32.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.48.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.53.22/19 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 1,
-      "explanation": "The source answer is B. The correct selection is: S 203.80.32.0/19 is directly connected, Serial 0/0/0",
+      "explanation": "Configuring 203.80.53.22/19 installs connected (C) route 203.80.32.0/19 — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "routing table",
@@ -5487,15 +5487,15 @@ export const IMPORTED_QUESTIONS = {
       ]
     },
     {
-      "question": "In the following exhibit is a copy of the running-config. What is the next hop for a destination address of 192.168.4.85?",
+      "question": "Running-config has ip route 192.168.4.0 255.255.255.0 10.0.0.1 and ip route 192.168.5.0 255.255.255.0 10.0.0.2. What is the next-hop IP for 192.168.4.85?",
       "choices": [
-        "Interface Serial 0/2/0",
-        "IP address 192.168.4.2",
-        "Interface Serial 0/0/1",
-        "IP address 198.22.34.3"
+        "10.0.0.2",
+        "192.168.4.2",
+        "10.0.0.1",
+        "198.22.34.3"
       ],
       "correctIndex": 2,
-      "explanation": "The source answer is C. The correct selection is: Interface Serial 0/0/1",
+      "explanation": "192.168.4.85 matches 192.168.4.0/24 with next-hop 10.0.0.1.",
       "type": "application",
       "difficulty": "hard",
       "concept": "routing table",
@@ -7216,13 +7216,13 @@ export const IMPORTED_QUESTIONS = {
     {
       "question": "Which route statement is configured when an IP address of 208.43.34.17/29 is configured on an interface?",
       "choices": [
-        "S 208.43.34.17/32 is directly connected, Serial 0/0/0",
-        "S 208.43.34.24/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.8/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.17/29 is directly connected, Serial 0/0/0"
+        "L 208.43.34.17/32 is directly connected, Serial 0/0/0",
+        "C 208.43.34.24/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.8/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.17/29 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "The source answer is A. The correct selection is: S 208.43.34.17/32 is directly connected, Serial 0/0/0",
+      "explanation": "Interface IP installs local (L) /32 host route — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -7275,13 +7275,13 @@ export const IMPORTED_QUESTIONS = {
     {
       "question": "Which route statement is configured when an IP address of 194.22.34.54/28 is configured on an interface?",
       "choices": [
-        "S 194.22.34.48/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.64/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.54/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.32/28 is directly connected, Serial 0/0/0"
+        "C 194.22.34.48/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.64/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.54/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.32/28 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "The source answer is A. The correct selection is: S 194.22.34.48/28 is directly connected, Serial 0/0/0",
+      "explanation": "Configuring 194.22.34.54/28 installs connected (C) route 194.22.34.48/28 — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",

@@ -73,7 +73,7 @@ export const GOLD_ANSWER_REVIEWS = {
   'obj-2.5-source-q043': {
     correct: {
       choiceIndex: 3,
-      explanation: 'Remove BPDU Guard with `no spanning-tree bpduguard` (or the platform-equivalent negation under the interface).',
+      explanation: 'Remove BPDU Guard with `no spanning-tree bpduguard` under the interface.',
     },
     incorrect: [
       {
@@ -83,9 +83,8 @@ export const GOLD_ANSWER_REVIEWS = {
       },
       {
         choiceIndex: 1,
-        explanation: 'This `spanning-tree bpduguard disable` line matches the keyed correct syntax, but choice D is the scored answer when two options repeat the same BPDU Guard command — pick the letter the question marks correct.',
-        misconceptionTested: 'Selecting a duplicate correct-looking option when only one letter is keyed',
-        whyWrongHere: 'Both B and D show the same BPDU Guard removal syntax — only the keyed letter (D) is scored on this stem.',
+        explanation: '`spanning-tree portfast disable` removes PortFast, not BPDU Guard.',
+        misconceptionTested: 'Disabling PortFast instead of BPDU Guard',
       },
       {
         choiceIndex: 2,

@@ -679,10 +679,11 @@ export function applyContentEnrichment(base, objectiveId) {
     reading = {
       ...reading,
       ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      ...(rp.definition ? { definition: rp.definition } : {}),
       tiers: { ...reading.tiers, ...(rp.tiers || {}) },
-      keyPoints: mergeUniqueStrings(reading.keyPoints, rp.keyPoints),
+      keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading.keyPoints,
       commonMistakes: mergeUniqueStrings(reading.commonMistakes, rp.commonMistakes),
-      related: mergeUniqueStrings(reading.related, rp.related),
+      related: rp.related?.length ? rp.related : mergeUniqueStrings(reading.related, rp.related),
     }
   }
   if (baWave1?.reading) {
@@ -690,10 +691,11 @@ export function applyContentEnrichment(base, objectiveId) {
     reading = {
       ...(reading || {}),
       ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      ...(rp.definition ? { definition: rp.definition } : {}),
       tiers: { ...(reading?.tiers || {}), ...(rp.tiers || {}) },
-      keyPoints: mergeUniqueStrings(reading?.keyPoints, rp.keyPoints),
+      keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading?.keyPoints,
       commonMistakes: mergeUniqueStrings(reading?.commonMistakes, rp.commonMistakes),
-      related: mergeUniqueStrings(reading?.related, rp.related),
+      related: rp.related?.length ? rp.related : mergeUniqueStrings(reading?.related, rp.related),
     }
   }
   if (baWave2?.reading) {
@@ -701,10 +703,11 @@ export function applyContentEnrichment(base, objectiveId) {
     reading = {
       ...(reading || {}),
       ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      ...(rp.definition ? { definition: rp.definition } : {}),
       tiers: { ...(reading?.tiers || {}), ...(rp.tiers || {}) },
-      keyPoints: mergeUniqueStrings(reading?.keyPoints, rp.keyPoints),
+      keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading?.keyPoints,
       commonMistakes: mergeUniqueStrings(reading?.commonMistakes, rp.commonMistakes),
-      related: mergeUniqueStrings(reading?.related, rp.related),
+      related: rp.related?.length ? rp.related : mergeUniqueStrings(reading?.related, rp.related),
     }
   }
   const readingMerged = [

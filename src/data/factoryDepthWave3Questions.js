@@ -470,15 +470,15 @@ export const FACTORY_DEPTH_WAVE3_QUESTIONS = {
     },
     {
       "id": "obj-3.6-depth-q6",
-      "question": "Two-way OSPF neighbor but no learned routes. Check:",
+      "question": "On a multi-access OSPF segment, show ip ospf neighbor shows a neighbor in 2-Way and you see no routes from that neighbor. What is often true?",
       "choices": [
-        "VTP domain",
-        "Area/network mismatch or passive interface on link",
-        "Telnet timeout",
-        "PoE budget"
+        "2-Way always means a broken adjacency that must be fixed before any routes can exist",
+        "2-Way can be normal between DROTHERs; Full adjacency (and LSDB exchange) is with the DR/BDR — also verify area/network/passive",
+        "Telnet timeout prevents OSPF Hellos",
+        "PoE budget blocks OSPF LSAs"
       ],
       "correctIndex": 1,
-      "explanation": "Adjacency without routes — area mismatch, network statements, or passive intf.",
+      "explanation": "On broadcast/NBMA multi-access, DROTHER neighbors often remain 2-Way with each other. Full (and route learning via that adjacency) is with the DR/BDR. Still verify area, network statements, and passive-interface when routes are missing.",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "ospf no routes",

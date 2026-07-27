@@ -305,26 +305,26 @@ export const BATCH33_GOLD = {
   "obj-6.6-source-q018": {
     "correct": {
       "choiceIndex": 2,
-      "explanation": "Per this stem’s keyed answer, custom Ansible module packaging is identified as **JSON** in the options list."
+      "explanation": "Custom Ansible modules are written in **Python** — that extends Ansible's task library."
     },
     "incorrect": [
       {
         "choiceIndex": 0,
-        "explanation": "**YAML** is for playbooks/inventories — not the keyed module format in this question.",
+        "explanation": "**YAML** is for playbooks/inventories — custom modules are **Python**.",
         "misconceptionTested": "YAML as module format"
       },
       {
         "choiceIndex": 1,
-        "explanation": "**CSV** is a flat data table format — not how Ansible custom modules are authored/packaged here.",
+        "explanation": "**CSV** is a flat data table format — not how Ansible custom modules are authored.",
         "misconceptionTested": "CSV as module format"
       },
       {
         "choiceIndex": 3,
-        "explanation": "**XML** is not the Ansible custom-module format selected by this stem.",
+        "explanation": "**XML** is a markup format for data exchange — Ansible custom modules are authored in **Python**, not XML.",
         "misconceptionTested": "XML as module format"
       }
     ],
-    "examTip": "Ansible: playbooks = **YAML**; know exam wording for module packaging formats."
+    "examTip": "Ansible: playbooks = **YAML**; custom modules = **Python**."
   },
   "obj-6.7-source-q005": {
     "correct": {

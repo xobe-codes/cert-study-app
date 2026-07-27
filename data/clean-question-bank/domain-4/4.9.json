@@ -113,8 +113,8 @@
         "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
         "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
       ],
-      "correctIndex": 3,
-      "explanation": "",
+      "correctIndex": 2,
+      "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config.",
       "type": "application",
       "difficulty": "hard",
       "concept": "tftp",
@@ -127,30 +127,30 @@
       ],
       "answerReview": {
         "correct": {
-          "choiceIndex": 3,
-          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — image filename before the TFTP URL in global config."
+          "choiceIndex": 2,
+          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "boot tftp:// is privileged EXEC syntax — boot commands belong in global config.",
+            "explanation": "boot tftp:// is privileged EXEC syntax — boot system belongs in global config and needs the image filename.",
             "misconceptionTested": "Exec-mode boot for TFTP image",
-            "whatItDoes": "Router#boot tftp://192.168.1.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router#boot tftp://192.168.1.2 does not."
+            "whatItDoes": "Attempts a privileged-EXEC boot with only a TFTP URL.",
+            "whyWrongHere": "IOS uses Router(config)#boot system tftp://<server> <filename>."
           },
           {
             "choiceIndex": 1,
             "explanation": "Missing system keyword — IOS uses boot system tftp://<server> <filename>.",
             "misconceptionTested": "boot without system keyword",
-            "whatItDoes": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not."
+            "whatItDoes": "Uses boot without the system keyword.",
+            "whyWrongHere": "Correct form is boot system tftp://192.168.1.2 <image.bin>."
           },
           {
-            "choiceIndex": 2,
-            "explanation": "URL before filename reverses IOS argument order — filename then location on the boot system line.",
+            "choiceIndex": 3,
+            "explanation": "Filename before the TFTP URL reverses the usual Cisco boot system tftp://… <filename> order.",
             "misconceptionTested": "Reversed boot system argument order",
-            "whatItDoes": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not."
+            "whatItDoes": "Places the image name before the tftp:// URL.",
+            "whyWrongHere": "Keyed syntax is boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin."
           }
         ],
         "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."

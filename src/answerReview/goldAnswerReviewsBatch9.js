@@ -243,17 +243,17 @@ export const BATCH9_GOLD = {
   'obj-3.1-source-q002': {
     "correct": {
       "choiceIndex": 2,
-      "explanation": "In `[110/20]`, the value after the slash is the routing protocol metric (20 for OSPF cost here) — AD is before the slash."
+      "explanation": "In `[110/20]`, the value after the slash is the routing protocol **metric** (20 for OSPF cost here) — AD is before the slash."
     },
     "incorrect": [
       {
         "choiceIndex": 0,
-        "explanation": "Administrative distance is the first number inside the brackets (110 for OSPF) — the post-slash value is metric.",
+        "explanation": "Administrative distance is the first number inside the brackets (**110** for OSPF) — the post-slash value is metric.",
         "misconceptionTested": "Reading post-slash value as administrative distance"
       },
       {
         "choiceIndex": 1,
-        "explanation": "The leading route code (O) identifies the protocol — the bracketed numbers are AD and metric, not protocol ID.",
+        "explanation": "The leading route code (**O**) identifies the protocol — the bracketed numbers are AD and metric, not protocol ID.",
         "misconceptionTested": "Interpreting bracket digits as protocol identifier"
       },
       {

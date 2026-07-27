@@ -387,23 +387,23 @@ export const BATCH26_GOLD = {
   'obj-2.5-source-q038':   {
     "correct": {
       "choiceIndex": 0,
-      "explanation": "With PortFast, port goes **directly to forwarding** \u2014 the listed transition shows the immediate jump bypassing listening/learning wait times."
+      "explanation": "With PortFast, an access port goes **directly to forwarding** on link up — it skips listening/learning wait times."
     },
     "incorrect": [
       {
         "choiceIndex": 1,
-        "explanation": "Wrong order \u2014 PortFast transitions **directly to forwarding**, not through listening first.",
-        "misconceptionTested": "Listening-first with PortFast"
+        "explanation": "PortFast does **not** wait for root election before forwarding on an access edge port.",
+        "misconceptionTested": "Root-election wait with PortFast"
       },
       {
         "choiceIndex": 2,
-        "explanation": "This is the **normal STP** order without PortFast \u2014 PortFast **skips** the wait.",
+        "explanation": "Listening then learning is **normal STP without PortFast** — PortFast **skips** those waits.",
         "misconceptionTested": "Normal STP transitions with PortFast enabled"
       },
       {
         "choiceIndex": 3,
-        "explanation": "This is **classic STP** without PortFast \u2014 PortFast means **immediate forwarding**.",
-        "misconceptionTested": "Classic STP order as PortFast behavior"
+        "explanation": "PortFast edge ports **forward immediately** — they do not stay blocking until a BPDU arrives.",
+        "misconceptionTested": "Stay blocking until BPDU with PortFast"
       }
     ],
     "examTip": "PortFast: port transitions **immediately to forwarding** \u2014 no 30-second listening+learning delay."
@@ -1011,7 +1011,7 @@ export const BATCH26_GOLD = {
   'obj-3.1-source-q005':   {
     "correct": {
       "choiceIndex": 1,
-      "explanation": "203.80.53.22**/19** \u2192 network is **203.80.32.0/19** (third octet: 32\u201363 block). Connected route shows that prefix."
+      "explanation": "203.80.53.22**/19** \u2192 network is **203.80.32.0/19** (third octet: 32\u201363 block). Connected routes use code **C**, not **S**."
     },
     "incorrect": [
       {
@@ -1021,16 +1021,16 @@ export const BATCH26_GOLD = {
       },
       {
         "choiceIndex": 2,
-        "explanation": "**203.80.48.0/19** is the next /19 block (48\u201363) \u2014 .53 is in **32\u201363** which starts at .32.",
+        "explanation": "**203.80.48.0/19** is misaligned \u2014 .53 is in **32\u201363** which starts at .32.",
         "misconceptionTested": "Misaligned /19 starting at .48"
       },
       {
         "choiceIndex": 3,
-        "explanation": "Host address with **/19** is not a valid network route \u2014 IOS shows the **network prefix .32.0/19**.",
+        "explanation": "Host address with **/19** is not a valid network route \u2014 IOS shows the **network prefix .32.0/19** as **C**.",
         "misconceptionTested": "Host address as network route"
       }
     ],
-    "examTip": "/19 boundaries: 0, 32, 64, 96\u2026 | .53 is in **32\u201363** \u2192 network **203.80.32.0/19**."
+    "examTip": "/19 boundaries: 0, 32, 64, 96\u2026 | .53 is in **32\u201363** \u2192 **C 203.80.32.0/19** (directly connected = **C**, not **S**)."
   },
   'obj-3.1-source-q006':   {
     "correct": {
@@ -1083,26 +1083,26 @@ export const BATCH26_GOLD = {
   'obj-3.1-source-q008':   {
     "correct": {
       "choiceIndex": 2,
-      "explanation": "The static route to 192.168.4.0/24 points to next-hop 10.0.0.1 \u2014 if that resolves via **Serial 0/0/1**, traffic exits there."
+      "explanation": "The static route to **192.168.4.0/24** points to next-hop **10.0.0.1** \u2014 that is the next hop for **192.168.4.85**."
     },
     "incorrect": [
       {
         "choiceIndex": 0,
-        "explanation": "Serial 0/2/0 is not the exit interface for the route matching 192.168.4.85.",
-        "misconceptionTested": "Wrong serial interface for destination"
+        "explanation": "**10.0.0.2** is the next hop for **192.168.5.0/24**, not **192.168.4.0/24**.",
+        "misconceptionTested": "Wrong static next-hop for destination"
       },
       {
         "choiceIndex": 1,
-        "explanation": "192.168.4.2 is in the destination network, not the next hop or exit interface.",
+        "explanation": "**192.168.4.2** is in the destination network, not the configured next hop.",
         "misconceptionTested": "Destination IP as next hop"
       },
       {
         "choiceIndex": 3,
-        "explanation": "198.22.34.3 does not appear in the routing table excerpt for this destination.",
+        "explanation": "**198.22.34.3** does not appear in the running-config excerpt for this destination.",
         "misconceptionTested": "Random IP as route exit"
       }
     ],
-    "examTip": "Static route \u2192 follow **next-hop recursion** to find actual exit interface in `show ip route`."
+    "examTip": "Match longest prefix in config \u2192 read the **next-hop IP** from that `ip route` statement."
   },
   'obj-3.1-source-q011':   {
     "correct": {

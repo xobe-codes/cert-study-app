@@ -459,7 +459,7 @@ export const BATCH31_GOLD = {
   "1.7-c-q6": {
     "correct": {
       "choiceIndex": 2,
-      "explanation": "**198.51.100.50** is in TEST-NET-2 documentation space and is treated as public/non-RFC1918 — not in 10/8, 172.16/12, or 192.168/16."
+      "explanation": "**8.8.8.8** is a public **Internet-routable** address. **TEST-NET** blocks such as **198.51.100.0/24** (RFC 5737) are documentation space — **not** Internet-routable and must not be taught as “public” examples."
     },
     "incorrect": [
       {
@@ -478,7 +478,7 @@ export const BATCH31_GOLD = {
         "misconceptionTested": "Private 192.168/16 as public"
       }
     ],
-    "examTip": "Private = **10/8**, **172.16/12**, **192.168/16**. Anything else is not RFC 1918."
+    "examTip": "Public example → **8.8.8.8**. Private → **10/8**, **172.16/12**, **192.168/16**. TEST-NET (**198.51.100.0/24**) = docs only, not Internet-routable."
   },
   "1.9-c-q7": {
     "correct": {

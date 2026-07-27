@@ -4348,11 +4348,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "10.1.1.1",
         "172.16.1.1",
-        "198.51.100.50",
+        "8.8.8.8",
         "192.168.1.1"
       ],
       "correctIndex": 2,
-      "explanation": "198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+      "explanation": "8.8.8.8 is a public Internet-routable address. TEST-NET ranges such as 198.51.100.0/24 are documentation space (RFC 5737) — not Internet-routable.",
       "type": "application",
       "difficulty": "easy",
       "concept": "identify public",
@@ -4362,32 +4362,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "198.51.100.50 is in TEST-NET documentation/public space — not RFC 1918."
+          "explanation": "8.8.8.8 is a well-known public/Internet-routable address. Do not confuse it with TEST-NET documentation space (198.51.100.0/24), which is not Internet-routable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "10.1.1.1 is private RFC 1918.",
+            "explanation": "10.1.1.1 is private RFC 1918 (10.0.0.0/8) — not Internet-routable.",
             "misconceptionTested": "10.x as public",
             "whatItDoes": "10.1.1.1 points to a related idea, but not the specific behavior or value required for identify public.",
-            "whyWrongHere": "For \"identify public\", 198.51.100.50 satisfies what this question tests — 10.1.1.1 does not."
+            "whyWrongHere": "For \"identify public\", 8.8.8.8 is Internet-routable — 10.1.1.1 is RFC 1918 private."
           },
           {
             "choiceIndex": 1,
-            "explanation": "172.16.1.1 is private RFC 1918.",
+            "explanation": "172.16.1.1 is private RFC 1918 (172.16.0.0/12) — not Internet-routable.",
             "misconceptionTested": "172.16 as public",
             "whatItDoes": "172.16.1.1 points to a related idea, but not the specific behavior or value required for identify public.",
-            "whyWrongHere": "For \"identify public\", 198.51.100.50 satisfies what this question tests — 172.16.1.1 does not."
+            "whyWrongHere": "For \"identify public\", 8.8.8.8 is Internet-routable — 172.16.1.1 is RFC 1918 private."
           },
           {
             "choiceIndex": 3,
-            "explanation": "192.168.1.1 is private RFC 1918.",
+            "explanation": "192.168.1.1 is private RFC 1918 (192.168.0.0/16) — not Internet-routable.",
             "misconceptionTested": "192.168 as public",
             "whatItDoes": "192.168.1.1 points to a related idea, but not the specific behavior or value required for identify public.",
-            "whyWrongHere": "For \"identify public\", 198.51.100.50 satisfies what this question tests — 192.168.1.1 does not."
+            "whyWrongHere": "For \"identify public\", 8.8.8.8 is Internet-routable — 192.168.1.1 is RFC 1918 private."
           }
         ],
-        "examTip": "Know the three private ranges vs public routable."
+        "examTip": "Public example: 8.8.8.8. Private: 10/8, 172.16/12, 192.168/16. TEST-NET (198.51.100.0/24) = documentation, not Internet-routable."
       },
       "regeneratedIncorrect": [
         {

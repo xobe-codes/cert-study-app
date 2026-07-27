@@ -123,26 +123,26 @@ export const BATCH24_GOLD = {
   'obj-3.3-source-q027':   {
     "correct": {
       "choiceIndex": 0,
-      "explanation": "IOS adds a **host /32** route for the configured address \u2014 **`208.43.34.17/32`** on **Serial 0/0/0** (display may show connected/local codes)."
+      "explanation": "IOS adds a **local host /32** for the configured address \u2014 **`L 208.43.34.17/32`** on **Serial 0/0/0** (connected network would be **C**, never **S**)."
     },
     "incorrect": [
       {
         "choiceIndex": 1,
-        "explanation": "**208.43.34.24/29** is not the host route for **.17/29** \u2014 IOS installs **/32** for the configured IP.",
-        "misconceptionTested": "Network /29 route instead of host /32"
+        "explanation": "**208.43.34.24/29** is not the host or network route for **.17/29**.",
+        "misconceptionTested": "Wrong /29 network boundary"
       },
       {
         "choiceIndex": 2,
-        "explanation": "**208.43.34.8/29** is the **network** prefix \u2014 the keyed table line for the configured IP is the **/32 host** entry.",
-        "misconceptionTested": "Subnet network route as primary host entry"
+        "explanation": "**208.43.34.8/29** is the wrong /29 block \u2014 .17 falls in **.16/29**; the keyed line is the **/32 local** entry.",
+        "misconceptionTested": "Wrong subnet network route as host entry"
       },
       {
         "choiceIndex": 3,
-        "explanation": "**208.43.34.17/29** is invalid host prefix length \u2014 configured /29 address gets **/32 local** route.",
+        "explanation": "**208.43.34.17/29** is not how IOS displays the host route \u2014 configured address gets **/32 local (L)**.",
         "misconceptionTested": "/29 host route in RIB"
       }
     ],
-    "examTip": "Interface IP \u2192 **connected network** + **local /32** for the exact address \u2014 read `show ip route` codes **C** and **L**."
+    "examTip": "Interface IP \u2192 **connected network (C)** + **local /32 (L)** \u2014 never code **S** for directly connected."
   },
   'obj-3.3-source-q028':   {
     "correct": {
@@ -195,7 +195,7 @@ export const BATCH24_GOLD = {
   'obj-3.3-source-q030':   {
     "correct": {
       "choiceIndex": 0,
-      "explanation": "**194.22.34.54/28** belongs to **194.22.34.48/28** network \u2014 connected route shows that **/28 prefix** on the interface."
+      "explanation": "**194.22.34.54/28** belongs to **194.22.34.48/28** \u2014 connected routes use code **C**, not **S**."
     },
     "incorrect": [
       {
@@ -214,7 +214,7 @@ export const BATCH24_GOLD = {
         "misconceptionTested": "Misaligned /28 subnet for .54"
       }
     ],
-    "examTip": "/28 boundaries: increment **16** in last octet \u2014 .48, .64, .80\u2026 \u2014 place .54 in **.48/28**."
+    "examTip": "/28 boundaries: increment **16** \u2014 .48, .64\u2026 \u2014 place .54 in **C 194.22.34.48/28** (directly connected = **C**, not **S**)."
   },
   'obj-3.3-source-q031':   {
     "correct": {

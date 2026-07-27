@@ -226,7 +226,23 @@ export const CCNA_PARAMETRIC_FAMILIES = [
     paramKey: p => String(p.prefix),
     build: ({ prefix }) => {
       const correct = String(32 - prefix)
-      const choices = [correct, String(prefix), String(32 - prefix + 1), String(8)]
+      const pool = [
+        String(prefix),
+        String(32 - prefix + 1),
+        String(8),
+        String(16),
+        String(Math.max(1, prefix - 8)),
+        String(Math.max(1, 32 - prefix - 1)),
+        String(4),
+        String(12),
+      ]
+      const distractors = []
+      for (const c of pool) {
+        if (c === correct || distractors.includes(c)) continue
+        distractors.push(c)
+        if (distractors.length === 3) break
+      }
+      const choices = [correct, ...distractors]
       return {
         question: `How many host bits are in a \`/${prefix}\` address?`,
         choices,

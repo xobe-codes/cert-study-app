@@ -7175,27 +7175,27 @@
     "incorrect": [
       {
         "choiceIndex": 0,
-        "misconceptionReason": "Wrong serial interface for destination",
-        "whyItSeems": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length.",
-        "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
-        "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"Interface Serial 0/2/0\": IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length."
+        "misconceptionReason": "Students match the destination octet (.4) to the wrong configured line, grabbing the next-hop from the 192.168.5.0/24 static route instead of the 192.168.4.0/24 one.",
+        "whyItSeems": "Both static routes share the same 255.255.255.0 mask and a similar 10.0.0.x next-hop pattern, so it's easy to read down the wrong line when scanning quickly under time pressure.",
+        "whyWrongHere": "10.0.0.2 is the next-hop configured for 192.168.5.0/24, not 192.168.4.0/24. The destination 192.168.4.85 falls inside 192.168.4.0/24 (addresses .0–.255), which is the line pointing to 10.0.0.1 — a different static route entirely.",
+        "memoryAnchor": "Match the destination to its OWN network line first, then read that line's next-hop — don't grab the next-hop from a neighboring line.",
+        "contrast": "192.168.5.85 would use next-hop 10.0.0.2; 192.168.4.85 uses next-hop 10.0.0.1 — one digit in the destination changes which configured line applies."
       },
       {
         "choiceIndex": 1,
-        "misconceptionReason": "Destination IP as next hop",
-        "whyItSeems": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-        "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 192.168.4.2 answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
-        "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"IP address 192.168.4.2\": For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 192."
+        "misconceptionReason": "Students assume the next hop must be a host address inside the destination network itself, since that feels like where traffic is 'going.'",
+        "whyItSeems": "192.168.4.2 looks plausible because it sits inside the same 192.168.4.0/24 destination network as 192.168.4.85, so it can feel like a natural 'gateway into that network.'",
+        "whyWrongHere": "A next hop is the address of the NEXT ROUTER to forward through, not a host inside the destination subnet. The 'ip route' statement explicitly lists 10.0.0.1 as that next-hop — a completely separate transit-network address, not anything in the 192.168.4.0/24 range.",
+        "memoryAnchor": "Next-hop = the router you hand the packet to next, not an address inside the destination network.",
+        "contrast": "192.168.4.2 could be a host living inside the destination subnet; 10.0.0.1 is the router interface configured in the static route that actually forwards traffic there — only the configured value counts as next-hop."
       },
       {
         "choiceIndex": 3,
-        "misconceptionReason": "Random IP as route exit",
-        "whyItSeems": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-        "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 198.22.34.3 answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
-        "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"IP address 198.22.34.3\": For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 198."
+        "misconceptionReason": "Students pick an unfamiliar-looking IP assuming it must be a 'trick' next-hop hidden somewhere in the exhibit, rather than confirming it's actually present in the config.",
+        "whyItSeems": "198.22.34.3 looks like a plausible public/next-hop-style address, and exam questions do sometimes bury the real answer in an unusual-looking value, so it can seem like the 'clever' choice.",
+        "whyWrongHere": "198.22.34.3 doesn't appear anywhere in the running-config excerpt — it isn't configured as a next-hop for any route. The only two next-hops that exist are 10.0.0.1 (for 192.168.4.0/24) and 10.0.0.2 (for 192.168.5.0/24), and only the first matches this destination.",
+        "memoryAnchor": "The next-hop must come from the actual 'ip route' line in the exhibit — never a value that isn't written in the config.",
+        "contrast": "10.0.0.1 is explicitly configured in 'ip route 192.168.4.0 255.255.255.0 10.0.0.1'; 198.22.34.3 has no configuration line anywhere in the exhibit tying it to this destination."
       }
     ]
   },
@@ -11891,27 +11891,27 @@
     "incorrect": [
       {
         "choiceIndex": 0,
-        "misconceptionReason": "Serial in range excluded from OSPF",
-        "whyItSeems": "Interface Serial 0/3/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0 confuses subnet mask with ACL/OSPF wildcard bits.",
-        "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0\" — for what this stem actually tests.",
-        "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0 confuses subnet mask with ACL/OSPF wildcard bits."
+        "misconceptionReason": "Students assume a physical interface with configured sub-interfaces underneath it is somehow bypassed by OSPF's network statement, as if the sub-interfaces 'absorb' all the address matching.",
+        "whyItSeems": "Serial0/3/0 is the parent of two sub-interfaces in this exhibit, so it can feel like the sub-interfaces are the 'real' addressed interfaces and the parent is just a placeholder that OSPF skips.",
+        "whyWrongHere": "OSPF's network command matches every interface's own configured IP against the wildcard, regardless of whether it has sub-interfaces. Serial0/3/0 itself carries 197.234.3.1/30, which falls inside the 0.0.0.63 wildcard's .0–.63 range, so it participates just like any other matching interface.",
+        "memoryAnchor": "OSPF network statements match each interface's own IP — parent-vs-sub-interface status doesn't matter, only whether that IP falls in the wildcard range.",
+        "contrast": "Serial0/3/0's IP (.1) is inside .0–.63 and participates; GigabitEthernet0/0's IP (.100) is outside .0–.63 and is the one left out — the deciding factor is the IP range, not which interface has children."
       },
       {
         "choiceIndex": 1,
-        "misconceptionReason": "Sub-interface excluded from wildcard match",
-        "whyItSeems": "Interface Serial 0/3/0.1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0.1 confuses subnet mask with ACL/OSPF wildcard bits.",
-        "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0.1\" — for what this stem actually tests.",
-        "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0.1\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0."
+        "misconceptionReason": "Students believe OSPF network statements only apply to physical main interfaces and that logical sub-interfaces (like .1) need a separate, explicit network statement to join OSPF.",
+        "whyItSeems": "Sub-interfaces are often introduced as a 'special case' requiring extra configuration (e.g., dot1Q encapsulation), so it's a reasonable but incorrect leap to assume they also need special handling to be matched by a network command.",
+        "whyWrongHere": "OSPF matches by IP address, not by interface type — a sub-interface's configured address is checked against the wildcard exactly like a physical interface's would be. Serial0/3/0.1 has 197.234.3.5/30, which is inside the .0–.63 range covered by 0.0.0.63, so it does participate in OSPF.",
+        "memoryAnchor": "Sub-interfaces aren't second-class citizens for 'network' statements — same IP-in-wildcard-range rule applies to every interface type.",
+        "contrast": "A sub-interface needs extra config for things like 802.1Q trunking, but for OSPF's network command it's evaluated identically to a physical interface: is its IP inside the wildcard's range or not?"
       },
       {
         "choiceIndex": 2,
-        "misconceptionReason": "Second sub-interface excluded from match",
-        "whyItSeems": "Interface Serial 0/3/0.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0.2 confuses subnet mask with ACL/OSPF wildcard bits.",
-        "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0.2\" — for what this stem actually tests.",
-        "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0.2\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0."
+        "misconceptionReason": "Students apply the same 'sub-interfaces are excluded' assumption to the second sub-interface, doubling down on the belief instead of checking its actual IP against the wildcard.",
+        "whyItSeems": "Once a learner assumes one sub-interface is excluded, it feels consistent to assume the sibling sub-interface is excluded too, especially since both share the same parent Serial0/3/0.",
+        "whyWrongHere": "Serial0/3/0.2 is configured with 197.234.3.9/30, which is still inside the 0.0.0.63 wildcard's .0–.63 range — so it matches and participates in OSPF, exactly like its sibling sub-interfaces. Each interface must be checked individually against the wildcard, not assumed based on a sibling's status.",
+        "memoryAnchor": "Check every interface's IP against the wildcard individually — don't assume a whole family of sub-interfaces is excluded together.",
+        "contrast": "Serial0/3/0, 0/3/0.1, and 0/3/0.2 all sit at .1, .5, and .9 — all inside .0–.63 — while only GigabitEthernet0/0 at .100 falls outside that range and is excluded."
       }
     ]
   },

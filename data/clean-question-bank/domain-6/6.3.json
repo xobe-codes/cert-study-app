@@ -231,32 +231,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Southbound APIs (NETCONF/RESTCONF) push configuration from controller to devices — that is how SDN programs the network."
+          "explanation": "Cisco SD-WAN (Viptela) connects branch/ROBO sites to applications over an optimized WAN overlay — the right SDN product when remote offices need direct app access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Northbound APIs face applications/orchestration — they do not program ASICs directly.",
-            "misconceptionTested": "Swapping northbound and southbound",
-            "whatItDoes": "Cisco APIC-EM points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco APIC-EM does not."
+            "explanation": "APIC-EM is a legacy campus/enterprise SDN controller — not the branch WAN overlay for ROBO app access.",
+            "misconceptionTested": "Using campus SDN controller for WAN branch use case",
+            "whatItDoes": "Names Cisco's older enterprise LAN SDN controller.",
+            "whyWrongHere": "Remote office app access maps to Cisco SD-WAN, not APIC-EM."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP is legacy monitoring — SDN southbound is model-driven config (YANG/NETCONF), not SNMP SETs.",
-            "misconceptionTested": "Using SNMP as SDN southbound",
-            "whatItDoes": "Cisco Prime Infrastructure points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco Prime Infrastructure does not."
+            "explanation": "Prime Infrastructure is traditional NMS — not an SD-WAN overlay for branch connectivity.",
+            "misconceptionTested": "Selecting NMS instead of SD-WAN solution",
+            "whatItDoes": "Names a legacy network management platform.",
+            "whyWrongHere": "The stem asks for a Cisco SDN WAN solution for ROBO — Cisco SD-WAN."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CDP discovers neighbors — unrelated to controller-to-device configuration.",
-            "misconceptionTested": "Discovery protocol as SDN API",
-            "whatItDoes": "OpenDaylight points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — OpenDaylight does not."
+            "explanation": "OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.",
+            "misconceptionTested": "Picking generic open controller for Cisco ROBO scenario",
+            "whatItDoes": "Names a generic open-source SDN controller.",
+            "whyWrongHere": "Cisco ROBO direct app access → Cisco SD-WAN."
           }
         ],
-        "examTip": "Northbound = apps → controller. Southbound = controller → devices (NETCONF/RESTCONF/OpenFlow)."
+        "examTip": "Branch offices need direct app access → Cisco SD-WAN, not campus APIC-EM or Prime."
       }
     },
     {

@@ -2244,15 +2244,15 @@
     },
     {
       "id": "obj-2.5-source-q038",
-      "question": "What is the transition of states when PortFast is configured?",
+      "question": "With PortFast enabled on an access port, what happens on link up?",
       "choices": [
-        "Forwarding, listening, learning, blocking",
-        "Listening, forwarding, learning, blocking",
-        "Listening, learning, forwarding, blocking",
-        "Blocking, listening, learning, forwarding"
+        "Transitions immediately to forwarding",
+        "Blocks until root election completes",
+        "Must wait through listening then learning",
+        "Stays blocking unless a BPDU is received"
       ],
       "correctIndex": 0,
-      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "explanation": "PortFast skips listening/learning wait times — an access port with PortFast goes directly to forwarding on link up.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "stp",
@@ -2265,29 +2265,29 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "With PortFast, port goes directly to forwarding — the listed transition shows the immediate jump bypassing listening/learning wait times."
+          "explanation": "With PortFast, the access port transitions immediately to forwarding — it skips the listening and learning delays."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Wrong order — PortFast transitions directly to forwarding, not through listening first.",
-            "misconceptionTested": "Listening-first with PortFast",
-            "whatItDoes": "Listening, forwarding, learning, blocking lists an RSTP/STP port-state transition order that does not match the default sequence tested here.",
-            "whyWrongHere": "For this RSTP/STP scenario (PortFast is configured), the valid transition order is Forwarding, listening, learning, blocking — Listening, forwarding, learning, blocking inserts blocking/listening states or wrong ordering."
+            "explanation": "PortFast does not wait for root election before forwarding on an access edge port — it goes straight to forwarding.",
+            "misconceptionTested": "Root-election wait with PortFast",
+            "whatItDoes": "Blocks until root election completes describes classic STP convergence delay, not PortFast edge behavior.",
+            "whyWrongHere": "PortFast on access → immediate forwarding; waiting for root election is normal STP without PortFast."
           },
           {
             "choiceIndex": 2,
-            "explanation": "This is the normal STP order without PortFast — PortFast skips the wait.",
+            "explanation": "Listening then learning is the normal STP transition without PortFast — PortFast skips those wait states.",
             "misconceptionTested": "Normal STP transitions with PortFast enabled",
-            "whatItDoes": "Listening, learning, forwarding, blocking lists an RSTP/STP port-state transition order that does not match the default sequence tested here.",
-            "whyWrongHere": "For this RSTP/STP scenario (PortFast is configured), the valid transition order is Forwarding, listening, learning, blocking — Listening, learning, forwarding, blocking inserts blocking/listening states or wrong ordering."
+            "whatItDoes": "Must wait through listening then learning lists classic STP delays that PortFast is designed to bypass.",
+            "whyWrongHere": "PortFast skips listening/learning — it does not require those waits on link up."
           },
           {
             "choiceIndex": 3,
-            "explanation": "This is classic STP without PortFast — PortFast means immediate forwarding.",
-            "misconceptionTested": "Classic STP order as PortFast behavior",
-            "whatItDoes": "Blocking, listening, learning, forwarding lists an RSTP/STP port-state transition order that does not match the default sequence tested here.",
-            "whyWrongHere": "For this RSTP/STP scenario (PortFast is configured), the valid transition order is Forwarding, listening, learning, blocking — Blocking, listening, learning, forwarding inserts blocking/listening states or wrong ordering."
+            "explanation": "PortFast edge ports forward immediately; they do not stay blocking until a BPDU arrives.",
+            "misconceptionTested": "Stay blocking until BPDU with PortFast",
+            "whatItDoes": "Stays blocking unless a BPDU is received invents a PortFast behavior that is not how edge ports work.",
+            "whyWrongHere": "PortFast means immediate forwarding on link up — not remaining blocked until BPDUs."
           }
         ],
         "examTip": "PortFast: port transitions immediately to forwarding — no 30-second listening+learning delay."
@@ -2503,12 +2503,12 @@
       "question": "Which command would you use to remove BPDU Guard from an interface?",
       "choices": [
         "Switch(config-if)#switchport bdpugaurd disable",
-        "Switch(config-if)#spanning-tree bpduguard disable",
+        "Switch(config-if)#spanning-tree portfast disable",
         "Switch(config-if)#no switchport bpduguard",
-        "Switch(config-if)#spanning-tree bpduguard disable"
+        "Switch(config-if)#no spanning-tree bpduguard"
       ],
       "correctIndex": 3,
-      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "explanation": "Remove BPDU Guard on an interface with no spanning-tree bpduguard (spanning-tree namespace — not switchport).",
       "type": "definition",
       "difficulty": "medium",
       "concept": "stp",
@@ -2521,29 +2521,29 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "Remove BPDU Guard with no spanning-tree bpduguard (or the platform-equivalent negation under the interface)."
+          "explanation": "Remove BPDU Guard with no spanning-tree bpduguard under the interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "switchport bpduguard is not valid syntax — BPDU Guard is configured with spanning-tree bpduguard on the interface, and this option also misspells the keyword.",
+            "explanation": "switchport bpduguard is not valid syntax — BPDU Guard uses spanning-tree bpduguard, and this option also misspells the keyword.",
             "misconceptionTested": "Inventing switchport syntax for a spanning-tree feature",
-            "whatItDoes": "Switch(config-if)#switchport bdpugaurd disable points to a related idea, but not the specific behavior or value required for interface.",
-            "whyWrongHere": "For \"interface\", Switch(config-if)#spanning-tree bpduguard disable satisfies what this question tests — Switch(config-if)#switchport bdpugaurd disable does not."
+            "whatItDoes": "Switch(config-if)#switchport bdpugaurd disable points to a related idea, but not the specific behavior or value required for removing BPDU Guard.",
+            "whyWrongHere": "Correct removal is no spanning-tree bpduguard — not a misspelled switchport form."
           },
           {
             "choiceIndex": 1,
-            "explanation": "This spanning-tree bpduguard disable line matches the keyed correct syntax, but choice D is the scored answer when two options repeat the same BPDU Guard command — pick the letter the question marks correct.",
-            "misconceptionTested": "Selecting a duplicate correct-looking option when only one letter is keyed",
-            "whyWrongHere": "",
-            "whatItDoes": ""
+            "explanation": "spanning-tree portfast disable removes PortFast, not BPDU Guard.",
+            "misconceptionTested": "Disabling PortFast instead of BPDU Guard",
+            "whatItDoes": "Switch(config-if)#spanning-tree portfast disable targets PortFast edge acceleration, not BPDU Guard.",
+            "whyWrongHere": "The stem asks to remove BPDU Guard — PortFast disable is a different feature."
           },
           {
             "choiceIndex": 2,
-            "explanation": "no switchport bpduguard targets the wrong feature namespace — BPDU Guard is removed with no spanning-tree bpduguard, not a switchport subcommand.",
+            "explanation": "no switchport bpduguard targets the wrong feature namespace — BPDU Guard is removed with no spanning-tree bpduguard.",
             "misconceptionTested": "Using switchport negation instead of spanning-tree bpduguard syntax",
-            "whatItDoes": "Switch(config-if)#no switchport bpduguard points to a related idea, but not the specific behavior or value required for interface.",
-            "whyWrongHere": "For \"interface\", Switch(config-if)#spanning-tree bpduguard disable satisfies what this question tests — Switch(config-if)#no switchport bpduguard does not."
+            "whatItDoes": "Switch(config-if)#no switchport bpduguard points to a related idea, but not the specific behavior or value required for removing BPDU Guard.",
+            "whyWrongHere": "BPDU Guard lives under spanning-tree — use no spanning-tree bpduguard, not switchport."
           }
         ],
         "examTip": "BPDU Guard lives under spanning-tree bpduguard on the interface — remove it with the matching no form."

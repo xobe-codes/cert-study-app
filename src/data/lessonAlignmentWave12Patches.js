@@ -115,7 +115,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "2.3-align-f11",
         "ckuId": "CKU-NO-CDP-RUN",
         "front": "What should you remember about No Cdp Run?",
-        "back": "**Exam cue:** You want to turn off CDP on a switch. Which command would you enter? **Key response:** Switch(config-if)#no cdp run. **Why:** no cdp run disables CDP globally."
+        "back": "**Exam cue:** You want to turn off CDP on a switch. Which command would you enter? **Key response:** Switch(config)#no cdp run. **Why:** no cdp run disables CDP globally (global config — not interface mode)."
       },
       {
         "id": "2.3-align-f12",
@@ -263,20 +263,20 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       {
         "id": "2.6-align-f1",
         "ckuId": "CKU-AUTONOMOUS-AP",
-        "front": "What should you remember about Autonomous Ap?",
-        "back": "**Exam cue:** Which statement is correct about Flex Connect mode versus Local mode? **Key response:** Local mode creates a CAPWAP tunnel to the WLC to transport data.. **Why:** Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
+        "front": "What is an autonomous AP?",
+        "back": "A standalone AP with local configuration and local switching — no CAPWAP dependency on a WLC."
       },
       {
         "id": "2.6-align-f2",
         "ckuId": "CKU-LIGHTWEIGHT-AP",
-        "front": "What should you remember about Lightweight Ap?",
-        "back": "**Exam cue:** Which statement is correct about Flex Connect mode versus Local mode? **Key response:** Local mode creates a CAPWAP tunnel to the WLC to transport data.. **Why:** Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
+        "front": "What is a lightweight AP?",
+        "back": "An AP that joins a WLC over CAPWAP; the controller manages WLAN policy/RF (and often client data in Local mode)."
       },
       {
         "id": "2.6-align-f3",
         "ckuId": "CKU-WIRELESS-ARCHITECTURES",
-        "front": "What should you remember about Wireless Architectures?",
-        "back": "**Exam cue:** Which statement is correct about Flex Connect mode versus Local mode? **Key response:** Local mode creates a CAPWAP tunnel to the WLC to transport data.. **Why:** Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
+        "front": "Autonomous vs controller-based WLAN?",
+        "back": "Autonomous = per-AP control. Controller-based = lightweight APs + WLC (CAPWAP) for centralized policy and scale."
       },
       {
         "id": "2.6-align-f4",
@@ -287,8 +287,8 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       {
         "id": "2.6-align-f5",
         "ckuId": "CKU-FLEXCONNECT",
-        "front": "What should you remember about Flexconnect?",
-        "back": "**Exam cue:** Which statement is correct about Flex Connect mode versus Local mode? **Key response:** Local mode creates a CAPWAP tunnel to the WLC to transport data.. **Why:** Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
+        "front": "FlexConnect vs Local mode?",
+        "back": "Local mode central-switches client data at the WLC. FlexConnect can switch client data locally at the AP/branch (useful for WAN-edge sites)."
       },
       {
         "id": "2.6-align-f6",
@@ -299,8 +299,8 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       {
         "id": "2.6-align-f7",
         "ckuId": "CKU-LOCAL-MODE",
-        "front": "What should you remember about Local Mode?",
-        "back": "**Exam cue:** Which statement is correct about Flex Connect mode versus Local mode? **Key response:** Local mode creates a CAPWAP tunnel to the WLC to transport data.. **Why:** Local mode tunnels client data traffic to the WLC over CAPWAP — centralized switching at the controller."
+        "front": "What does Local mode do with client data?",
+        "back": "Tunnels client data to the WLC over CAPWAP for centralized switching at the controller."
       },
       {
         "id": "2.6-align-f8",
@@ -334,10 +334,23 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
-      "bigTakeaway": "Master Compare Cisco wireless architectures and AP modes: know the behavior, the exam trap, and how to verify it.",
+      "bigTakeaway": "Know autonomous vs lightweight (CAPWAP to WLC), Local vs FlexConnect switching, and specialty AP modes (Monitor, Sniffer, Rogue Detector, Bridge/Mesh).",
+      "definition": "Cisco WLAN architectures place either full control on each AP (autonomous) or centralize control on a Wireless LAN Controller (WLC) with lightweight APs joined by CAPWAP.",
       "tiers": {
-        "beginner": "Compare Cisco wireless architectures and AP modes shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
+        "beginner": "Autonomous APs are standalone — each AP is configured and switched locally. Lightweight APs join a WLC over CAPWAP; the controller owns WLAN policy, RF, and usually client data switching in Local mode.",
+        "intermediate": "Local mode tunnels client data to the WLC (central switching). FlexConnect can switch client data locally at the AP/branch when the CAPWAP tunnel is up or in standalone failover — useful at remote sites. Cloud-managed (e.g. Meraki) APs are managed from a dashboard rather than an on-prem WLC.",
+        "examReady": "Match the mode to the job: Monitor (scan/interference, no clients), Sniffer (capture), Rogue Detector, SE-Connect, Bridge/Mesh for wireless backhaul. Density and RF coordination favor lightweight APs + WLC over many autonomous APs."
+      },
+      "keyPoints": [
+        "Autonomous = per-AP config; Lightweight = CAPWAP join to WLC.",
+        "Local mode = central data switching at WLC; FlexConnect can switch locally at the branch.",
+        "Specialty modes (Monitor/Sniffer/Rogue) trade client service for visibility."
+      ],
+      "related": [
+        "2.7 Physical infrastructure connections of WLAN components",
+        "2.8 Configure WLAN components for client connectivity",
+        "5.8 Describe wireless security protocols"
+      ]
     }
   },
   "2.7": {
@@ -392,10 +405,24 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
-      "bigTakeaway": "Master Describe physical infrastructure connections of WLAN components: know the behavior, the exam trap, and how to verify it.",
+      "bigTakeaway": "APs and WLCs need the right switchport mode, VLANs, PoE budget, and (often) LAG/EtherChannel — cabling mistakes break join and client VLANs.",
+      "definition": "WLAN physical connectivity covers how APs and WLCs attach to the wired campus: access vs trunk ports, management/native VLAN, power (PoE/PoE+), and optional link aggregation to the controller.",
       "tiers": {
-        "beginner": "Describe physical infrastructure connections of WLAN components shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
+        "beginner": "A lightweight AP usually sits on a switch port that can carry the AP management VLAN and, depending on mode, client VLANs. Controllers need enough bandwidth and often a trunk into the distribution/core so multiple SSIDs map to multiple VLANs.",
+        "intermediate": "Many designs trunk the AP port (or use an access port for AP management with FlexConnect local switching on client VLANs). WLC ports facing the network are commonly trunks; LAG/EtherChannel can aggregate multiple GE links for capacity and redundancy. Check PoE budget so APs do not brown out.",
+        "examReady": "Map the ask: new AP → usually trunk (or access + FlexConnect VLAN design); need more WLC bandwidth → EtherChannel/LAG; multiple departments on one physical WLC link → trunk. Blueprint-adjacent: PoE budget and LLDP-MED power negotiation."
+      },
+      "keyPoints": [
+        "AP/WLC switchports must carry the right VLANs (trunk vs access depends on design/mode).",
+        "LAG/EtherChannel aggregates WLC uplinks; STP treats the bundle as one link.",
+        "PoE budget and cable category matter as much as SSID config."
+      ],
+      "related": [
+        "2.2 Trunking / interswitch connectivity",
+        "2.4 EtherChannel (LACP)",
+        "2.6 Cisco wireless architectures and AP modes",
+        "2.8 WLAN client connectivity"
+      ]
     }
   },
   "2.8": {
@@ -558,9 +585,24 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
+      "bigTakeaway": "Client connectivity is SSID → security (PSK or 802.1X) → VLAN/interface → enable the WLAN — then associate, authenticate, and DHCP.",
+      "definition": "Configuring WLAN client connectivity means creating a WLAN/SSID on the WLC (or AP), mapping it to a VLAN/interface, choosing WPA2/WPA3 Personal or Enterprise, applying QoS/radio policy, and enabling the WLAN so clients can join.",
       "tiers": {
-        "beginner": "Configure WLAN components for client connectivity shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
+        "beginner": "Clients need an SSID, a password or 802.1X method, and an IP from DHCP on the VLAN that SSID maps to. If the WLAN status is Disabled, users cannot associate even when RF looks fine.",
+        "intermediate": "On a WLC: create WLAN, set SSID, map to dynamic interface/VLAN, choose WPA2-AES PSK or Enterprise (RADIUS/EAP), set QoS profile (Platinum/Gold/Silver/Bronze), and enable. Broadcast SSID and radio policy control discoverability and bands.",
+        "examReady": "Disabled WLAN status is a classic trap. Guest vs corporate = separate SSIDs/VLANs. WPA2-PSK is Personal; Enterprise needs RADIUS. QoS: voice→Platinum, video→Gold, best-effort bulk→Bronze/Silver."
+      },
+      "keyPoints": [
+        "SSID + security profile + VLAN mapping + enabled status = client path.",
+        "WPA2/WPA3 Personal = PSK; Enterprise = 802.1X/RADIUS/EAP.",
+        "Verify association, authentication, then DHCP on the mapped VLAN."
+      ],
+      "related": [
+        "2.6 Wireless architectures and AP modes",
+        "2.7 WLAN physical connections",
+        "5.8 Wireless security protocols",
+        "5.9 Configure WLAN using WPA2 PSK"
+      ]
     }
   },
   "3.1": {
@@ -605,7 +647,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "3.1-align-f7",
         "ckuId": "CKU-DEFAULT-ROUTE",
         "front": "What should you remember about Default Route (Gateway of Last Resort)?",
-        "back": "**The route 0**.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
+        "back": "**The route 0.0.0.0/0** (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
       },
       {
         "id": "3.1-align-f8",
@@ -787,9 +829,23 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
+      "bigTakeaway": "Routers forward by longest-prefix match in the routing table; verify the matched route, next-hop, and exit interface.",
+      "definition": "Default forwarding uses the routing table: match the destination to the longest prefix, then send out the next-hop or exit interface for that route.",
       "tiers": {
-        "intermediate": "First, name the control plane or data-plane behavior Determine how a router makes a forwarding decision by default relies on. Then map that behavior to the symptom or output the question shows. Next, pick the action or value that matches the stem — not a look-alike protocol. Finally, confirm with a mental verify step: which command or counter would prove you are right. That sequence keeps longest-match style traps and distractor families from stealing easy points."
-      }
+        "beginner": "When a router receives a packet, it looks at the destination IP and picks the best matching route in its table — usually the most specific (longest) prefix. If nothing matches, it uses a default route (0.0.0.0/0) if one exists.",
+        "intermediate": "Forwarding decision: longest-prefix match wins over AD when prefixes differ. When two sources offer the same prefix, lower administrative distance wins. Confirm with show ip route, then ping/traceroute from the correct source interface.",
+        "examReady": "Forwarding order: longest prefix match first; then AD for the same prefix; then metric within one protocol. Exam trap: confusing AD with metric or with longest-match. Verify: show ip route <dest> — read code, [AD/metric], via/next-hop, and exit interface."
+      },
+      "keyPoints": [
+        "Longest matching prefix selects the route used for forwarding.",
+        "Same prefix from multiple sources → lowest administrative distance wins.",
+        "Verify with show ip route, then test reachability with ping/traceroute."
+      ],
+      "related": [
+        "3.1 Interpret the components of a routing table",
+        "3.3 Configure and verify IPv4 and IPv6 static routing",
+        "3.4 Configure and verify single-area OSPFv2"
+      ]
     }
   },
   "3.3": {
@@ -804,7 +860,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "3.3-align-f2",
         "ckuId": "CKU-DEFAULT-ROUTE",
         "front": "What should you remember about Default Route (Gateway of Last Resort)?",
-        "back": "**The route 0**.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
+        "back": "**The route 0.0.0.0/0** (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
       },
       {
         "id": "3.3-align-f3",
@@ -904,7 +960,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "3.4-align-f4",
         "ckuId": "CKU-DEFAULT-ROUTE",
         "front": "What should you remember about Default Route (Gateway of Last Resort)?",
-        "back": "**The route 0**.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
+        "back": "**The route 0.0.0.0/0** (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
       },
       {
         "id": "3.4-align-f5",
@@ -998,7 +1054,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "3.5-align-f5",
         "ckuId": "CKU-DEFAULT-ROUTE",
         "front": "What should you remember about Default Route (Gateway of Last Resort)?",
-        "back": "**The route 0**.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
+        "back": "**The route 0.0.0.0/0** (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
       },
       {
         "id": "3.5-align-f6",
@@ -1026,10 +1082,23 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
-      "bigTakeaway": "Master Describe and configure first hop redundancy protocols (HSRP): know the behavior, the exam trap, and how to verify it.",
+      "bigTakeaway": "HSRP/VRRP/GLBP give hosts a virtual default gateway so a standby router can take over if the active fails.",
+      "definition": "First-hop redundancy protocols (HSRP, VRRP, GLBP) present a shared virtual IP/MAC as the default gateway so end hosts keep connectivity when the active router fails.",
       "tiers": {
-        "beginner": "Describe and configure first hop redundancy protocols (HSRP) shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
+        "beginner": "Hosts use a default gateway. FHRPs let two or more routers share one virtual gateway IP so if the active router dies, a standby takes over without reconfiguring every PC.",
+        "intermediate": "HSRP is Cisco-proprietary (active/standby). VRRP is the open standard. GLBP can load-balance across multiple forwarders. Key knobs: priority, preemption, and the virtual IP on the LAN.",
+        "examReady": "Know who is Active vs Standby, when preemption matters, and that hosts ARP for the virtual MAC — not each physical router IP. Verify with show standby / show vrrp."
+      },
+      "keyPoints": [
+        "FHRP = shared virtual default gateway for hosts.",
+        "HSRP (Cisco) vs VRRP (open); GLBP can load-balance.",
+        "Priority + preemption decide who becomes active; verify with show standby."
+      ],
+      "related": [
+        "3.1 Interpret the components of a routing table",
+        "3.3 Configure and verify IPv4 and IPv6 static routing",
+        "1.10 Verify IP parameters for client OS"
+      ]
     }
   },
   "3.6": {
@@ -1068,13 +1137,13 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "3.6-align-f6",
         "ckuId": "CKU-DEFAULT-ROUTE",
         "front": "What should you remember about Default Route (Gateway of Last Resort)?",
-        "back": "**The route 0**.0.0.0/0 (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
+        "back": "**The route 0.0.0.0/0** (::/0 for IPv6) with prefix length 0 — it matches every destination but is the LEAST specific, so longest-prefix-match only uses it when no more-specific route matches."
       },
       {
         "id": "3.6-align-f7",
         "ckuId": "CKU-FLOATING-STATIC",
         "front": "What should you remember about Floating Static Route?",
-        "back": "**A static route with an AD higher than the primary dynamic route (e**.g. AD 130 to back up OSPF AD 110). Not installed while the primary route is present; rises in when the primary fails."
+        "back": "**A static route with an AD higher than the primary dynamic route** (e.g. AD 130 to back up OSPF AD 110). Not installed while the primary route is present; rises in when the primary fails."
       },
       {
         "id": "3.6-align-f8",
@@ -1126,13 +1195,23 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
+      "bigTakeaway": "Routing troubleshooting is layered: confirm the interface is up, the expected route is installed, the next-hop is reachable, then test path and return path.",
+      "definition": "Troubleshoot routing by verifying Layer 1/2 (interface up/up), Layer 3 (correct connected/static/OSPF routes and next-hop), adjacency health when using OSPF, and end-to-end path with ping/traceroute — including return-path and NAT issues at the edge.",
       "tiers": {
-        "beginner": "Troubleshoot routing issues shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
+        "beginner": "If traffic does not reach a remote network, start simple: Is the interface up? Is there a route? Can you ping the next hop? A missing default route or wrong gateway is a common cause when local pings work but remote fails.",
+        "intermediate": "Common causes: interface down, wrong static next-hop/exit interface, OSPF area/timer/auth/passive mismatches, ACLs blocking routing or data traffic, and asymmetric return paths. Use show ip interface brief, show ip route, show ip ospf neighbor, traceroute, and ping.",
+        "examReady": "Do not treat OSPF 2-Way alone as proof of failure on multi-access — DROTHERs often stay 2-Way; Full is with DR/BDR. Separate AD vs metric, connected (C) vs local (L) vs static (S), and verify longest-match before blaming the protocol."
       },
       "keyPoints": [
-        "Troubleshooting routing: Check interface status, protocol timers/area/auth mismatches, bad static routes, ACLs blocking routing traffic, asymmetric paths",
-        "Commands: show ip route, show ip ospf neighbor, traceroute, ping.",
-        "Remember the exam-facing behavior for Troubleshoot routing issues (point 3)."
+        "Check interface status and addressing before blaming the routing protocol.",
+        "Confirm the expected prefix is in show ip route with the right code and next-hop.",
+        "For OSPF: verify neighbor state (2-Way can be normal for DROTHER), area, network statements, and passive-interface.",
+        "Use ping/traceroute (and source interface) to find where the path breaks; consider return path and NAT at the edge."
+      ],
+      "related": [
+        "3.1 Interpret the components of a routing table",
+        "3.3 Configure and verify IPv4 and IPv6 static routing",
+        "3.4 Configure and verify single-area OSPFv2"
       ]
     }
   },
@@ -1160,7 +1239,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "4.1-align-f4",
         "ckuId": "CKU-DYNAMIC-NAT",
         "front": "What should you remember about Dynamic Nat?",
-        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0. **Why:** A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask."
+        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240. **Why:** Pool for the owned 179.43.44.0/28 uses netmask 255.255.255.240 — not a /24 mask."
       },
       {
         "id": "4.1-align-f5",
@@ -1184,13 +1263,13 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "4.1-align-f8",
         "ckuId": "CKU-NAT-POOL",
         "front": "What should you remember about Nat Pool?",
-        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0. **Why:** A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask."
+        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240. **Why:** Pool for the owned 179.43.44.0/28 uses netmask 255.255.255.240 — not a /24 mask."
       },
       {
         "id": "4.1-align-f9",
         "ckuId": "CKU-NETWORK-TIME-PROTOCOL",
         "front": "What should you remember about Network Time Protocol?",
-        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0. **Why:** A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask."
+        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240. **Why:** Pool for the owned 179.43.44.0/28 uses netmask 255.255.255.240 — not a /24 mask."
       },
       {
         "id": "4.1-align-f10",
@@ -1328,7 +1407,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "4.3-align-f11",
         "ckuId": "CKU-NAT-POOL",
         "front": "What should you remember about Nat Pool?",
-        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0. **Why:** A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask."
+        "back": "**Exam cue:** NAT topology: - Host A (inside local): 192.168.1.2 on LAN - Router A Gi0/0 (192.168.1.1): ip nat inside - Router A S0/0 (inside global): 179.43.44. **Key response:** RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240. **Why:** Pool for the owned 179.43.44.0/28 uses netmask 255.255.255.240 — not a /24 mask."
       },
       {
         "id": "4.3-align-f12",
@@ -2336,7 +2415,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.8-align-f1",
         "ckuId": "CKU-WIRELESS-SECURITY",
         "front": "What should you remember about Wireless Security?",
-        "back": "**Exam cue:** Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network? **Key response:** Enable MAC filtering. **Why:** MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
+        "back": "**Exam cue:** Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network? **Key response:** Enable WPA2. **Why:** WPA2 with a passphrase authenticates and encrypts joins; MAC filtering is spoofable and is not strong assurance."
       },
       {
         "id": "5.8-align-f2",
@@ -2348,7 +2427,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.8-align-f3",
         "ckuId": "CKU-WPA2",
         "front": "What should you remember about Wpa2?",
-        "back": "**Exam cue:** Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network? **Key response:** Enable MAC filtering. **Why:** MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
+        "back": "**Exam cue:** Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network? **Key response:** Enable WPA2. **Why:** WPA2 with a passphrase authenticates and encrypts joins; MAC filtering is spoofable and is not strong assurance."
       },
       {
         "id": "5.8-align-f4",
@@ -2366,7 +2445,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.8-align-f6",
         "ckuId": "CKU-PSK",
         "front": "What should you remember about Psk?",
-        "back": "**Exam cue:** Which is a requirement of WPA2-Enterprise? **Key response:** Certificate infrastructure. **Why:** WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK."
+        "back": "**Exam cue:** Which is a requirement of WPA2-Enterprise? **Key response:** RADIUS/EAP (802.1X) infrastructure. **Why:** WPA2-Enterprise uses 802.1X with RADIUS/EAP for per-user auth — not a shared PSK. Certificates appear with some EAP types, but RADIUS/EAP is the CCNA key idea."
       },
       {
         "id": "5.8-align-f7",
@@ -2436,7 +2515,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.9-align-f4",
         "ckuId": "CKU-WPA2",
         "front": "What should you remember about Wpa2?",
-        "back": "**Exam cue:** Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network? **Key response:** Enable MAC filtering. **Why:** MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
+        "back": "**Exam cue:** Matilda is interested in securing her SOHO wireless network. What should she do to be assured that only her devices can join her wireless network? **Key response:** Enable WPA2. **Why:** WPA2 with a passphrase authenticates and encrypts joins; MAC filtering is spoofable and is not strong assurance."
       },
       {
         "id": "5.9-align-f5",
@@ -2448,7 +2527,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.9-align-f6",
         "ckuId": "CKU-PSK",
         "front": "What should you remember about Psk?",
-        "back": "**Exam cue:** Which is a requirement of WPA2-Enterprise? **Key response:** Certificate infrastructure. **Why:** WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK."
+        "back": "**Exam cue:** Which is a requirement of WPA2-Enterprise? **Key response:** RADIUS/EAP (802.1X) infrastructure. **Why:** WPA2-Enterprise uses 802.1X with RADIUS/EAP for per-user auth — not a shared PSK. Certificates appear with some EAP types, but RADIUS/EAP is the CCNA key idea."
       },
       {
         "id": "5.9-align-f7",

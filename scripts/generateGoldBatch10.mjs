@@ -392,8 +392,8 @@ const HAND = {
   },
   'obj-4.1-source-q008': {
     correct: {
-      choiceIndex: 3,
-      explanation: 'A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask.',
+      choiceIndex: 2,
+      explanation: 'Pool for 179.43.44.0/28: `ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240` — /28 netmask matches the owned block.',
     },
     incorrect: [
       {
@@ -403,16 +403,16 @@ const HAND = {
       },
       {
         choiceIndex: 1,
-        explanation: '`ip pool` is not NAT pool syntax — dynamic pools are defined with `ip nat pool <name> <start> <end> netmask`.',
+        explanation: '`ip pool` is not NAT pool syntax, and `255.255.255.0` is a /24 mask — not /28 (`255.255.255.240`).',
         misconceptionTested: 'Using ip pool instead of ip nat pool',
       },
       {
-        choiceIndex: 2,
-        explanation: '179.43.44.1 is the router WAN interface — usable pool hosts start at .2; the keyed pool uses .2–.15 with netmask.',
-        misconceptionTested: 'Including interface address as pool start',
+        choiceIndex: 3,
+        explanation: 'Netmask `255.255.255.0` is /24 — the owned block is /28 (`255.255.255.240`).',
+        misconceptionTested: 'Mismatched pool range and mask',
       },
     ],
-    examTip: 'Dynamic NAT pool: **`ip nat pool <name> <first> <last> netmask <mask>`**.',
+    examTip: 'Dynamic NAT pool: **`ip nat pool <name> <first> <last> netmask <mask>`** — mask must match the owned prefix.',
   },
   'obj-5.1-source-q001': {
     correct: {

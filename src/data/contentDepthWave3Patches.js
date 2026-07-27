@@ -81,7 +81,7 @@ export const CONTENT_DEPTH_WAVE3_PATCHES = {
       ckuIds: ['CKU-SYSLOG'],
     }],
   },
-  '4.7': {
+  '4.4': {
     questions: [{
       id: '4.7-w3-q1', concept: 'snmp versions', type: 'compare', difficulty: 'medium',
       question: 'Which SNMP version provides encryption and authentication?',
@@ -89,10 +89,7 @@ export const CONTENT_DEPTH_WAVE3_PATCHES = {
       correctIndex: 0,
       explanation: 'SNMPv3 adds auth and privacy; v1/v2c use community strings in cleartext.',
       ckuIds: ['CKU-SNMP'],
-    }],
-  },
-  '4.8': {
-    questions: [{
+    }, {
       id: '4.8-w3-q1', concept: 'netflow', type: 'definition', difficulty: 'easy',
       question: 'NetFlow primarily collects:',
       choices: ['Flow records (who talked to whom, ports, bytes)', 'MAC address tables', 'Spanning-tree BPDUs', 'DHCP leases only'],

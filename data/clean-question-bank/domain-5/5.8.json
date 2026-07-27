@@ -11,8 +11,8 @@
         "Enable port security",
         "Disable SSID broadcasts"
       ],
-      "correctIndex": 1,
-      "explanation": "",
+      "correctIndex": 0,
+      "explanation": "WPA2 (with a passphrase) authenticates clients and encrypts the air — that is what assures only authorized devices can join. MAC filtering is spoofable and is not strong assurance.",
       "type": "definition",
       "difficulty": "easy",
       "concept": "wireless security",
@@ -25,33 +25,33 @@
       ],
       "answerReview": {
         "correct": {
-          "choiceIndex": 1,
-          "explanation": "MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
+          "choiceIndex": 0,
+          "explanation": "Enable WPA2 (PSK with a passphrase on SOHO) authenticates joining clients and encrypts traffic — that is the practical assurance that only her devices can join."
         },
         "incorrect": [
           {
-            "choiceIndex": 0,
-            "explanation": "WPA2 encrypts traffic but does not by itself restrict which devices may join — pairing encryption with an allow list is what this stem asks for.",
-            "misconceptionTested": "Stopping at WPA2 without a join-control mechanism",
-            "whatItDoes": "Enable WPA2 points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Enable MAC filtering satisfies what this question tests — Enable WPA2 does not."
+            "choiceIndex": 1,
+            "explanation": "MAC filtering is weak — MAC addresses are easily spoofed, so it does not assure only her devices join.",
+            "misconceptionTested": "Treating MAC filtering as stronger than WPA2",
+            "whatItDoes": "Allows only listed MAC addresses to associate.",
+            "whyWrongHere": "Spoofed MACs bypass the filter; WPA2 with a passphrase is the real admission control for this SOHO stem."
           },
           {
             "choiceIndex": 2,
             "explanation": "Port security is a switch access-port feature — not wireless client admission on a SOHO AP.",
             "misconceptionTested": "Applying switch port security to WLAN admission",
-            "whatItDoes": "Enable port security points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Enable MAC filtering satisfies what this question tests — Enable port security does not."
+            "whatItDoes": "Limits MACs on a wired switch port.",
+            "whyWrongHere": "This is a wireless SOHO question — Enable WPA2 is the correct WLAN control."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Hiding the SSID does not stop unauthorized clients who know the name — it is not a substitute for an allow list.",
+            "explanation": "Hiding the SSID does not stop unauthorized clients who know the name — it is obfuscation, not authentication.",
             "misconceptionTested": "Treating hidden SSID as access control",
-            "whatItDoes": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "For \"wireless security\", Enable MAC filtering satisfies what this question tests — Disable SSID broadcasts does not."
+            "whatItDoes": "Stops broadcasting the WLAN name in beacons.",
+            "whyWrongHere": "SSID hiding is not assurance; WPA2 authenticates and encrypts joins."
           }
         ],
-        "examTip": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does."
+        "examTip": "SOHO join assurance → WPA2/WPA3 with passphrase. MAC filter is spoofable — never prefer it over WPA2."
       }
     },
     {
@@ -59,12 +59,12 @@
       "question": "Which is a requirement of WPA2-Enterprise?",
       "choices": [
         "Creation of a PSK",
-        "Certificate infrastructure",
+        "RADIUS/EAP (802.1X) infrastructure",
         "192-bit key strength",
         "802.11ac"
       ],
       "correctIndex": 1,
-      "explanation": "",
+      "explanation": "WPA2-Enterprise uses 802.1X with RADIUS/EAP for per-user authentication — not a shared PSK. Certificates appear with some EAP methods but are not the universal requirement.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "wireless security",
@@ -77,32 +77,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK."
+          "explanation": "WPA2-Enterprise requires 802.1X with a RADIUS/EAP infrastructure for per-user authentication — not a shared PSK. Certificates are used by some EAP types, but RADIUS/EAP is the CCNA key idea."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
             "explanation": "PSK is for WPA2-Personal — Enterprise mode uses per-user credentials via RADIUS/EAP.",
             "misconceptionTested": "Applying personal WPA2 (PSK) to enterprise",
-            "whatItDoes": "Creation of a PSK points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Certificate infrastructure satisfies what this question tests — Creation of a PSK does not."
+            "whatItDoes": "Creates a shared pre-shared key for all clients.",
+            "whyWrongHere": "Enterprise mode replaces the PSK with 802.1X/RADIUS."
           },
           {
             "choiceIndex": 2,
-            "explanation": "192-bit security is a WPA3-Enterprise option — not the baseline requirement named for WPA2-Enterprise here.",
+            "explanation": "192-bit security is a WPA3-Enterprise option — not the baseline requirement for WPA2-Enterprise.",
             "misconceptionTested": "Mixing WPA3-192 requirements into WPA2-Enterprise",
-            "whatItDoes": "192-bit key strength points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Certificate infrastructure satisfies what this question tests — 192-bit key strength does not."
+            "whatItDoes": "Names a WPA3-era cipher suite strength.",
+            "whyWrongHere": "WPA2-Enterprise centers on RADIUS/EAP, not 192-bit key strength."
           },
           {
             "choiceIndex": 3,
             "explanation": "802.11ac is a Wi-Fi generation/PHY standard — unrelated to enterprise authentication requirements.",
             "misconceptionTested": "Confusing radio standard with AAA requirements",
-            "whatItDoes": "802.11ac points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Certificate infrastructure satisfies what this question tests — 802.11ac does not."
+            "whatItDoes": "Names a wireless PHY generation.",
+            "whyWrongHere": "Authentication requirements are RADIUS/EAP, not 802.11ac."
           }
         ],
-        "examTip": "WPA2-Enterprise → 802.1X + RADIUS (+ certs on some EAP types). Personal → PSK."
+        "examTip": "WPA2-Enterprise → 802.1X + RADIUS/EAP. Personal → PSK. Certs = some EAP methods, not the whole answer."
       }
     },
     {

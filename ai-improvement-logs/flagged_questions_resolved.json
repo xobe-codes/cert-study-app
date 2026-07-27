@@ -1,13 +1,13 @@
 {
   "obj-3.1-source-q002": {
-    "resolvedAt": "2026-07-15T00:00:00Z",
-    "reasons": "typo",
-    "flagCountAtFix": 2
+    "resolvedAt": "2026-07-22T00:28:42Z",
+    "reasons": "bad_display,typo,wrong_key",
+    "flagCountAtFix": 6
   },
   "obj-3.1-source-q004": {
-    "resolvedAt": "2026-07-15T00:00:00Z",
-    "reasons": "ambiguous,wrong_key",
-    "flagCountAtFix": 4
+    "resolvedAt": "2026-07-22T00:28:42Z",
+    "reasons": "ambiguous,bad_display,wrong_key",
+    "flagCountAtFix": 6
   },
   "obj-3.1-source-q005": {
     "resolvedAt": "2026-07-15T00:00:00Z",
@@ -15,13 +15,23 @@
     "flagCountAtFix": 2
   },
   "obj-3.1-source-q007": {
-    "resolvedAt": "2026-07-15T00:00:00Z",
-    "reasons": "typo",
-    "flagCountAtFix": 2
+    "resolvedAt": "2026-07-22T00:28:42Z",
+    "reasons": "bad_display,typo",
+    "flagCountAtFix": 4
   },
   "obj-3.1-source-q008": {
-    "resolvedAt": "2026-07-15T00:00:00Z",
-    "reasons": "typo",
+    "resolvedAt": "2026-07-22T00:28:42Z",
+    "reasons": "bad_display,typo,wrong_key",
+    "flagCountAtFix": 6
+  },
+  "obj-2.8-source-q007": {
+    "resolvedAt": "2026-07-22T00:28:42Z",
+    "reasons": "wrong_key",
+    "flagCountAtFix": 2
+  },
+  "obj-3.4-source-q041": {
+    "resolvedAt": "2026-07-22T00:28:42Z",
+    "reasons": "wrong_key",
     "flagCountAtFix": 2
   }
 }

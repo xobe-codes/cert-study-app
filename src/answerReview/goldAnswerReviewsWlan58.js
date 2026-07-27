@@ -2,14 +2,14 @@
 export const WLAN_58_GOLD = {
   'obj-5.9-source-q001': {
     correct: {
-      choiceIndex: 1,
-      explanation: 'MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem.',
+      choiceIndex: 0,
+      explanation: 'Enable WPA2 (PSK with a passphrase on SOHO) authenticates joining clients and encrypts traffic — that is the practical assurance that only her devices can join.',
     },
     incorrect: [
       {
-        choiceIndex: 0,
-        explanation: 'WPA2 encrypts traffic but does not by itself restrict which devices may join — pairing encryption with an allow list is what this stem asks for.',
-        misconceptionTested: 'Stopping at WPA2 without a join-control mechanism',
+        choiceIndex: 1,
+        explanation: 'MAC filtering is weak — MAC addresses are easily spoofed, so it does not assure only her devices join.',
+        misconceptionTested: 'Treating MAC filtering as stronger than WPA2',
       },
       {
         choiceIndex: 2,
@@ -18,16 +18,16 @@ export const WLAN_58_GOLD = {
       },
       {
         choiceIndex: 3,
-        explanation: 'Hiding the SSID does not stop unauthorized clients who know the name — it is not a substitute for an allow list.',
+        explanation: 'Hiding the SSID does not stop unauthorized clients who know the name — it is obfuscation, not authentication.',
         misconceptionTested: 'Treating hidden SSID as access control',
       },
     ],
-    examTip: 'Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.',
+    examTip: 'SOHO join assurance → WPA2/WPA3 with passphrase. MAC filter is spoofable — never prefer it over WPA2.',
   },
   'obj-5.9-source-q002': {
     correct: {
       choiceIndex: 1,
-      explanation: 'WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK.',
+      explanation: 'WPA2-Enterprise requires 802.1X with a RADIUS/EAP infrastructure for per-user authentication — not a shared PSK. Certificates are used by some EAP types, but RADIUS/EAP is the CCNA key idea.',
     },
     incorrect: [
       {
@@ -37,7 +37,7 @@ export const WLAN_58_GOLD = {
       },
       {
         choiceIndex: 2,
-        explanation: '192-bit security is a WPA3-Enterprise option — not the baseline requirement named for WPA2-Enterprise here.',
+        explanation: '192-bit security is a WPA3-Enterprise option — not the baseline requirement for WPA2-Enterprise.',
         misconceptionTested: 'Mixing WPA3-192 requirements into WPA2-Enterprise',
       },
       {
@@ -46,7 +46,7 @@ export const WLAN_58_GOLD = {
         misconceptionTested: 'Confusing radio standard with AAA requirements',
       },
     ],
-    examTip: 'WPA2-Enterprise → 802.1X + RADIUS (+ certs on some EAP types). Personal → PSK.',
+    examTip: 'WPA2-Enterprise → 802.1X + RADIUS/EAP. Personal → PSK. Certs = some EAP methods, not the whole answer.',
   },
   'obj-5.9-source-q003': {
     correct: {

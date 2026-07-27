@@ -2,19 +2,22 @@
 
 ### HANDOFF — CCNA
 - Status: **DONE**
-- Slice: Blueprint-adjacent Waves 1–2 (known + related unknowns)
+- Slice: Weekend study QA — 6-domain audit + P0/critical P1 fixes
 - Completed:
-  - Waves 1–2 adjacent content shipped (15 objectives, RELATED CONCEPTS + traps/cards/Qs)
-  - Spot-checked RELATED CONCEPTS merge for 3.1 / 2.5 / 6.3
-  - verify:ship green (unit + pipeline + build + 84 e2e)
-  - Committed, pushed, deployed
-- Not done / optional:
-  - Next audit queue item: `lesson-align-2.8`
-- Files created/modified: Wave 1–2 patches, enrichment merge, term registry, bookRef, curated STP misconception, gold/factory distractor fix, validator/tests, specs/handoff
-- Spine locks / don’t-touch: no theme or App.jsx routing changes
+  - Parallel audits Domains 1–6
+  - Fixed all P0 wrong keys / stem breaks / false facts across D1–D6
+  - Fixed Study prose: 2.6/2.7/2.8 WLAN, 3.2/3.5/3.6 routing
+  - Recompiled clean bank **without** regenerating health registry (`node scripts/compileCleanQuestionsModule.mjs` → 914 Q / 53 objs)
+  - `npm test`: 185 files / 1714 tests green
+- Caution:
+  - Do **not** run `npm run compile:clean-questions` until `build:question-health` is investigated — it mass-excluded ~829 IDs when run during this session. Prefer `node scripts/compileCleanQuestionsModule.mjs` alone after JSON edits.
+- Deferred (not wrong-answer blockers):
+  - Wave-6 misplaced objective transplants
+  - Empty top-level explanations on many clean-bank items (AR still present)
+  - Deeper `lesson-align-2.8` CKU work
 - Exact next 1–3 steps:
-  1. `npm run audit:show-next-task` → implement `lesson-align-2.8`
-- Commands run: spot-check · validate:blueprint-adjacent · verify:ship (e2e 84 pass)
-- Commit status: shipping
+  1. Study this weekend on live local/build
+  2. Say `c&d` to ship
+- Commit status: **uncommitted**
 - Live URL: https://ccna-study-tool.pages.dev
-- Resume prompt: Blueprint-adjacent Waves 1–2 shipped. Next critical queue item is lesson-align-2.8.
+- Resume prompt: Weekend QA P0s fixed + unit tests green; uncommitted. Ship with c&d. Avoid full compile:clean-questions until health rebuild is safe.

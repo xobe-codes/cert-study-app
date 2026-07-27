@@ -2860,11 +2860,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "10.1.1.1",
         "172.16.1.1",
-        "198.51.100.50",
+        "8.8.8.8",
         "192.168.1.1"
       ],
       "correctIndex": 2,
-      "explanation": "198.51.100.0/24 is documentation/public space — not RFC 1918 private.",
+      "explanation": "8.8.8.8 is a public Internet-routable address. TEST-NET ranges such as 198.51.100.0/24 are documentation space (RFC 5737) — not Internet-routable.",
       "type": "application",
       "difficulty": "easy",
       "concept": "identify public",
@@ -2874,32 +2874,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "198.51.100.50 is in TEST-NET documentation/public space — not RFC 1918."
+          "explanation": "8.8.8.8 is a well-known public/Internet-routable address. Do not confuse it with TEST-NET documentation space (198.51.100.0/24), which is not Internet-routable."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "10.1.1.1 is private RFC 1918.",
+            "explanation": "10.1.1.1 is private RFC 1918 (10.0.0.0/8) — not Internet-routable.",
             "misconceptionTested": "10.x as public",
             "whatItDoes": "10.1.1.1 points to a related idea, but not the specific behavior or value required for identify public.",
-            "whyWrongHere": "For \"identify public\", 198.51.100.50 satisfies what this question tests — 10.1.1.1 does not."
+            "whyWrongHere": "For \"identify public\", 8.8.8.8 is Internet-routable — 10.1.1.1 is RFC 1918 private."
           },
           {
             "choiceIndex": 1,
-            "explanation": "172.16.1.1 is private RFC 1918.",
+            "explanation": "172.16.1.1 is private RFC 1918 (172.16.0.0/12) — not Internet-routable.",
             "misconceptionTested": "172.16 as public",
             "whatItDoes": "172.16.1.1 points to a related idea, but not the specific behavior or value required for identify public.",
-            "whyWrongHere": "For \"identify public\", 198.51.100.50 satisfies what this question tests — 172.16.1.1 does not."
+            "whyWrongHere": "For \"identify public\", 8.8.8.8 is Internet-routable — 172.16.1.1 is RFC 1918 private."
           },
           {
             "choiceIndex": 3,
-            "explanation": "192.168.1.1 is private RFC 1918.",
+            "explanation": "192.168.1.1 is private RFC 1918 (192.168.0.0/16) — not Internet-routable.",
             "misconceptionTested": "192.168 as public",
             "whatItDoes": "192.168.1.1 points to a related idea, but not the specific behavior or value required for identify public.",
-            "whyWrongHere": "For \"identify public\", 198.51.100.50 satisfies what this question tests — 192.168.1.1 does not."
+            "whyWrongHere": "For \"identify public\", 8.8.8.8 is Internet-routable — 192.168.1.1 is RFC 1918 private."
           }
         ],
-        "examTip": "Know the three private ranges vs public routable."
+        "examTip": "Public example: 8.8.8.8. Private: 10/8, 172.16/12, 192.168/16. TEST-NET (198.51.100.0/24) = documentation, not Internet-routable."
       }
     },
     {
@@ -5761,10 +5761,10 @@ export const CLEAN_QUESTIONS = {
         "Switch(config)#cdp disable",
         "Switch(config-if)#no cdp enable",
         "Switch(config)#no cdp",
-        "Switch(config-if)#no cdp run"
+        "Switch(config)#no cdp run"
       ],
       "correctIndex": 3,
-      "explanation": "no cdp run disables CDP globally.",
+      "explanation": "no cdp run disables CDP globally (global config mode — not interface mode).",
       "type": "definition",
       "difficulty": "medium",
       "concept": "cdp",
@@ -5777,7 +5777,7 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "no cdp run disables CDP globally."
+          "explanation": "no cdp run in global configuration mode disables CDP on the entire switch."
         },
         "incorrect": [
           {
@@ -5785,21 +5785,21 @@ export const CLEAN_QUESTIONS = {
             "explanation": "cdp disable is not valid IOS syntax — the global command to turn off CDP on the entire switch is no cdp run in global configuration mode.",
             "misconceptionTested": "Using invalid cdp disable global command",
             "whatItDoes": "Switch(config)#cdp disable points to a related idea, but not the specific behavior or value required for no cdp run disables CDP globally.",
-            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config-if)#no cdp run satisfies what this question tests — Switch(config)#cdp disable does not."
+            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config)#no cdp run satisfies what this question tests — Switch(config)#cdp disable does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "no cdp enable under an interface disables CDP on that port only — the stem asks to turn off CDP on the whole switch, which requires global no cdp run.",
             "misconceptionTested": "Using per-interface disable for global CDP off",
             "whatItDoes": "Switch(config-if)#no cdp enable points to a related idea, but not the specific behavior or value required for no cdp run disables CDP globally.",
-            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config-if)#no cdp run satisfies what this question tests — Switch(config-if)#no cdp enable does not."
+            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config)#no cdp run satisfies what this question tests — Switch(config-if)#no cdp enable does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "no cdp alone is incomplete IOS syntax — the recognized global command is no cdp run to disable CDP switch-wide.",
             "misconceptionTested": "Using incomplete no cdp without run keyword",
             "whatItDoes": "Switch(config)#no cdp points to a related idea, but not the specific behavior or value required for no cdp run disables CDP globally.",
-            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config-if)#no cdp run satisfies what this question tests — Switch(config)#no cdp does not."
+            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config)#no cdp run satisfies what this question tests — Switch(config)#no cdp does not."
           }
         ],
         "examTip": "Disable CDP globally → no cdp run. Per-port → no cdp enable on interface."
@@ -9476,15 +9476,15 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.5-source-q038",
-      "question": "What is the transition of states when PortFast is configured?",
+      "question": "With PortFast enabled on an access port, what happens on link up?",
       "choices": [
-        "Forwarding, listening, learning, blocking",
-        "Listening, forwarding, learning, blocking",
-        "Listening, learning, forwarding, blocking",
-        "Blocking, listening, learning, forwarding"
+        "Transitions immediately to forwarding",
+        "Blocks until root election completes",
+        "Must wait through listening then learning",
+        "Stays blocking unless a BPDU is received"
       ],
       "correctIndex": 0,
-      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "explanation": "PortFast skips listening/learning wait times — an access port with PortFast goes directly to forwarding on link up.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "stp",
@@ -9497,29 +9497,29 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "With PortFast, port goes directly to forwarding — the listed transition shows the immediate jump bypassing listening/learning wait times."
+          "explanation": "With PortFast, the access port transitions immediately to forwarding — it skips the listening and learning delays."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "Wrong order — PortFast transitions directly to forwarding, not through listening first.",
-            "misconceptionTested": "Listening-first with PortFast",
-            "whatItDoes": "Listening, forwarding, learning, blocking lists an RSTP/STP port-state transition order that does not match the default sequence tested here.",
-            "whyWrongHere": "For this RSTP/STP scenario (PortFast is configured), the valid transition order is Forwarding, listening, learning, blocking — Listening, forwarding, learning, blocking inserts blocking/listening states or wrong ordering."
+            "explanation": "PortFast does not wait for root election before forwarding on an access edge port — it goes straight to forwarding.",
+            "misconceptionTested": "Root-election wait with PortFast",
+            "whatItDoes": "Blocks until root election completes describes classic STP convergence delay, not PortFast edge behavior.",
+            "whyWrongHere": "PortFast on access → immediate forwarding; waiting for root election is normal STP without PortFast."
           },
           {
             "choiceIndex": 2,
-            "explanation": "This is the normal STP order without PortFast — PortFast skips the wait.",
+            "explanation": "Listening then learning is the normal STP transition without PortFast — PortFast skips those wait states.",
             "misconceptionTested": "Normal STP transitions with PortFast enabled",
-            "whatItDoes": "Listening, learning, forwarding, blocking lists an RSTP/STP port-state transition order that does not match the default sequence tested here.",
-            "whyWrongHere": "For this RSTP/STP scenario (PortFast is configured), the valid transition order is Forwarding, listening, learning, blocking — Listening, learning, forwarding, blocking inserts blocking/listening states or wrong ordering."
+            "whatItDoes": "Must wait through listening then learning lists classic STP delays that PortFast is designed to bypass.",
+            "whyWrongHere": "PortFast skips listening/learning — it does not require those waits on link up."
           },
           {
             "choiceIndex": 3,
-            "explanation": "This is classic STP without PortFast — PortFast means immediate forwarding.",
-            "misconceptionTested": "Classic STP order as PortFast behavior",
-            "whatItDoes": "Blocking, listening, learning, forwarding lists an RSTP/STP port-state transition order that does not match the default sequence tested here.",
-            "whyWrongHere": "For this RSTP/STP scenario (PortFast is configured), the valid transition order is Forwarding, listening, learning, blocking — Blocking, listening, learning, forwarding inserts blocking/listening states or wrong ordering."
+            "explanation": "PortFast edge ports forward immediately; they do not stay blocking until a BPDU arrives.",
+            "misconceptionTested": "Stay blocking until BPDU with PortFast",
+            "whatItDoes": "Stays blocking unless a BPDU is received invents a PortFast behavior that is not how edge ports work.",
+            "whyWrongHere": "PortFast means immediate forwarding on link up — not remaining blocked until BPDUs."
           }
         ],
         "examTip": "PortFast: port transitions immediately to forwarding — no 30-second listening+learning delay."
@@ -9735,12 +9735,12 @@ export const CLEAN_QUESTIONS = {
       "question": "Which command would you use to remove BPDU Guard from an interface?",
       "choices": [
         "Switch(config-if)#switchport bdpugaurd disable",
-        "Switch(config-if)#spanning-tree bpduguard disable",
+        "Switch(config-if)#spanning-tree portfast disable",
         "Switch(config-if)#no switchport bpduguard",
-        "Switch(config-if)#spanning-tree bpduguard disable"
+        "Switch(config-if)#no spanning-tree bpduguard"
       ],
       "correctIndex": 3,
-      "explanation": "The correct answer follows the source explanation for this objective-aligned question.",
+      "explanation": "Remove BPDU Guard on an interface with no spanning-tree bpduguard (spanning-tree namespace — not switchport).",
       "type": "definition",
       "difficulty": "medium",
       "concept": "stp",
@@ -9753,29 +9753,29 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "Remove BPDU Guard with no spanning-tree bpduguard (or the platform-equivalent negation under the interface)."
+          "explanation": "Remove BPDU Guard with no spanning-tree bpduguard under the interface."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "switchport bpduguard is not valid syntax — BPDU Guard is configured with spanning-tree bpduguard on the interface, and this option also misspells the keyword.",
+            "explanation": "switchport bpduguard is not valid syntax — BPDU Guard uses spanning-tree bpduguard, and this option also misspells the keyword.",
             "misconceptionTested": "Inventing switchport syntax for a spanning-tree feature",
-            "whatItDoes": "Switch(config-if)#switchport bdpugaurd disable points to a related idea, but not the specific behavior or value required for interface.",
-            "whyWrongHere": "For \"interface\", Switch(config-if)#spanning-tree bpduguard disable satisfies what this question tests — Switch(config-if)#switchport bdpugaurd disable does not."
+            "whatItDoes": "Switch(config-if)#switchport bdpugaurd disable points to a related idea, but not the specific behavior or value required for removing BPDU Guard.",
+            "whyWrongHere": "Correct removal is no spanning-tree bpduguard — not a misspelled switchport form."
           },
           {
             "choiceIndex": 1,
-            "explanation": "This spanning-tree bpduguard disable line matches the keyed correct syntax, but choice D is the scored answer when two options repeat the same BPDU Guard command — pick the letter the question marks correct.",
-            "misconceptionTested": "Selecting a duplicate correct-looking option when only one letter is keyed",
-            "whyWrongHere": "",
-            "whatItDoes": ""
+            "explanation": "spanning-tree portfast disable removes PortFast, not BPDU Guard.",
+            "misconceptionTested": "Disabling PortFast instead of BPDU Guard",
+            "whatItDoes": "Switch(config-if)#spanning-tree portfast disable targets PortFast edge acceleration, not BPDU Guard.",
+            "whyWrongHere": "The stem asks to remove BPDU Guard — PortFast disable is a different feature."
           },
           {
             "choiceIndex": 2,
-            "explanation": "no switchport bpduguard targets the wrong feature namespace — BPDU Guard is removed with no spanning-tree bpduguard, not a switchport subcommand.",
+            "explanation": "no switchport bpduguard targets the wrong feature namespace — BPDU Guard is removed with no spanning-tree bpduguard.",
             "misconceptionTested": "Using switchport negation instead of spanning-tree bpduguard syntax",
-            "whatItDoes": "Switch(config-if)#no switchport bpduguard points to a related idea, but not the specific behavior or value required for interface.",
-            "whyWrongHere": "For \"interface\", Switch(config-if)#spanning-tree bpduguard disable satisfies what this question tests — Switch(config-if)#no switchport bpduguard does not."
+            "whatItDoes": "Switch(config-if)#no switchport bpduguard points to a related idea, but not the specific behavior or value required for removing BPDU Guard.",
+            "whyWrongHere": "BPDU Guard lives under spanning-tree — use no spanning-tree bpduguard, not switchport."
           }
         ],
         "examTip": "BPDU Guard lives under spanning-tree bpduguard on the interface — remove it with the matching no form."
@@ -12525,15 +12525,15 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q002",
-      "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the 4 in the underlined number represent?",
+      "question": "Routing table excerpt:\nO    192.168.10.0/24 [110/20] via 10.0.0.2, 00:05:00, GigabitEthernet0/0\nCodes: C=connected, S=static, O=OSPF. Bracket shows [AD/metric].\n\nWhat does the 20 in [110/20] represent?",
       "choices": [
-        "The 4 represents the administrative distance.",
-        "The 4 represents the protocol.",
-        "The 4 represents the metric.",
-        "The 4 represents the position in the routing table."
+        "The administrative distance",
+        "The protocol identifier",
+        "The metric (OSPF cost)",
+        "The position in the routing table"
       ],
       "correctIndex": 2,
-      "explanation": "",
+      "explanation": "IOS shows [AD/metric]. In [110/20], 110 is administrative distance (OSPF) and 20 is the metric (OSPF cost).",
       "type": "application",
       "difficulty": "hard",
       "concept": "routing table",
@@ -12556,22 +12556,22 @@ export const CLEAN_QUESTIONS = {
             "choiceIndex": 0,
             "explanation": "Administrative distance is the first number inside the brackets (110 for OSPF) — the post-slash value is metric.",
             "misconceptionTested": "Reading post-slash value as administrative distance",
-            "whatItDoes": "The 4 represents the administrative distance. points to a related idea, but not the specific behavior or value required for routing table.",
-            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the administrative distance. does not."
+            "whatItDoes": "The administrative distance is the left number in [AD/metric], not the 20 after the slash.",
+            "whyWrongHere": "For [110/20], 20 is metric — 110 is administrative distance."
           },
           {
             "choiceIndex": 1,
             "explanation": "The leading route code (O) identifies the protocol — the bracketed numbers are AD and metric, not protocol ID.",
             "misconceptionTested": "Interpreting bracket digits as protocol identifier",
-            "whatItDoes": "The 4 represents the protocol. points to a related idea, but not the specific behavior or value required for routing table.",
-            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the protocol. does not."
+            "whatItDoes": "The protocol identifier is the route code O, not a digit inside the brackets.",
+            "whyWrongHere": "For [110/20], 20 is metric — protocol is shown by code O."
           },
           {
             "choiceIndex": 3,
             "explanation": "Route position in the table is not encoded in [AD/metric] — that tuple is trust and cost for the prefix.",
             "misconceptionTested": "Treating bracket values as table row index",
-            "whatItDoes": "The 4 represents the position in the routing table. relies on a router routing table rather than switch MAC/CAM forwarding.",
-            "whyWrongHere": "For \"routing table\", The 4 represents the metric. satisfies what this question tests — The 4 represents the position in the routing table. does not."
+            "whatItDoes": "The position in the routing table is not what [AD/metric] encodes.",
+            "whyWrongHere": "For [110/20], 20 is metric — not a table row index."
           }
         ],
         "examTip": "show ip route brackets: [AD / metric] — slash separates trust from protocol cost."
@@ -12688,13 +12688,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-3.1-source-q005",
       "question": "Which route statement is configured when an IP address of 203.80.53.22/19 is configured on an interface?",
       "choices": [
-        "S 203.80.16.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.32.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.48.0/19 is directly connected, Serial 0/0/0",
-        "S 203.80.53.22/19 is directly connected, Serial 0/0/0"
+        "C 203.80.16.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.32.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.48.0/19 is directly connected, Serial 0/0/0",
+        "C 203.80.53.22/19 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 1,
-      "explanation": "",
+      "explanation": "Configuring 203.80.53.22/19 installs a connected (C) route for network 203.80.32.0/19 — not a static (S) route.",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "routing table",
@@ -12708,32 +12708,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "203.80.53.22/19 → network is 203.80.32.0/19 (third octet: 32–63 block). Connected route shows that prefix."
+          "explanation": "203.80.53.22/19 → network is 203.80.32.0/19 (third octet: 32–63 block). Connected routes use code C, not S."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
             "explanation": "203.80.16.0/19 is the prior /19 block (16–31) — .53 falls in 32–63.",
             "misconceptionTested": "Wrong /19 boundary for .53",
-            "whatItDoes": "S 203.80.16.0/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.16.0/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 203.80.16.0/19 is directly connected, Serial 0/0/0 uses the wrong /19 network boundary.",
+            "whyWrongHere": "Correct connected network is 203.80.32.0/19 — not 203.80.16.0/19."
           },
           {
             "choiceIndex": 2,
-            "explanation": "203.80.48.0/19 is the next /19 block (48–63) — .53 is in 32–63 which starts at .32.",
+            "explanation": "203.80.48.0/19 is not the /19 that contains .53 — .53 is in 32–63 which starts at .32.",
             "misconceptionTested": "Misaligned /19 starting at .48",
-            "whatItDoes": "S 203.80.48.0/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.48.0/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 203.80.48.0/19 is directly connected, Serial 0/0/0 uses the wrong /19 network boundary.",
+            "whyWrongHere": "Correct connected network is 203.80.32.0/19 — not 203.80.48.0/19."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Host address with /19 is not a valid network route — IOS shows the network prefix .32.0/19.",
+            "explanation": "Host address with /19 is not a valid network route — IOS shows the network prefix .32.0/19 as C (plus L /32 for the host).",
             "misconceptionTested": "Host address as network route",
-            "whatItDoes": "S 203.80.53.22/19 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): S 203.80.32.0/19 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 203.80.53.22/19 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 203.80.53.22/19 is directly connected, Serial 0/0/0 invents a host-as-network connected line.",
+            "whyWrongHere": "Connected network route is 203.80.32.0/19 (C), not the host address with /19."
           }
         ],
-        "examTip": "/19 boundaries: 0, 32, 64, 96… | .53 is in 32–63 → network 203.80.32.0/19."
+        "examTip": "/19 boundaries: 0, 32, 64, 96… | .53 is in 32–63 → C 203.80.32.0/19 (directly connected = C, not S)."
       }
     },
     {
@@ -12843,15 +12843,15 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q008",
-      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next hop for a destination address of 192.168.4.85?",
+      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
       "choices": [
-        "Interface Serial 0/2/0",
-        "IP address 192.168.4.2",
-        "Interface Serial 0/0/1",
-        "IP address 198.22.34.3"
+        "10.0.0.2",
+        "192.168.4.2",
+        "10.0.0.1",
+        "198.22.34.3"
       ],
       "correctIndex": 2,
-      "explanation": "",
+      "explanation": "192.168.4.85 matches the static route 192.168.4.0/24 with next-hop 10.0.0.1 from the running-config.",
       "type": "application",
       "difficulty": "hard",
       "concept": "routing table",
@@ -12867,32 +12867,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "The static route to 192.168.4.0/24 points to next-hop 10.0.0.1 — if that resolves via Serial 0/0/1, traffic exits there."
+          "explanation": "The static route to 192.168.4.0/24 points to next-hop 10.0.0.1 — that is the next hop for 192.168.4.85."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Serial 0/2/0 is not the exit interface for the route matching 192.168.4.85.",
-            "misconceptionTested": "Wrong serial interface for destination",
-            "whatItDoes": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length."
+            "explanation": "10.0.0.2 is the next hop for 192.168.5.0/24, not 192.168.4.0/24.",
+            "misconceptionTested": "Wrong static next-hop for destination",
+            "whatItDoes": "10.0.0.2 is configured for a different destination prefix.",
+            "whyWrongHere": "192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1, not 10.0.0.2."
           },
           {
             "choiceIndex": 1,
-            "explanation": "192.168.4.2 is in the destination network, not the next hop or exit interface.",
+            "explanation": "192.168.4.2 is in the destination network, not the next hop configured in the static route.",
             "misconceptionTested": "Destination IP as next hop",
-            "whatItDoes": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 satisfies what this question tests — IP address 192.168.4.2 does not."
+            "whatItDoes": "IP address 192.168.4.2 confuses destination host with next-hop.",
+            "whyWrongHere": "Next hop is 10.0.0.1 from the ip route statement — not a host in 192.168.4.0/24."
           },
           {
             "choiceIndex": 3,
-            "explanation": "198.22.34.3 does not appear in the routing table excerpt for this destination.",
+            "explanation": "198.22.34.3 does not appear in the running-config excerpt for this destination.",
             "misconceptionTested": "Random IP as route exit",
-            "whatItDoes": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-            "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 satisfies what this question tests — IP address 198.22.34.3 does not."
+            "whatItDoes": "IP address 198.22.34.3 is unrelated to the configured static routes.",
+            "whyWrongHere": "Configured next hop for 192.168.4.0/24 is 10.0.0.1."
           }
         ],
-        "examTip": "Static route → follow next-hop recursion to find actual exit interface in show ip route."
+        "examTip": "Match longest prefix in config/table → read the next-hop IP from that route statement."
       }
     },
     {
@@ -18099,13 +18099,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-3.3-source-q027",
       "question": "Which route statement is configured when an IP address of 208.43.34.17/29 is configured on an interface?",
       "choices": [
-        "S 208.43.34.17/32 is directly connected, Serial 0/0/0",
-        "S 208.43.34.24/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.8/29 is directly connected, Serial 0/0/0",
-        "S 208.43.34.17/29 is directly connected, Serial 0/0/0"
+        "L 208.43.34.17/32 is directly connected, Serial 0/0/0",
+        "C 208.43.34.24/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.8/29 is directly connected, Serial 0/0/0",
+        "C 208.43.34.17/29 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "",
+      "explanation": "Configuring an interface IP installs a local (L) /32 host route for that address, plus a connected (C) network route — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -18119,32 +18119,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "IOS adds a host /32 route for the configured address — 208.43.34.17/32 on Serial 0/0/0 (display may show connected/local codes)."
+          "explanation": "IOS adds a local host /32 route for the configured address — L 208.43.34.17/32 on Serial 0/0/0 (connected network would be C 208.43.34.16/29)."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
-            "explanation": "208.43.34.24/29 is not the host route for .17/29 — IOS installs /32 for the configured IP.",
-            "misconceptionTested": "Network /29 route instead of host /32",
-            "whatItDoes": "S 208.43.34.24/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.24/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "explanation": "208.43.34.24/29 is not the network or host route for .17/29 — wrong /29 boundary.",
+            "misconceptionTested": "Wrong /29 network boundary",
+            "whatItDoes": "C 208.43.34.24/29 is directly connected, Serial 0/0/0 uses an incorrect network prefix for .17/29.",
+            "whyWrongHere": "The keyed host entry is L 208.43.34.17/32 — not 208.43.34.24/29."
           },
           {
             "choiceIndex": 2,
-            "explanation": "208.43.34.8/29 is the network prefix — the keyed table line for the configured IP is the /32 host entry.",
-            "misconceptionTested": "Subnet network route as primary host entry",
-            "whatItDoes": "S 208.43.34.8/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.8/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "explanation": "208.43.34.8/29 is a different /29 block — .17 falls in .16/29. The stem keys the local /32 for the configured IP.",
+            "misconceptionTested": "Wrong subnet network route as host entry",
+            "whatItDoes": "C 208.43.34.8/29 is directly connected, Serial 0/0/0 is the wrong connected network for .17/29.",
+            "whyWrongHere": "Configured IP installs L …/32 for the host; connected network would be .16/29, not .8/29."
           },
           {
             "choiceIndex": 3,
-            "explanation": "208.43.34.17/29 is invalid host prefix length — configured /29 address gets /32 local route.",
+            "explanation": "208.43.34.17/29 is not how IOS displays the host route — configured /29 address gets L /32 local route.",
             "misconceptionTested": "/29 host route in RIB",
-            "whatItDoes": "S 208.43.34.17/29 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 208.43.34.17/32 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 208.43.34.17/29 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 208.43.34.17/29 is directly connected, Serial 0/0/0 invents a host-as-/29 connected line.",
+            "whyWrongHere": "Local host route is L 208.43.34.17/32, not C with /29 on the host address."
           }
         ],
-        "examTip": "Interface IP → connected network + local /32 for the exact address — read show ip route codes C and L."
+        "examTip": "Interface IP → connected network (C) + local /32 (L) for the exact address — never code S for directly connected."
       }
     },
     {
@@ -18255,13 +18255,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-3.3-source-q030",
       "question": "Which route statement is configured when an IP address of 194.22.34.54/28 is configured on an interface?",
       "choices": [
-        "S 194.22.34.48/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.64/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.54/28 is directly connected, Serial 0/0/0",
-        "S 194.22.34.32/28 is directly connected, Serial 0/0/0"
+        "C 194.22.34.48/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.64/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.54/28 is directly connected, Serial 0/0/0",
+        "C 194.22.34.32/28 is directly connected, Serial 0/0/0"
       ],
       "correctIndex": 0,
-      "explanation": "",
+      "explanation": "Configuring 194.22.34.54/28 installs connected (C) route 194.22.34.48/28 — not static (S).",
       "type": "scenario",
       "difficulty": "medium",
       "concept": "static routing",
@@ -18275,32 +18275,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 0,
-          "explanation": "194.22.34.54/28 belongs to 194.22.34.48/28 network — connected route shows that /28 prefix on the interface."
+          "explanation": "194.22.34.54/28 belongs to 194.22.34.48/28 — connected routes use code C, not S."
         },
         "incorrect": [
           {
             "choiceIndex": 1,
             "explanation": "194.22.34.64/28 is the next /28 block — .54 falls in .48/28.",
             "misconceptionTested": "Wrong /28 network boundary",
-            "whatItDoes": "S 194.22.34.64/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.64/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.64/28 uses the wrong /28 boundary.",
+            "whyWrongHere": "Correct connected network is C 194.22.34.48/28."
           },
           {
             "choiceIndex": 2,
             "explanation": "194.22.34.54/28 is not a valid network route line — IOS shows network /28 + host /32.",
             "misconceptionTested": "Host address as /28 network route",
-            "whatItDoes": "S 194.22.34.54/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.54/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.54/28 invents a host-as-network connected line.",
+            "whyWrongHere": "Connected network is 194.22.34.48/28 (C), not the host with /28."
           },
           {
             "choiceIndex": 3,
             "explanation": "194.22.34.32/28 is the prior subnet — .54 is in .48–.63 range.",
             "misconceptionTested": "Misaligned /28 subnet for .54",
-            "whatItDoes": "S 194.22.34.32/28 is directly connected, Serial 0/0/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (static routing): S 194.22.34.48/28 is directly connected, Serial 0/0/0 matches prefix, shortening, or assignment rules — S 194.22.34.32/28 is directly connected, Serial 0/0/0 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "C 194.22.34.32/28 uses the wrong /28 boundary.",
+            "whyWrongHere": "Correct connected network is C 194.22.34.48/28."
           }
         ],
-        "examTip": "/28 boundaries: increment 16 in last octet — .48, .64, .80… — place .54 in .48/28."
+        "examTip": "/28 boundaries: increment 16 — .48, .64… | .54 → C 194.22.34.48/28 (directly connected = C, not S)."
       }
     },
     {
@@ -25425,8 +25425,8 @@ export const CLEAN_QUESTIONS = {
         "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
-      "correctIndex": 3,
-      "explanation": "",
+      "correctIndex": 2,
+      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -25437,7 +25437,7 @@ export const CLEAN_QUESTIONS = {
       "exhibitConverted": true,
       "answerReview": {
         "correct": {
-          "choiceIndex": 3,
+          "choiceIndex": 2,
           "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
         },
         "incorrect": [
@@ -25445,25 +25445,25 @@ export const CLEAN_QUESTIONS = {
             "choiceIndex": 0,
             "explanation": "Pool syntax uses start/end addresses and netmask — not CIDR slash in pool command.",
             "misconceptionTested": "Using CIDR in ip nat pool",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "Uses CIDR slash notation inside ip nat pool, which IOS does not accept.",
+            "whyWrongHere": "Dynamic NAT pools require start/end host addresses plus netmask 255.255.255.240 for this /28 — not 179.43.44.0/28 slash form."
           },
           {
             "choiceIndex": 1,
-            "explanation": "/28 netmask is 255.255.255.240, not 255.255.255.0.",
+            "explanation": "Wrong keyword (ip pool) and wrong netmask — /28 is 255.255.255.240, not 255.255.255.0.",
             "misconceptionTested": "Wrong netmask for /28 block",
-            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 points to a related idea, but not the specific behavior or value required for inside local.",
-            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not."
+            "whatItDoes": "Uses non-NAT ip pool syntax with a /24 mask.",
+            "whyWrongHere": "Need ip nat pool … netmask 255.255.255.240 for the owned /28 block."
           },
           {
-            "choiceIndex": 2,
-            "explanation": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 points to a related idea, but not the specific behavior or value required for inside local. For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not.",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 points to a related idea, but not the specific behavior or value required for inside local.",
-            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not.",
-            "misconceptionTested": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat"
+            "choiceIndex": 3,
+            "explanation": "Start/end range may look usable, but netmask 255.255.255.0 is /24 — not the owned /28 (255.255.255.240).",
+            "misconceptionTested": "Mismatched pool range and mask",
+            "whatItDoes": "Defines a NAT pool with a /24 netmask.",
+            "whyWrongHere": "The enterprise owns 179.43.44.0/28, so the pool netmask must be 255.255.255.240."
           }
         ],
-        "examTip": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>."
+        "examTip": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask> — mask must match the owned prefix."
       }
     },
     {
@@ -26036,8 +26036,8 @@ export const CLEAN_QUESTIONS = {
         "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
-      "correctIndex": 3,
-      "explanation": "",
+      "correctIndex": 2,
+      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -26053,33 +26053,33 @@ export const CLEAN_QUESTIONS = {
       "exhibitConverted": true,
       "answerReview": {
         "correct": {
-          "choiceIndex": 3,
-          "explanation": "A dynamic NAT pool names the pool, sets start/end addresses (179.43.44.2–179.43.44.15), and specifies the subnet netmask."
+          "choiceIndex": 2,
+          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
             "explanation": "NAT pool syntax uses host address ranges, not CIDR slash notation — ip nat pool Name start end netmask.",
             "misconceptionTested": "Using CIDR notation inside ip nat pool command",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length."
+            "whatItDoes": "Uses CIDR slash notation inside ip nat pool, which IOS does not accept.",
+            "whyWrongHere": "Need start/end addresses plus netmask 255.255.255.240 for the owned /28."
           },
           {
             "choiceIndex": 1,
-            "explanation": "ip pool is not NAT pool syntax — dynamic pools are defined with ip nat pool <name> <start> <end> netmask.",
+            "explanation": "ip pool is not NAT pool syntax, and 255.255.255.0 is a /24 mask — not /28.",
             "misconceptionTested": "Using ip pool instead of ip nat pool",
-            "whatItDoes": "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 points to a related idea, but not the specific behavior or value required for inside local.",
-            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 does not."
+            "whatItDoes": "Uses non-NAT ip pool syntax with a /24 mask.",
+            "whyWrongHere": "Dynamic pools use ip nat pool … netmask 255.255.255.240 for this /28 block."
           },
           {
-            "choiceIndex": 2,
-            "explanation": "179.43.44.1 is the router WAN interface — usable pool hosts start at .2; the keyed pool uses .2–.15 with netmask.",
-            "misconceptionTested": "Including interface address as pool start",
-            "whatItDoes": "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 points to a related idea, but not the specific behavior or value required for inside local.",
-            "whyWrongHere": "For \"inside local\", RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 satisfies what this question tests — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 does not."
+            "choiceIndex": 3,
+            "explanation": "Netmask 255.255.255.0 is /24 — the owned block is /28 (255.255.255.240).",
+            "misconceptionTested": "Mismatched pool range and mask",
+            "whatItDoes": "Defines a NAT pool with a /24 netmask.",
+            "whyWrongHere": "The enterprise owns 179.43.44.0/28, so the pool netmask must be 255.255.255.240."
           }
         ],
-        "examTip": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>."
+        "examTip": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask> — mask must match the owned prefix."
       }
     },
     {
@@ -30709,8 +30709,8 @@ export const CLEAN_QUESTIONS = {
         "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
         "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
       ],
-      "correctIndex": 3,
-      "explanation": "",
+      "correctIndex": 2,
+      "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config.",
       "type": "application",
       "difficulty": "hard",
       "concept": "tftp",
@@ -30723,30 +30723,30 @@ export const CLEAN_QUESTIONS = {
       ],
       "answerReview": {
         "correct": {
-          "choiceIndex": 3,
-          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — image filename before the TFTP URL in global config."
+          "choiceIndex": 2,
+          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "boot tftp:// is privileged EXEC syntax — boot commands belong in global config.",
+            "explanation": "boot tftp:// is privileged EXEC syntax — boot system belongs in global config and needs the image filename.",
             "misconceptionTested": "Exec-mode boot for TFTP image",
-            "whatItDoes": "Router#boot tftp://192.168.1.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router#boot tftp://192.168.1.2 does not."
+            "whatItDoes": "Attempts a privileged-EXEC boot with only a TFTP URL.",
+            "whyWrongHere": "IOS uses Router(config)#boot system tftp://<server> <filename>."
           },
           {
             "choiceIndex": 1,
             "explanation": "Missing system keyword — IOS uses boot system tftp://<server> <filename>.",
             "misconceptionTested": "boot without system keyword",
-            "whatItDoes": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not."
+            "whatItDoes": "Uses boot without the system keyword.",
+            "whyWrongHere": "Correct form is boot system tftp://192.168.1.2 <image.bin>."
           },
           {
-            "choiceIndex": 2,
-            "explanation": "URL before filename reverses IOS argument order — filename then location on the boot system line.",
+            "choiceIndex": 3,
+            "explanation": "Filename before the TFTP URL reverses the usual Cisco boot system tftp://… <filename> order.",
             "misconceptionTested": "Reversed boot system argument order",
-            "whatItDoes": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 satisfies what this question tests — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin does not."
+            "whatItDoes": "Places the image name before the tftp:// URL.",
+            "whyWrongHere": "Keyed syntax is boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin."
           }
         ],
         "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."
@@ -38262,8 +38262,8 @@ export const CLEAN_QUESTIONS = {
         "Enable port security",
         "Disable SSID broadcasts"
       ],
-      "correctIndex": 1,
-      "explanation": "",
+      "correctIndex": 0,
+      "explanation": "WPA2 (with a passphrase) authenticates clients and encrypts the air — that is what assures only authorized devices can join. MAC filtering is spoofable and is not strong assurance.",
       "type": "definition",
       "difficulty": "easy",
       "concept": "wireless security",
@@ -38276,33 +38276,33 @@ export const CLEAN_QUESTIONS = {
       ],
       "answerReview": {
         "correct": {
-          "choiceIndex": 1,
-          "explanation": "MAC filtering allows only listed client MAC addresses to associate — the keyed answer for this legacy SOHO stem."
+          "choiceIndex": 0,
+          "explanation": "Enable WPA2 (PSK with a passphrase on SOHO) authenticates joining clients and encrypts traffic — that is the practical assurance that only her devices can join."
         },
         "incorrect": [
           {
-            "choiceIndex": 0,
-            "explanation": "WPA2 encrypts traffic but does not by itself restrict which devices may join — pairing encryption with an allow list is what this stem asks for.",
-            "misconceptionTested": "Stopping at WPA2 without a join-control mechanism",
-            "whatItDoes": "Enable WPA2 points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Enable MAC filtering satisfies what this question tests — Enable WPA2 does not."
+            "choiceIndex": 1,
+            "explanation": "MAC filtering is weak — MAC addresses are easily spoofed, so it does not assure only her devices join.",
+            "misconceptionTested": "Treating MAC filtering as stronger than WPA2",
+            "whatItDoes": "Allows only listed MAC addresses to associate.",
+            "whyWrongHere": "Spoofed MACs bypass the filter; WPA2 with a passphrase is the real admission control for this SOHO stem."
           },
           {
             "choiceIndex": 2,
             "explanation": "Port security is a switch access-port feature — not wireless client admission on a SOHO AP.",
             "misconceptionTested": "Applying switch port security to WLAN admission",
-            "whatItDoes": "Enable port security points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Enable MAC filtering satisfies what this question tests — Enable port security does not."
+            "whatItDoes": "Limits MACs on a wired switch port.",
+            "whyWrongHere": "This is a wireless SOHO question — Enable WPA2 is the correct WLAN control."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Hiding the SSID does not stop unauthorized clients who know the name — it is not a substitute for an allow list.",
+            "explanation": "Hiding the SSID does not stop unauthorized clients who know the name — it is obfuscation, not authentication.",
             "misconceptionTested": "Treating hidden SSID as access control",
-            "whatItDoes": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
-            "whyWrongHere": "For \"wireless security\", Enable MAC filtering satisfies what this question tests — Disable SSID broadcasts does not."
+            "whatItDoes": "Stops broadcasting the WLAN name in beacons.",
+            "whyWrongHere": "SSID hiding is not assurance; WPA2 authenticates and encrypts joins."
           }
         ],
-        "examTip": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does."
+        "examTip": "SOHO join assurance → WPA2/WPA3 with passphrase. MAC filter is spoofable — never prefer it over WPA2."
       }
     },
     {
@@ -38310,12 +38310,12 @@ export const CLEAN_QUESTIONS = {
       "question": "Which is a requirement of WPA2-Enterprise?",
       "choices": [
         "Creation of a PSK",
-        "Certificate infrastructure",
+        "RADIUS/EAP (802.1X) infrastructure",
         "192-bit key strength",
         "802.11ac"
       ],
       "correctIndex": 1,
-      "explanation": "",
+      "explanation": "WPA2-Enterprise uses 802.1X with RADIUS/EAP for per-user authentication — not a shared PSK. Certificates appear with some EAP methods but are not the universal requirement.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "wireless security",
@@ -38328,32 +38328,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "WPA2-Enterprise uses 802.1X — you need certificate/RADIUS infrastructure to validate users, not a shared PSK."
+          "explanation": "WPA2-Enterprise requires 802.1X with a RADIUS/EAP infrastructure for per-user authentication — not a shared PSK. Certificates are used by some EAP types, but RADIUS/EAP is the CCNA key idea."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
             "explanation": "PSK is for WPA2-Personal — Enterprise mode uses per-user credentials via RADIUS/EAP.",
             "misconceptionTested": "Applying personal WPA2 (PSK) to enterprise",
-            "whatItDoes": "Creation of a PSK points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Certificate infrastructure satisfies what this question tests — Creation of a PSK does not."
+            "whatItDoes": "Creates a shared pre-shared key for all clients.",
+            "whyWrongHere": "Enterprise mode replaces the PSK with 802.1X/RADIUS."
           },
           {
             "choiceIndex": 2,
-            "explanation": "192-bit security is a WPA3-Enterprise option — not the baseline requirement named for WPA2-Enterprise here.",
+            "explanation": "192-bit security is a WPA3-Enterprise option — not the baseline requirement for WPA2-Enterprise.",
             "misconceptionTested": "Mixing WPA3-192 requirements into WPA2-Enterprise",
-            "whatItDoes": "192-bit key strength points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Certificate infrastructure satisfies what this question tests — 192-bit key strength does not."
+            "whatItDoes": "Names a WPA3-era cipher suite strength.",
+            "whyWrongHere": "WPA2-Enterprise centers on RADIUS/EAP, not 192-bit key strength."
           },
           {
             "choiceIndex": 3,
             "explanation": "802.11ac is a Wi-Fi generation/PHY standard — unrelated to enterprise authentication requirements.",
             "misconceptionTested": "Confusing radio standard with AAA requirements",
-            "whatItDoes": "802.11ac points to a related idea, but not the specific behavior or value required for wireless security.",
-            "whyWrongHere": "For \"wireless security\", Certificate infrastructure satisfies what this question tests — 802.11ac does not."
+            "whatItDoes": "Names a wireless PHY generation.",
+            "whyWrongHere": "Authentication requirements are RADIUS/EAP, not 802.11ac."
           }
         ],
-        "examTip": "WPA2-Enterprise → 802.1X + RADIUS (+ certs on some EAP types). Personal → PSK."
+        "examTip": "WPA2-Enterprise → 802.1X + RADIUS/EAP. Personal → PSK. Certs = some EAP methods, not the whole answer."
       }
     },
     {
@@ -40955,32 +40955,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 1,
-          "explanation": "Southbound APIs (NETCONF/RESTCONF) push configuration from controller to devices — that is how SDN programs the network."
+          "explanation": "Cisco SD-WAN (Viptela) connects branch/ROBO sites to applications over an optimized WAN overlay — the right SDN product when remote offices need direct app access."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "Northbound APIs face applications/orchestration — they do not program ASICs directly.",
-            "misconceptionTested": "Swapping northbound and southbound",
-            "whatItDoes": "Cisco APIC-EM points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco APIC-EM does not."
+            "explanation": "APIC-EM is a legacy campus/enterprise SDN controller — not the branch WAN overlay for ROBO app access.",
+            "misconceptionTested": "Using campus SDN controller for WAN branch use case",
+            "whatItDoes": "Names Cisco's older enterprise LAN SDN controller.",
+            "whyWrongHere": "Remote office app access maps to Cisco SD-WAN, not APIC-EM."
           },
           {
             "choiceIndex": 2,
-            "explanation": "SNMP is legacy monitoring — SDN southbound is model-driven config (YANG/NETCONF), not SNMP SETs.",
-            "misconceptionTested": "Using SNMP as SDN southbound",
-            "whatItDoes": "Cisco Prime Infrastructure points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — Cisco Prime Infrastructure does not."
+            "explanation": "Prime Infrastructure is traditional NMS — not an SD-WAN overlay for branch connectivity.",
+            "misconceptionTested": "Selecting NMS instead of SD-WAN solution",
+            "whatItDoes": "Names a legacy network management platform.",
+            "whyWrongHere": "The stem asks for a Cisco SDN WAN solution for ROBO — Cisco SD-WAN."
           },
           {
             "choiceIndex": 3,
-            "explanation": "CDP discovers neighbors — unrelated to controller-to-device configuration.",
-            "misconceptionTested": "Discovery protocol as SDN API",
-            "whatItDoes": "OpenDaylight points to a related idea, but not the specific behavior or value required for sdn architecture.",
-            "whyWrongHere": "For \"sdn architecture\", Cisco SD-WAN satisfies what this question tests — OpenDaylight does not."
+            "explanation": "OpenDaylight is an open SDN controller platform — Cisco SD-WAN is the branded branch/WAN answer on CCNA stems.",
+            "misconceptionTested": "Picking generic open controller for Cisco ROBO scenario",
+            "whatItDoes": "Names a generic open-source SDN controller.",
+            "whyWrongHere": "Cisco ROBO direct app access → Cisco SD-WAN."
           }
         ],
-        "examTip": "Northbound = apps → controller. Southbound = controller → devices (NETCONF/RESTCONF/OpenFlow)."
+        "examTip": "Branch offices need direct app access → Cisco SD-WAN, not campus APIC-EM or Prime."
       }
     },
     {
@@ -44503,11 +44503,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "YAML",
         "CSV",
-        "JSON",
+        "Python",
         "XML"
       ],
       "correctIndex": 2,
-      "explanation": "",
+      "explanation": "Custom Ansible modules are written in Python — playbooks use YAML.",
       "type": "definition",
       "difficulty": "medium",
       "concept": "configuration management",
@@ -44522,32 +44522,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Custom Ansible modules are written in Python — extends Ansible's task library."
+          "explanation": "Custom Ansible modules are written in Python — that extends Ansible's task library."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "YAML writes playbooks — modules are Python.",
+            "explanation": "YAML writes playbooks and inventories — custom modules are Python.",
             "misconceptionTested": "YAML for custom modules",
-            "whatItDoes": "YAML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
-            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — YAML does not."
+            "whatItDoes": "Names the playbook/inventory format.",
+            "whyWrongHere": "YAML authors playbooks; a custom Ansible module itself is written in Python."
           },
           {
             "choiceIndex": 1,
-            "explanation": "CSV isn't module format.",
+            "explanation": "CSV is a flat data table format — not how Ansible custom modules are authored.",
             "misconceptionTested": "CSV module format",
-            "whatItDoes": "CSV points to a related idea, but not the specific behavior or value required for configuration management.",
-            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — CSV does not."
+            "whatItDoes": "Names a spreadsheet-style data format.",
+            "whyWrongHere": "CSV cannot express Ansible module logic — modules are Python code."
           },
           {
             "choiceIndex": 3,
-            "explanation": "XML isn't the Ansible custom module language.",
+            "explanation": "XML is not the Ansible custom-module language.",
             "misconceptionTested": "XML for Ansible modules",
-            "whatItDoes": "XML names an automation tool, data format, or API style that may not match the stem's orchestration model.",
-            "whyWrongHere": "For \"configuration management\", JSON satisfies what this question tests — XML does not."
+            "whatItDoes": "Names a markup data format.",
+            "whyWrongHere": "XML is data markup; Ansible extends its library with Python modules, not XML."
           }
         ],
-        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
+        "examTip": "Ansible: playbooks = YAML; custom modules = Python."
       }
     },
     {
@@ -45010,13 +45010,13 @@ export const CLEAN_QUESTIONS = {
       "id": "obj-6.7-source-q010",
       "question": "which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
       "choices": [
-        "The interface data is incorrect because it is missing a comma after the routes.",
+        "The interface data is incorrect because it is missing a comma (or },{) between the two route objects.",
         "The interface data is incorrect because it is missing a set of square brackets around the second route.",
         "The interface data is incorrect because it contains an illegal underscore character.",
         "Nothing is wrong with the exhibit."
       ],
-      "correctIndex": 1,
-      "explanation": "",
+      "correctIndex": 0,
+      "explanation": "Inside the routes array, two route properties sit in one object without a comma — they must be separate objects separated by },{ (or at least a comma between members).",
       "type": "scenario",
       "difficulty": "hard",
       "concept": "json",
@@ -45029,33 +45029,33 @@ export const CLEAN_QUESTIONS = {
       "exhibitConverted": true,
       "answerReview": {
         "correct": {
-          "choiceIndex": 1,
-          "explanation": "Inside the routes array, objects must be separate — need ] or },{ between route entries; missing comma/bracket structure."
+          "choiceIndex": 0,
+          "explanation": "The routes array packs two route entries in one object without a delimiter — valid JSON needs a comma between members, typically as separate objects: },{."
         },
         "incorrect": [
           {
-            "choiceIndex": 0,
-            "explanation": "Comma after routes array isn't the core issue — objects inside array are malformed.",
-            "misconceptionTested": "Comma after routes key only",
-            "whatItDoes": "The interface data is incorrect because it is missing a comma after the routes. points to a related idea, but not the specific behavior or value required for ipaddress.",
-            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — The interface data is incorrect because it is missing a comma after the routes. does not."
+            "choiceIndex": 1,
+            "explanation": "Square brackets already wrap the routes array — the real bug is the missing comma / },{ between the two route objects.",
+            "misconceptionTested": "Missing square brackets around second route",
+            "whatItDoes": "Claims the second route needs its own square brackets.",
+            "whyWrongHere": "The array brackets are fine; the object members lack a comma (or },{)."
           },
           {
             "choiceIndex": 2,
-            "explanation": "Underscores in keys are valid JSON.",
+            "explanation": "Underscores in keys (subnet_mask, defaultgw) are valid JSON.",
             "misconceptionTested": "Underscore invalid in JSON",
-            "whatItDoes": "The interface data is incorrect because it contains an illegal underscore character. points to a related idea, but not the specific behavior or value required for ipaddress.",
-            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — The interface data is incorrect because it contains an illegal underscore character. does not."
+            "whatItDoes": "Claims underscore characters make JSON illegal.",
+            "whyWrongHere": "The syntax error is the missing comma between route entries, not underscores."
           },
           {
             "choiceIndex": 3,
-            "explanation": "JSON is invalid — missing delimiter between array objects.",
+            "explanation": "JSON is invalid — two route properties collide without a comma or separate objects.",
             "misconceptionTested": "Valid JSON exhibit",
-            "whatItDoes": "Nothing is wrong with the exhibit. points to a related idea, but not the specific behavior or value required for ipaddress.",
-            "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. satisfies what this question tests — Nothing is wrong with the exhibit. does not."
+            "whatItDoes": "Claims the exhibit is already valid.",
+            "whyWrongHere": "Parsers fail without a comma or },{ between the route entries."
           }
         ],
-        "examTip": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP."
+        "examTip": "JSON arrays of objects: [{…},{…}] — missing commas between members are a classic exam trap."
       }
     },
     {

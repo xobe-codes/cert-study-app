@@ -60,10 +60,10 @@
         "Switch(config)#cdp disable",
         "Switch(config-if)#no cdp enable",
         "Switch(config)#no cdp",
-        "Switch(config-if)#no cdp run"
+        "Switch(config)#no cdp run"
       ],
       "correctIndex": 3,
-      "explanation": "no cdp run disables CDP globally.",
+      "explanation": "no cdp run disables CDP globally (global config mode — not interface mode).",
       "type": "definition",
       "difficulty": "medium",
       "concept": "cdp",
@@ -76,7 +76,7 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 3,
-          "explanation": "no cdp run disables CDP globally."
+          "explanation": "no cdp run in global configuration mode disables CDP on the entire switch."
         },
         "incorrect": [
           {
@@ -84,21 +84,21 @@
             "explanation": "cdp disable is not valid IOS syntax — the global command to turn off CDP on the entire switch is no cdp run in global configuration mode.",
             "misconceptionTested": "Using invalid cdp disable global command",
             "whatItDoes": "Switch(config)#cdp disable points to a related idea, but not the specific behavior or value required for no cdp run disables CDP globally.",
-            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config-if)#no cdp run satisfies what this question tests — Switch(config)#cdp disable does not."
+            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config)#no cdp run satisfies what this question tests — Switch(config)#cdp disable does not."
           },
           {
             "choiceIndex": 1,
             "explanation": "no cdp enable under an interface disables CDP on that port only — the stem asks to turn off CDP on the whole switch, which requires global no cdp run.",
             "misconceptionTested": "Using per-interface disable for global CDP off",
             "whatItDoes": "Switch(config-if)#no cdp enable points to a related idea, but not the specific behavior or value required for no cdp run disables CDP globally.",
-            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config-if)#no cdp run satisfies what this question tests — Switch(config-if)#no cdp enable does not."
+            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config)#no cdp run satisfies what this question tests — Switch(config-if)#no cdp enable does not."
           },
           {
             "choiceIndex": 2,
             "explanation": "no cdp alone is incomplete IOS syntax — the recognized global command is no cdp run to disable CDP switch-wide.",
             "misconceptionTested": "Using incomplete no cdp without run keyword",
             "whatItDoes": "Switch(config)#no cdp points to a related idea, but not the specific behavior or value required for no cdp run disables CDP globally.",
-            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config-if)#no cdp run satisfies what this question tests — Switch(config)#no cdp does not."
+            "whyWrongHere": "For \"no cdp run disables CDP globally\", Switch(config)#no cdp run satisfies what this question tests — Switch(config)#no cdp does not."
           }
         ],
         "examTip": "Disable CDP globally → no cdp run. Per-port → no cdp enable on interface."
