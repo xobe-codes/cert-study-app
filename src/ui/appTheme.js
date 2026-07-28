@@ -128,7 +128,7 @@ const styles = {
   },
   tabBar: { display: 'flex', gap: 4, marginBottom: 10, flexWrap: 'wrap' },
   tabBtn: (active) => ({
-    flex: '1 1 auto', minHeight: 40, borderRadius: 10, border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
+    flex: '1 1 auto', minHeight: 44, borderRadius: 10, border: `1px solid ${active ? COLORS.brandGlow : COLORS.border}`,
     background: active ? COLORS.brandDim : COLORS.surface, color: active ? COLORS.brandGlow : COLORS.silverMid,
     fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', padding: '8px 6px',
   }),

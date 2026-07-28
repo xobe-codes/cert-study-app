@@ -1,6 +1,6 @@
 {
   "objectiveId": "5.3",
-  "title": "Configure device access control using local passwords",
+  "title": "Configure and verify device access control",
   "questions": [
     {
       "id": "obj-5.3-source-q001",
@@ -1193,7 +1193,7 @@
     },
     {
       "id": "obj-5.4-source-q005",
-      "question": "A smart card is an example of which type of authentication?",
+      "question": "Using a smart card together with the passphrase or PIN that unlocks it is an example of which type of authentication?",
       "choices": [
         "Single-factor authentication",
         "RADIUS authentication",

@@ -9,6 +9,16 @@ export const OSPF_34_EXCLUDE = new Set([
   'obj-3.4-source-q044', 'obj-3.4-source-q045', 'obj-3.4-source-q059', 'obj-3.4-source-q062',
 ])
 
+// Legacy 2.8 source set covers device-management access, while the current
+// objective 2.8 is WLAN client connectivity. Preserve these in the shelved
+// inventory until they are deliberately remapped to their current objectives.
+export const LEGACY_28_MANAGEMENT_EXCLUDE = [
+  'obj-2.8-source-q001', 'obj-2.8-source-q002', 'obj-2.8-source-q003',
+  'obj-2.8-source-q004', 'obj-2.8-source-q005', 'obj-2.8-source-q006',
+  'obj-2.8-source-q007', 'obj-2.8-source-q008', 'obj-2.8-source-q009',
+  'obj-2.8-source-q010',
+]
+
 export const SOURCE_BANK_FOLDERS = [
   'domain2-rest-2.3-to-2.9-validation',
   'domain3-ip-connectivity-validation',
@@ -45,7 +55,11 @@ export const SOURCE_FILES = [
   { domain: 2, qbId: '2.5', appId: '2.5', file: 'domain2-rest-2.3-to-2.9-validation/objective-2.5-rapid-pvst-stp-basics-source-questions.json' },
   { domain: 2, qbId: '2.6', appId: '2.6', file: 'domain2-rest-2.3-to-2.9-validation/objective-2.6-cisco-wireless-architectures-ap-modes-source-questions.json' },
   { domain: 2, qbId: '2.7', appId: '2.7', file: 'domain2-rest-2.3-to-2.9-validation/objective-2.7-wlan-physical-infrastructure-connections-source-questions.json' },
-  { domain: 2, qbId: '2.8', appId: '2.8', file: 'domain2-rest-2.3-to-2.9-validation/objective-2.8-ap-wlc-management-access-source-questions.json' },
+  {
+    domain: 2, qbId: '2.8', appId: '2.8',
+    file: 'domain2-rest-2.3-to-2.9-validation/objective-2.8-ap-wlc-management-access-source-questions.json',
+    exclude: LEGACY_28_MANAGEMENT_EXCLUDE,
+  },
   { domain: 2, qbId: '2.9', appId: '2.8', file: 'domain2-rest-2.3-to-2.9-validation/objective-2.9-wlan-operational-parameters-source-questions.json' },
   // Domain 3
   { domain: 3, qbId: '3.1', appId: '3.1', file: 'domain3-ip-connectivity-validation/objective-3.1-routing-table-components-source-questions.json' },

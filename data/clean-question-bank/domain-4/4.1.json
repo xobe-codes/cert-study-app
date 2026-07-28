@@ -1,6 +1,6 @@
 {
   "objectiveId": "4.1",
-  "title": "Configure and verify inside source NAT using static and pools",
+  "title": "Configure and verify inside source NAT",
   "questions": [
     {
       "id": "4.1-c-q1",
@@ -720,11 +720,11 @@
       "choices": [
         "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
         "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
-        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
       "correctIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
+      "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is the broadcast address.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -736,7 +736,7 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
+          "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is broadcast."
         },
         "incorrect": [
           {
@@ -1331,11 +1331,11 @@
       "choices": [
         "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
         "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
-        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
       "correctIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
+      "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is the broadcast address.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -1352,7 +1352,7 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
+          "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is broadcast."
         },
         "incorrect": [
           {

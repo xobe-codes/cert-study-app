@@ -1,5 +1,16 @@
 {
-  "manualQuarantine": [],
+  "manualQuarantine": [
+    "obj-2.8-source-q001",
+    "obj-2.8-source-q002",
+    "obj-2.8-source-q003",
+    "obj-2.8-source-q004",
+    "obj-2.8-source-q005",
+    "obj-2.8-source-q006",
+    "obj-2.8-source-q007",
+    "obj-2.8-source-q008",
+    "obj-2.8-source-q009",
+    "obj-2.8-source-q010"
+  ],
   "manualNeedsFix": [],
   "resolved": []
 }

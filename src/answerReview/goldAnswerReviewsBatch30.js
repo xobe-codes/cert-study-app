@@ -27,7 +27,7 @@ export const BATCH30_GOLD = {
   'obj-4.9-source-q003':   {
     "correct": {
       "choiceIndex": 2,
-      "explanation": "**`boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin`** \u2014 Cisco-style **TFTP URL then image filename** in global config."
+      "explanation": "Use **`boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2`** in global configuration mode."
     },
     "incorrect": [
       {
@@ -37,16 +37,16 @@ export const BATCH30_GOLD = {
       },
       {
         "choiceIndex": 1,
-        "explanation": "Missing **`system`** keyword \u2014 IOS uses **`boot system tftp://<server> <filename>`**.",
+        "explanation": "Missing **`system`** keyword; IOS uses **`boot system tftp <filename> <server-ip>`**.",
         "misconceptionTested": "boot without system keyword"
       },
       {
         "choiceIndex": 3,
-        "explanation": "Filename before the TFTP URL reverses the usual **`boot system tftp://… <filename>`** order.",
+        "explanation": "This uses unsupported URL-style ordering; IOS expects **`boot system tftp <filename> <server-ip>`**.",
         "misconceptionTested": "Reversed boot system argument order"
       }
     ],
-    "examTip": "Boot from TFTP: **`boot system tftp://<ip> <image.bin>`** in global config + **`copy tftp flash`** first."
+    "examTip": "Boot from TFTP: **`boot system tftp <image.bin> <server-ip>`** in global configuration mode."
   },
   'obj-4.9-source-q004':   {
     "correct": {

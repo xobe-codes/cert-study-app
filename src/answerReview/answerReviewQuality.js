@@ -32,6 +32,14 @@ export function isFallbackExplanation(text) {
   return FALLBACK_EXPLANATION_RE.some(re => re.test(text))
 }
 
+/** Exact legacy structured-field filler; longer, fact-specific text is allowed. */
+export function isGenericStructuredFeedback(text) {
+  if (!text || typeof text !== 'string') return true
+  const normalized = text.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim()
+  return /^For "[^.]+", [^.]+ matches the required behavior — [^.]+ answers a different mechanism or constraint than the stem asks\.?$/i.test(normalized)
+    || /^[^.]+ points to a related idea, but not the specific behavior or value required for [^.]+\.?$/i.test(normalized)
+}
+
 const MECHANISM_LANGUAGE_PHRASES = [
   'applies a different mechanism',
   'could sound plausible',

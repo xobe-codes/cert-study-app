@@ -1,1 +1,261 @@
-[]
+[
+  {
+    "id": "obj-2.8-source-q001",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which application provides terminal emulation over a network?",
+    "choices": [
+      "SNMP",
+      "Telnet",
+      "HTTP",
+      "TFTP"
+    ],
+    "correctIndex": 1,
+    "explanation": "Telnet provides terminal emulation over a network but is not encrypted.",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q002",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "You need to make a Telnet connection to a remote router from a router you are configuring. Which command will allow you to do this?",
+    "choices": [
+      "Router#198.56.33.3",
+      "Router#connect 198.56.33.3",
+      "Router#remote 198.56.33.3",
+      "Router#vty 198.56.33.3"
+    ],
+    "correctIndex": 0,
+    "explanation": "Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q003",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which port and protocol does TACACS+ use?",
+    "choices": [
+      "UDP/69",
+      "TCP/74",
+      "UDP/47",
+      "TCP/49"
+    ],
+    "correctIndex": 3,
+    "explanation": "TACACS+ uses TCP port 49.",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-TACACS",
+      "CKU-TCP-49"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q004",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which management access method should be configured on network devices for encryption of the session?",
+    "choices": [
+      "RADIUS",
+      "HTTP",
+      "SSH",
+      "SFTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "SSH provides encrypted management access.",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q005",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which technology is used to facilitate encryption for the SSH protocol?",
+    "choices": [
+      "Symmetrical encryption",
+      "Code block ciphers",
+      "At-rest encryption",
+      "Asymmetrical encryption"
+    ],
+    "correctIndex": 3,
+    "explanation": "SSH uses public/private key asymmetric encryption.",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-ASYMMETRIC-ENCRYPTION"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q006",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "When debugging a WAP, where is the debug information displayed by default?",
+    "choices": [
+      "Console",
+      "SSH",
+      "Logging server",
+      "Local storage"
+    ],
+    "correctIndex": 0,
+    "explanation": "WAP debug output appears on the console by default.",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-CONSOLE"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q007",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which authentication system is an open standard originally proposed by the Internet Engineering Task Force (IETF)?",
+    "choices": [
+      "RADIUS",
+      "TACACS+",
+      "Kerberos",
+      "LDAP"
+    ],
+    "correctIndex": 0,
+    "explanation": "RADIUS is an open standard originally proposed by the IETF.",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-RADIUS"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q008",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "Which management method can use Advanced Encryption Standard (AES) encryption for encryption of user credentials and session data?",
+    "choices": [
+      "SSH",
+      "TACACS+",
+      "HTTPS",
+      "RADIUS"
+    ],
+    "correctIndex": 0,
+    "explanation": "SSH can use AES for encrypted credentials and session data.",
+    "type": "definition",
+    "difficulty": "medium",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-AES"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q009",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "You are setting up an autonomous WAP for the first time. How must you connect to the device?",
+    "choices": [
+      "HTTPS",
+      "SSH",
+      "Console",
+      "Telnet"
+    ],
+    "correctIndex": 2,
+    "explanation": "A first-time autonomous AP setup commonly uses the console connection.",
+    "type": "scenario",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-CONSOLE",
+      "CKU-AUTONOMOUS-AP"
+    ]
+  },
+  {
+    "id": "obj-2.8-source-q010",
+    "objectiveId": "2.8",
+    "reason": "out-of-scope",
+    "notes": "Legacy management-access item removed from current CCNA 200-301 objective 2.8; preserve for deliberate remapping.",
+    "shelvedAt": "2026-07-28",
+    "promoteHint": "Confirm CCNA objective mapping, add to data/shelved-questions/approved-promotions.json, then run: npm run promote:shelved",
+    "question": "What is the connection speed for console access to Cisco equipment?",
+    "choices": [
+      "19.2 kb/s",
+      "9600 kb/s",
+      "9600 baud",
+      "19200 baud"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cisco console access commonly uses 9600 baud.",
+    "type": "definition",
+    "difficulty": "easy",
+    "concept": "management access",
+    "ckuIds": [
+      "CKU-MANAGEMENT-ACCESS",
+      "CKU-TELNET",
+      "CKU-SSH",
+      "CKU-CONSOLE-SPEED"
+    ]
+  }
+]

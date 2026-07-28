@@ -1,6 +1,6 @@
 {
   "objectiveId": "4.9",
-  "title": "Describe the capabilities and function of TFTP/FTP in the network",
+  "title": "Describe TFTP and FTP capabilities",
   "questions": [
     {
       "id": "obj-4.9-source-q001",
@@ -110,11 +110,11 @@
       "choices": [
         "Router#boot tftp://192.168.1.2",
         "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
-        "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2",
         "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
       ],
       "correctIndex": 2,
-      "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config.",
+      "explanation": "Use boot system tftp <image-filename> <server-address> in global configuration mode.",
       "type": "application",
       "difficulty": "hard",
       "concept": "tftp",
@@ -128,32 +128,32 @@
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config."
+          "explanation": "Use boot system tftp <image-filename> <server-address> in global configuration mode."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "boot tftp:// is privileged EXEC syntax — boot system belongs in global config and needs the image filename.",
+            "explanation": "This omits the boot system keywords, the image filename, and global configuration mode.",
             "misconceptionTested": "Exec-mode boot for TFTP image",
             "whatItDoes": "Attempts a privileged-EXEC boot with only a TFTP URL.",
-            "whyWrongHere": "IOS uses Router(config)#boot system tftp://<server> <filename>."
+            "whyWrongHere": "IOS uses boot system tftp <image-filename> <server-address> in global configuration mode."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Missing system keyword — IOS uses boot system tftp://<server> <filename>.",
+            "explanation": "This is missing the system keyword and uses an unsupported URL-style argument.",
             "misconceptionTested": "boot without system keyword",
             "whatItDoes": "Uses boot without the system keyword.",
-            "whyWrongHere": "Correct form is boot system tftp://192.168.1.2 <image.bin>."
+            "whyWrongHere": "Correct form is boot system tftp <image.bin> 192.168.1.2."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Filename before the TFTP URL reverses the usual Cisco boot system tftp://… <filename> order.",
+            "explanation": "This places the protocol after the filename and uses unsupported URL-style syntax.",
             "misconceptionTested": "Reversed boot system argument order",
-            "whatItDoes": "Places the image name before the tftp:// URL.",
-            "whyWrongHere": "Keyed syntax is boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin."
+            "whatItDoes": "Places the image name before an unsupported tftp:// URL.",
+            "whyWrongHere": "Keyed syntax is boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2."
           }
         ],
-        "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."
+        "examTip": "Boot from TFTP: boot system tftp <image.bin> <server-ip> in global configuration mode."
       }
     },
     {

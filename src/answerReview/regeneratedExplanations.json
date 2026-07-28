@@ -14060,26 +14060,26 @@
       {
         "choiceIndex": 0,
         "misconceptionReason": "Using CIDR in ip nat pool",
-        "whyItSeems": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length.",
+        "whyItSeems": "The /28 notation correctly names the owned block, but IOS NAT pool syntax does not accept CIDR here.",
+        "whyWrongHere": "A dynamic NAT pool requires separate first and last host addresses followed by the netmask.",
         "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
-        "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\": IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179."
+        "contrast": "Use .2 through .14 with netmask 255.255.255.240, not the network address written as /28."
       },
       {
         "choiceIndex": 1,
-        "misconceptionReason": "Wrong netmask for /28 block",
-        "whyItSeems": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+        "misconceptionReason": "Using a generic IP pool with a /24 mask",
+        "whyItSeems": "It supplies a named range, but it omits the nat keyword and assigns the wrong subnet mask.",
+        "whyWrongHere": "The owned prefix is /28, so the command needs ip nat pool and netmask 255.255.255.240.",
         "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
-        "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        "contrast": "Correct NAT syntax and the /28 mask are both required; this option has neither."
       },
       {
-        "choiceIndex": 2,
-        "misconceptionReason": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-        "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+        "choiceIndex": 3,
+        "misconceptionReason": "Using the broadcast address and a /24 mask",
+        "whyItSeems": "The range starts after the router address, but it includes .15 and uses a /24 mask.",
+        "whyWrongHere": "For 179.43.44.0/28, .15 is broadcast and the required mask is 255.255.255.240.",
         "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
-        "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        "contrast": "The usable pool is .2 through .14 with a /28 mask; this option includes broadcast and claims /24."
       }
     ]
   },
@@ -14396,26 +14396,26 @@
       {
         "choiceIndex": 0,
         "misconceptionReason": "Using CIDR notation inside ip nat pool command",
-        "whyItSeems": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length.",
+        "whyItSeems": "The /28 notation correctly names the owned block, but IOS NAT pool syntax does not accept CIDR here.",
+        "whyWrongHere": "A dynamic NAT pool requires separate first and last host addresses followed by the netmask.",
         "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
-        "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\": IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179."
+        "contrast": "Use .2 through .14 with netmask 255.255.255.240, not the network address written as /28."
       },
       {
         "choiceIndex": 1,
         "misconceptionReason": "Using ip pool instead of ip nat pool",
-        "whyItSeems": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+        "whyItSeems": "It supplies a named range, but it omits the nat keyword and assigns the wrong subnet mask.",
+        "whyWrongHere": "The owned prefix is /28, so the command needs ip nat pool and netmask 255.255.255.240.",
         "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
-        "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        "contrast": "Correct NAT syntax and the /28 mask are both required; this option has neither."
       },
       {
-        "choiceIndex": 2,
-        "misconceptionReason": "Including interface address as pool start",
-        "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+        "choiceIndex": 3,
+        "misconceptionReason": "Using the broadcast address and a /24 mask",
+        "whyItSeems": "The range starts after the router address, but it includes .15 and uses a /24 mask.",
+        "whyWrongHere": "For 179.43.44.0/28, .15 is broadcast and the required mask is 255.255.255.240.",
         "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
-        "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+        "contrast": "The usable pool is .2 through .14 with a /28 mask; this option includes broadcast and claims /24."
       }
     ]
   },
@@ -16916,26 +16916,26 @@
       {
         "choiceIndex": 0,
         "misconceptionReason": "Exec-mode boot for TFTP image",
-        "whyItSeems": "Router#boot tftp://192.168.1.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router#boot tftp://192.168.1.2 answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
-        "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router#boot tftp://192.168.1.2\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+        "whyItSeems": "It names TFTP and the correct server, but it is missing the system keyword and image filename.",
+        "whyWrongHere": "The boot variable is configured globally with boot system tftp followed by filename and server address.",
+        "memoryAnchor": "Boot from TFTP: boot system tftp <image.bin> <server-ip>.",
+        "contrast": "The correct command supplies boot system, the full image filename, and 192.168.1.2 in that order."
       },
       {
         "choiceIndex": 1,
         "misconceptionReason": "boot without system keyword",
-        "whyItSeems": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
-        "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+        "whyItSeems": "It includes the server and filename in global configuration mode, but omits the system keyword.",
+        "whyWrongHere": "IOS requires boot system tftp <image.bin> <server-ip>; URL-style syntax is not the keyed form.",
+        "memoryAnchor": "Boot from TFTP: boot system tftp <image.bin> <server-ip>.",
+        "contrast": "Add system and place the filename before the server address."
       },
       {
-        "choiceIndex": 2,
+        "choiceIndex": 3,
         "misconceptionReason": "Reversed boot system argument order",
-        "whyItSeems": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-        "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
-        "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+        "whyItSeems": "It includes boot system and both arguments, but places an unsupported URL after the filename.",
+        "whyWrongHere": "The keyed IOS form is boot system tftp <image.bin> <server-ip>, with tftp as a separate keyword.",
+        "memoryAnchor": "Boot from TFTP: boot system tftp <image.bin> <server-ip>.",
+        "contrast": "Use the tftp keyword before the filename and a plain server IP afterward."
       }
     ]
   },
@@ -21350,28 +21350,28 @@
   "obj-5.9-source-q001": {
     "incorrect": [
       {
-        "choiceIndex": 0,
-        "misconceptionReason": "Stopping at WPA2 without a join-control mechanism",
-        "whyItSeems": "\"Enable WPA2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Enable WPA2 answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
-        "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Enable WPA2\": For \"wireless security\", Enable MAC filtering matches the required behavior — Enable WPA2 answers a different mechanism or constraint than the stem asks."
+        "choiceIndex": 1,
+        "misconceptionReason": "Treating MAC filtering as strong WLAN authentication",
+        "whyItSeems": "MAC filtering names individual devices, so it can sound more device-specific than a shared WPA2 passphrase.",
+        "whyWrongHere": "MAC addresses are visible and spoofable; WPA2 authenticates joining clients and encrypts their wireless traffic.",
+        "memoryAnchor": "WPA2/WPA3 provides real WLAN admission security; MAC filtering is only a weak supplemental control.",
+        "contrast": "Use WPA2 with a strong passphrase for SOHO admission; do not rely on a spoofable MAC allowlist."
       },
       {
         "choiceIndex": 2,
         "misconceptionReason": "Applying switch port security to WLAN admission",
         "whyItSeems": "\"Enable port security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Enable port security answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
-        "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Enable port security\": For \"wireless security\", Enable MAC filtering matches the required behavior — Enable port security answers a different mechanism or constraint than the stem asks."
+        "whyWrongHere": "Port security limits MAC addresses on wired switch ports; it does not authenticate wireless clients to an AP.",
+        "memoryAnchor": "WPA2/WPA3 secures WLAN joins; switchport port-security protects wired access ports.",
+        "contrast": "The stem is wireless, so WPA2 applies; port security belongs on an Ethernet switch interface."
       },
       {
         "choiceIndex": 3,
         "misconceptionReason": "Treating hidden SSID as access control",
-        "whyItSeems": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
-        "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Disable SSID broadcasts answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
-        "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Disable SSID broadcasts\": For \"wireless security\", Enable MAC filtering matches the required behavior — Disable SSID broadcasts answers a different mechanism or constraint than the stem asks."
+        "whyItSeems": "A hidden SSID is less visible in ordinary network lists, which can feel like access control.",
+        "whyWrongHere": "The SSID remains observable in wireless management traffic and hiding it supplies no authentication or encryption.",
+        "memoryAnchor": "SSID hiding is obscurity; WPA2/WPA3 is authentication and encryption.",
+        "contrast": "Disable broadcast only hides the name from casual discovery; WPA2 controls who can actually join."
       }
     ]
   },
@@ -25270,28 +25270,28 @@
   "obj-6.7-source-q010": {
     "incorrect": [
       {
-        "choiceIndex": 0,
-        "misconceptionReason": "Comma after routes key only",
-        "whyItSeems": "\"The interface data is incorrect because it is missing a comma after the routes.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — The interface data is incorrect because it is missing a comma after the routes. answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
-        "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"The interface data is incorrect because it is missing a comma after the routes.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+        "choiceIndex": 1,
+        "misconceptionReason": "Adding nested square brackets instead of separating objects",
+        "whyItSeems": "Because routes is an array, another pair of square brackets can seem necessary for the second route.",
+        "whyWrongHere": "The array brackets already exist; the two route entries need a comma and normally separate objects inside that array.",
+        "memoryAnchor": "JSON arrays of objects use [{...},{...}], with commas between objects.",
+        "contrast": "Add a comma and object boundary between routes, not another nested array."
       },
       {
         "choiceIndex": 2,
         "misconceptionReason": "Underscore invalid in JSON",
         "whyItSeems": "\"The interface data is incorrect because it contains an illegal underscore character.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — The interface data is incorrect because it contains an illegal underscore character. answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
-        "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"The interface data is incorrect because it contains an illegal underscore character.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+        "whyWrongHere": "Underscores are legal inside quoted JSON property names such as subnet_mask.",
+        "memoryAnchor": "Quoted JSON keys may contain underscores; commas and braces define structure.",
+        "contrast": "The syntax failure is between the route entries, not in the subnet_mask key."
       },
       {
         "choiceIndex": 3,
         "misconceptionReason": "Valid JSON exhibit",
         "whyItSeems": "\"Nothing is wrong with the exhibit.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-        "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — Nothing is wrong with the exhibit. answers a different mechanism or constraint than the stem asks.",
-        "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
-        "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"Nothing is wrong with the exhibit.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+        "whyWrongHere": "Two route members appear without a comma or separate object boundary, so a JSON parser rejects the exhibit.",
+        "memoryAnchor": "JSON arrays of objects use [{...},{...}], with commas between objects.",
+        "contrast": "The exhibit is invalid until the route entries are separated correctly."
       }
     ]
   },

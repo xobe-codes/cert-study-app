@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   isOrderingQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
   shuffleArrayCopy, normalizeSelectedIndexes,
@@ -17,6 +17,7 @@ import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 import { MISSED_RETEST_CLEAR_CAP } from './missedRetestPool.js'
 import { DOMAIN_PASS_PASS_PCT, DOMAIN_PASS_SEC_PER_QUESTION, isDomainPassPassed } from '../domainPass/domainPassConfig.js'
+import { recordAnswerOutcome, takeLatencyMs } from '../study/answerOutcome.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -93,6 +94,7 @@ export default function MissedRetestSession({
   const [clearedCount, setClearedCount] = useState(0)
   const [total] = useState(safePool.length)
   const [secondsLeft, setSecondsLeft] = useState(() => safePool.length * DOMAIN_PASS_SEC_PER_QUESTION)
+  const shownAtRef = useRef(current ? Date.now() : null)
 
   useEffect(() => {
     if (current && isOrderingQuestion(current)) {
@@ -102,6 +104,7 @@ export default function MissedRetestSession({
     }
     setCliAnswer('')
     setSelectedIndexes([])
+    shownAtRef.current = current ? Date.now() : null
   }, [current])
 
   useEffect(() => {
@@ -119,10 +122,18 @@ export default function MissedRetestSession({
     return () => clearInterval(id)
   }, [phase, isProve, timerEnabled])
 
-  function recordOutcome(correct) {
+  function recordOutcome(correct, response = {}) {
     haptic(correct ? 15 : [10, 40, 10])
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.MISSED_RETEST, correct: correct ? 1 : 0, total: 1 })
+    recordAnswerOutcome({
+      objectiveId: current.objectiveId,
+      questionId: missedEntryId(current),
+      correct,
+      latencyMs: takeLatencyMs(shownAtRef.current),
+      surface: 'missed_retest',
+      ...response,
+    }).catch(() => {})
     if (correct) {
       const qid = missedEntryId(current)
       if (qid) removeMissedByQuestionIds?.([qid])
@@ -138,7 +149,7 @@ export default function MissedRetestSession({
     if (revealed || !current) return
     const correct = gradeQuestion(current, idx)
     setSelected(idx); setRevealed(true)
-    recordOutcome(correct)
+    recordOutcome(correct, { selectedIndex: idx, responseType: 'mc' })
   }
 
   function toggleMulti(idx) {
@@ -155,21 +166,21 @@ export default function MissedRetestSession({
     if (revealed || !current || !isMultiQuestion(current) || selectedIndexes.length < 1) return
     const correct = gradeQuestion(current, selectedIndexes)
     setRevealed(true)
-    recordOutcome(correct)
+    recordOutcome(correct, { selectedIndexes: [...selectedIndexes], responseType: 'multi' })
   }
 
   function submitOrder() {
     if (revealed || !current || !isOrderingQuestion(current)) return
     const correct = gradeQuestion(current, orderDraft)
     setRevealed(true)
-    recordOutcome(correct)
+    recordOutcome(correct, { responseType: 'ordering' })
   }
 
   function submitCli() {
     if (revealed || !current || !isCliQuestion(current)) return
     const correct = gradeQuestion(current, cliAnswer)
     setRevealed(true)
-    recordOutcome(correct)
+    recordOutcome(correct, { responseType: 'cli' })
   }
 
   function next() {

@@ -12,7 +12,7 @@ export {
 
 export { QUIZ_BANK_MIN } from '../quiz/quizBankStorage.js'
 export {
-  loadQuizBank, saveQuizBank, mergeIntoBank, recordQuizResult,
+  loadQuizBank, saveQuizBank, mergeIntoBank, reconcileCuratedBank, recordQuizResult,
   enableSectionReview, seedTestedOutReview,
 } from '../quiz/quizBankStorage.js'
 

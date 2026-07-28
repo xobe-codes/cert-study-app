@@ -20,11 +20,11 @@
       "active": 7
     },
     "2.8": {
-      "active": 23
+      "active": 13
     }
   },
   "totals": {
-    "active": 124,
-    "shelved": 0
+    "active": 114,
+    "shelved": 10
   }
 }

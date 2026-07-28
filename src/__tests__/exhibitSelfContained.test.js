@@ -7,7 +7,11 @@ import {
   hasInlineExhibit,
   validateCleanQuestion,
 } from '../../scripts/lib/cleanBankUtils.mjs'
-import { DOMAIN_META } from '../../scripts/lib/sourceBankConfig.mjs'
+import {
+  DOMAIN_META,
+  LEGACY_28_MANAGEMENT_EXCLUDE,
+  filesForDomain,
+} from '../../scripts/lib/sourceBankConfig.mjs'
 import { exhibitForQuestion } from '../../scripts/lib/exhibitExhibits.mjs'
 import { applyQuestionStemFixes } from '../../scripts/lib/questionStemFixes.mjs'
 
@@ -69,4 +73,26 @@ describe('exhibitSelfContained', () => {
       expect(normalized.question).not.toMatch(/\.\.\.\s*$/)
     })
   }
+
+  it('does not duplicate a WLC exhibit that is already inline', () => {
+    const id = 'obj-2.9-source-q010'
+    const exhibit = `WLC WLAN summary — MaintDept:
+Profile Name: MaintDept
+Status: Disabled
+Radio Policy: All
+Multicast VLAN: Disabled
+Broadcast SSID: Disabled`
+    const converted = exhibitForQuestion({
+      id,
+      question: `${exhibit}\n\nWhat should the administrator correct?`,
+    })
+
+    expect(converted.question.match(/WLC WLAN summary — MaintDept:/g)).toHaveLength(1)
+  })
+
+  it('shelves the legacy management-access source set from current objective 2.8', () => {
+    const legacyEntry = filesForDomain(2).find(entry => entry.qbId === '2.8')
+    expect(legacyEntry.exclude).toEqual(LEGACY_28_MANAGEMENT_EXCLUDE)
+    expect(legacyEntry.exclude).toHaveLength(10)
+  })
 })

@@ -15,6 +15,11 @@ describe('contentDepthWave9', () => {
     const enriched = applyContentEnrichment({ questions: [] }, '3.2')
     expect(enriched.questions?.some(q => q.id === '3.2-w9-q1')).toBe(true)
   })
+
+  it('maps the SNMP supplemental question to the current SNMP objective', () => {
+    expect(CONTENT_DEPTH_WAVE9_PATCHES['2.8']).toBeUndefined()
+    expect(CONTENT_DEPTH_WAVE9_PATCHES['4.4'].questions[0].id).toBe('4.4-w9-q1')
+  })
 })
 
 describe('goldAnswerReviewsBatch27', () => {

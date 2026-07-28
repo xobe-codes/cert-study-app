@@ -249,8 +249,8 @@ export function buildAppShellResponsiveCss(colors) {
         margin-bottom: 4px;
       }
       .ccna-confidence-strip button {
-        min-height: 36px !important;
-        padding: 6px 4px !important;
+        min-height: 44px !important;
+        padding: 8px 4px !important;
         font-size: var(--ccna-type-caption) !important;
       }
       .ccna-mock-debrief__labs button {

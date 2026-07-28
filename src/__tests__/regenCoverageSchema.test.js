@@ -64,6 +64,34 @@ describe('regenerated explanation coverage schema', () => {
     expect(exitCodeForReport(report, true)).toBe(1)
   })
 
+  it('can validate one domain without treating other-domain staging ids as errors', () => {
+    const report = validateRegenCoverage(
+      [question()],
+      {
+        q1: { incorrect: [item(0), item(1), item(3)] },
+        'other-domain-q1': { incorrect: [] },
+      },
+      { ignoreUnknownStagingIds: true },
+    )
+
+    expect(report.schemaErrors).toEqual([])
+    expect(exitCodeForReport(report, true)).toBe(0)
+  })
+
+  it('allows preserved regenerated feedback for explicitly shelved questions', () => {
+    const report = validateRegenCoverage(
+      [question()],
+      {
+        q1: { incorrect: [item(0), item(1), item(3)] },
+        'shelved-q1': { incorrect: [] },
+      },
+      { ignoredStagingIds: new Set(['shelved-q1']) },
+    )
+
+    expect(report.schemaErrors).toEqual([])
+    expect(exitCodeForReport(report, true)).toBe(0)
+  })
+
   it('rejects invalid indices, short text, and banned template language', () => {
     const report = validateRegenCoverage(
       [question()],

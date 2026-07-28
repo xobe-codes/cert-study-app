@@ -6316,7 +6316,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.3-source-q013",
-      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nCDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
+      "question": "CDP neighbor detail (SwitchB):\nDevice ID: SwitchB\nEntry address(es): IP 192.168.1.2\nPlatform: cisco WS-C2960, Capabilities: Switch\nInterface: GigabitEthernet0/2, Port ID (outgoing port): GigabitEthernet0/1\nHoldtime: 162 sec\n\nThe following output shows the output of the CDP details. Which statement is correct about what is displayed?",
       "choices": [
         "The advertisement was seen 162 seconds ago.",
         "Switch B interface Gi0/1 connects to Switch A.",
@@ -10810,515 +10810,6 @@ export const CLEAN_QUESTIONS = {
   ],
   "2.8": [
     {
-      "id": "obj-2.8-source-q001",
-      "question": "Which application provides terminal emulation over a network?",
-      "choices": [
-        "SNMP",
-        "Telnet",
-        "HTTP",
-        "TFTP"
-      ],
-      "correctIndex": 1,
-      "explanation": "Telnet provides terminal emulation over a network but is not encrypted.",
-      "type": "definition",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 1,
-          "explanation": "Telnet provides terminal emulation over TCP — remote CLI access to routers and switches (insecure; SSH preferred)."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 0,
-            "explanation": "SNMP is network management polling/traps — it does not provide interactive terminal emulation.",
-            "misconceptionTested": "Using SNMP for terminal emulation",
-            "whatItDoes": "SNMP points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Telnet satisfies what this question tests — SNMP does not."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "HTTP serves web pages — it is not a CLI terminal emulation protocol like Telnet or SSH.",
-            "misconceptionTested": "Selecting HTTP for terminal access",
-            "whatItDoes": "HTTP points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Telnet satisfies what this question tests — HTTP does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "TFTP transfers files on UDP 69 — it does not offer interactive terminal sessions.",
-            "misconceptionTested": "Confusing TFTP file transfer with terminal emulation",
-            "whatItDoes": "TFTP points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Telnet satisfies what this question tests — TFTP does not."
-          }
-        ],
-        "examTip": "Terminal emulation over network → Telnet (legacy) or SSH (secure)."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q002",
-      "question": "You need to make a Telnet connection to a remote router from a router you are configuring. Which command will allow you to do this?",
-      "choices": [
-        "Router#198.56.33.3",
-        "Router#connect 198.56.33.3",
-        "Router#remote 198.56.33.3",
-        "Router#vty 198.56.33.3"
-      ],
-      "correctIndex": 0,
-      "explanation": "Entering an IP address or hostname from privileged EXEC can initiate a Telnet session.",
-      "type": "definition",
-      "difficulty": "medium",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 0,
-          "explanation": "From exec mode, type the target IP address directly (Router#198.56.33.3) to open a Telnet session to that host."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 1,
-            "explanation": "connect is not the IOS exec command for Telnet — dial the IP address from privileged exec.",
-            "misconceptionTested": "connect keyword for Telnet",
-            "whatItDoes": "Router#connect 198.56.33.3 points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Router#198.56.33.3 satisfies what this question tests — Router#connect 198.56.33.3 does not."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "remote is not valid IOS syntax — Telnet is initiated by entering the IP at the # prompt.",
-            "misconceptionTested": "remote command for Telnet",
-            "whatItDoes": "Router#remote 198.56.33.3 points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Router#198.56.33.3 satisfies what this question tests — Router#remote 198.56.33.3 does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "vty configures line access — it does not launch an outbound Telnet session.",
-            "misconceptionTested": "vty line as Telnet launcher",
-            "whatItDoes": "Router#vty 198.56.33.3 points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Router#198.56.33.3 satisfies what this question tests — Router#vty 198.56.33.3 does not."
-          }
-        ],
-        "examTip": "Outbound Telnet from router exec → type hostname/IP (needs transport input telnet on vty)."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q003",
-      "question": "Which port and protocol does TACACS+ use?",
-      "choices": [
-        "UDP/69",
-        "TCP/74",
-        "UDP/47",
-        "TCP/49"
-      ],
-      "correctIndex": 3,
-      "explanation": "TACACS+ uses TCP port 49.",
-      "type": "definition",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-TACACS",
-        "CKU-TCP-49"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 3,
-          "explanation": "TACACS+ uses TCP port 49 — separates authentication, authorization, and accounting (Cisco AAA)."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 0,
-            "explanation": "UDP/69 is TFTP — not TACACS+.",
-            "misconceptionTested": "TFTP port for AAA",
-            "whatItDoes": "UDP/69 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "Transport protocol (management access): TCP/49 matches reliability, ports, or connection behavior — UDP/69 picks the wrong L4 protocol or port role."
-          },
-          {
-            "choiceIndex": 1,
-            "explanation": "TCP/74 is not the TACACS+ port — memorize 49/TCP.",
-            "misconceptionTested": "Wrong TCP port",
-            "whatItDoes": "TCP/74 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "Transport protocol (management access): TCP/49 matches reliability, ports, or connection behavior — TCP/74 picks the wrong L4 protocol or port role."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "UDP/47 is not TACACS+ — RADIUS uses UDP 1812/1813.",
-            "misconceptionTested": "RADIUS port for TACACS+",
-            "whatItDoes": "UDP/47 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-            "whyWrongHere": "Transport protocol (management access): TCP/49 matches reliability, ports, or connection behavior — UDP/47 picks the wrong L4 protocol or port role."
-          }
-        ],
-        "examTip": "TACACS+ → TCP/49. RADIUS → UDP/1812 (auth) / 1813 (acct)."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q004",
-      "question": "Which management access method should be configured on network devices for encryption of the session?",
-      "choices": [
-        "RADIUS",
-        "HTTP",
-        "SSH",
-        "SFTP"
-      ],
-      "correctIndex": 2,
-      "explanation": "SSH provides encrypted management access.",
-      "type": "definition",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 2,
-          "explanation": "SSH encrypts the management session — replace cleartext Telnet/HTTP for device administration."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 0,
-            "explanation": "RADIUS is an AAA server protocol — it does not encrypt your CLI session to the switch.",
-            "misconceptionTested": "RADIUS as session encryption",
-            "whatItDoes": "RADIUS points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", SSH satisfies what this question tests — RADIUS does not."
-          },
-          {
-            "choiceIndex": 1,
-            "explanation": "HTTP sends management in cleartext — use SSH for encrypted sessions.",
-            "misconceptionTested": "HTTP for encrypted management",
-            "whatItDoes": "HTTP points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", SSH satisfies what this question tests — HTTP does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "SFTP encrypts file transfers — interactive device CLI encryption is SSH.",
-            "misconceptionTested": "SFTP as CLI management encryption",
-            "whatItDoes": "SFTP points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", SSH satisfies what this question tests — SFTP does not."
-          }
-        ],
-        "examTip": "Encrypted device management → SSH (vty transport input ssh + RSA keys)."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q005",
-      "question": "Which technology is used to facilitate encryption for the SSH protocol?",
-      "choices": [
-        "Symmetrical encryption",
-        "Code block ciphers",
-        "At-rest encryption",
-        "Asymmetrical encryption"
-      ],
-      "correctIndex": 3,
-      "explanation": "SSH uses public/private key asymmetric encryption.",
-      "type": "definition",
-      "difficulty": "medium",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-ASYMMETRIC-ENCRYPTION"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 3,
-          "explanation": "SSH uses asymmetric encryption (RSA/ECDSA key exchange) to establish the secure tunnel, then symmetric for session data."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 0,
-            "explanation": "Symmetric encryption is used after key exchange — the SSH setup relies on asymmetric (public/private keys).",
-            "misconceptionTested": "Symmetric only for SSH",
-            "whatItDoes": "Symmetrical encryption points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Asymmetrical encryption satisfies what this question tests — Symmetrical encryption does not."
-          },
-          {
-            "choiceIndex": 1,
-            "explanation": "\"Code block ciphers\" is not the mechanism — SSH relies on asymmetric key exchange.",
-            "misconceptionTested": "Code block ciphers as SSH mechanism",
-            "whatItDoes": "Code block ciphers points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Asymmetrical encryption satisfies what this question tests — Code block ciphers does not."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "At-rest encryption protects stored data — SSH protects in-transit data via asymmetric key exchange.",
-            "misconceptionTested": "At-rest encryption for SSH",
-            "whatItDoes": "At-rest encryption names an automation tool, data format, or API style that may not match the stem's orchestration model.",
-            "whyWrongHere": "For \"management access\", Asymmetrical encryption satisfies what this question tests — At-rest encryption does not."
-          }
-        ],
-        "examTip": "SSH security: asymmetric (RSA keys) for auth/exchange → symmetric (AES) for session data."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q006",
-      "question": "When debugging a WAP, where is the debug information displayed by default?",
-      "choices": [
-        "Console",
-        "SSH",
-        "Logging server",
-        "Local storage"
-      ],
-      "correctIndex": 0,
-      "explanation": "WAP debug output appears on the console by default.",
-      "type": "definition",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-CONSOLE"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 0,
-          "explanation": "WAP debug output appears on the console port by default — connect a serial console cable for real-time debug messages."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 1,
-            "explanation": "SSH provides remote management — debug output defaults to console unless explicitly redirected to logging.",
-            "misconceptionTested": "Expecting SSH as default debug display",
-            "whatItDoes": "SSH points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Console satisfies what this question tests — SSH does not."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "Syslog server receives forwarded logs if configured — default debug display is local console, not remote logging.",
-            "misconceptionTested": "Assuming debug goes to logging server by default",
-            "whatItDoes": "Logging server points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Console satisfies what this question tests — Logging server does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "Local flash stores configs and images — debug messages stream to console, not flash storage by default.",
-            "misconceptionTested": "Expecting debug stored in local flash",
-            "whatItDoes": "Local storage points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Console satisfies what this question tests — Local storage does not."
-          }
-        ],
-        "examTip": "AP/router debug → watch console by default; redirect with logging if needed."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q007",
-      "question": "Which authentication system is an open standard originally proposed by the Internet Engineering Task Force (IETF)?",
-      "choices": [
-        "RADIUS",
-        "TACACS+",
-        "Kerberos",
-        "LDAP"
-      ],
-      "correctIndex": 0,
-      "explanation": "RADIUS is an open standard originally proposed by the IETF.",
-      "type": "definition",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-RADIUS"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 0,
-          "explanation": "RADIUS is the open standard proposed by IETF (RFC 2865) — vendor-neutral AAA."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 1,
-            "explanation": "TACACS+ is Cisco-proprietary — not an IETF open standard.",
-            "misconceptionTested": "TACACS+ as IETF standard",
-            "whatItDoes": "TACACS+ points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", RADIUS satisfies what this question tests — TACACS+ does not."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "Kerberos is an MIT/Windows authentication protocol — not the IETF AAA standard.",
-            "misconceptionTested": "Kerberos as IETF AAA",
-            "whatItDoes": "Kerberos points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", RADIUS satisfies what this question tests — Kerberos does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "LDAP is a directory protocol (RFC 4511) — not the AAA system referenced here.",
-            "misconceptionTested": "LDAP as IETF AAA",
-            "whatItDoes": "LDAP points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", RADIUS satisfies what this question tests — LDAP does not."
-          }
-        ],
-        "examTip": "RADIUS = IETF open standard (RFC 2865) | TACACS+ = Cisco proprietary | Both do AAA."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q008",
-      "question": "Which management method can use Advanced Encryption Standard (AES) encryption for encryption of user credentials and session data?",
-      "choices": [
-        "SSH",
-        "TACACS+",
-        "HTTPS",
-        "RADIUS"
-      ],
-      "correctIndex": 0,
-      "explanation": "SSH can use AES for encrypted credentials and session data.",
-      "type": "definition",
-      "difficulty": "medium",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-AES"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 0,
-          "explanation": "SSH supports AES encryption for the full session (credentials + data) — Telnet sends everything cleartext."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 1,
-            "explanation": "TACACS+ encrypts its AAA packets but is not a \"management method\" for device access like SSH.",
-            "misconceptionTested": "TACACS+ as management access method",
-            "whatItDoes": "TACACS+ points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", SSH satisfies what this question tests — TACACS+ does not."
-          },
-          {
-            "choiceIndex": 2,
-            "explanation": "HTTPS encrypts web management — but for CLI access with AES, SSH is the answer.",
-            "misconceptionTested": "HTTPS for CLI management encryption",
-            "whatItDoes": "HTTPS points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", SSH satisfies what this question tests — HTTPS does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "RADIUS encrypts only the password — not full session with AES.",
-            "misconceptionTested": "RADIUS full AES encryption",
-            "whatItDoes": "RADIUS points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", SSH satisfies what this question tests — RADIUS does not."
-          }
-        ],
-        "examTip": "CLI remote access with encryption → SSH (AES/3DES session) | Web → HTTPS | Never Telnet in production."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q009",
-      "question": "You are setting up an autonomous WAP for the first time. How must you connect to the device?",
-      "choices": [
-        "HTTPS",
-        "SSH",
-        "Console",
-        "Telnet"
-      ],
-      "correctIndex": 2,
-      "explanation": "A first-time autonomous AP setup commonly uses the console connection.",
-      "type": "scenario",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-CONSOLE",
-        "CKU-AUTONOMOUS-AP"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 2,
-          "explanation": "First-time autonomous AP setup typically uses the console — no IP or credentials exist yet for SSH/HTTPS/Telnet."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 0,
-            "explanation": "HTTPS requires network reachability and prior configuration — unavailable on initial out-of-box setup.",
-            "misconceptionTested": "Using HTTPS before AP has management IP",
-            "whatItDoes": "HTTPS points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Console satisfies what this question tests — HTTPS does not."
-          },
-          {
-            "choiceIndex": 1,
-            "explanation": "SSH needs IP connectivity and credentials configured — not available on first boot before initial setup.",
-            "misconceptionTested": "SSH on factory-default autonomous AP",
-            "whatItDoes": "SSH points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", Console satisfies what this question tests — SSH does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "Telnet is insecure and still requires network config — console is the initial provisioning path.",
-            "misconceptionTested": "Telnet for first-time AP setup without L3 config",
-            "whatItDoes": "Telnet uses cleartext Telnet for remote device management.",
-            "whyWrongHere": "Device management (management access): Console protects credentials in transit — Telnet uses cleartext remote access."
-          }
-        ],
-        "examTip": "Factory-default autonomous AP → console first. Then HTTPS/SSH after IP and creds."
-      }
-    },
-    {
-      "id": "obj-2.8-source-q010",
-      "question": "What is the connection speed for console access to Cisco equipment?",
-      "choices": [
-        "19.2 kb/s",
-        "9600 kb/s",
-        "9600 baud",
-        "19200 baud"
-      ],
-      "correctIndex": 2,
-      "explanation": "Cisco console access commonly uses 9600 baud.",
-      "type": "definition",
-      "difficulty": "easy",
-      "concept": "management access",
-      "ckuIds": [
-        "CKU-MANAGEMENT-ACCESS",
-        "CKU-TELNET",
-        "CKU-SSH",
-        "CKU-CONSOLE-SPEED"
-      ],
-      "answerReview": {
-        "correct": {
-          "choiceIndex": 2,
-          "explanation": "Cisco console port defaults to 9600 baud (bits per second signaling rate)."
-        },
-        "incorrect": [
-          {
-            "choiceIndex": 0,
-            "explanation": "19.2 kb/s is a higher speed sometimes used — but default is 9600 baud.",
-            "misconceptionTested": "19200 as default console speed",
-            "whatItDoes": "19.2 kb/s points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", 9600 baud satisfies what this question tests — 19.2 kb/s does not."
-          },
-          {
-            "choiceIndex": 1,
-            "explanation": "9600 kb/s confuses baud with kilobits — console is 9600 baud (≈ 9.6 kbps).",
-            "misconceptionTested": "9600 kb/s unit confusion",
-            "whatItDoes": "9600 kb/s points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", 9600 baud satisfies what this question tests — 9600 kb/s does not."
-          },
-          {
-            "choiceIndex": 3,
-            "explanation": "19200 baud is not the default — Cisco consoles default to 9600.",
-            "misconceptionTested": "19200 baud as default",
-            "whatItDoes": "19200 baud points to a related idea, but not the specific behavior or value required for management access.",
-            "whyWrongHere": "For \"management access\", 9600 baud satisfies what this question tests — 19200 baud does not."
-          }
-        ],
-        "examTip": "Console defaults: 9600 baud, 8 data bits, no parity, 1 stop bit (9600 8N1)."
-      }
-    },
-    {
       "id": "obj-2.9-source-q001",
       "question": "What is the maximum length of an SSID?",
       "choices": [
@@ -11779,7 +11270,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.9-source-q010",
-      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nWLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
+      "question": "WLC WLAN summary — MaintDept:\nProfile Name: MaintDept\nStatus: Disabled\nRadio Policy: All\nMulticast VLAN: Disabled\nBroadcast SSID: Disabled\n\nYou were just notified by your maintenance department that they lost all wireless connectivity. Earlier you had a contractor working on the WLC. You log into the WLC and click on the WLAN of MaintDept shown below. What can you do to correct the problem?",
       "choices": [
         "Enable the status",
         "Change the radio policy",
@@ -11832,7 +11323,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-2.9-source-q011",
-      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
+      "question": "WLC WLAN security — CorpWLAN:\nSecurity Policy: WPA2\nAuthentication Key Mgmt: PSK\nEncryption: AES-CCMP (WPA2 Personal)\n\nWhich statement is true about the WLAN below?",
       "choices": [
         "WPA is enabled.",
         "WPA2 enterprise is enabled.",
@@ -12631,7 +12122,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q004",
-      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nRouting table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
+      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
       "exhibitConverted": true,
       "choices": [
         "The gateway 172.16.1.200",
@@ -12738,7 +12229,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q006",
-      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nRouting table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
+      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
       "choices": [
         "The 10.0.0.0/8 is a route in the routing table.",
         "The 10.0.0.0/8 is a summarization of the routes in the table.",
@@ -12843,7 +12334,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q008",
-      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
+      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
       "choices": [
         "10.0.0.2",
         "192.168.4.2",
@@ -17685,7 +17176,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q019",
-      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nTopology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
+      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
       "choices": [
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1",
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1",
@@ -18149,7 +17640,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q028",
-      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nRouter routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
+      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
       "choices": [
         "The 172.30.0/16 network",
         "The 192.168.128.0/24 network",
@@ -18201,7 +17692,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q029",
-      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nTopology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
+      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
       "choices": [
         "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9",
         "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10",
@@ -18406,7 +17897,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q033",
-      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nRouter B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
       "choices": [
         "IP address of 192.168.4.2",
         "IP address of 192.168.4.5",
@@ -18823,7 +18314,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q041",
-      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nTopology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
+      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
       "choices": [
         "RouterB(config-if )#ipv6 address default",
         "RouterB(config)#ip route ::/0 serial 0/3/0",
@@ -19822,7 +19313,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q009",
-      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nOSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
+      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
       "choices": [
         "Area border router",
         "Autonomous system router",
@@ -19926,7 +19417,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q011",
-      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nOSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
+      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
       "choices": [
         "Area border routers",
         "Autonomous system routers",
@@ -21362,7 +20853,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q039",
-      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nRouter OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
+      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
       "choices": [
         "Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1",
         "Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1",
@@ -21465,7 +20956,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q041",
-      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nRouter B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
+      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
       "exhibitConverted": true,
       "choices": [
         "Interface Serial 0/3/0",
@@ -21619,7 +21110,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q044",
-      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nOSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
+      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
       "choices": [
         "Router C",
         "Router B",
@@ -21672,7 +21163,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q045",
-      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nOSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
+      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
       "choices": [
         "ASBR",
         "ABR",
@@ -21777,7 +21268,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q047",
-      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
+      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "The link is a point-to-point connection.",
@@ -21882,7 +21373,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q049",
-      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
+      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
       "choices": [
         "The neighbor is having a problem forming an adjacency.",
         "The neighbor’s OSPF process is recalculating cost.",
@@ -21990,7 +21481,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q051",
-      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
+      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
       "choices": [
         "It is in the process of forming an adjacency.",
         "It is the designated router.",
@@ -22043,7 +21534,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q052",
-      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nOSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
+      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
       "choices": [
         "RouterD(config-router)#ospf priority",
         "RouterD(config-if)#ip ospf priority 10",
@@ -22150,7 +21641,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q054",
-      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
+      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "There is no designated router on the network.",
@@ -22203,7 +21694,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q055",
-      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nSingle OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
+      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
       "choices": [
         "RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0",
         "RouterA(config-router)#default-route originate",
@@ -23952,7 +23443,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.5-source-q026",
-      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nHSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
       "choices": [
         "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1",
         "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1",
@@ -25422,11 +24913,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
         "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
-        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
       "correctIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
+      "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is the broadcast address.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -25438,7 +24929,7 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
+          "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is broadcast."
         },
         "incorrect": [
           {
@@ -26033,11 +25524,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
         "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
-        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
       "correctIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
+      "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is the broadcast address.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -26054,7 +25545,7 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
+          "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is broadcast."
         },
         "incorrect": [
           {
@@ -30706,11 +30197,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "Router#boot tftp://192.168.1.2",
         "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
-        "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2",
         "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
       ],
       "correctIndex": 2,
-      "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config.",
+      "explanation": "Use boot system tftp <image-filename> <server-address> in global configuration mode.",
       "type": "application",
       "difficulty": "hard",
       "concept": "tftp",
@@ -30724,32 +30215,32 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config."
+          "explanation": "Use boot system tftp <image-filename> <server-address> in global configuration mode."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "boot tftp:// is privileged EXEC syntax — boot system belongs in global config and needs the image filename.",
+            "explanation": "This omits the boot system keywords, the image filename, and global configuration mode.",
             "misconceptionTested": "Exec-mode boot for TFTP image",
             "whatItDoes": "Attempts a privileged-EXEC boot with only a TFTP URL.",
-            "whyWrongHere": "IOS uses Router(config)#boot system tftp://<server> <filename>."
+            "whyWrongHere": "IOS uses boot system tftp <image-filename> <server-address> in global configuration mode."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Missing system keyword — IOS uses boot system tftp://<server> <filename>.",
+            "explanation": "This is missing the system keyword and uses an unsupported URL-style argument.",
             "misconceptionTested": "boot without system keyword",
             "whatItDoes": "Uses boot without the system keyword.",
-            "whyWrongHere": "Correct form is boot system tftp://192.168.1.2 <image.bin>."
+            "whyWrongHere": "Correct form is boot system tftp <image.bin> 192.168.1.2."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Filename before the TFTP URL reverses the usual Cisco boot system tftp://… <filename> order.",
+            "explanation": "This places the protocol after the filename and uses unsupported URL-style syntax.",
             "misconceptionTested": "Reversed boot system argument order",
-            "whatItDoes": "Places the image name before the tftp:// URL.",
-            "whyWrongHere": "Keyed syntax is boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin."
+            "whatItDoes": "Places the image name before an unsupported tftp:// URL.",
+            "whyWrongHere": "Keyed syntax is boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2."
           }
         ],
-        "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."
+        "examTip": "Boot from TFTP: boot system tftp <image.bin> <server-ip> in global configuration mode."
       }
     },
     {
@@ -33649,7 +33140,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.3-source-q015",
-      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nSwitch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
+      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
       "choices": [
         "Console 0",
         "VTY 0",
@@ -34116,7 +33607,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.4-source-q005",
-      "question": "A smart card is an example of which type of authentication?",
+      "question": "Using a smart card together with the passphrase or PIN that unlocks it is an example of which type of authentication?",
       "choices": [
         "Single-factor authentication",
         "RADIUS authentication",
@@ -35541,7 +35032,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q019",
-      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nNetwork layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
+      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
       "choices": [
         "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any",
         "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any",
@@ -35694,7 +35185,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q022",
-      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
+      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
       "choices": [
         "Standard",
         "Dynamic",
@@ -35846,7 +35337,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q025",
-      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nTopology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
+      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
       "choices": [
         "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in",
         "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out",
@@ -35898,7 +35389,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q026",
-      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nSwitch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
+      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
       "choices": [
         "Switch#show access-list named_list",
         "Switch#show ip access-list named_list",
@@ -37208,7 +36699,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q023",
-      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nSwitch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
+      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
       "choices": [
         "The port has been administratively shutdown.",
         "The port has an access violation on it.",
@@ -37311,7 +36802,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q025",
-      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nSwitch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
+      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
       "choices": [
         "SwitchA(config-if)#no port-security",
         "SwitchA(config-if)#no shutdown",
@@ -37414,7 +36905,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q027",
-      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nSwitch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
+      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
       "choices": [
         "Switch#show port-security details",
         "Switch#show mac address-table secure",
@@ -39243,7 +38734,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q004",
-      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nRouter A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
+      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
       "choices": [
         "Nothing is wrong with the configuration.",
         "The destination on Router A of the tunnel is incorrect.",
@@ -39295,7 +38786,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q005",
-      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nGRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
+      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
       "choices": [
         "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0",
         "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0",
@@ -39447,7 +38938,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q008",
-      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nGRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
+      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
       "choices": [
         "One hop",
         "Two hops",
@@ -39499,7 +38990,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q009",
-      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nRouter A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
+      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
       "choices": [
         "The tunnel numbers do not match.",
         "The destination on Router A of the tunnel is incorrect.",
@@ -39602,7 +39093,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q011",
-      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nSerial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
+      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
       "choices": [
         "The interface is administratively shut down.",
         "There is a wiring problem.",
@@ -44852,7 +44343,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q007",
-      "question": "what is wrong with this JSON file? { \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }",
+      "question": "{ \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }\n\nJSON exhibit:\n{\n  \"interface\": \"Fa0/1\",\n  \"bandwidth\": \"100mb\",\n  \"status\": \"up\",\n  \"address\": {\n    \"ipaddress\": \"192.168.1.5\",\n    \"subnetmask\": \"255.255.255.0\",\n    \"default gateway\": \"192.168.1.1\",\n  }\n}\n\nWhat is wrong with this JSON file?",
       "choices": [
         "The interface of Fa0/1 is capitalized.",
         "The address should have a square bracket.",
@@ -45008,7 +44499,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q010",
-      "question": "which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
+      "question": "JSON exhibit:\n{\n  \"ipaddress\": \"192.168.1.2\",\n  \"subnet_mask\": \"255.255.255.0\",\n  \"defaultgw\": \"192.168.1.1\",\n  \"routes\": [\n    { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" }\n  ]\n}\n\nWhich statement best identifies the JSON syntax problem?",
       "choices": [
         "The interface data is incorrect because it is missing a comma (or },{) between the two route objects.",
         "The interface data is incorrect because it is missing a set of square brackets around the second route.",
@@ -45060,7 +44551,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q011",
-      "question": "which statement best represents the JSON data? { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }",
+      "question": "{ \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }\n\nJSON exhibit:\n{\n  \"ipaddress\": [\"192.168.1.2\", [\"192.168.1.4\"]],\n  \"subnet_mask\": \"255.255.255.0\",\n  \"defaultgw\": \"192.168.1.1\"\n}\n\nWhich statement best describes the structure of the JSON data?",
       "choices": [
         "The interface data is incorrect because it is missing a comma after defaultgw.",
         "The interface data is incorrect because it is missing a subnet mask for the second IP address.",
@@ -45112,7 +44603,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q012",
-      "question": "which statement best represents the JSON data? { \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }",
+      "question": "{ \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }\n\nJSON exhibit:\n{\n  \"interface\": {\n    \"ipaddress\": [\"192.168.1.2\", [\"192.168.1.4\"]]\n    \"subnet_mask\": [\"255.255.255.0\", [\"255.255.255.0\"]],\n    \"defaultgw\": \"192.168.1.1\"\n  }\n}\n\nWhich statement best identifies the JSON syntax problem?",
       "choices": [
         "The interface data is incorrect because it is missing a comma after defaultgw.",
         "The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",

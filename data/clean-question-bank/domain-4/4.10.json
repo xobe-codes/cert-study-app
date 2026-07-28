@@ -1,6 +1,7 @@
 {
   "schemaVersion": "ccna-clean-question-bank-v1",
   "objectiveId": "4.10",
+  "title": "Compare local and cloud-based device management",
   "domain": 4,
   "builtAt": "2026-06-14T02:38:22.086Z",
   "source": "legacy-import-migration",

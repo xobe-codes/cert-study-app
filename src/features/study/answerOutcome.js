@@ -2,6 +2,7 @@
  * WB-1 / WB-2 — answer outcome helpers (unknown + silent latency).
  */
 import { logEvent } from '../../eventLog.js'
+import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { recordAnswerSample, FLUENCY } from './answerFluency.js'
 
 /** Soft MC fluency band (ms). Tunable later via Dev. */
@@ -35,15 +36,24 @@ export async function recordAnswerOutcome({
   latencyMs = null,
   selectedIndex = undefined,
   selectedIndexes = undefined,
+  responseType = 'mc',
+  surface = 'practice',
 } = {}) {
   const tag = classifyFluency({ correct, unknown, latencyMs })
+  const domainId = ALL_OBJECTIVES.find(objective => objective.id === objectiveId)?.domainId
   logEvent('user_answered_question', {
+    schemaVersion: 1,
+    surface,
+    responseType,
+    domainId,
     objectiveId,
     questionId,
     correct: !!correct,
     unknown: !!unknown,
     latencyMs: latencyMs ?? undefined,
     fluency: tag,
+    selectedIndex,
+    selectedIndexes,
   })
   if (questionId || objectiveId) {
     await recordAnswerSample({

@@ -1,5 +1,64 @@
 # Project Log — CCNA Study App
 
+## 2026-07-27 — Duplicate-folder merge audit
+
+- Confirmed `/Users/zycooks/Documents/Apps/CCNA App` as the canonical Git project.
+- Audited the partial `CCNA\ App` directory: 8 identical files, 26 superseded
+  variants, and 4 orphan-only artifacts; no active source changes were warranted.
+- Preserved the partial directory intact at
+  `/Users/zycooks/Documents/Apps/Archives/CCNA App - orphaned files 2026-07-13`.
+- Added `MERGE_AUDIT.md` to the archive with classification and recovery details.
+
+## 2026-07-27 — Wrong-answer quality V2 scope
+
+- Reframed `WRONG_ANSWER_DEBRIEF_99_SPEC.md` from the already-shipped P0–P2 UI
+  work into an implementation-ready prompt + answer-key + feedback quality plan.
+- Added blocking validation, real-ID regressions, six-domain sampling, all question
+  types/surfaces, impact metrics, rollout reporting, and explicit completion gates.
+- Recorded the current baseline: five records with regen wrong-index defects.
+- Corrected the initial validator diagnosis on implementation start: the validator
+  already exits `1`; a later command in the earlier diagnostic chain masked that
+  status. Domain-scoped reporting remains a needed guardrail.
+- Folded the historical `bad_display` work into the same implementation pass:
+  reuse the shared question chrome, normalize prose versus structured exhibits,
+  fix duplicated/source formatting defects, and verify multi-format mobile display.
+- Closed final scope gaps for existing-user cache refresh without progress loss,
+  validation of AI-fallback questions before persistence, saved missed-answer index
+  safety, choice-format parity, and separately referenced diagram/image exhibits.
+- Added a measurable UI/UX release bar: hierarchy and feedback timing, deferred-exam
+  answer protection, focus/scroll behavior, keyboard/screen-reader semantics,
+  mobile/zoom/contrast/reduced-motion coverage, state recovery, and long-content QA.
+- Updated the V2 plan around the current question-health implementation: exactly-once
+  flag delivery, aligned reasons, versioned triage/resolution, independent-evidence
+  quarantine, mass-quarantine safety brakes, and source-aware automated fix packets
+  that validate but never auto-publish factual or answer-key changes.
+- Sequenced Lesson Logic & Study Workflow as the required next phase after Question
+  V2: fresh alignment baseline from the repaired corpus, stale-queue reconciliation,
+  lesson logic/content batches, exact wrong-answer-to-lesson anchors, return-to-retest
+  state, lesson UX/progress checks, and safe lesson re-audit automation.
+- Strengthened lesson completion to require official sub-objective mappings per
+  question, exact deciding-rule/distractor teaching, stable lesson anchors, and a
+  consistent readable section spine rather than objective-level CKU/word-count PASS.
+- Added `METRICS_TRACKING_99_SPEC.md` as the third sequenced phase after lesson repair,
+  covering versioned/idempotent metrics for every question type, learning surface,
+  lab/checkpoint, remediation loop, offline resume, and content-health exclusion.
+- Added `DOMAIN_PASS_99_SPEC.md` as the post-lesson, pre-metrics phase: canonical
+  question-to-domain ownership, healthy blueprint/sub-objective pool manifests,
+  fair/deferred/resumable assessments, separate Full/Focus status, exact lesson/lab
+  remediation, compatible persistence, and six-domain UI/UX acceptance gates.
+- Updated the shared question contract to block unknown/mismatched domain ownership
+  and carry one canonical mapping through every surface, cache, flag, exposure,
+  Domain Pass, lesson, and metric.
+- Moved metrics foundations into the initial Question V2 pass: current-path inventory,
+  canonical IDs/content versions, versioned question events, idempotent offline
+  handling, compatibility normalization, reconciliation fixtures, and lab/checkpoint
+  ID inventory. Final mastery rollups and dashboards remain post-workflow Stage B.
+- Added `FULL_APP_SCOPE_AUDIT_99_SPEC.md` after the first two implementation plans.
+  It performs a complete reuse-first product/content/workflow/data/UI/accessibility/
+  lab/performance/offline/security/engineering audit, reconciles contradictory specs
+  and queues, and produces a bounded no-rebuild roadmap before Domain Pass and
+  Metrics Stage B priorities are finalized.
+
 **Sync date:** 2026-07-15  
 **Active tracking:** [`ai-improvement-logs/IMPLEMENTATION_TRACKER.md`](ai-improvement-logs/IMPLEMENTATION_TRACKER.md) (Cursor's live source of truth)  
 **Cursor working dir:** `ai-improvement-logs/` — do not delete
@@ -221,3 +280,168 @@ Full report: `ai-improvement-logs/WAVE_CONSOLIDATION_REPORT.md`
 - `ai-improvement-logs/FUNCTIONALITY_AUDIT_REPORT.md`
 - `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`
 - `git log --oneline -20` (most recent 20 commits as of 2026-07-10)
+# 2026-07-27 — Question V2 Domain 1 implementation baseline
+
+- Adopted domain-by-domain delivery, beginning with Domain 1 (Network
+  Fundamentals).
+- Added domain-scoped regeneration and Question V2 audit tooling.
+- Domain 1 result: 106/106 questions and 296/296 distractors covered; zero audit
+  findings or regeneration schema errors.
+- Fixed Practice answer tracking so multi-select no longer double-logs and
+  ordering/CLI use the shared outcome path.
+- New answer events now carry backward-compatible schema version, canonical
+  domain, surface, response type, and canonical selected index/set fields.
+- Validation: 17 targeted tests passed and `git diff --check` passed.
+- Audit report: `ai-improvement-logs/QUESTION_LOGIC_WRONG_ANSWER_AUDIT.md`.
+- Remaining before Domain 1 closure: Missed Retest tracking reconciliation and
+  responsive/accessibility UI verification.
+
+---
+# 2026-07-28 — Question V2 Domain 1 complete
+
+- Closed Domain 1 after full-bank structural validation plus live shared-renderer
+  verification.
+- Live testing caught legacy generic wrong-answer filler that the original audit
+  missed; the renderer now prefers a specific gold explanation when legacy
+  structured fields are generic.
+- Missed Retest now records the same canonical answer event as Practice.
+- Fixed question-feedback touch targets at 320px, 768px, and 1440px; all tested
+  widths have no horizontal overflow, no sub-44px active-flow controls, a live
+  result status, and non-color correctness cues.
+- Validation: 70 targeted tests passed, Domain 1 audit and coverage passed,
+  production build passed, and `git diff --check` passed.
+- Implementation report:
+  `ai-improvement-logs/QUESTION_LOGIC_WRONG_ANSWER_IMPLEMENTATION_REPORT.md`.
+- Next domain: Domain 2 — Network Access.
+
+---
+
+# 2026-07-28 — Question V2 Domain 2 complete
+
+- Validated 130/130 Network Access questions and 388/388 distractors with zero
+  schema or Question V2 audit findings.
+- Corrected the legacy source-map drift that placed ten Telnet/TACACS+/device
+  management questions under current Objective 2.8 (WLAN client connectivity).
+  The questions are preserved on the Domain 2 out-of-scope shelf and excluded
+  from future regeneration.
+- Fixed duplicate WLC exhibit compilation and added regression coverage.
+- Moved the supplemental SNMP question from 2.8 to canonical Objective 4.4.
+- Added saved-bank reconciliation: curated objectives now replace stale question
+  content with the current canonical pool while preserving attempts, ratings,
+  and SRS history. Retired IDs are also filtered at shared bank load time.
+- Validation: all 1,727 tests passed, Domain 2 coverage and audit passed,
+  production build passed, and `git diff --check` passed.
+- Lesson follow-up: Objective 2.8's main lesson is aligned, but legacy
+  management-access flashcards remain and are queued for the lesson-alignment
+  pass rather than being mixed into the Question V2 content pass.
+- Next domain: Domain 3 — IP Connectivity.
+
+---
+
+# 2026-07-28 — Question V2 Domain 3 complete
+
+- Completed the cumulative IP Connectivity pass across all six objectives.
+- Clean-bank result: 249/249 questions and 745/745 distractors covered with
+  zero Question V2 findings. Runtime result: all 331 learner-visible questions
+  (clean + skill + enrichment) audited with zero findings.
+- Removed a routing-config comment that disclosed the answer before the learner
+  responded.
+- Recompiled Domain 3 with exhibit deduplication, eliminating repeated routing-
+  table and OSPF exhibit blocks that existed only in the runtime module.
+- Corrected Domain 3 manifests to include Objective 3.6 and the true 249-question
+  total; aligned 3.5/3.6 clean-bank titles to the current app objectives.
+- Fixed runtime multi-select shaping so a question cannot expose both
+  `correctIndex` and `correctIndexes`.
+- Improved generic fallback debriefs with stem/explanation evidence and made the
+  audit distinguish a legacy short label followed by genuinely specific
+  feedback.
+- Added `auditQuestionV2 --runtime`; this runtime audit is now required for
+  Domains 4–6 because clean-bank-only checks cannot see enrichment regressions.
+- Live wrong-answer walkthrough passed with specific, non-color feedback.
+  Responsive verification at 320px, 768px, and 1440px found and fixed remaining
+  36–40px Study/Practice/banner controls; all active targets are now at least
+  44px with no horizontal overflow.
+- Validation: all 1,728 tests passed, production build passed, and
+  `git diff --check` passed. Existing build warnings are unchanged.
+- Next domain: Domain 4 — IP Services.
+
+## Checks learned for every remaining domain
+
+1. Audit the canonical clean bank and the merged learner-visible runtime pool.
+2. Compare generated runtime stems with clean stems to catch compile-only exhibit
+   duplication and answer leaks.
+3. Verify every objective is represented in both domain and global manifests.
+4. Validate multi-select keys after runtime reshaping, not just source JSON.
+5. Walk through a real wrong answer and measure every active control at mobile,
+   tablet, and desktop widths.
+6. Run placement/downstream tests, the full suite, and the production build.
+
+---
+
+# 2026-07-28 — Question V2 Domain 4 complete
+
+- Completed the cumulative IP Services pass across all ten objectives.
+- Clean-bank result: 130/130 questions and 388/388 distractors covered with zero
+  findings. Runtime result: all 267 learner-visible questions audited with zero
+  findings.
+- Corrected two factual answer-key failures rather than merely silencing schema
+  errors:
+  - The 179.43.44.0/28 NAT pool now uses `.2–.14` with `/28`; `.1` is assigned
+    to the router and `.15` is broadcast.
+  - TFTP boot configuration now uses `boot system tftp <image> <server-ip>` in
+    valid IOS argument order.
+- Repaired clean-bank reviews, regenerated distractor records, gold reviews,
+  hand-curated content, and imported source records so future rebuilds cannot
+  restore the old keys.
+- Fixed the Question V2 choice normalizer so a meaningful CLI wildcard (`*`)
+  is not stripped as though it were Markdown emphasis.
+- Added Objective 4.10 to both manifests, corrected the Domain 4 total to 130,
+  and aligned all clean-bank titles with current app objectives.
+- Found 23 cross-objective CKU tags that caused NAT, NTP, DHCP/DNS, SNMP,
+  syslog, QoS, SSH, and TFTP questions to credit the wrong tracking concepts.
+  Runtime normalization now removes those tags, with Domain 4 integrity tests.
+- Process lesson: lesson/question CKU coverage can falsely pass when both sides
+  inherit the same bad tag. Domains 5–6 must include a semantic cross-objective
+  CKU review in addition to the numerical alignment matrix.
+- Live wrong-answer and responsive checks passed at 320px, 768px, and 1440px:
+  specific feedback, non-color state, flag/lab/confidence actions, no overflow,
+  and no active target below 44×44px.
+- Validation: all 1,732 tests passed, production build passed, and
+  `git diff --check` passed. Existing Vite warnings are unchanged.
+- Next domain: Domain 5 — Security Fundamentals.
+
+---
+
+# 2026-07-28 — Question V2 Domains 5 and 6 complete
+
+- Completed the combined Security Fundamentals and Automation & Programmability
+  pass across all 17 objectives.
+- Domain 5 clean-bank result: 189/189 questions and 565/565 distractors covered;
+  runtime result: 330 learner-visible questions. Domain 6 clean-bank result:
+  100/100 questions and 300/300 distractors covered; runtime result: 187
+  learner-visible questions. All four clean/runtime audits finish with zero
+  findings.
+- Repaired two stale regenerated-review mappings whose distractor indexes
+  included the correct answer: the SOHO WPA2 question and the malformed-JSON
+  question now cover exactly their three wrong choices.
+- Removed ambiguity from the smart-card MFA stem by explicitly stating the
+  separate card and PIN/passphrase factors.
+- Added readable multiline JSON exhibits for four automation questions while
+  preserving their intentional syntax defects.
+- Restored Objectives 5.4 and 5.11 to both manifests, corrected the Domain 5
+  total to 189, and aligned Domain 5/6 clean titles to the current objectives.
+- Removed seven clear distractor-only CKU assignments so RADIUS, port security,
+  RESTCONF, Cisco DNA Center, and ESP no longer receive false mastery credit.
+- Live testing found that a fallback could interpret “SSID broadcast” as
+  Ethernet flooding. The shared generator now recognizes the WLAN context and
+  explains SSID hiding as obscurity rather than authentication.
+- Live Domain 5/6 wrong-answer walkthroughs passed. Responsive verification at
+  320px, 768px, and 1440px found no horizontal overflow and no active target
+  below 44×44px.
+- Validation: all 1,736 tests passed, production build passed, Domain 5/6
+  runtime audits passed, and `git diff --check` passed. Existing Vite warnings
+  are unchanged.
+- The domain-by-domain Question V2 pass is complete. Next planned workflow:
+  lesson alignment/readability, followed by full question/lab metric tracking.
+
+---

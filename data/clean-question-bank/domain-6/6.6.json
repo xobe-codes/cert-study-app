@@ -1,6 +1,6 @@
 {
   "objectiveId": "6.6",
-  "title": "Recognize capabilities of Puppet, Chef, and Ansible",
+  "title": "Interpret JSON data and configuration management tools",
   "questions": [
     {
       "id": "obj-6.6-source-q001",

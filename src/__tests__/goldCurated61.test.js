@@ -41,9 +41,9 @@ describe('goldAnswerReviewsCurated61', () => {
     }
   })
 
-  it('GOLD_ANSWER_REVIEWS covers all 914 clean bank questions with no gaps', () => {
+  it('GOLD_ANSWER_REVIEWS covers all 904 clean bank questions with no gaps', () => {
     const bankQuestions = collectCleanBankQuestions()
-    expect(bankQuestions.length).toBe(914)
+    expect(bankQuestions.length).toBe(904)
 
     const missing = bankQuestions
       .filter((q) => !GOLD_ANSWER_REVIEWS[q.id])

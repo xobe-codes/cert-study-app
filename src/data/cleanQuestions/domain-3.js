@@ -982,7 +982,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q004",
-      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nRouting table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
+      "question": "Routing table excerpt:\nC    192.168.1.0/26 is directly connected, Serial0/0\nS    192.168.1.0/24 [1/0] via 172.16.1.100\nO    192.168.1.128/25 [110/10] via 172.16.1.200\nCodes: C=connected, S=static, O=OSPF\n\nWhich will be the next hop for a destination address of 192.168.1.5?",
       "exhibitConverted": true,
       "choices": [
         "The gateway 172.16.1.200",
@@ -1141,7 +1141,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q006",
-      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nRouting table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
+      "question": "Routing table excerpt:\nGateway of last resort is not set\n      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks\nO        10.1.0.0/16 [110/20] via 10.0.0.1, 00:05:00, Gi0/0\nO        10.2.0.0/16 [110/30] via 10.0.0.2, 00:05:00, Gi0/1\nO        10.3.0.0/16 [110/25] via 10.0.0.3, 00:05:00, Gi0/2\n\nwhat does the top line of the output represent?",
       "choices": [
         "The 10.0.0.0/8 is a route in the routing table.",
         "The 10.0.0.0/8 is a summarization of the routes in the table.",
@@ -1298,7 +1298,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.1-source-q008",
-      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
+      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
       "choices": [
         "10.0.0.2",
         "192.168.4.2",
@@ -1352,27 +1352,27 @@ export const CLEAN_QUESTIONS = {
       "regeneratedIncorrect": [
         {
           "choiceIndex": 0,
-          "misconceptionReason": "Wrong serial interface for destination",
-          "whyItSeems": "Interface Serial 0/2/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length.",
-          "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
-          "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"Interface Serial 0/2/0\": IPv6 addressing (routing table): Interface Serial 0/0/1 matches prefix, shortening, or assignment rules — Interface Serial 0/2/0 breaks IPv6 syntax or prefix length."
+          "misconceptionReason": "Students match the destination octet (.4) to the wrong configured line, grabbing the next-hop from the 192.168.5.0/24 static route instead of the 192.168.4.0/24 one.",
+          "whyItSeems": "Both static routes share the same 255.255.255.0 mask and a similar 10.0.0.x next-hop pattern, so it's easy to read down the wrong line when scanning quickly under time pressure.",
+          "whyWrongHere": "10.0.0.2 is the next-hop configured for 192.168.5.0/24, not 192.168.4.0/24. The destination 192.168.4.85 falls inside 192.168.4.0/24 (addresses .0–.255), which is the line pointing to 10.0.0.1 — a different static route entirely.",
+          "memoryAnchor": "Match the destination to its OWN network line first, then read that line's next-hop — don't grab the next-hop from a neighboring line.",
+          "contrast": "192.168.5.85 would use next-hop 10.0.0.2; 192.168.4.85 uses next-hop 10.0.0.1 — one digit in the destination changes which configured line applies."
         },
         {
           "choiceIndex": 1,
-          "misconceptionReason": "Destination IP as next hop",
-          "whyItSeems": "IP address 192.168.4.2 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-          "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 192.168.4.2 answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
-          "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"IP address 192.168.4.2\": For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 192."
+          "misconceptionReason": "Students assume the next hop must be a host address inside the destination network itself, since that feels like where traffic is 'going.'",
+          "whyItSeems": "192.168.4.2 looks plausible because it sits inside the same 192.168.4.0/24 destination network as 192.168.4.85, so it can feel like a natural 'gateway into that network.'",
+          "whyWrongHere": "A next hop is the address of the NEXT ROUTER to forward through, not a host inside the destination subnet. The 'ip route' statement explicitly lists 10.0.0.1 as that next-hop — a completely separate transit-network address, not anything in the 192.168.4.0/24 range.",
+          "memoryAnchor": "Next-hop = the router you hand the packet to next, not an address inside the destination network.",
+          "contrast": "192.168.4.2 could be a host living inside the destination subnet; 10.0.0.1 is the router interface configured in the static route that actually forwards traffic there — only the configured value counts as next-hop."
         },
         {
           "choiceIndex": 3,
-          "misconceptionReason": "Random IP as route exit",
-          "whyItSeems": "IP address 198.22.34.3 shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.",
-          "whyWrongHere": "For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 198.22.34.3 answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Static route → follow next-hop recursion to find actual exit interface in show ip route.",
-          "contrast": "Correct \"Interface Serial 0/0/1\" vs wrong \"IP address 198.22.34.3\": For \"routing table\", Interface Serial 0/0/1 matches the required behavior — IP address 198."
+          "misconceptionReason": "Students pick an unfamiliar-looking IP assuming it must be a 'trick' next-hop hidden somewhere in the exhibit, rather than confirming it's actually present in the config.",
+          "whyItSeems": "198.22.34.3 looks like a plausible public/next-hop-style address, and exam questions do sometimes bury the real answer in an unusual-looking value, so it can seem like the 'clever' choice.",
+          "whyWrongHere": "198.22.34.3 doesn't appear anywhere in the running-config excerpt — it isn't configured as a next-hop for any route. The only two next-hops that exist are 10.0.0.1 (for 192.168.4.0/24) and 10.0.0.2 (for 192.168.5.0/24), and only the first matches this destination.",
+          "memoryAnchor": "The next-hop must come from the actual 'ip route' line in the exhibit — never a value that isn't written in the config.",
+          "contrast": "10.0.0.1 is explicitly configured in 'ip route 192.168.4.0 255.255.255.0 10.0.0.1'; 198.22.34.3 has no configuration line anywhere in the exhibit tying it to this destination."
         }
       ]
     },
@@ -8594,7 +8594,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q019",
-      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nTopology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
+      "question": "Topology:\n- Router A: Gi0/0 192.168.1.1/24 (Network A), Gi0/1 192.168.2.1/24 (link to Router B)\n- Router B: Gi0/0 192.168.2.2/24 (link to A), Gi0/1 192.168.3.1/24 (Network B)\nGoal: Router A must reach 192.168.3.0/24\n\nwhich route statement needs to be configured on Router A to allow routing to Network B?",
       "choices": [
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 serial 0/1",
         "RouterA(config)#ip route 192.168.3.0 255.255.255.0 192.168.2.1",
@@ -9292,7 +9292,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q028",
-      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nRouter routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
+      "question": "Router routing table:\nC    192.168.0.0/16 is directly connected, Vlan1\nC    192.168.4.0/24 is directly connected, Gi0/1\nS    172.30.0.0/16 [1/0] via 10.1.1.1\nS    192.168.128.0/24 [1/0] via 10.1.1.2 (unreachable next-hop)\n\nwhich network is routable?",
       "choices": [
         "The 172.30.0/16 network",
         "The 192.168.128.0/24 network",
@@ -9370,7 +9370,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q029",
-      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nTopology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
+      "question": "Topology:\n- Network A: 198.44.4.0/24 behind Router A\n- Router B: S0/0 198.55.4.9/30 (to A), S0/1 198.55.4.10/30 (toward Network A path)\nRouter B needs a route to Network A 198.44.4.0/24\n\nwhat must be configured on Router B to allow routing to Network A?",
       "choices": [
         "RouterB(config)#ip route 198.44.4.0/24 198.55.4.9",
         "RouterB(config)#ip route 198.44.4.0 255.255.255.0 198.55.4.10",
@@ -9679,7 +9679,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q033",
-      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nRouter B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
+      "question": "Router B routing table:\nC    192.168.4.0/24 is directly connected, Gi0/0\nS    192.168.5.0/24 [1/0] via 192.168.4.2\nS    192.168.5.0/24 [1/0] via 192.168.4.5\nPacket destination: 192.168.5.6\n\nwhich interface or IP address will a packet be routed to with a destination address of 192.168.5.6?",
       "choices": [
         "IP address of 192.168.4.2",
         "IP address of 192.168.4.5",
@@ -10304,7 +10304,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.3-source-q041",
-      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nTopology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
+      "question": "Topology:\n- Network B (hosts) behind Router B Gi0/2\n- Router B Gi0/3 S0/3/0 connects to ISP for Internet\n- IPv6 autoconfig needed on LAN toward hosts\n\nwhich command on Router B will allow hosts on Network B to reach the Internet?",
       "choices": [
         "RouterB(config-if )#ipv6 address default",
         "RouterB(config)#ip route ::/0 serial 0/3/0",
@@ -11823,7 +11823,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q009",
-      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nOSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
+      "question": "OSPF hierarchy:\n- Router A sits between OSPF Area 0 and external networks (ASBR role)\n- Areas 1 and 2 connect through ABRs B and C\n\nwhat is Router A called in OSPF terminology?",
       "choices": [
         "Area border router",
         "Autonomous system router",
@@ -11979,7 +11979,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q011",
-      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nOSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
+      "question": "OSPF multi-area layout:\n- Area 0 (backbone) contains Routers A and B\n- Routers C, D, E each connect Area 0 to non-zero areas (ABR role)\n\nwhat are Routers C, D, and E called in OSPF terminology?",
       "choices": [
         "Area border routers",
         "Autonomous system routers",
@@ -14143,7 +14143,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q039",
-      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nRouter OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
+      "question": "Router OSPF config goal:\nAdvertise 128.24.0.0/14 into both Area 0 and Area 1\n\nyou have two areas that you want OSPF to advertise routes for. Which command(s) will achieve this?",
       "choices": [
         "Router(config-router)#network 128.24.0.0/22 area 0 Router(config-router)#network 128.24.0.0/22 area 1",
         "Router(config-router)#network 128.24.0.0 0.0.252.255 area 0 Router(config-router)#network 128.24.0.0 0.0.252.255 area 1",
@@ -14298,7 +14298,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q041",
-      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nRouter B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
+      "question": "Router B interfaces (network 197.234.3.0 0.0.0.63 area 0):\nSerial0/3/0         197.234.3.1/30\nSerial0/3/0.1       197.234.3.5/30\nSerial0/3/0.2       197.234.3.9/30\nGigabitEthernet0/0  197.234.3.100/26\nWildcard 0.0.0.63 matches 197.234.3.0–197.234.3.63 (.0–.63 in the fourth octet).\n\nYou have configured OSPF on Router B. The network command entered was network 197.234.3.0 0.0.0.63 area 0. You find out that one of the interfaces is not participating in OSPF. Which interface is not participating?",
       "exhibitConverted": true,
       "choices": [
         "Interface Serial 0/3/0",
@@ -14349,27 +14349,27 @@ export const CLEAN_QUESTIONS = {
       "regeneratedIncorrect": [
         {
           "choiceIndex": 0,
-          "misconceptionReason": "Serial in range excluded from OSPF",
-          "whyItSeems": "Interface Serial 0/3/0 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0 confuses subnet mask with ACL/OSPF wildcard bits.",
-          "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0\" — for what this stem actually tests.",
-          "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0 confuses subnet mask with ACL/OSPF wildcard bits."
+          "misconceptionReason": "Students assume a physical interface with configured sub-interfaces underneath it is somehow bypassed by OSPF's network statement, as if the sub-interfaces 'absorb' all the address matching.",
+          "whyItSeems": "Serial0/3/0 is the parent of two sub-interfaces in this exhibit, so it can feel like the sub-interfaces are the 'real' addressed interfaces and the parent is just a placeholder that OSPF skips.",
+          "whyWrongHere": "OSPF's network command matches every interface's own configured IP against the wildcard, regardless of whether it has sub-interfaces. Serial0/3/0 itself carries 197.234.3.1/30, which falls inside the 0.0.0.63 wildcard's .0–.63 range, so it participates just like any other matching interface.",
+          "memoryAnchor": "OSPF network statements match each interface's own IP — parent-vs-sub-interface status doesn't matter, only whether that IP falls in the wildcard range.",
+          "contrast": "Serial0/3/0's IP (.1) is inside .0–.63 and participates; GigabitEthernet0/0's IP (.100) is outside .0–.63 and is the one left out — the deciding factor is the IP range, not which interface has children."
         },
         {
           "choiceIndex": 1,
-          "misconceptionReason": "Sub-interface excluded from wildcard match",
-          "whyItSeems": "Interface Serial 0/3/0.1 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0.1 confuses subnet mask with ACL/OSPF wildcard bits.",
-          "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0.1\" — for what this stem actually tests.",
-          "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0.1\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0."
+          "misconceptionReason": "Students believe OSPF network statements only apply to physical main interfaces and that logical sub-interfaces (like .1) need a separate, explicit network statement to join OSPF.",
+          "whyItSeems": "Sub-interfaces are often introduced as a 'special case' requiring extra configuration (e.g., dot1Q encapsulation), so it's a reasonable but incorrect leap to assume they also need special handling to be matched by a network command.",
+          "whyWrongHere": "OSPF matches by IP address, not by interface type — a sub-interface's configured address is checked against the wildcard exactly like a physical interface's would be. Serial0/3/0.1 has 197.234.3.5/30, which is inside the .0–.63 range covered by 0.0.0.63, so it does participate in OSPF.",
+          "memoryAnchor": "Sub-interfaces aren't second-class citizens for 'network' statements — same IP-in-wildcard-range rule applies to every interface type.",
+          "contrast": "A sub-interface needs extra config for things like 802.1Q trunking, but for OSPF's network command it's evaluated identically to a physical interface: is its IP inside the wildcard's range or not?"
         },
         {
           "choiceIndex": 2,
-          "misconceptionReason": "Second sub-interface excluded from match",
-          "whyItSeems": "Interface Serial 0/3/0.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0.2 confuses subnet mask with ACL/OSPF wildcard bits.",
-          "memoryAnchor": "Remember: choose \"Interface GigabitEthernet 0/0\" — not \"Interface Serial 0/3/0.2\" — for what this stem actually tests.",
-          "contrast": "Correct \"Interface GigabitEthernet 0/0\" vs wrong \"Interface Serial 0/3/0.2\": Mask/wildcard (interfaces): Interface GigabitEthernet 0/0 uses the mask style this stem requires — Interface Serial 0/3/0."
+          "misconceptionReason": "Students apply the same 'sub-interfaces are excluded' assumption to the second sub-interface, doubling down on the belief instead of checking its actual IP against the wildcard.",
+          "whyItSeems": "Once a learner assumes one sub-interface is excluded, it feels consistent to assume the sibling sub-interface is excluded too, especially since both share the same parent Serial0/3/0.",
+          "whyWrongHere": "Serial0/3/0.2 is configured with 197.234.3.9/30, which is still inside the 0.0.0.63 wildcard's .0–.63 range — so it matches and participates in OSPF, exactly like its sibling sub-interfaces. Each interface must be checked individually against the wildcard, not assumed based on a sibling's status.",
+          "memoryAnchor": "Check every interface's IP against the wildcard individually — don't assume a whole family of sub-interfaces is excluded together.",
+          "contrast": "Serial0/3/0, 0/3/0.1, and 0/3/0.2 all sit at .1, .5, and .9 — all inside .0–.63 — while only GigabitEthernet0/0 at .100 falls outside that range and is excluded."
         }
       ]
     },
@@ -14530,7 +14530,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q044",
-      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nOSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
+      "question": "OSPF neighbors on broadcast segment (Area 0):\nRouter A: FULL/DROTHER  192.168.1.1\nRouter B: FULL/DR       192.168.1.2\nRouter C: FULL/BDR      192.168.1.3\n\nwhich router is the DR?",
       "choices": [
         "Router C",
         "Router B",
@@ -14609,7 +14609,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q045",
-      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nOSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
+      "question": "OSPF hierarchy:\n- Router B connects Area 0 to Area 1 (ABR)\n- Router A in Area 0, Router C in Area 1\n\nwhat is Router B called in this hierarchy?",
       "choices": [
         "ASBR",
         "ABR",
@@ -14766,7 +14766,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q047",
-      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
+      "question": "Router A OSPF: hello 10, dead 40\nRouter B OSPF: hello 10, dead 40\n(Note: timers shown mismatched in running-config — A hello 5 dead 20)\n\nRouter A and Router B will not form an adjacency. What is the cause of the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "The link is a point-to-point connection.",
@@ -14923,7 +14923,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q049",
-      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
+      "question": "show ip ospf neighbor:\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DR         00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about the neighbor ID of 192.168.2.2?",
       "choices": [
         "The neighbor is having a problem forming an adjacency.",
         "The neighbor’s OSPF process is recalculating cost.",
@@ -15083,7 +15083,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q051",
-      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nshow ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
+      "question": "show ip ospf neighbor (non-DR router on multi-access):\nNeighbor ID  Pri  State           Dead Time  Address      Interface\n192.168.2.2   1   FULL/DROTHER    00:00:35   10.0.0.2     Gi0/0\n\nwhich is a correct statement about router ID 192.168.2.2?",
       "choices": [
         "It is in the process of forming an adjacency.",
         "It is the designated router.",
@@ -15162,7 +15162,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q052",
-      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nOSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
+      "question": "OSPF broadcast segment — current DR is Router C (priority 1):\nRouter D Gi0/0: 192.168.5.2/24, OSPF priority default 1\n\nYou want to make Router D the DR. Which command will assure that it becomes the DR?",
       "choices": [
         "RouterD(config-router)#ospf priority",
         "RouterD(config-if)#ip ospf priority 10",
@@ -15321,7 +15321,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q054",
-      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
+      "question": "Router A: network 10.0.0.0 0.0.0.255 area 0\nRouter B: network 10.0.0.0 0.0.0.255 area 1\n\nRouter A will not form an adjacency with Router B. What is the problem?",
       "choices": [
         "The hello and dead timers do not match.",
         "There is no designated router on the network.",
@@ -15400,7 +15400,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.4-source-q055",
-      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nSingle OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
+      "question": "Single OSPF area 0; Router A has default route via Serial0/0 to ISP.\nNeed to inject default into OSPF for all area routers.\n\nyou have one OSPF area and want to populate the default route to all routers in the OSPF area. Which command would you use?",
       "choices": [
         "RouterA(config)#ip route 0.0.0.0 0.0.0.0 serial 0/0",
         "RouterA(config-router)#default-route originate",
@@ -18033,7 +18033,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-3.5-source-q026",
-      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nHSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
+      "question": "HSRP topology:\nRouter A (active) and Router B (standby) share VIP 192.168.1.254\nBoth track upstream ISP link on serial 0/0/1 for failover\n\nYou are running HSRP on Router A and Router B. You intermittently have ISP outages. What command should you configure to alert HSRP to the outage?",
       "choices": [
         "RouterA(config-if)#standby 1 interface tracking serial 0/0/1 RouterB(config-if)#standby 1 interface tracking serial 0/0/1",
         "RouterA(config-if)#standby 1 tracking serial 0/0/1 RouterB(config-if)#standby 1 tracking serial 0/0/1",

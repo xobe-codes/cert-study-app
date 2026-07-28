@@ -10,6 +10,7 @@ import {
 const SCRIPT_PATH = fileURLToPath(import.meta.url)
 const ROOT = join(dirname(SCRIPT_PATH), '..')
 const DEFAULT_BANK_DIR = join(ROOT, 'data', 'clean-question-bank')
+const DEFAULT_SHELVED_DIR = join(ROOT, 'data', 'shelved-questions')
 const DEFAULT_STAGING_PATH = join(ROOT, 'src', 'answerReview', 'regeneratedExplanations.json')
 const TEXT_FIELDS = [
   'misconceptionReason',
@@ -49,6 +50,20 @@ export function loadCleanQuestions(bankDir) {
     }
   }
   return questions
+}
+
+export function loadShelvedQuestionIds(shelvedDir) {
+  if (!existsSync(shelvedDir)) return new Set()
+  const ids = new Set()
+  for (const path of walkQuestionFiles(shelvedDir)) {
+    const parsed = JSON.parse(readFileSync(path, 'utf8'))
+    const questions = Array.isArray(parsed) ? parsed : parsed.questions
+    if (!Array.isArray(questions)) continue
+    for (const question of questions) {
+      if (typeof question?.id === 'string') ids.add(question.id)
+    }
+  }
+  return ids
 }
 
 export function getCorrectIndexes(question) {
@@ -165,7 +180,11 @@ function validateEntry(question, entry, errors) {
   return { expected, covered: [...covered] }
 }
 
-export function validateRegenCoverage(questions, staging) {
+export function validateRegenCoverage(
+  questions,
+  staging,
+  { ignoreUnknownStagingIds = false, ignoredStagingIds = new Set() } = {},
+) {
   const schemaErrors = []
   const missingQuestionIds = []
   const questionById = new Map()
@@ -186,8 +205,12 @@ export function validateRegenCoverage(questions, staging) {
   if (!stagingIsObject) schemaErrors.push('staging root must be an object keyed by question id')
   const entries = stagingIsObject ? staging : {}
 
-  for (const qid of Object.keys(entries)) {
-    if (!questionById.has(qid)) schemaErrors.push(`${qid}: staging id is not in the clean bank`)
+  if (!ignoreUnknownStagingIds) {
+    for (const qid of Object.keys(entries)) {
+      if (!questionById.has(qid) && !ignoredStagingIds.has(qid)) {
+        schemaErrors.push(`${qid}: staging id is not in the clean bank`)
+      }
+    }
   }
 
   let coveredQuestions = 0
@@ -258,10 +281,18 @@ function parseArgs(argv) {
     requireFull: false,
     bankDir: DEFAULT_BANK_DIR,
     stagingPath: DEFAULT_STAGING_PATH,
+    domain: null,
   }
   for (let index = 0; index < argv.length; index++) {
     const arg = argv[index]
     if (arg === '--require-full') options.requireFull = true
+    else if (arg === '--domain' && argv[index + 1]) {
+      const domain = Number.parseInt(argv[++index], 10)
+      if (!Number.isInteger(domain) || domain < 1 || domain > 6) {
+        throw new Error('--domain must be an integer from 1 to 6')
+      }
+      options.domain = domain
+    }
     else if (arg === '--bank-dir' && argv[index + 1]) options.bankDir = resolve(argv[++index])
     else if (arg === '--staging' && argv[index + 1]) options.stagingPath = resolve(argv[++index])
     else throw new Error(`unknown or incomplete argument: ${arg}`)
@@ -273,9 +304,17 @@ export function main(argv = process.argv.slice(2)) {
   let options
   try {
     options = parseArgs(argv)
-    const questions = loadCleanQuestions(options.bankDir)
+    const scopedBankDir = options.domain == null
+      ? options.bankDir
+      : join(options.bankDir, `domain-${options.domain}`)
+    const questions = loadCleanQuestions(scopedBankDir)
     const staging = JSON.parse(readFileSync(options.stagingPath, 'utf8'))
-    const report = validateRegenCoverage(questions, staging)
+    const shelvedIds = loadShelvedQuestionIds(DEFAULT_SHELVED_DIR)
+    const report = validateRegenCoverage(questions, staging, {
+      ignoreUnknownStagingIds: options.domain != null,
+      ignoredStagingIds: shelvedIds,
+    })
+    if (options.domain != null) console.log(`Domain scope: ${options.domain}`)
     console.log(formatReport(report, options))
     return exitCodeForReport(report, options.requireFull)
   } catch (error) {

@@ -7,7 +7,7 @@ import {
 import { isMcQuestion, isCliQuestion, isOrderingQuestion, isMultiQuestion, multiCorrectIndexes, normalizeSelectedIndexes, correctAnswerLabel, gradeQuestion } from '../questionUtils.js'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { goldCliReviewFor } from '../answerReview/goldAnswerReviewsCliSkill.js'
-import { isTemplateWhyWrongHere } from '../answerReview/answerReviewQuality.js'
+import { isFallbackExplanation, isGenericStructuredFeedback, isTemplateWhyWrongHere } from '../answerReview/answerReviewQuality.js'
 import { familyRemediationActions } from '../features/practice/debriefRemediation.js'
 import QuestionFlagPanel from './QuestionFlagPanel.jsx'
 import StemReplayCTA from '../features/stemReplay/StemReplayCTA.jsx'
@@ -55,7 +55,7 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
       <button
         type="button"
         onClick={() => collapsible && setOpen(o => !o)}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text, fontFamily: 'inherit' }}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', minHeight: 44, background: 'none', border: 'none', padding: '6px 0', cursor: collapsible ? 'pointer' : 'default', color: c.text, fontFamily: 'inherit' }}
       >
         <span className="ccna-review-block__title" style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, textAlign: 'left', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{icon} {title}</span>
         {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>}
@@ -100,6 +100,7 @@ function FamilyRemediationRow({
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6, maxWidth: '100%',
               padding: '4px 10px', borderRadius: 999, cursor: 'pointer', fontFamily: 'inherit',
+              minHeight: 44,
               background: COLORS.purpleDim, border: `1px solid ${COLORS.purpleDim}`,
               color: COLORS.purpleGlow, fontSize: 'var(--ccna-type-xs)', fontWeight: 700,
               overflowWrap: 'anywhere', wordBreak: 'break-word', textAlign: 'left',
@@ -120,6 +121,7 @@ function FamilyRemediationRow({
           onClick={() => onOpenSubnet()}
           style={{
             padding: '4px 10px', borderRadius: 999, cursor: 'pointer', fontFamily: 'inherit',
+            minHeight: 44,
             background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`,
             color: COLORS.sky, fontSize: 'var(--ccna-type-xs)', fontWeight: 700,
           }}
@@ -145,8 +147,17 @@ function WrongChoiceReview({
       misconceptionTested: resolved.misconceptionTested || rebuilt.misconceptionTested,
     }
   }
-  const hasStructured = Boolean(resolved.whatItDoes && resolved.whyWrongHere)
-  const generic = resolved.genericDebrief || isTemplateWhyWrongHere(resolved.whyWrongHere)
+  const generic = resolved.genericDebrief
+    || isTemplateWhyWrongHere(resolved.whyWrongHere)
+    || isFallbackExplanation(resolved.whatItDoes)
+    || isGenericStructuredFeedback(resolved.whyWrongHere)
+    || isGenericStructuredFeedback(resolved.whatItDoes)
+  const hasSpecificExplanation = Boolean(
+    resolved.explanation
+    && !isFallbackExplanation(resolved.explanation)
+    && !isTemplateWhyWrongHere(resolved.explanation),
+  )
+  const hasStructured = Boolean(resolved.whatItDoes && resolved.whyWrongHere && !generic)
   return (
     <>
       {hasStructured ? (
@@ -160,13 +171,13 @@ function WrongChoiceReview({
             <RichText text={resolved.whatItDoes} />
           </div>
         </>
-      ) : resolved.explanation ? (
+      ) : hasSpecificExplanation ? (
         <div>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Why this is wrong</div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid, marginBottom: 4 }}>Why it is wrong here</div>
           <RichText text={resolved.explanation} />
         </div>
       ) : null}
-      {generic && (
+      {generic && !hasSpecificExplanation && (
         <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber }}>
           Generic debrief — flag if unclear
         </div>

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isTemplateWhyWrongHere, isFallbackExplanation } from '../answerReview/answerReviewQuality.js'
+import { isTemplateWhyWrongHere, isFallbackExplanation, isGenericStructuredFeedback } from '../answerReview/answerReviewQuality.js'
 import { buildStemAnchoredIncorrect } from '../answerReview/stemAnchoredDistractor.js'
 import { applyAnswerReviewToQuestion, resolveIncorrectItem } from '../answerReviewLogic.js'
 import { familyRemediationActions } from '../features/practice/debriefRemediation.js'
@@ -12,9 +12,12 @@ describe('template whyWrongHere detection', () => {
     expect(isFallbackExplanation(TEMPLATE)).toBe(true)
   })
 
-  it('allows stem-grounded contrast copy', () => {
-    const ok = 'For "router layer", **Layer 3** matches the required behavior — **Layer 1** answers a different mechanism or constraint than the stem asks.'
-    expect(isTemplateWhyWrongHere(ok)).toBe(false)
+  it('flags legacy mechanism filler found by live Domain 1 review', () => {
+    const mechanismFiller = 'For "router layer", **Layer 3** matches the required behavior — **Layer 1** answers a different mechanism or constraint than the stem asks.'
+    const relatedIdeaFiller = 'Layer 1 points to a related idea, but not the specific behavior or value required for router layer.'
+    expect(isGenericStructuredFeedback(mechanismFiller)).toBe(true)
+    expect(isGenericStructuredFeedback(relatedIdeaFiller)).toBe(true)
+    expect(isFallbackExplanation(mechanismFiller)).toBe(false)
   })
 })
 

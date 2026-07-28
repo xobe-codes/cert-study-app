@@ -99,14 +99,14 @@ export const PLACEMENT_TRAP_GOLD_BATCH2 = {
     ],
     examTip: 'More bandwidth between two switches/routers → **EtherChannel/port-channel**.',
   },
-  'obj-2.8-source-q001': {
-    correct: { choiceIndex: 1, explanation: 'Telnet provides terminal emulation over TCP — remote CLI access to routers and switches (insecure; SSH preferred).' },
+  'obj-2.9-source-q001': {
+    correct: { choiceIndex: 1, explanation: 'An SSID name can be up to 32 characters — the IEEE 802.11 field limit.' },
     incorrect: [
-      { choiceIndex: 0, explanation: 'SNMP is network management polling/traps — it does not provide interactive terminal emulation.', misconceptionTested: 'Using SNMP for terminal emulation' },
-      { choiceIndex: 2, explanation: 'HTTP serves web pages — it is not a CLI terminal emulation protocol like Telnet or SSH.', misconceptionTested: 'Selecting HTTP for terminal access' },
-      { choiceIndex: 3, explanation: 'TFTP transfers files on UDP 69 — it does not offer interactive terminal sessions.', misconceptionTested: 'Confusing TFTP file transfer with terminal emulation' },
+      { choiceIndex: 0, explanation: '16 characters is below the maximum — 802.11 permits up to 32.', misconceptionTested: 'Underestimating the SSID length limit' },
+      { choiceIndex: 2, explanation: '48 characters exceeds the SSID field — the maximum is 32.', misconceptionTested: 'Overestimating the SSID length limit' },
+      { choiceIndex: 3, explanation: '64 characters is not the SSID limit — remember 32 characters.', misconceptionTested: 'Confusing SSID length with another wireless value' },
     ],
-    examTip: 'Terminal emulation over network → **Telnet** (legacy) or **SSH** (secure).',
+    examTip: 'SSID maximum length = **32 characters**.',
   },
   '3.2-c-q1': {
     correct: { choiceIndex: 1, explanation: '10.1.1.10 matches both prefixes, but /26 is longer (more specific) — longest prefix match selects the /26 via R3.' },

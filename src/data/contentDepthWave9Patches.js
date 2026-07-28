@@ -131,9 +131,9 @@ export const CONTENT_DEPTH_WAVE9_PATCHES = {
       ckuIds: ['CKU-WLC'],
     }],
   },
-  '2.8': {
+  '4.4': {
     questions: [{
-      id: '2.8-w9-q1', concept: 'snmp', type: 'definition', difficulty: 'easy',
+      id: '4.4-w9-q1', concept: 'snmp', type: 'definition', difficulty: 'easy',
       question: 'SNMP is primarily used for:',
       choices: ['Network monitoring and management polling', 'Encrypting user login sessions', 'Assigning IP addresses', 'Spanning-tree root election'],
       correctIndex: 0,

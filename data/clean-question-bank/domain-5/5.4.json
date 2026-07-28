@@ -1,6 +1,7 @@
 {
   "schemaVersion": "ccna-clean-question-bank-v1",
   "objectiveId": "5.4",
+  "title": "Configure and verify AAA with TACACS+/RADIUS",
   "domain": 5,
   "builtAt": "2026-06-14T02:38:22.087Z",
   "source": "legacy-import-migration",

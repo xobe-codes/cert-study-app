@@ -49,7 +49,7 @@ export default function QuestionFlagPanel({ question, objectiveId, selectedIndex
           ...styles.secondaryBtn,
           marginTop: 10,
           width: 'auto',
-          minHeight: 32,
+          minHeight: 44,
           padding: '6px 10px',
           fontSize: 'var(--ccna-type-xs)',
           color: COLORS.amber,
@@ -78,7 +78,8 @@ export default function QuestionFlagPanel({ question, objectiveId, selectedIndex
             fontSize: 'var(--ccna-type-xs)',
             cursor: 'pointer',
             fontFamily: 'inherit',
-            padding: 0,
+            padding: '8px 10px',
+            minHeight: 44,
           }}
         >
           Cancel
@@ -96,7 +97,7 @@ export default function QuestionFlagPanel({ question, objectiveId, selectedIndex
             onClick={() => onFlag(r.id)}
             style={{
               ...styles.secondaryBtn,
-              minHeight: 32,
+              minHeight: 44,
               padding: '6px 10px',
               fontSize: 'var(--ccna-type-xs)',
               flex: '1 1 auto',

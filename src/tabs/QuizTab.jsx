@@ -24,15 +24,12 @@ import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, loadQuizSessionSize, saveQuizSessionSize, commitSessionSizeDraft, effectiveSessionSize, isSessionSizeDraftSubmittable, sanitizeSessionSizeDraftInput, sessionSizeDraftFromCommitted } from '../quizSessionConfig.js'
 import { BOOK_REF } from '../data/bookRefFull.js'
-import {
-  PREMIUM_FEATURES,
-  PREMIUM_COMING_SOON_LABEL,
-} from '../premium/premiumFeatures.js'
+import { PREMIUM_FEATURES, PREMIUM_COMING_SOON_LABEL } from '../premium/premiumFeatures.js'
 import {
   askClaudeJSON, MODELS, AiBudgetWarning,
   QUIZ_BANK_MIN,
   seedTestedOutReview, logEvent, haptic,
-  loadQuizBank, saveQuizBank, mergeIntoBank, recordQuizResult,
+  loadQuizBank, saveQuizBank, mergeIntoBank, reconcileCuratedBank, recordQuizResult,
 } from './tabRuntimeDeps.js'
 import { QUIZ_SCHEMA } from '../ai/claudeClient.js'
 import { recordQuestionHealthSignal } from '../quiz/questionHealthSignals.js'
@@ -40,11 +37,7 @@ import { confidenceFeedbackCopy } from '../quiz/confidenceScheduler.js'
 import { applyAnswerReviewToQuestion, inferTrapForChoice } from '../answerReviewLogic.js'
 import { diagnoseWrongAnswer } from '../answerReview/diagnoseWrongAnswer.js'
 import { bumpSessionStudy } from '../home/sessionRecap.js'
-import {
-  createTrapStreakState,
-  recordTrapMiss,
-  shouldShowTrapStreakCta,
-} from '../features/practice/trapStreak.js'
+import { createTrapStreakState, recordTrapMiss, shouldShowTrapStreakCta } from '../features/practice/trapStreak.js'
 import {
   OrderingQuestion, QuestionMeta, PreAssessment,
 } from './studyQuizShared.jsx'
@@ -177,21 +170,23 @@ export function QuizTab({
     const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
     await commitSessionSize(sessionSizeDraft, max)
   }
-
   async function startPracticeSession(forceNew = false) {
     const max = bankSize > 0 ? bankSize : MAX_QUIZ_SESSION_SIZE
     await commitSessionSize(sessionSizeDraft, max)
     startQuiz(forceNew)
   }
-
-  // Keep the idle screen honest about how many questions are stored locally.
   const refreshBankSize = useCallback(async () => {
-    const bank = await loadQuizBank()
+    await preloadCleanBankForObjective(objective.id)
+    let bank = await loadQuizBank()
+    const curatedQs = getCuratedQuestions(objective.id)
+    if (curatedQs.length) {
+      bank = reconcileCuratedBank(bank, objective.id, curatedQs)
+      await saveQuizBank(bank)
+    }
     const qs = bank[objective.id] || []
     setBankSize(qs.length)
     setBankQuestions(qs)
   }, [objective.id])
-
   useEffect(() => {
     if (current && isOrderingQuestion(current)) {
       setOrderDraft(shuffleArrayCopy(current.orderItems))
@@ -201,10 +196,7 @@ export function QuizTab({
     setCliAnswer('')
     setSelectedIndexes([])
   }, [current])
-
-  // forceNew=true always generates a fresh set via the API and adds it to the
-  // bank. Otherwise we reuse stored questions whenever the bank is big enough,
-  // which means review sessions cost zero API calls.
+  // forceNew generates via API; otherwise reuse the saved canonical bank.
   const startQuiz = useCallback(async (forceNew) => {
     setError(null)
     sessionRatings.current = []
@@ -215,16 +207,12 @@ export function QuizTab({
       let bank = await loadQuizBank()
       let banked = bank[objective.id] || []
       let usedApi = false
-
-      // Curated objectives: seed their hand-written questions into the bank so
-      // quizzes run with zero API cost. Done once (skipped if already present).
       const curatedQs = getCuratedQuestions(objective.id)
-      if (curatedQs.length && banked.length < curatedQs.length) {
-        bank = mergeIntoBank(bank, objective.id, curatedQs)
+      if (curatedQs.length) {
+        bank = reconcileCuratedBank(bank, objective.id, curatedQs)
         await saveQuizBank(bank)
         banked = bank[objective.id]
       }
-
       if (forceNew) {
         if (!premiumUnlocked) {
           onPremiumBlocked?.(PREMIUM_FEATURES.quiz_generate, 'quiz_tab', { objectiveId: objective.id })
@@ -478,13 +466,13 @@ export function QuizTab({
         lastRating: current.ratings?.length ? current.ratings[current.ratings.length - 1].value : null,
       })
     }
-    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
       correct,
       latencyMs: takeLatencyMs(shownAtRef.current),
       selectedIndexes: [...selectedIndexes],
+      responseType: 'multi',
     }).catch(() => {})
     recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
@@ -518,7 +506,13 @@ export function QuizTab({
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
-    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordAnswerOutcome({
+      objectiveId: objective.id,
+      questionId: current.id,
+      correct,
+      latencyMs: takeLatencyMs(shownAtRef.current),
+      responseType: 'ordering',
+    }).catch(() => {})
     recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       collectDeferredTip(current, null)
@@ -544,7 +538,13 @@ export function QuizTab({
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
     if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
-    logEvent('user_answered_question', { objectiveId: objective.id, questionId: current.id, correct })
+    recordAnswerOutcome({
+      objectiveId: objective.id,
+      questionId: current.id,
+      correct,
+      latencyMs: takeLatencyMs(shownAtRef.current),
+      responseType: 'cli',
+    }).catch(() => {})
     recordPracticeExposure(objective.id, current.id, correct)
     if (!correct) {
       collectDeferredTip(current, null)
@@ -874,7 +874,7 @@ export function QuizTab({
                   key={opt.value}
                   onClick={() => rate(opt.value)}
                   style={{
-                    flex: '1 1 auto', minHeight: 40, borderRadius: 10, cursor: 'pointer',
+                    flex: '1 1 auto', minHeight: 44, borderRadius: 10, cursor: 'pointer',
                     background: active ? opt.dim : COLORS.surface,
                     border: `1px solid ${active ? opt.border : COLORS.border}`,
                     color: active ? opt.accent : COLORS.silverMid,

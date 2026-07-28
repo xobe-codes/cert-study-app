@@ -1,6 +1,6 @@
 {
   "objectiveId": "4.5",
-  "title": "Describe the use of syslog features including facilities and levels",
+  "title": "Describe the use of syslog features",
   "questions": [
     {
       "id": "obj-4.5-source-q001",

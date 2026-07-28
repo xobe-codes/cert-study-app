@@ -158,6 +158,9 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/permit any|deny any|wildcard/i.test(w) && /acl|access.?list/i.test(b)) {
     return `ACL syntax (${hook}): **${correct}** matches the required match fields — **${wrong}** uses the wrong wildcard or match scope.`
   }
+  if (/ssid|mac filter|port security/i.test(w) && /wpa|wireless|802\.11|wifi|wlan/i.test(b)) {
+    return `WLAN security (${hook}): **${correct}** provides the admission control the stem requires — **${wrong}** does not authenticate and protect the wireless join.`
+  }
   if (/wep\b|tkip\b|open authentication/i.test(w) && /wpa|wireless|802\.11|wifi/i.test(b)) {
     return `WLAN security (${hook}): **${correct}** meets the security requirement — **${wrong}** is deprecated or too weak for the scenario.`
   }
@@ -243,7 +246,8 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
     return `DHCP (${hook}): **${correct}** is the message or role this stem describes — **${wrong}** is a different DORA step or relay/server mix-up.`
   }
 
-  return `For "${hook}", **${correct}** matches the required behavior — **${wrong}** answers a different mechanism or constraint than the stem asks.`
+  const evidence = normalize(fact).slice(0, 180) || `${correct} is the keyed result for ${hook}`
+  return `The explanation establishes: **${evidence}** Therefore **${correct}** fits the tested condition, while **${wrong}** would produce a different routing or protocol result.`
 }
 
 function inferMisconception({ wrong, correct, hooks, blob }) {
@@ -291,7 +295,10 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (isStpPortStateSequence(choice)) {
     return `**${choice}** lists an RSTP/STP port-state transition order that does not match the default sequence tested here.`
   }
-  if (/flood|all ports|broadcast/i.test(w)) {
+  if (/ssid.*broadcast|broadcast.*ssid/i.test(w) && /wpa|wireless|802\.11|wifi|wlan/i.test(b)) {
+    return `**${choice}** hides the network name from ordinary discovery, but it does not authenticate clients or encrypt their traffic.`
+  }
+  if (/flood|all ports|broadcast/i.test(w) && /switch|frame|mac|cam|vlan|layer 2|ethernet/i.test(b)) {
     return `**${choice}** describes flooding the frame to multiple ports in the VLAN.`
   }
   if (/default gateway/i.test(w)) {

@@ -1093,11 +1093,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
         "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
-        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
       "correctIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
+      "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is the broadcast address.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -1109,7 +1109,7 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
+          "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is broadcast."
         },
         "incorrect": [
           {
@@ -1140,26 +1140,26 @@ export const CLEAN_QUESTIONS = {
         {
           "choiceIndex": 0,
           "misconceptionReason": "Using CIDR in ip nat pool",
-          "whyItSeems": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length.",
+          "whyItSeems": "The /28 notation correctly names the owned block, but IOS NAT pool syntax does not accept CIDR here.",
+          "whyWrongHere": "A dynamic NAT pool requires separate first and last host addresses followed by the netmask.",
           "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
-          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\": IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179."
+          "contrast": "Use .2 through .14 with netmask 255.255.255.240, not the network address written as /28."
         },
         {
           "choiceIndex": 1,
-          "misconceptionReason": "Wrong netmask for /28 block",
-          "whyItSeems": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "misconceptionReason": "Using a generic IP pool with a /24 mask",
+          "whyItSeems": "It supplies a named range, but it omits the nat keyword and assigns the wrong subnet mask.",
+          "whyWrongHere": "The owned prefix is /28, so the command needs ip nat pool and netmask 255.255.255.240.",
           "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
-          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+          "contrast": "Correct NAT syntax and the /28 mask are both required; this option has neither."
         },
         {
-          "choiceIndex": 2,
-          "misconceptionReason": "Applying \"RouterA(config)#ip nat pool EntPool \" without matching nat",
-          "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "choiceIndex": 3,
+          "misconceptionReason": "Using the broadcast address and a /24 mask",
+          "whyItSeems": "The range starts after the router address, but it includes .15 and uses a /24 mask.",
+          "whyWrongHere": "For 179.43.44.0/28, .15 is broadcast and the required mask is 255.255.255.240.",
           "memoryAnchor": "Dynamic pool: ip nat pool <name> <start> <end> netmask <mask>.",
-          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+          "contrast": "The usable pool is .2 through .14 with a /28 mask; this option includes broadcast and claims /24."
         }
       ]
     },
@@ -2016,11 +2016,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "RouterA(config)#ip nat pool EntPool 179.43.44.0/28",
         "RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0",
-        "RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240",
+        "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240",
         "RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0"
       ],
       "correctIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.",
+      "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is the broadcast address.",
       "type": "application",
       "difficulty": "hard",
       "concept": "nat",
@@ -2037,7 +2037,7 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block."
+          "explanation": "Pool for 179.43.44.0/28: use 179.43.44.2 through 179.43.44.14 with netmask 255.255.255.240. The router already uses .1 and .15 is broadcast."
         },
         "incorrect": [
           {
@@ -2068,26 +2068,26 @@ export const CLEAN_QUESTIONS = {
         {
           "choiceIndex": 0,
           "misconceptionReason": "Using CIDR notation inside ip nat pool command",
-          "whyItSeems": "RouterA(config)#ip nat pool EntPool 179.43.44.0/28 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 matches prefix, shortening, or assignment rules — RouterA(config)#ip nat pool EntPool 179.43.44.0/28 breaks IPv6 syntax or prefix length.",
+          "whyItSeems": "The /28 notation correctly names the owned block, but IOS NAT pool syntax does not accept CIDR here.",
+          "whyWrongHere": "A dynamic NAT pool requires separate first and last host addresses followed by the netmask.",
           "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
-          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.0/28\": IPv6 addressing (inside local): RouterA(config)#ip nat pool EntPool 179."
+          "contrast": "Use .2 through .14 with netmask 255.255.255.240, not the network address written as /28."
         },
         {
           "choiceIndex": 1,
           "misconceptionReason": "Using ip pool instead of ip nat pool",
-          "whyItSeems": "\"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "whyItSeems": "It supplies a named range, but it omits the nat keyword and assigns the wrong subnet mask.",
+          "whyWrongHere": "The owned prefix is /28, so the command needs ip nat pool and netmask 255.255.255.240.",
           "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
-          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+          "contrast": "Correct NAT syntax and the /28 mask are both required; this option has neither."
         },
         {
-          "choiceIndex": 2,
-          "misconceptionReason": "Including interface address as pool start",
-          "whyItSeems": "\"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0 uses the mask style this stem requires — RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 confuses subnet mask with ACL/OSPF wildcard bits.",
+          "choiceIndex": 3,
+          "misconceptionReason": "Using the broadcast address and a /24 mask",
+          "whyItSeems": "The range starts after the router address, but it includes .15 and uses a /24 mask.",
+          "whyWrongHere": "For 179.43.44.0/28, .15 is broadcast and the required mask is 255.255.255.240.",
           "memoryAnchor": "Dynamic NAT pool: ip nat pool <name> <first> <last> netmask <mask>.",
-          "contrast": "Correct \"RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0\" vs wrong \"RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240\": Mask/wildcard (inside local): RouterA(config)#ip nat pool EntPool 179."
+          "contrast": "The usable pool is .2 through .14 with a /28 mask; this option includes broadcast and claims /24."
         }
       ]
     },
@@ -9029,11 +9029,11 @@ export const CLEAN_QUESTIONS = {
       "choices": [
         "Router#boot tftp://192.168.1.2",
         "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
-        "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin",
+        "Router(config)#boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2",
         "Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2"
       ],
       "correctIndex": 2,
-      "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config.",
+      "explanation": "Use boot system tftp <image-filename> <server-address> in global configuration mode.",
       "type": "application",
       "difficulty": "hard",
       "concept": "tftp",
@@ -9047,57 +9047,57 @@ export const CLEAN_QUESTIONS = {
       "answerReview": {
         "correct": {
           "choiceIndex": 2,
-          "explanation": "boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin — Cisco-style TFTP URL then image filename in global config."
+          "explanation": "Use boot system tftp <image-filename> <server-address> in global configuration mode."
         },
         "incorrect": [
           {
             "choiceIndex": 0,
-            "explanation": "boot tftp:// is privileged EXEC syntax — boot system belongs in global config and needs the image filename.",
+            "explanation": "This omits the boot system keywords, the image filename, and global configuration mode.",
             "misconceptionTested": "Exec-mode boot for TFTP image",
             "whatItDoes": "Attempts a privileged-EXEC boot with only a TFTP URL.",
-            "whyWrongHere": "IOS uses Router(config)#boot system tftp://<server> <filename>."
+            "whyWrongHere": "IOS uses boot system tftp <image-filename> <server-address> in global configuration mode."
           },
           {
             "choiceIndex": 1,
-            "explanation": "Missing system keyword — IOS uses boot system tftp://<server> <filename>.",
+            "explanation": "This is missing the system keyword and uses an unsupported URL-style argument.",
             "misconceptionTested": "boot without system keyword",
             "whatItDoes": "Uses boot without the system keyword.",
-            "whyWrongHere": "Correct form is boot system tftp://192.168.1.2 <image.bin>."
+            "whyWrongHere": "Correct form is boot system tftp <image.bin> 192.168.1.2."
           },
           {
             "choiceIndex": 3,
-            "explanation": "Filename before the TFTP URL reverses the usual Cisco boot system tftp://… <filename> order.",
+            "explanation": "This places the protocol after the filename and uses unsupported URL-style syntax.",
             "misconceptionTested": "Reversed boot system argument order",
-            "whatItDoes": "Places the image name before the tftp:// URL.",
-            "whyWrongHere": "Keyed syntax is boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin."
+            "whatItDoes": "Places the image name before an unsupported tftp:// URL.",
+            "whyWrongHere": "Keyed syntax is boot system tftp c2900-universalk9-mz.SPA.151-4.M4.bin 192.168.1.2."
           }
         ],
-        "examTip": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first."
+        "examTip": "Boot from TFTP: boot system tftp <image.bin> <server-ip> in global configuration mode."
       },
       "regeneratedIncorrect": [
         {
           "choiceIndex": 0,
           "misconceptionReason": "Exec-mode boot for TFTP image",
-          "whyItSeems": "Router#boot tftp://192.168.1.2 states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router#boot tftp://192.168.1.2 answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
-          "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router#boot tftp://192.168.1.2\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+          "whyItSeems": "It names TFTP and the correct server, but it is missing the system keyword and image filename.",
+          "whyWrongHere": "The boot variable is configured globally with boot system tftp followed by filename and server address.",
+          "memoryAnchor": "Boot from TFTP: boot system tftp <image.bin> <server-ip>.",
+          "contrast": "The correct command supplies boot system, the full image filename, and 192.168.1.2 in that order."
         },
         {
           "choiceIndex": 1,
           "misconceptionReason": "boot without system keyword",
-          "whyItSeems": "Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
-          "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router(config)#boot tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+          "whyItSeems": "It includes the server and filename in global configuration mode, but omits the system keyword.",
+          "whyWrongHere": "IOS requires boot system tftp <image.bin> <server-ip>; URL-style syntax is not the keyed form.",
+          "memoryAnchor": "Boot from TFTP: boot system tftp <image.bin> <server-ip>.",
+          "contrast": "Add system and place the filename before the server address."
         },
         {
-          "choiceIndex": 2,
+          "choiceIndex": 3,
           "misconceptionReason": "Reversed boot system argument order",
-          "whyItSeems": "Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.",
-          "whyWrongHere": "For \"universalk9\", Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2 matches the required behavior — Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Boot from TFTP: boot system tftp://<ip> <image.bin> in global config + copy tftp flash first.",
-          "contrast": "Correct \"Router(config)#boot system c2900-universalk9-mz.SPA.151-4.M4.bin tftp://192.168.1.2\" vs wrong \"Router(config)#boot system tftp://192.168.1.2 c2900-universalk9-mz.SPA.151-4.M4.bin\": For \"universalk9\", Router(config)#boot system c2900-universalk9-mz."
+          "whyItSeems": "It includes boot system and both arguments, but places an unsupported URL after the filename.",
+          "whyWrongHere": "The keyed IOS form is boot system tftp <image.bin> <server-ip>, with tftp as a separate keyword.",
+          "memoryAnchor": "Boot from TFTP: boot system tftp <image.bin> <server-ip>.",
+          "contrast": "Use the tftp keyword before the filename and a plain server IP afterward."
         }
       ]
     },

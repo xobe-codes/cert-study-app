@@ -41,12 +41,12 @@ describe('goldAnswerReviewsBatch30', () => {
     }
   })
 
-  it('GOLD_ANSWER_REVIEWS covers all 914 clean bank source questions with no gaps', () => {
+  it('GOLD_ANSWER_REVIEWS covers all 904 clean bank source questions with no gaps', () => {
     const bankQuestions = collectCleanBankQuestions()
-    expect(bankQuestions.length).toBe(914)
+    expect(bankQuestions.length).toBe(904)
 
     const sourceQuestions = bankQuestions.filter((q) => q.id.includes('source'))
-    expect(sourceQuestions.length).toBe(666)
+    expect(sourceQuestions.length).toBe(656)
 
     const missing = sourceQuestions
       .filter((q) => !GOLD_ANSWER_REVIEWS[q.id])

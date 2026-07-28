@@ -1,6 +1,6 @@
 {
   "objectiveId": "4.7",
-  "title": "Explain the forwarding per-hop behavior for QoS",
+  "title": "Explain QoS forwarding per-hop behavior",
   "questions": [
     {
       "id": "obj-4.7-source-q001",

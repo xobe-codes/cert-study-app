@@ -579,7 +579,7 @@ export function buildAppShellCss(colors) {
         padding-right: 0;
       }
       .app-shell--compact-top .objective-wayfind-row .objective-back-btn {
-        min-height: 40px;
+        min-height: 44px;
         padding: 0 10px 0 2px;
       }
       .app-shell--compact-top .objective-title {

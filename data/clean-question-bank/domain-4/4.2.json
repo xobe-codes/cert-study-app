@@ -1,6 +1,6 @@
 {
   "objectiveId": "4.2",
-  "title": "Configure and verify NTP operating in client and server mode",
+  "title": "Configure and verify NTP",
   "questions": [
     {
       "id": "obj-4.2-source-q001",

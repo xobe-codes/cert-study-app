@@ -387,7 +387,7 @@ export const BATCH10_GOLD = {
   'obj-4.1-source-q008': {
     "correct": {
       "choiceIndex": 2,
-      "explanation": "Pool for 179.43.44.0/28: `ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240` — /28 netmask matches the owned block."
+      "explanation": "Pool for 179.43.44.0/28: use `.2` through `.14` with netmask `255.255.255.240`; `.1` is already assigned and `.15` is broadcast."
     },
     "incorrect": [
       {

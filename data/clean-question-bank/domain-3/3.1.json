@@ -857,7 +857,7 @@
     },
     {
       "id": "obj-3.1-source-q008",
-      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n! Destination 192.168.4.85 matches 192.168.4.0/24 → next-hop 10.0.0.1\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
+      "question": "Running-config excerpt:\nip route 192.168.4.0 255.255.255.0 10.0.0.1\nip route 192.168.5.0 255.255.255.0 10.0.0.2\n\nWhat is the next-hop IP for a destination address of 192.168.4.85?",
       "choices": [
         "10.0.0.2",
         "192.168.4.2",

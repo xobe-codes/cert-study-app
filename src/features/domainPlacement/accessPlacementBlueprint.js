@@ -17,6 +17,6 @@ export const ACCESS_PLACEMENT_BLUEPRINT = {
     { id: 'obj-2.6-source-q002', objectiveId: '2.6', trap: false },
     { id: 'obj-2.7-source-q001', objectiveId: '2.7', trap: true },
     { id: 'obj-2.7-source-q002', objectiveId: '2.7', trap: false },
-    { id: 'obj-2.8-source-q001', objectiveId: '2.8', trap: true },
+    { id: 'obj-2.9-source-q001', objectiveId: '2.8', trap: true },
   ],
 }

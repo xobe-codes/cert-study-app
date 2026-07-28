@@ -7340,7 +7340,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q007",
-      "question": "what is wrong with this JSON file? { \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }",
+      "question": "{ \"interface\": \"Fa0/1\", \"bandwidth\": \"100mb\", \"status\": \"up\", \"address\": { \"ipaddress\": \"192.168.1.5\", \"subnetmask\": \"255.255.255.0\", \"default gateway\": \"192.168.1.1\", }\n\nJSON exhibit:\n{\n  \"interface\": \"Fa0/1\",\n  \"bandwidth\": \"100mb\",\n  \"status\": \"up\",\n  \"address\": {\n    \"ipaddress\": \"192.168.1.5\",\n    \"subnetmask\": \"255.255.255.0\",\n    \"default gateway\": \"192.168.1.1\",\n  }\n}\n\nWhat is wrong with this JSON file?",
       "choices": [
         "The interface of Fa0/1 is capitalized.",
         "The address should have a square bracket.",
@@ -7574,7 +7574,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q010",
-      "question": "which statement best represents the JSON data? { \"ipaddress\": \"192.168.1.2\", \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\", \"routes\": [ { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" } ] }",
+      "question": "JSON exhibit:\n{\n  \"ipaddress\": \"192.168.1.2\",\n  \"subnet_mask\": \"255.255.255.0\",\n  \"defaultgw\": \"192.168.1.1\",\n  \"routes\": [\n    { \"route\": \"10.0.0.0/8 via 192.168.1.10\" \"route\": \"0.0.0.0/0 via 192.168.1.1\" }\n  ]\n}\n\nWhich statement best identifies the JSON syntax problem?",
       "choices": [
         "The interface data is incorrect because it is missing a comma (or },{) between the two route objects.",
         "The interface data is incorrect because it is missing a set of square brackets around the second route.",
@@ -7625,34 +7625,34 @@ export const CLEAN_QUESTIONS = {
       },
       "regeneratedIncorrect": [
         {
-          "choiceIndex": 0,
-          "misconceptionReason": "Comma after routes key only",
-          "whyItSeems": "\"The interface data is incorrect because it is missing a comma after the routes.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — The interface data is incorrect because it is missing a comma after the routes. answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
-          "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"The interface data is incorrect because it is missing a comma after the routes.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+          "choiceIndex": 1,
+          "misconceptionReason": "Adding nested square brackets instead of separating objects",
+          "whyItSeems": "Because routes is an array, another pair of square brackets can seem necessary for the second route.",
+          "whyWrongHere": "The array brackets already exist; the two route entries need a comma and normally separate objects inside that array.",
+          "memoryAnchor": "JSON arrays of objects use [{...},{...}], with commas between objects.",
+          "contrast": "Add a comma and object boundary between routes, not another nested array."
         },
         {
           "choiceIndex": 2,
           "misconceptionReason": "Underscore invalid in JSON",
           "whyItSeems": "\"The interface data is incorrect because it contains an illegal underscore character.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — The interface data is incorrect because it contains an illegal underscore character. answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
-          "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"The interface data is incorrect because it contains an illegal underscore character.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+          "whyWrongHere": "Underscores are legal inside quoted JSON property names such as subnet_mask.",
+          "memoryAnchor": "Quoted JSON keys may contain underscores; commas and braces define structure.",
+          "contrast": "The syntax failure is between the route entries, not in the subnet_mask key."
         },
         {
           "choiceIndex": 3,
           "misconceptionReason": "Valid JSON exhibit",
           "whyItSeems": "\"Nothing is wrong with the exhibit.\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route. matches the required behavior — Nothing is wrong with the exhibit. answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "SDN planes: data = forward | control = routing protocols/STP | management = SNMP/syslog/CDP.",
-          "contrast": "Correct \"The interface data is incorrect because it is missing a set of square brackets around the second route.\" vs wrong \"Nothing is wrong with the exhibit.\": For \"ipaddress\", The interface data is incorrect because it is missing a set of square brackets around the second route."
+          "whyWrongHere": "Two route members appear without a comma or separate object boundary, so a JSON parser rejects the exhibit.",
+          "memoryAnchor": "JSON arrays of objects use [{...},{...}], with commas between objects.",
+          "contrast": "The exhibit is invalid until the route entries are separated correctly."
         }
       ]
     },
     {
       "id": "obj-6.7-source-q011",
-      "question": "which statement best represents the JSON data? { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }",
+      "question": "{ \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] ], \"subnet_mask\": \"255.255.255.0\", \"defaultgw\": \"192.168.1.1\" }\n\nJSON exhibit:\n{\n  \"ipaddress\": [\"192.168.1.2\", [\"192.168.1.4\"]],\n  \"subnet_mask\": \"255.255.255.0\",\n  \"defaultgw\": \"192.168.1.1\"\n}\n\nWhich statement best describes the structure of the JSON data?",
       "choices": [
         "The interface data is incorrect because it is missing a comma after defaultgw.",
         "The interface data is incorrect because it is missing a subnet mask for the second IP address.",
@@ -7730,7 +7730,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-6.7-source-q012",
-      "question": "which statement best represents the JSON data? { \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }",
+      "question": "{ \"interface\": { \"ipaddress\": [ \"192.168.1.2\", [ \"192.168.1.4\" ] \"subnet_mask\": [ \"255.255.255.0\", [ \"255.255.255.0\" ] ], \"defaultgw\": \"192.168.1.1\" }\n\nJSON exhibit:\n{\n  \"interface\": {\n    \"ipaddress\": [\"192.168.1.2\", [\"192.168.1.4\"]]\n    \"subnet_mask\": [\"255.255.255.0\", [\"255.255.255.0\"]],\n    \"defaultgw\": \"192.168.1.1\"\n  }\n}\n\nWhich statement best identifies the JSON syntax problem?",
       "choices": [
         "The interface data is incorrect because it is missing a comma after defaultgw.",
         "The interface data is incorrect because it is missing a closing square bracket after the list of IP addresses.",

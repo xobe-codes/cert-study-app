@@ -1,6 +1,7 @@
 import { STORAGE_KEYS } from '../storageKeys.js'
 import { normalizeQuestionForBank } from '../questionUtils.js'
 import { nextSrs, applyConfidenceToSrs, SRS_LADDER } from './confidenceScheduler.js'
+import { filterHealthyQuestions } from '../data/questionHealth.js'
 
 export const QUIZ_BANK_MIN = 5
 export const MASTERY_GATE = 0.7
@@ -17,7 +18,13 @@ export function quizQuestionKey(q) {
 }
 
 export async function loadQuizBank() {
-  return (await window.storage.getItem(STORAGE_KEYS.quizBank)) || {}
+  const stored = (await window.storage.getItem(STORAGE_KEYS.quizBank)) || {}
+  return Object.fromEntries(
+    Object.entries(stored).map(([objectiveId, questions]) => [
+      objectiveId,
+      filterHealthyQuestions(Array.isArray(questions) ? questions : []),
+    ]),
+  )
 }
 
 export async function saveQuizBank(bank) {
@@ -32,6 +39,25 @@ export function mergeIntoBank(bank, objectiveId, questions) {
     .filter(q => q && q.question && !seen.has(normalizeQuestionText(q.question)))
     .map(q => normalizeQuestionForBank(q, objectiveId, counter++))
   bank[objectiveId] = [...existing, ...added]
+  return bank
+}
+
+/** Replace a curated objective's stale content with its current canonical pool. */
+export function reconcileCuratedBank(bank, objectiveId, questions) {
+  const existing = bank[objectiveId] || []
+  const byId = new Map(existing.filter(q => q?.id).map(q => [q.id, q]))
+  const byText = new Map(existing.filter(q => q?.question).map(q => [quizQuestionKey(q), q]))
+  bank[objectiveId] = questions.map((question, index) => {
+    const normalized = normalizeQuestionForBank(question, objectiveId, index)
+    const previous = byId.get(normalized.id) || byText.get(quizQuestionKey(normalized))
+    if (!previous) return normalized
+    return {
+      ...normalized,
+      attempts: previous.attempts || [],
+      ratings: previous.ratings || [],
+      ...(previous.srs ? { srs: previous.srs } : {}),
+    }
+  })
   return bank
 }
 

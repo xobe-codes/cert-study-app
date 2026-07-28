@@ -18,10 +18,13 @@
     },
     "3.5": {
       "active": 30
+    },
+    "3.6": {
+      "active": 10
     }
   },
   "totals": {
-    "active": 239,
+    "active": 249,
     "shelved": 0
   }
 }

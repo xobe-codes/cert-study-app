@@ -1,6 +1,6 @@
 {
   "objectiveId": "3.5",
-  "title": "Describe the purpose, functions, and concepts of first hop redundancy protocols",
+  "title": "Describe and configure first hop redundancy protocols (HSRP)",
   "questions": [
     {
       "id": "obj-3.5-source-q001",

@@ -6,6 +6,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { DOMAIN_1_OBJECTIVES, EXTRA_CLEAN_OBJECTIVES } from './lib/sourceBankConfig.mjs'
+import { loadShelvedQuestionIds } from './validateRegenCoverage.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -14,6 +15,7 @@ const CLEAN_Q_DIR = join(ROOT, 'src', 'data', 'cleanQuestions')
 const KB = join(ROOT, 'src', 'data', 'ccnaKnowledgeBaseDomain4.js')
 const MANIFEST = join(ROOT, 'data', 'clean-question-bank', 'manifest.json')
 const REGEN = join(ROOT, 'src', 'answerReview', 'regeneratedExplanations.json')
+const SHELVED = join(ROOT, 'data', 'shelved-questions')
 
 function readMetaObjectiveCount() {
   const text = readFileSync(META, 'utf-8')
@@ -27,7 +29,11 @@ async function validateCompiledRegen(errors) {
     errors.push('missing src/answerReview/regeneratedExplanations.json')
     return
   }
-  const expected = new Set(Object.keys(JSON.parse(readFileSync(REGEN, 'utf-8'))))
+  const shelvedIds = loadShelvedQuestionIds(SHELVED)
+  const expected = new Set(
+    Object.keys(JSON.parse(readFileSync(REGEN, 'utf-8')))
+      .filter(id => !shelvedIds.has(id)),
+  )
   const compiled = new Map()
   for (let domain = 1; domain <= 6; domain += 1) {
     const path = join(CLEAN_Q_DIR, `domain-${domain}.js`)

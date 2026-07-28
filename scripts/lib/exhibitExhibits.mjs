@@ -200,5 +200,6 @@ export function exhibitForQuestion(q) {
     .trim()
   const hasInlineJson = stem.includes('{ "') || stem.includes('{"')
   if (hasInlineJson) return { ...q, question: stem, exhibitConverted: true }
+  if (stem.includes(text)) return { ...q, question: stem, exhibitConverted: true }
   return { ...q, question: `${text}\n\n${stem}`, exhibitConverted: true }
 }

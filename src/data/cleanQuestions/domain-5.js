@@ -3471,7 +3471,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.3-source-q015",
-      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nSwitch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
+      "question": "Switch# show users\n    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 0          local\n   1 vty 0     admin      192.168.1.50         0          local\n   2 vty 1                idle                 5          local\n\nyou have listed all management sessions on the switch. On which line are you connected?",
       "choices": [
         "Console 0",
         "VTY 0",
@@ -4172,7 +4172,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.4-source-q005",
-      "question": "A smart card is an example of which type of authentication?",
+      "question": "Using a smart card together with the passphrase or PIN that unlocks it is an example of which type of authentication?",
       "choices": [
         "Single-factor authentication",
         "RADIUS authentication",
@@ -6335,7 +6335,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q019",
-      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nNetwork layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
+      "question": "Network layout:\nHost 192.168.2.6 on user VLAN\nHR web server 192.168.1.3 port 80\nOther servers and Internet should remain reachable\n\nyou need to block traffic from the host 192.168.2.6 to the HR web application server but allow it to get to all other servers and the Internet. Which command(s) will achieve this?",
       "choices": [
         "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit any any",
         "Router(config)#access-list 101 deny tcp host 192.168.2.6 host 192.168.1.3 eq 80 Router(config)#access-list 101 permit ip any any",
@@ -6566,7 +6566,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q022",
-      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
+      "question": "ACL requirement:\nBlock host network → HR web app (TCP/80) while permitting intranet web server access\nNeeds protocol/port matching → extended ACL\n\nyou need to block traffic from the host network to the HR web application and allow all traffic to get to the intranet web server. Which type of ACL would you use?",
       "choices": [
         "Standard",
         "Dynamic",
@@ -6796,7 +6796,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q025",
-      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nTopology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
+      "question": "Topology:\nGi0/0: user network (hosts)\nGi0/2: HR network (to be blocked from host network)\nACL 2: deny host network, permit other traffic — apply outbound on HR-facing interface\n\nyou want to block the host network from accessing the HR network. Which commands will place the access list on the proper interface to make it effective?",
       "choices": [
         "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 in",
         "Router(config)#interface gi 0/0 Router(config-if)#ip access-group 2 out",
@@ -6874,7 +6874,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.6-source-q026",
-      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nSwitch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
+      "question": "Switch# show ip access-list named_list\nExtended IP access list named_list\n    10 deny tcp host 192.168.2.6 host 192.168.1.3 eq www\n    20 permit ip any any\n\nWhich command can see the output below with the line numbers?",
       "choices": [
         "Switch#show access-list named_list",
         "Switch#show ip access-list named_list",
@@ -8860,7 +8860,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q023",
-      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nSwitch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
+      "question": "Switch# show port-security interface Gi0/1\nPort Security              : Enabled\nPort Status                : Secure-shutdown\nViolation Mode             : Shutdown\nTotal MAC Addresses        : 1 (max 1)\nSecurity Violation Count   : 1\n\nYou received a call that a port is no longer active. The port has port security configured on it. What is the problem?",
       "choices": [
         "The port has been administratively shutdown.",
         "The port has an access violation on it.",
@@ -9015,7 +9015,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q025",
-      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nSwitch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
+      "question": "Switch# show port-security interface Gi0/2\nPort Status                : Secure-shutdown (violation)\nViolation Mode             : Shutdown\n\nYou receive a call that a port on the switch is not working. You determine that a port-security violation has been experienced. Once the violation has been remediated, how will you reset the port so that it functions again?",
       "choices": [
         "SwitchA(config-if)#no port-security",
         "SwitchA(config-if)#no shutdown",
@@ -9170,7 +9170,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.7-source-q027",
-      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nSwitch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
+      "question": "Switch# show port-security\nSecure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1        1              1            0                  Shutdown\nGi0/2        2              2            1                  Shutdown\n\nWhich command is used to see the output below?",
       "choices": [
         "Switch#show port-security details",
         "Switch#show mac address-table secure",
@@ -10478,28 +10478,28 @@ export const CLEAN_QUESTIONS = {
       },
       "regeneratedIncorrect": [
         {
-          "choiceIndex": 0,
-          "misconceptionReason": "Stopping at WPA2 without a join-control mechanism",
-          "whyItSeems": "\"Enable WPA2\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Enable WPA2 answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
-          "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Enable WPA2\": For \"wireless security\", Enable MAC filtering matches the required behavior — Enable WPA2 answers a different mechanism or constraint than the stem asks."
+          "choiceIndex": 1,
+          "misconceptionReason": "Treating MAC filtering as strong WLAN authentication",
+          "whyItSeems": "MAC filtering names individual devices, so it can sound more device-specific than a shared WPA2 passphrase.",
+          "whyWrongHere": "MAC addresses are visible and spoofable; WPA2 authenticates joining clients and encrypts their wireless traffic.",
+          "memoryAnchor": "WPA2/WPA3 provides real WLAN admission security; MAC filtering is only a weak supplemental control.",
+          "contrast": "Use WPA2 with a strong passphrase for SOHO admission; do not rely on a spoofable MAC allowlist."
         },
         {
           "choiceIndex": 2,
           "misconceptionReason": "Applying switch port security to WLAN admission",
           "whyItSeems": "\"Enable port security\" looks tempting because it names a familiar related idea near this stem, so it feels like it could be the answer.",
-          "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Enable port security answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
-          "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Enable port security\": For \"wireless security\", Enable MAC filtering matches the required behavior — Enable port security answers a different mechanism or constraint than the stem asks."
+          "whyWrongHere": "Port security limits MAC addresses on wired switch ports; it does not authenticate wireless clients to an AP.",
+          "memoryAnchor": "WPA2/WPA3 secures WLAN joins; switchport port-security protects wired access ports.",
+          "contrast": "The stem is wireless, so WPA2 applies; port security belongs on an Ethernet switch interface."
         },
         {
           "choiceIndex": 3,
           "misconceptionReason": "Treating hidden SSID as access control",
-          "whyItSeems": "Disable SSID broadcasts describes flooding the frame to multiple ports in the VLAN.",
-          "whyWrongHere": "For \"wireless security\", Enable MAC filtering matches the required behavior — Disable SSID broadcasts answers a different mechanism or constraint than the stem asks.",
-          "memoryAnchor": "Exam reality: WPA2/WPA3 encrypt traffic; MAC filter is weak join control — still know what each option does.",
-          "contrast": "Correct \"Enable MAC filtering\" vs wrong \"Disable SSID broadcasts\": For \"wireless security\", Enable MAC filtering matches the required behavior — Disable SSID broadcasts answers a different mechanism or constraint than the stem asks."
+          "whyItSeems": "A hidden SSID is less visible in ordinary network lists, which can feel like access control.",
+          "whyWrongHere": "The SSID remains observable in wireless management traffic and hiding it supplies no authentication or encryption.",
+          "memoryAnchor": "SSID hiding is obscurity; WPA2/WPA3 is authentication and encryption.",
+          "contrast": "Disable broadcast only hides the name from casual discovery; WPA2 controls who can actually join."
         }
       ]
     },
@@ -11909,7 +11909,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q004",
-      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nRouter A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
+      "question": "Router A tunnel config:\ninterface Tunnel0\n ip address 192.168.2.1 255.255.255.0\n tunnel source Serial0/0/0\n tunnel destination 203.0.113.2\n! No ip route to remote tunnel endpoint network\n\nyou are configuring a GRE tunnel. What is wrong with this configuration?",
       "choices": [
         "Nothing is wrong with the configuration.",
         "The destination on Router A of the tunnel is incorrect.",
@@ -11987,7 +11987,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q005",
-      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nGRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
+      "question": "GRE topology:\nRouter A: LAN 192.168.2.0/24, Tunnel0 192.168.2.1, peer Router B LAN 192.168.3.0/24\nSerial link: 203.0.113.0/30 (A=203.0.113.1, B=203.0.113.2)\n\nyou are configuring a GRE tunnel and need to configure a route statement on Router A. Which is the correct route statement?",
       "choices": [
         "Router(config)#ip route 192.168.3.0 255.255.255.0 tunnel 0",
         "Router(config)#ip route 192.168.2.0 255.255.255.0 tunnel 0",
@@ -12217,7 +12217,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q008",
-      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nGRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
+      "question": "GRE tunnel carries traffic directly between tunnel endpoints:\nRouter A ping/traceroute to 192.168.3.50 crosses one GRE hop (tunnel encapsulation).\n\nif you do a traceroute on Router A to a destination of 192.168.3.50, how many hops will show?",
       "choices": [
         "One hop",
         "Two hops",
@@ -12295,7 +12295,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q009",
-      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nRouter A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
+      "question": "Router A Tunnel0 up/up but missing route to 192.168.3.0/24 via tunnel.\nCannot ping remote tunnel endpoint LAN 192.168.3.1\n\nYou are configuring a GRE tunnel. However, you cannot ping from Router A to 192.168.3.1. What is the problem?",
       "choices": [
         "The tunnel numbers do not match.",
         "The destination on Router A of the tunnel is incorrect.",
@@ -12450,7 +12450,7 @@ export const CLEAN_QUESTIONS = {
     },
     {
       "id": "obj-5.5-source-q011",
-      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nSerial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
+      "question": "Serial link between routers:\nRouter A S0/0/0: encapsulation ppp\nRouter B S0/0/0: encapsulation hdlc\n\nYou have configured a point-to-point dedicated line between two locations. However, you cannot ping between the two routers. What is the problem?",
       "choices": [
         "The interface is administratively shut down.",
         "There is a wiring problem.",

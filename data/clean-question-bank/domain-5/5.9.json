@@ -1,6 +1,6 @@
 {
   "objectiveId": "5.9",
-  "title": "Configure WLAN using WLC GUI with WPA2 PSK",
+  "title": "Configure WLAN using WPA2 PSK",
   "questions": [
     {
       "id": "obj-5.10-source-q001",

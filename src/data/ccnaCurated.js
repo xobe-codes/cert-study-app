@@ -1361,7 +1361,7 @@ const OBJ_41 = {
     { id: '4.1-q5', concept: 'nat', type: 'application', difficulty: 'medium', question: 'Which command can view the NAT translations active on the router?', choices: ['Router#show ip nat translations', 'Router#show nat translations', 'Router#debug ip nat translations', 'Router#show translations nat'], correctIndex: 0, explanation: 'The source maps this item to answer A. The correct selection is: Router#show ip nat translations', ckuIds: ['CKU-NAT'] },
     { id: '4.1-q6', concept: 'nat', type: 'application', difficulty: 'medium', question: 'Which command display an overview of the current number of active NAT translations on the router, as well as other overview information?', choices: ['Router#show ip nat translations', 'Router#show ip nat summary', 'Router#show ip nat status', 'Router#show ip nat statistics'], correctIndex: 3, explanation: 'The source maps this item to answer D. The correct selection is: Router#show ip nat statistics', ckuIds: ['CKU-NAT'] },
     { id: '4.1-q7', concept: 'nat', type: 'application', difficulty: 'hard', question: 'Using the referenced source exhibit, which command will configure static NAT for the internal web server?', choices: ['RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1', 'RouterA(config)#nat source static 192.168.1.3 179.43.44.1', 'RouterA(config)#ip nat static 192.168.1.3 179.43.44.1', 'RouterA(config)#ip nat source static 192.168.1.3 179.43.44.1'], correctIndex: 0, explanation: 'The source maps this item to answer A. The correct selection is: RouterA(config)#ip nat inside source static 192.168.1.3 179.43.44.1', ckuIds: ['CKU-NAT'] },
-    { id: '4.1-q8', concept: 'nat', type: 'application', difficulty: 'hard', question: 'Using the referenced source exhibit, the enterprise owns the address block of 179.43.44.0/28. Which command create a NAT pool for Dynamic NAT?', choices: ['RouterA(config)#ip nat pool EntPool 179.43.44.0/28', 'RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0', 'RouterA(config)#ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240', 'RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0'], correctIndex: 2, explanation: 'Pool for 179.43.44.0/28: ip nat pool EntPool 179.43.44.1 179.43.44.15 netmask 255.255.255.240 — /28 netmask matches the owned block.', ckuIds: ['CKU-NAT'] },
+    { id: '4.1-q8', concept: 'nat', type: 'application', difficulty: 'hard', question: 'Using the referenced source exhibit, the enterprise owns the address block of 179.43.44.0/28. Which command creates a valid Dynamic NAT pool when .1 is already assigned to the router?', choices: ['RouterA(config)#ip nat pool EntPool 179.43.44.0/28', 'RouterA(config)#ip pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0', 'RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.14 netmask 255.255.255.240', 'RouterA(config)#ip nat pool EntPool 179.43.44.2 179.43.44.15 netmask 255.255.255.0'], correctIndex: 2, explanation: 'Use .2 through .14 with netmask 255.255.255.240; .1 is assigned to the router and .15 is broadcast.', ckuIds: ['CKU-NAT'] },
     { id: '4.1-q9', concept: 'nat', type: 'scenario', difficulty: 'medium', question: 'When configuring dynamic NAT, why must you configure an access list?', choices: ['The access list allows incoming access from outside global addresses.', 'The access list allows outgoing access from inside local addresses.', 'The access list allows outgoing access from outside local addresses.', 'The access list allows outgoing access from inside global addresses.'], correctIndex: 1, explanation: 'The source maps this item to answer B. The correct selection is: The access list allows outgoing access from inside local addresses.', ckuIds: ['CKU-NAT'] },
     { id: '4.1-q10', concept: 'nat', type: 'application', difficulty: 'medium', question: 'Which command wipe out all current NAT translations in the NAT table?', choices: ['Router#no ip nat translation', 'Router#clear ip nat translation', 'Router#clear ip nat translation *', 'Router#clear ip nat'], correctIndex: 2, explanation: 'The source maps this item to answer C. The correct selection is: Router#clear ip nat translation *', ckuIds: ['CKU-NAT'] },
     { id: '4.1-q11', concept: 'nat', type: 'application', difficulty: 'medium', question: 'Which command can see real-time network address translations?', choices: ['Router#show ip translations', 'Router#debug ip nat', 'Router#debug ip translations', 'Router#show ip nat'], correctIndex: 1, explanation: 'The source maps this item to answer B. The correct selection is: Router#debug ip nat', ckuIds: ['CKU-NAT'] },
@@ -2034,12 +2034,53 @@ export function getCuratedQuestionCount(objectiveId) {
 }
 
 /** Reshape a curated/patch question to the app's quiz-bank question shape. */
+const INVALID_CKU_BY_QUESTION = {
+  'obj-4.1-source-q005': ['CKU-SNMP-VIEW'],
+  'obj-4.1-source-q006': ['CKU-SNMP-INFORM', 'CKU-SNMP-VIEW'],
+  'obj-4.1-source-q008': ['CKU-NTP'],
+  'obj-4.1-source-q012': ['CKU-NTP'],
+  'obj-4.2-source-q004': ['CKU-SNMP-VIEW'],
+  'obj-4.2-source-q007': ['CKU-DNS'],
+  'obj-4.2-source-q008': ['CKU-SNMP-VIEW'],
+  'obj-4.3-source-q011': ['CKU-TRANSPORT-INPUT'],
+  'obj-4.3-source-q012': ['CKU-NAT-POOL'],
+  'obj-4.4-source-q001': ['CKU-DHCP-OFFER'],
+  'obj-4.4-source-q003': ['CKU-SYSLOG'],
+  'obj-4.4-source-q006': ['CKU-DHCP-ACK'],
+  'obj-4.5-source-q002': ['CKU-SNMP-TRAP'],
+  'obj-4.5-source-q003': ['CKU-SNMP-TRAP'],
+  'obj-4.5-source-q008': ['CKU-SNMP-INFORM'],
+  'obj-4.5-source-q011': ['CKU-NAT'],
+  'obj-4.5-source-q012': ['CKU-SNMP-INFORM'],
+  'obj-4.6-source-q002': ['CKU-NAT'],
+  'obj-4.7-source-q002': ['CKU-NAT'],
+  'obj-4.7-source-q013': ['CKU-OID'],
+  'obj-4.7-source-q014': ['CKU-PAT'],
+  'obj-4.8-source-q008': ['CKU-NAT'],
+  'obj-4.9-source-q003': ['CKU-CRYPTO-KEY-GENERATE-RSA'],
+  'obj-5.4-source-q005': ['CKU-RADIUS'],
+  'obj-5.9-source-q001': ['CKU-PORT-SECURITY'],
+  'obj-6.2-source-q009': ['CKU-RESTCONF'],
+  'obj-6.6-source-q002': ['CKU-CISCO-DNA-CENTER'],
+  'obj-6.6-source-q004': ['CKU-CISCO-DNA-CENTER'],
+  'obj-6.6-source-q017': ['CKU-CISCO-DNA-CENTER'],
+  'obj-6.7-source-q009': ['CKU-ESP'],
+}
+
+function normalizeQuestionCkus(question) {
+  const invalidCkus = new Set(INVALID_CKU_BY_QUESTION[question?.id] || [])
+  if (!invalidCkus.size || !question?.ckuIds?.length) return question
+  return { ...question, ckuIds: question.ckuIds.filter(id => !invalidCkus.has(id)) }
+}
+
 function mapQuizQuestion(q, objectiveId) {
+  const isMulti = Array.isArray(q.correctIndexes)
+  const ckuIds = normalizeQuestionCkus(q).ckuIds || []
   const shaped = {
     question: q.question,
     choices: q.choices,
-    correctIndex: q.correctIndex,
-    ...(Array.isArray(q.correctIndexes) ? { correctIndexes: q.correctIndexes } : {}),
+    ...(!isMulti ? { correctIndex: q.correctIndex } : {}),
+    ...(isMulti ? { correctIndexes: q.correctIndexes } : {}),
     explanation: q.explanation,
     type: q.type,
     difficulty: q.difficulty,
@@ -2047,7 +2088,7 @@ function mapQuizQuestion(q, objectiveId) {
     skill: q.skill,
     orderItems: q.orderItems,
     id: q.id,
-    ...(q.ckuIds?.length ? { ckuIds: q.ckuIds } : {}),
+    ...(ckuIds.length ? { ckuIds } : {}),
     ...(q.answerReview ? { answerReview: q.answerReview } : {}),
   }
   const hasChoices = q.choices?.length && (q.correctIndex != null || Array.isArray(q.correctIndexes))
@@ -2066,14 +2107,14 @@ export function getCuratedQuestions(objectiveId) {
     const clean = getImportedOrCleanQuestions(objectiveId)
     const skill = getSkillQuestions(objectiveId)
     const enrichment = getEnrichmentQuestions(objectiveId)
-    return filterHealthyQuestions(clean.concat(skill, enrichment))
+    return filterHealthyQuestions(clean.concat(skill, enrichment).map(normalizeQuestionCkus))
   }
 
   const o = getCurated(objectiveId)
   const hand = (o?.questions || []).map(q => mapQuizQuestion(q, objectiveId))
   const imported = getImportedOrCleanQuestions(objectiveId)
   const skill = getSkillQuestions(objectiveId)
-  return filterHealthyQuestions(hand.concat(imported, skill))
+  return filterHealthyQuestions(hand.concat(imported, skill).map(normalizeQuestionCkus))
 }
 
 /* -------------------------------------------------------------------------

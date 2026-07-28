@@ -71,8 +71,8 @@ export default function StudyCoachBanner({
           cursor: 'pointer',
           lineHeight: 1,
           padding: 0,
-          minWidth: 36,
-          minHeight: 36,
+          minWidth: 44,
+          minHeight: 44,
         }}
       >
         ×
@@ -100,7 +100,7 @@ export default function StudyCoachBanner({
             marginBottom: 0,
             fontSize: 'var(--ccna-type-xs)',
             padding: '6px 12px',
-            minHeight: 36,
+            minHeight: 44,
             color: c.text,
             border: `1px solid ${c.border}`,
           }}
