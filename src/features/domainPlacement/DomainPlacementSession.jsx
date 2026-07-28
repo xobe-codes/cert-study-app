@@ -3,6 +3,7 @@ import { DOMAINS } from '../../data/ccnaDomains.js'
 import { preloadCleanBankForObjective } from '../../data/cleanQuestionAdapter.js'
 import { gradeQuestion, buildMissedEntry } from '../../questionUtils.js'
 import { diagnoseWrongAnswer } from '../../answerReview/diagnoseWrongAnswer.js'
+import { recordAnswerOutcome } from '../study/answerOutcome.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
@@ -130,6 +131,7 @@ export default function DomainPlacementSession({
         correct: correct ? 1 : 0,
         total: 1,
       })
+      recordAnswerOutcome({ objectiveId: q.objectiveId, questionId: q.id, correct, selectedIndex: idx, surface: 'domain_placement' }).catch(() => {})
       if (!correct) {
         const diagnosis = diagnoseWrongAnswer({ question: q, submittedAnswer: idx, gradeResult: correct })
         appendMissedEntry(buildMissedEntry(q.objectiveId, q, { selectedIndex: idx, diagnosis }))

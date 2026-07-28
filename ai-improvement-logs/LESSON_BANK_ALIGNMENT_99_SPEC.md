@@ -1,6 +1,6 @@
 # Lesson ↔ Question Bank Alignment — 99 Spec
 
-**Status:** NEXT AFTER QUESTION V2 · audit tooling implemented; fresh post-question baseline required
+**Status:** IMPLEMENTED · 53/53 alignment and readability gate passing
 
 **Sequencing gate:** Start only after `WRONG_ANSWER_DEBRIEF_99_SPEC.md` reaches its definition of done and produces the final implementation report.
 

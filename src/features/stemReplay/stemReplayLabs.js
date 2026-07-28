@@ -1,14 +1,42 @@
-import { getLab } from '../../data/ccnaLabs.js'
+import { allLabs, getLab } from '../../data/ccnaLabs.js'
 import { getInterpretAlternate } from '../../data/labTierStrategy.js'
 
 /** Prefer interpret-only / lab-lite target for stem-replay CTAs. */
-export function resolveStemReplayLabId(rawLabId) {
+export function resolveStemReplayLabId(rawLabId, identity = {}) {
   if (!rawLabId) return null
   const bundle = getLab(rawLabId)
-  if (bundle?.lab?.interpretOnly) return rawLabId
+  if (!bundle?.lab) return rawLabId
   const alt = getInterpretAlternate(rawLabId)
-  if (alt && getLab(alt)?.lab) return alt
-  return rawLabId
+  const hasCanonicalMarkers = Boolean(identity.objectiveId || identity.domainId || identity.ckuIds?.length)
+  if (!hasCanonicalMarkers) {
+    if (bundle.lab.interpretOnly) return rawLabId
+    if (alt && getLab(alt)?.lab) return alt
+    return rawLabId
+  }
+
+  const candidateIds = [...new Set([
+    rawLabId,
+    alt,
+    ...allLabs()
+      .filter(lab => !identity.objectiveId || lab.objectiveId === identity.objectiveId)
+      .map(lab => lab.id),
+  ].filter(Boolean))]
+  const wantedCkus = new Set(identity.ckuIds || [])
+  const scored = candidateIds.flatMap(labId => {
+    const candidate = getLab(labId)?.lab
+    if (!candidate) return []
+    const ckuOverlap = (candidate.ckuIds || []).filter(id => wantedCkus.has(id)).length
+    let score = 0
+    if (identity.objectiveId) score += candidate.objectiveId === identity.objectiveId ? 100 : -100
+    if (identity.domainId) score += candidate.domainId === identity.domainId ? 20 : -20
+    score += ckuOverlap * 25
+    if (candidate.interpretOnly) score += 5
+    if (labId === rawLabId) score += 3
+    if (labId === alt) score += 2
+    return [{ labId, score }]
+  })
+  scored.sort((a, b) => b.score - a.score || a.labId.localeCompare(b.labId))
+  return scored[0]?.labId || rawLabId
 }
 
 /** High-traffic practice question → hands-on lab replay. */
@@ -189,13 +217,23 @@ const STEM_REPLAY_MAP = {
 }
 
 /** @returns {{ labId: string, lab: import('../../data/ccnaLabs.js').LabBundle['lab'] } | null} */
-export function getStemReplayLab(questionId) {
+export function getStemReplayLab(questionId, identity = {}) {
   const rawLabId = STEM_REPLAY_MAP[questionId]
   if (!rawLabId) return null
-  const labId = resolveStemReplayLabId(rawLabId)
+  const labId = resolveStemReplayLabId(rawLabId, identity)
   const bundle = getLab(labId)
   if (!bundle?.lab) return null
-  return { labId, lab: bundle.lab }
+  return {
+    labId,
+    lab: bundle.lab,
+    markers: {
+      questionId,
+      objectiveId: identity.objectiveId,
+      domainId: identity.domainId,
+      ckuIds: identity.ckuIds || [],
+      trapId: identity.trapId,
+    },
+  }
 }
 
 export function hasStemReplayLab(questionId) {
@@ -204,4 +242,8 @@ export function hasStemReplayLab(questionId) {
 
 export function stemReplayMapSize() {
   return Object.keys(STEM_REPLAY_MAP).length
+}
+
+export function stemReplayEntries() {
+  return Object.entries(STEM_REPLAY_MAP).map(([questionId, labId]) => ({ questionId, labId }))
 }

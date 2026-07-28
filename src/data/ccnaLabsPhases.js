@@ -395,7 +395,7 @@ const WLAN_SSID = mkGuided({
   ],
 })
 
-const LAB_TS_WLAN = tsLab('LAB-TS-WLAN-VLAN', 'Troubleshoot WLAN Wrong VLAN Mapping', '3.6', 'access',
+const LAB_TS_WLAN = tsLab('LAB-TS-WLAN-VLAN', 'Troubleshoot WLAN Wrong VLAN Mapping', '3.6', 'connectivity',
   'Symptom: Wireless clients associate to CORP_WIFI but receive 192.168.10.x instead of 192.168.20.x. Use WLC show commands to identify wrong VLAN interface mapping.',
   [
     { id: 't1', order: 1, title: 'Client subnet', device: 'WLC1', instruction: 'Run show client summary — clients on wrong 192.168.10.x subnet.',

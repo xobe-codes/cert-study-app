@@ -5,6 +5,7 @@ import { DOMAINS, ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from '../../ui/appTheme.js'
 import { STATIC_COPY } from '../../ui/staticContentCopy.js'
 import CuratedStaticBadge from '../../components/CuratedStaticBadge.jsx'
+import QuestionHealthAdminSection from '../../components/QuestionHealthAdminSection.jsx'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import Spinner from '../../components/Spinner.jsx'
 import ProgressBar from '../../components/ProgressBar.jsx'
@@ -26,6 +27,7 @@ import { STORAGE_KEYS } from '../../storageKeys.js'
 import { AiCallsIndicator } from '../../ai/claudeClient.js'
 import { COMMAND_DRILLS } from '../../lab/commandDrills.js'
 import { buildStudyObjectiveHandoff } from '../../study/studyObjectiveHandoff.js'
+import { reconcileLearningMetrics } from './learningMetrics.js'
 
 const DAY_MS = 86400000
 
@@ -149,7 +151,7 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const [summary, cli, offlineDetail, usage, retention, mockHistory, quizBank] = await Promise.all([
+      const [summary, cli, offlineDetail, usage, retention, mockHistory, quizBank, events] = await Promise.all([
         buildLearnerSummary(progress, missed || []),
         loadCliStats(),
         loadOfflineDetail(),
@@ -157,8 +159,9 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
         loadRetentionHealth(),
         window.storage.getItem(STORAGE_KEYS.mockHistory),
         loadQuizBank(),
+        window.storage.getItem(STORAGE_KEYS.events),
       ])
-      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention, mockHistory: mockHistory || [], quizBank: quizBank || {} })
+      if (!cancelled) setData({ summary, cli, offlineDetail, usage, retention, mockHistory: mockHistory || [], quizBank: quizBank || {}, learning: reconcileLearningMetrics(events || []) })
     })()
     return () => { cancelled = true }
   }, [progress, missed])
@@ -172,7 +175,7 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
     )
   }
 
-  const { summary, cli, offlineDetail, usage, retention, mockHistory, quizBank } = data
+  const { summary, cli, offlineDetail, usage, retention, mockHistory, quizBank, learning } = data
   const objs = summary.perObjective
   const studied = objs.filter(o => o.attempts > 0)
 
@@ -281,7 +284,7 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
             type="button"
             onClick={onOpenStats}
             style={{
-              flexShrink: 0, minHeight: 36, padding: '6px 12px', borderRadius: 999,
+              flexShrink: 0, minHeight: 44, padding: '6px 12px', borderRadius: 999,
               border: `1px solid ${COLORS.border}`, background: COLORS.surface,
               color: COLORS.silverMid, fontSize: 'var(--ccna-type-caption)', fontWeight: 600,
               cursor: 'pointer', fontFamily: 'inherit',
@@ -324,6 +327,32 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
         {summary.domainStats.map(d => (
           <ProgressBar key={d.id} value={d.avg} max={1} accent="purple" label={d.name} sublabel={`${Math.round(d.avg * 100)}% · ${d.mastered}/${d.total}`} height={6} />
         ))}
+      </MetricsCollapsibleSection>
+
+      <MetricsCollapsibleSection
+        title="QUESTION + LAB ACTIVITY"
+        summary={learning.questions.attempts === 0 && learning.labs.starts === 0
+          ? 'Insufficient event data — complete a question or lab'
+          : `${learning.questions.attempts} question attempts · ${learning.labs.completions}/${learning.labs.starts} labs completed`}
+        defaultOpen
+      >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 8 }}>
+          {[
+            ['Question accuracy', learning.questions.accuracy],
+            ['First-try accuracy', learning.questions.firstTryAccuracy],
+            ['Lab checkpoint success', learning.labs.checkpointAccuracy],
+            ['Lab completion', learning.labs.completionRate],
+          ].map(([label, value]) => (
+            <div key={label} style={{ padding: 10, borderRadius: 8, border: `1px solid ${COLORS.border}`, background: COLORS.surface }}>
+              <div style={{ fontSize: 'var(--ccna-type-lg)', fontWeight: 700, color: value == null ? COLORS.silverMid : COLORS.sky }}>{value == null ? '—' : `${value}%`}</div>
+              <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>{label}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ ...styles.small, marginTop: 10 }}>
+          {learning.questions.unknown} marked “I don’t know” · {learning.lessons.uniqueAnchorsViewed} lesson anchors viewed · {learning.remediation.opens} remediation opens
+          {learning.excludedEvents > 0 ? ` · ${learning.excludedEvents} invalid, quarantined, or unsynced event${learning.excludedEvents === 1 ? '' : 's'} excluded` : ''}
+        </div>
       </MetricsCollapsibleSection>
 
       <MetricsCollapsibleSection

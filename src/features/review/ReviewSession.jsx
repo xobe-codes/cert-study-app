@@ -22,6 +22,7 @@ import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 import { diagnoseWrongAnswer } from '../../answerReview/diagnoseWrongAnswer.js'
+import { recordAnswerOutcome } from '../study/answerOutcome.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -78,6 +79,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, selectedIndex: idx, surface: 'review' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: idx, gradeResult: correct })
       onMissed({ objectiveId: current.objectiveId, questionId: current.id, question: current.question, choices: current.choices, correctIndex: current.correctIndex, selectedIndex: idx, explanation: current.explanation, concept: current.concept, type: current.type, skill: current.skill, addedAt: Date.now(), diagnosis })
@@ -103,6 +105,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, selectedIndexes, responseType: 'multi', surface: 'review' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: selectedIndexes, gradeResult: correct })
       onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndexes: [...selectedIndexes], diagnosis }))
@@ -118,6 +121,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, responseType: 'ordering', surface: 'review' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: orderDraft, gradeResult: correct })
       onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft, diagnosis }))
@@ -132,6 +136,7 @@ export default function ReviewSession({ onBack, onMissed, onDone, onOpenSection,
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.REVIEW, correct: correct ? 1 : 0, total: 1 })
     logEvent('user_reviewed_concept', { objectiveId: current.objectiveId, questionId: current.id, correct })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, responseType: 'cli', surface: 'review' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: cliAnswer, gradeResult: correct })
       onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer, diagnosis }))

@@ -115,6 +115,7 @@ export default function StudyModeRoutes({
             else onNavigate('labs')
           })}
           exitLabel={LAB_EXIT_LABELS[labReturn] || LAB_EXIT_LABELS.labs}
+          surface={labReturn || 'labs'}
           onOpenLab={(id) => onOpenLab(id, labReturn || 'labs')}
           celebrate={celebrate}
           haptic={haptic}

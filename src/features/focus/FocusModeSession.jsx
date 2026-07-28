@@ -20,6 +20,7 @@ import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 import { diagnoseWrongAnswer } from '../../answerReview/diagnoseWrongAnswer.js'
+import { recordAnswerOutcome } from '../study/answerOutcome.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -98,6 +99,7 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone, o
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.FOCUS, correct: correct ? 1 : 0, total: 1 })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, selectedIndex: idx, surface: 'focus' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: idx, gradeResult: correct })
       onMissed(buildMissedEntry(current.objectiveId, current, { selectedIndex: idx, diagnosis }))
@@ -111,6 +113,7 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone, o
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.FOCUS, correct: correct ? 1 : 0, total: 1 })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, responseType: 'ordering', surface: 'focus' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: orderDraft, gradeResult: correct })
       onMissed(buildMissedEntry(current.objectiveId, current, { orderAnswer: orderDraft, diagnosis }))
@@ -124,6 +127,7 @@ export default function FocusModeSession({ progress, onBack, onMissed, onDone, o
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
     recordQuizResult(current.objectiveId, current.id, { correct })
     recordEngagement?.(current.objectiveId, { kind: ENGAGEMENT_KINDS.FOCUS, correct: correct ? 1 : 0, total: 1 })
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, responseType: 'cli', surface: 'focus' }).catch(() => {})
     if (!correct) {
       const diagnosis = diagnoseWrongAnswer({ question: current, submittedAnswer: cliAnswer, gradeResult: correct })
       onMissed(buildMissedEntry(current.objectiveId, current, { cliAnswer, diagnosis }))

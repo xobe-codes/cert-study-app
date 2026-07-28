@@ -16,6 +16,7 @@ import DebriefObjectiveFooter from './DebriefObjectiveFooter.jsx'
 import { useCompactMobile } from '../hooks/useCompactMobile.js'
 import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, accentColors } from '../ui/appTheme.js'
+import { beginLessonRemediation } from '../lesson/lessonRemediation.js'
 
 const CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
@@ -202,7 +203,7 @@ function WrongChoiceReview({
 /** Post-reveal breakdown — your pick first when wrong; every rationale visible. */
 export default function AnswerReview({
   q, selected, selectedIndexes, cliAnswer, orderAnswer, hideExamTip = false, objectiveId, domainId,
-  showQuestionFlag = false, onOpenLab, onOpenTrapDrill, onOpenSubnet,
+  showQuestionFlag = false, onOpenLab, onOpenTrapDrill, onOpenSubnet, onReviewLesson,
 }) {
   const compactMobile = useCompactMobile()
   const shuffle = useMcChoiceShuffleContext()
@@ -210,6 +211,24 @@ export default function AnswerReview({
     const displayIdx = shuffle?.toDisplayIndex ? shuffle.toDisplayIndex(canonicalIdx) : canonicalIdx
     return choiceLetterForIndex(displayIdx) || CHOICE_LETTERS[displayIdx] || displayIdx
   }
+  const lessonCta = onReviewLesson ? (
+    <button
+      type="button"
+      onClick={() => {
+        const token = beginLessonRemediation({
+          questionId: q?.id,
+          objectiveId: objectiveId || q?.objectiveId,
+          domainId,
+          ckuIds: q?.ckuIds || [],
+          surface: 'practice',
+        })
+        onReviewLesson(token)
+      }}
+      style={{ width: '100%', minHeight: 44, marginTop: 8, borderRadius: 8, border: `1px solid ${COLORS.skyBorder}`, background: COLORS.skyDim, color: COLORS.sky, cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700 }}
+    >
+      Review the exact lesson concept →
+    </button>
+  ) : null
 
   if (isCliQuestion(q)) {
     const correct = correctAnswerLabel(q)
@@ -234,7 +253,8 @@ export default function AnswerReview({
           </ReviewBlock>
         )}
         {showQuestionFlag && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
-        <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
+        {!gradeQuestion(q, cliAnswer) && lessonCta}
+        <StemReplayCTA questionId={q?.id} objectiveId={objectiveId || q?.objectiveId} domainId={domainId} ckuIds={q?.ckuIds} onOpenLab={onOpenLab} />
       </div>
     )
   }
@@ -273,7 +293,8 @@ export default function AnswerReview({
           </ReviewBlock>
         )}
         {showQuestionFlag && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
-        <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
+        {!ok && lessonCta}
+        <StemReplayCTA questionId={q?.id} objectiveId={objectiveId || q?.objectiveId} domainId={domainId} ckuIds={q?.ckuIds} onOpenLab={onOpenLab} />
       </div>
     )
   }
@@ -335,7 +356,7 @@ export default function AnswerReview({
         )}
         {(!hideExamTip && ar?.examTip) && <ReviewBlock icon="💡" title="EXAM TIP" accent="amber" collapsible defaultOpen={false}><RichText text={ar.examTip} /></ReviewBlock>}
         {showQuestionFlag && <QuestionFlagPanel question={q} objectiveId={objectiveId} />}
-        {!ok && <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />}
+        {!ok && <>{lessonCta}<StemReplayCTA questionId={q?.id} objectiveId={objectiveId || q?.objectiveId} domainId={domainId} ckuIds={q?.ckuIds} onOpenLab={onOpenLab} /></>}
       </div>
     )
   }
@@ -426,9 +447,7 @@ export default function AnswerReview({
       {showQuestionFlag && (
         <QuestionFlagPanel question={q} objectiveId={objectiveId} selectedIndex={selected} />
       )}
-      {selectedWrongIdx != null && (
-        <StemReplayCTA questionId={q?.id} onOpenLab={onOpenLab} />
-      )}
+      {selectedWrongIdx != null && <>{lessonCta}<StemReplayCTA questionId={q?.id} objectiveId={objectiveId || q?.objectiveId} domainId={domainId} ckuIds={q?.ckuIds} onOpenLab={onOpenLab} /></>}
     </div>
   )
 }

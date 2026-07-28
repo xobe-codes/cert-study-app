@@ -17,6 +17,9 @@ import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets } from './studyQuizShared.jsx'
 import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
+import { logEvent } from '../eventLog.js'
+import { lessonCkuAnchor, lessonSectionAnchor } from '../lesson/lessonAnchors.js'
+import { consumeLessonRemediation } from '../lesson/lessonRemediation.js'
 
 /** Spec 9+15 curated unified lesson spine (extracted from ExplainTab for size). */
 export default function CuratedUnifiedReading({
@@ -36,6 +39,16 @@ export default function CuratedUnifiedReading({
   useEffect(() => {
     onTierChange?.(READING_TIER_KEYS.unified)
   }, [data.objectiveId, onTierChange])
+
+  useEffect(() => {
+    const token = consumeLessonRemediation(data.objectiveId)
+    if (!token?.lessonAnchor) return
+    const timer = window.setTimeout(() => {
+      document.getElementById(token.lessonAnchor)?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      document.getElementById(token.lessonAnchor)?.focus?.({ preventScroll: true })
+    }, 0)
+    return () => window.clearTimeout(timer)
+  }, [data.objectiveId])
 
   useEffect(() => {
     const sections = [
@@ -71,6 +84,19 @@ export default function CuratedUnifiedReading({
       : undefined
   }
 
+  function sectionViewed(section, ckuId) {
+    logEvent('user_viewed_lesson_section', {
+      surface: 'study',
+      domainId: data.domainId,
+      objectiveId: data.objectiveId,
+      ckuIds: ckuId ? [ckuId] : [],
+      lessonAnchor: ckuId
+        ? lessonCkuAnchor(data.objectiveId, ckuId)
+        : lessonSectionAnchor(data.objectiveId, section),
+      section,
+    })
+  }
+
   return (
     <div className="ccna-stagger objective-reading-prose lesson-prose">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10, flexWrap: 'nowrap' }}>
@@ -103,17 +129,17 @@ export default function CuratedUnifiedReading({
           <CuratedVisualBundle data={data} />
         </div>
       )}
-      <div style={sectionStyle('plain')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'plain')} style={sectionStyle('plain')} onFocusCapture={() => sectionViewed('plain')}>
         <ExplainBlock icon="📖" title="IN PLAIN ENGLISH" accent="sky" speechText={lesson.plainEnglish} onListen={() => playlistRef.current?.toggle('plain')}>
           <RichText text={lesson.plainEnglish} />
         </ExplainBlock>
       </div>
-      <div style={sectionStyle('how')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'how')} style={sectionStyle('how')} onFocusCapture={() => sectionViewed('how')}>
         <ExplainBlock icon="⚙️" title="HOW IT WORKS" accent="amber" collapsible defaultOpen speechText={lesson.howItWorks} onListen={() => playlistRef.current?.toggle('how')}>
           <RichText text={lesson.howItWorks} />
         </ExplainBlock>
       </div>
-      <div style={sectionStyle('exam')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'exam')} style={sectionStyle('exam')} onFocusCapture={() => sectionViewed('exam')}>
         <ExplainBlock icon="🎯" title="EXAM / ENGINEER" accent="mint" collapsible defaultOpen speechText={lesson.examEngineer} onListen={() => playlistRef.current?.toggle('exam')}>
           <RichText text={lesson.examEngineer} />
         </ExplainBlock>
@@ -141,7 +167,12 @@ export default function CuratedUnifiedReading({
           </div>
         </ExplainBlock>
       )}
-      <CoreConceptsBlock ckus={data.ckus} />
+      <div id={lessonSectionAnchor(data.objectiveId, 'concepts')}>
+        <CoreConceptsBlock
+          ckus={(data.ckus || []).map(cku => ({ ...cku, lessonAnchor: lessonCkuAnchor(data.objectiveId, cku.id) }))}
+          onConceptViewed={(cku) => sectionViewed('concept', cku.id)}
+        />
+      </div>
       {lesson.realWorld && <ExplainBlock icon="🔧" title="REAL-WORLD APPLICATION" accent="purple" collapsible defaultOpen={openRealWorld} speechText={lesson.realWorld}><RichText text={lesson.realWorld} /></ExplainBlock>}
       {lesson.related?.length > 0 && <ExplainBlock icon="🔗" title="RELATED CONCEPTS" accent="sky" collapsible defaultOpen={false} speechText={bulletsToSpeech(lesson.related)}><Bullets items={lesson.related} /></ExplainBlock>}
       {data.engineerView && <EngineerViewSection data={data.engineerView} defaultOpen={openRealWorld} />}

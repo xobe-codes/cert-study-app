@@ -1,6 +1,6 @@
 # Question & Lab Metrics — 99+ Follow-on Spec
 
-**Status:** STAGE A STARTS WITH QUESTION V2 · STAGE B IS AUDIT-SEQUENCED
+**Status:** QUESTION + LAB + LESSON EVENT FOUNDATION IMPLEMENTED · FINAL APP AUDIT NEXT
 
 **Sequencing:** Stage A begins in the initial Question V2 implementation and covers
 inventory, canonical identifiers, event definitions, idempotency, compatibility, and

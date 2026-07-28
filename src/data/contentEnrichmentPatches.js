@@ -30,6 +30,7 @@ import { READING_COMMANDS_WAVE2_PATCHES } from './readingCommandsWave2Patches.js
 import { CONTENT_DEPTH_WAVE10_PATCHES } from './contentDepthWave10Patches.js'
 import { CONTENT_DEPTH_WAVE11_PATCHES } from './contentDepthWave11Patches.js'
 import { LESSON_ALIGNMENT_WAVE12_PATCHES } from './lessonAlignmentWave12Patches.js'
+import { LESSON_READABILITY_PASS_PATCHES } from './lessonReadabilityPassPatches.js'
 import { BLUEPRINT_ADJACENT_WAVE1_PATCHES } from './blueprintAdjacentWave1Patches.js'
 import { BLUEPRINT_ADJACENT_WAVE2_PATCHES } from './blueprintAdjacentWave2Patches.js'
 import { TIER_B_TRAP_WAVE13_PATCHES } from './tierBTrapWave13Patches.js'
@@ -600,9 +601,10 @@ export function applyContentEnrichment(base, objectiveId) {
   const wave10 = CONTENT_DEPTH_WAVE10_PATCHES[objectiveId]
   const wave11 = CONTENT_DEPTH_WAVE11_PATCHES[objectiveId]
   const wave12 = LESSON_ALIGNMENT_WAVE12_PATCHES[objectiveId]
+  const readability = LESSON_READABILITY_PASS_PATCHES[objectiveId]
   const baWave1 = BLUEPRINT_ADJACENT_WAVE1_PATCHES[objectiveId]
   const baWave2 = BLUEPRINT_ADJACENT_WAVE2_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !trapWave21 && !trapWave22 && !trapWave23 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11 && !wave12 && !baWave1 && !baWave2) return base
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !trapWave21 && !trapWave22 && !trapWave23 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11 && !wave12 && !readability && !baWave1 && !baWave2) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   const mergeUniqueStrings = (a, b) => {
     if (!b?.length) return a
@@ -708,6 +710,19 @@ export function applyContentEnrichment(base, objectiveId) {
       keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading?.keyPoints,
       commonMistakes: mergeUniqueStrings(reading?.commonMistakes, rp.commonMistakes),
       related: rp.related?.length ? rp.related : mergeUniqueStrings(reading?.related, rp.related),
+    }
+  }
+  // Final audit-driven readability overrides must remain authoritative over
+  // older enrichment waves so a later additive patch cannot reintroduce a
+  // measured prose-floor failure.
+  if (readability?.reading && reading) {
+    const rp = readability.reading
+    reading = {
+      ...reading,
+      ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      tiers: { ...reading.tiers, ...(rp.tiers || {}) },
+      keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading.keyPoints,
+      commonMistakes: mergeUniqueStrings(reading.commonMistakes, rp.commonMistakes),
     }
   }
   const readingMerged = [

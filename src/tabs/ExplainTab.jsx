@@ -221,12 +221,12 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
   )
 }
 
-function CoreConceptsBlock({ ckus }) {
+function CoreConceptsBlock({ ckus, onConceptViewed }) {
   if (!ckus?.length) return null
   return (
     <ExplainBlock icon="🧩" title="CORE CONCEPTS" accent="purple">
       {ckus.map(c => (
-        <div key={c.id} style={{ marginBottom: ckus.length > 1 ? 12 : 0 }}>
+        <div key={c.id} id={c.lessonAnchor} tabIndex={-1} onFocus={() => onConceptViewed?.(c)} style={{ marginBottom: ckus.length > 1 ? 12 : 0, scrollMarginTop: 96 }}>
           <div style={{ fontWeight: 600, fontSize: 'var(--ccna-type-sm)', marginBottom: 4 }}>{c.title}</div>
           <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, lineHeight: 1.55 }}>
             <RichText text={c.summary} />

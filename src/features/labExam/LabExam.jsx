@@ -319,6 +319,7 @@ export default function LabExam({
         onDone={completeStation}
         exitLabel="Skip station"
         examMode
+        surface="lab-exam"
         celebrate={undefined}
         haptic={haptic}
       />

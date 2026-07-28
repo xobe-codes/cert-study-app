@@ -55,5 +55,10 @@ test.describe('Wrong-answer debrief smoke', () => {
     if (await trapChip.count()) {
       await expect(trapChip.first()).toBeVisible()
     }
+
+    const lessonCta = page.getByRole('button', { name: /Review the exact lesson concept/i }).first()
+    await expect(lessonCta).toBeVisible()
+    await lessonCta.click()
+    await expect(page.locator('[id^="lesson-1-5-concept-"]').first()).toBeVisible({ timeout: 20_000 })
   })
 })

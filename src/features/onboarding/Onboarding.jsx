@@ -15,6 +15,7 @@ import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.js
 import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
 import { QuizQuestionStem, QuestionMeta, OrderingQuestion, CliAnswerInput } from '../../components/QuizQuestionChrome.jsx'
 import Spinner from '../../components/Spinner.jsx'
+import { recordAnswerOutcome } from '../study/answerOutcome.js'
 
 const quizFeedbackA11y = { role: 'status', 'aria-live': 'polite', 'aria-atomic': true }
 
@@ -95,6 +96,7 @@ export default function Onboarding({ onComplete, onSkip }) {
     const correct = gradeQuestion(current, idx)
     setSelected(idx); setRevealed(true)
     recordResult(correct)
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, selectedIndex: idx, surface: 'onboarding_placement' }).catch(() => {})
   }
 
   function submitOrder() {
@@ -102,6 +104,7 @@ export default function Onboarding({ onComplete, onSkip }) {
     const correct = gradeQuestion(current, orderDraft)
     setRevealed(true)
     recordResult(correct)
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, responseType: 'ordering', surface: 'onboarding_placement' }).catch(() => {})
   }
 
   function submitCli() {
@@ -109,6 +112,7 @@ export default function Onboarding({ onComplete, onSkip }) {
     const correct = gradeQuestion(current, cliAnswer)
     setRevealed(true)
     recordResult(correct)
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, responseType: 'cli', surface: 'onboarding_placement' }).catch(() => {})
   }
 
   function next() {

@@ -30,11 +30,11 @@ export const FULL_LAB_EXAM_STATIONS = [
 export const DOMAIN_LAB_EXAM_POOLS = {
   fundamentals: [
     'LAB-IPV4-SUBNETTING',
-    'LAB-TS-WRONG-MASK',
     'LAB-MAC-FORWARD-15',
     'LAB-D11-14',
     'LAB-D11-18',
     'LAB-D11-110',
+    'LAB-D11-12',
   ],
   access: [
     'LAB-VLAN-TRUNK',
@@ -42,7 +42,7 @@ export const DOMAIN_LAB_EXAM_POOLS = {
     'LAB-STP-ROOT',
     'LAB-WIRELESS-ARCH',
     'LAB-DHCP-SNOOP-27',
-    'LAB-TS-WLAN-VLAN',
+    'LAB-WLAN-SSID',
   ],
   connectivity: [
     'LAB-31-ROUTE-INTERPRET',
@@ -58,7 +58,7 @@ export const DOMAIN_LAB_EXAM_POOLS = {
     'LAB-DHCP-RELAY',
     'LAB-NTP-CLIENT',
     'LAB-SYSLOG-REMOTE',
-    'LAB-TS-DHCP-RELAY',
+    'LAB-SNMP-CONFIG-44',
   ],
   security: [
     'LAB-ACL-CONFIG',
@@ -66,7 +66,7 @@ export const DOMAIN_LAB_EXAM_POOLS = {
     'LAB-DEVICE-ACCESS',
     'LAB-AAA-LOCAL',
     'LAB-DAI-DHCP-SNOOPING',
-    'LAB-TS-ACL-PLACEMENT',
+    'LAB-WLAN-SEC-58',
   ],
   automation: [
     'LAB-AUTO-MGMT-61',

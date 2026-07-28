@@ -189,7 +189,7 @@ export default function MissedReview({
                     </>
                   )
                 })()}
-                <StemReplayCTA questionId={m.questionId} onOpenLab={onOpenLab} />
+                <StemReplayCTA questionId={m.questionId} objectiveId={m.objectiveId} ckuIds={m.ckuIds} trapId={m.diagnosis?.trapId} onOpenLab={onOpenLab} />
                 {onSelectObjective && m.objectiveId && (
                   <button
                     type="button"

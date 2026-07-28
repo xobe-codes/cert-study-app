@@ -825,7 +825,7 @@ export function QuizTab({
               orderAnswer={ordering ? orderDraft : undefined}
               onOpenLab={onOpenLab}
               onOpenTrapDrill={onOpenTrapDrill}
-              onOpenSubnet={onOpenSubnet}
+              onOpenSubnet={onOpenSubnet} onReviewLesson={() => onSwitchTab?.('Study')}
             />
             {!isCorrect && onOpenTrapDrill && (() => {
               const prefill = resolveQuizTrapDrillPrefill(

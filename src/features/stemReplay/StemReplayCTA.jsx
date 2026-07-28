@@ -1,11 +1,12 @@
 import React from 'react'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import { getStemReplayLab } from './stemReplayLabs.js'
+import { recordLabOutcome } from '../../lab/labOutcome.js'
 
 /** Small banner CTA — open the mapped lab after a missed high-traffic question. */
-export default function StemReplayCTA({ questionId, onOpenLab }) {
+export default function StemReplayCTA({ questionId, objectiveId, domainId, ckuIds, trapId, onOpenLab }) {
   if (!questionId || !onOpenLab) return null
-  const replay = getStemReplayLab(questionId)
+  const replay = getStemReplayLab(questionId, { objectiveId, domainId, ckuIds, trapId })
   if (!replay) return null
 
   return (
@@ -20,7 +21,13 @@ export default function StemReplayCTA({ questionId, onOpenLab }) {
         background: COLORS.skyDim,
         color: COLORS.sky,
       }}
-      onClick={() => onOpenLab(replay.labId)}
+      onClick={() => {
+        recordLabOutcome('user_opened_lab_remediation', replay.lab, {
+          surface: 'wrong-answer', questionId, trapId,
+          ckuId: ckuIds?.find(id => replay.lab.ckuIds?.includes(id)),
+        })
+        onOpenLab(replay.labId)
+      }}
     >
       Fix this in the lab → {replay.lab.title}
     </button>

@@ -14,6 +14,7 @@ import TrapDrillHub from './TrapDrillHub.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
+import { recordAnswerOutcome } from '../study/answerOutcome.js'
 
 function buildScopeFromPrefill(prefill, resolved) {
   if (resolved || prefill?.ckuId || prefill?.trapLabel) {
@@ -102,6 +103,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setSelected(choiceIdx)
     setRevealed(true)
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }))
+    recordAnswerOutcome({ objectiveId: current.objectiveId, questionId: current.id, correct, selectedIndex: choiceIdx, surface: 'trap_drill' }).catch(() => {})
     // Track missed questions for subsequent passes
     if (!correct && isFirstPass) {
       setMissedIds(m => new Set([...m, current.id]))

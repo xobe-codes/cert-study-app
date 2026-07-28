@@ -42,7 +42,7 @@ export async function recordAnswerOutcome({
   const tag = classifyFluency({ correct, unknown, latencyMs })
   const domainId = ALL_OBJECTIVES.find(objective => objective.id === objectiveId)?.domainId
   logEvent('user_answered_question', {
-    schemaVersion: 1,
+    schemaVersion: 2,
     surface,
     responseType,
     domainId,

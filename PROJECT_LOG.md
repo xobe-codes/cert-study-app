@@ -65,6 +65,54 @@
 
 ---
 
+# 2026-07-28 — Lab identity, remediation, tracking, and UI pass complete
+
+- Audited all 82 labs against all 53 CCNA objectives and the 1,593-question
+  learner-visible runtime bank, reusing the Question V2 canonical marker chain.
+- Added structured lab start, checkpoint-attempt, remediation-open, and
+  completion events carrying schema version, surface, domain, objective,
+  question, CKU/trap, lab, and checkpoint identifiers.
+- Fixed a completion mismatch where runtime-enriched tasks could remain visible
+  and incomplete after the raw validator had already marked the lab complete.
+- Made all 167 stem-replay mappings objective/domain aware and CKU ranked, with
+  exhaustive current-bank regression coverage.
+- Corrected four Objective 3.6 labs whose topical labels conflicted with their
+  canonical Connectivity domain, and repaired the affected per-domain quick
+  lab exam pools.
+- Strengthened the shared lab validator for identity, ownership, and unique
+  checkpoints so the same classes of drift fail automatically in future edits.
+- Raised carousel task controls and Verify disclosure to the 44px interaction
+  floor. Browser smoke checks passed without horizontal overflow.
+- Validation: focused lab gate 509/509, full suite 1,759/1,759, content pipeline,
+  production build, 12/12 lab browser tests across 320px, 768px, 1440px, and
+  iPhone landscape, and `git diff --check` all passed.
+- Existing Vite large-bundle and circular-chunk warnings are unchanged.
+- Next planned workflow: lesson alignment/readability, then unified question and
+  lab metric reporting using the canonical event markers delivered here.
+
+---
+
+# 2026-07-28 — Lesson alignment/readability and unified metrics complete
+
+- Rebuilt the lesson matrix from the repaired 904-question clean bank: all 53
+  objectives now pass reverse CKU alignment and strict readability validation.
+- Fixed the only five measured prose gaps through one focused enrichment patch,
+  preserving the canonical lesson bank and avoiding a mass rewrite.
+- Added stable objective/section/CKU lesson anchors and exact wrong-answer lesson
+  remediation carrying the canonical question-pass markers.
+- Added a backward-compatible version-2 event envelope and deterministic
+  reconciliation for question, lab, lesson, remediation, exclusion, and offline
+  duplicate behavior.
+- Extended canonical question attempts to Practice, Mock, Domain Pass, Missed
+  Retest, Review, Focus, Topic Focus, placement/onboarding, and Trap Drill.
+- Added reconciled question/lab activity to the existing Metrics Dashboard and
+  repaired its previously missing QuestionHealthAdminSection import.
+- Targeted lesson remediation, metrics, and responsive lab browser tests pass;
+  production build and content-validation pipeline pass.
+- Next and final planned workflow: full-app scope audit.
+
+---
+
 ## Status Summary
 
 | Metric | Value |

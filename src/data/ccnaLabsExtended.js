@@ -540,7 +540,7 @@ const LAB_TS_IF = tsLab('LAB-TS-SHUTDOWN-IF', 'Troubleshoot Shutdown Interface',
   ['show ip interface brief'],
   ['Fixing IP address when the issue is simply shutdown'])
 
-const LAB_TS_ACL = tsLab('LAB-TS-ACL-PLACEMENT', 'Troubleshoot ACL Blocking Return Traffic', '3.6', 'security',
+const LAB_TS_ACL = tsLab('LAB-TS-ACL-PLACEMENT', 'Troubleshoot ACL Blocking Return Traffic', '3.6', 'connectivity',
   'Symptom: Office PC can initiate ping to server 10.0.0.10 but gets no reply. Use show access-lists to find which ACE blocks return traffic.',
   [
     { id: 't1', order: 1, title: 'ACL hit counters', device: 'R1', instruction: 'Run show access-lists — note deny ip any any counters incrementing on return traffic.',
@@ -564,7 +564,7 @@ const LAB_TS_ROUTE = tsLab('LAB-TS-MISSING-ROUTE', 'Troubleshoot Missing Default
   ['show ip route'],
   ['Static route to wrong next-hop'])
 
-const LAB_TS_DHCP = tsLab('LAB-TS-DHCP-RELAY', 'Troubleshoot Missing DHCP Relay', '3.6', 'services',
+const LAB_TS_DHCP = tsLab('LAB-TS-DHCP-RELAY', 'Troubleshoot Missing DHCP Relay', '3.6', 'connectivity',
   'Symptom: Remote PCs on R2 Gi0/1 (192.168.10.0/24) never receive DHCP addresses. R1 has a correct pool. Use show commands to find the missing relay.',
   [
     { id: 't1', order: 1, title: 'No leases', device: 'R1', instruction: 'Run show ip dhcp binding — empty for remote subnet.',
@@ -590,7 +590,7 @@ const LAB_TS_HSRP = tsLab('LAB-TS-HSRP-PRIORITY', 'Troubleshoot HSRP Active on W
   ['show standby brief'],
   ['Changing virtual IP instead of priority/preempt'])
 
-const LAB_TS_MASK = tsLab('LAB-TS-WRONG-MASK', 'Troubleshoot Wrong Subnet Mask', '3.6', 'fundamentals',
+const LAB_TS_MASK = tsLab('LAB-TS-WRONG-MASK', 'Troubleshoot Wrong Subnet Mask', '3.6', 'connectivity',
   'Symptom: PC1 (192.168.1.10/24) cannot ping gateway 192.168.1.1. Use show ip interface to find the mask mismatch on R1 Gi0/0.',
   [
     { id: 't1', order: 1, title: 'Interface mask', device: 'R1', instruction: 'Run show ip interface gi0/0 — mask is /25 (255.255.255.128) instead of /24.',

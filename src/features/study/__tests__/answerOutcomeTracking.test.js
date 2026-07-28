@@ -31,7 +31,7 @@ describe('recordAnswerOutcome tracking contract', () => {
 
     expect(mocks.logEvent).toHaveBeenCalledTimes(1)
     expect(mocks.logEvent).toHaveBeenCalledWith('user_answered_question', expect.objectContaining({
-      schemaVersion: 1,
+      schemaVersion: 2,
       surface: 'practice',
       responseType: 'multi',
       domainId: 'fundamentals',

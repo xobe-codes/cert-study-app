@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { labProgress, normalizeCliLine } from '../data/ccnaLabs.js'
+import { normalizeCliLine } from '../data/ccnaLabs.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import CiscoTerminal from '../components/CiscoTerminal.jsx'
@@ -17,6 +17,7 @@ import {
   matchVerificationCommand,
   primaryVerifyPrompt,
 } from './labVerifyCue.js'
+import { labTaskProgress, recordLabOutcome } from './labOutcome.js'
 
 const LAB_DIFF_ACCENT = { beginner: 'mint', intermediate: 'sky', advanced: 'amber' }
 
@@ -34,7 +35,10 @@ function LabSection({ icon, title, accent, items }) {
   )
 }
 
-export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, haptic, exitLabel, examMode = false }) {
+export default function LabView({
+  bundle, onBack, onDone, onOpenLab, celebrate, haptic, exitLabel,
+  examMode = false, surface = 'labs', remediation = null,
+}) {
   const { recordEngagement } = useMasteryProgress()
   const { lab, topology, validator, diagram, packetFlows } = bundle
   const showNavHint = useNavHint()
@@ -54,8 +58,9 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   const [verifyAttempted, setVerifyAttempted] = useState(false)
   const taskScrollRef = useRef(null)
   const justCompleted = useRef(false)
+  const startedAtRef = useRef(null)
 
-  const prog = labProgress(lab.id, entered)
+  const prog = labTaskProgress(lab.tasks, taskCmdDone)
   const activeTask = lab.tasks[activeTaskIdx]
   const host = deviceHostname(activeTask?.device || 'R1')
   const verifyPrompt = primaryVerifyPrompt(validator?.verificationChecks)
@@ -69,6 +74,8 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   useEffect(() => {
     setVerifyCueSkipped(false)
     setVerifyAttempted(false)
+    justCompleted.current = false
+    startedAtRef.current = null
   }, [lab.id])
 
   useEffect(() => {
@@ -86,6 +93,14 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
     if (prog.complete && !justCompleted.current) {
       justCompleted.current = true
       markLabDone(lab.id)
+      recordLabOutcome('user_completed_lab', lab, {
+        surface,
+        ...(remediation || {}),
+        checkpointIds: prog.checkpointIds,
+        correct: prog.done.length,
+        total: Math.max(prog.total, 1),
+        durationMs: startedAtRef.current ? Date.now() - startedAtRef.current : undefined,
+      })
       if (lab.objectiveId) {
         recordEngagement?.(lab.objectiveId, {
           kind: ENGAGEMENT_KINDS.LAB,
@@ -98,7 +113,7 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
       haptic?.([12, 40, 12])
       showNavHint(NAV_HINT_KEYS.LAB_DONE)
     }
-  }, [prog.complete, prog.done.length, prog.total, lab.id, lab.objectiveId, onDone, celebrate, haptic, showNavHint, recordEngagement])
+  }, [prog.complete, prog.done.length, prog.total, prog.checkpointIds, lab, onDone, celebrate, haptic, showNavHint, recordEngagement, surface, remediation])
 
   const taskComplete = useCallback((t) => {
     const flags = taskCmdDone[t.id] || []
@@ -182,6 +197,16 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
     setMode(result.newMode)
     setInput('')
 
+    recordLabOutcome('user_attempted_lab_checkpoint', lab, {
+      surface,
+      ...(remediation || {}),
+      checkpointId: activeTask.id,
+      accepted: result.newlyCompleted.length > 0,
+      errorClass: result.counters.wrongModeErrors > 0
+        ? 'wrong-mode'
+        : result.counters.syntaxErrors > 0 ? 'syntax' : undefined,
+    })
+
     if (result.newlyCompleted.length) {
       const nextFlags = [...doneFlags]
       result.newlyCompleted.forEach(i => { nextFlags[i] = true })
@@ -191,6 +216,8 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
   }
 
   function startLab() {
+    startedAtRef.current = Date.now()
+    recordLabOutcome('user_started_lab', lab, { surface, ...(remediation || {}) })
     setPhase('practice')
   }
 
@@ -285,11 +312,21 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
                       onClick={() => { setActiveTaskIdx(i); scrollToTask(i) }}
                       aria-label={`Task ${i + 1}: ${t.title}`}
                       style={{
-                        width: i === activeTaskIdx ? 18 : 7, height: 7, borderRadius: 4, border: 'none', padding: 0,
-                        background: taskComplete(t) ? COLORS.mint : i === activeTaskIdx ? COLORS.sky : COLORS.border,
-                        cursor: 'pointer', transition: 'width 0.2s, background 0.2s',
+                        width: 44, height: 44, border: 'none', padding: 0, background: 'transparent',
+                        cursor: 'pointer', display: 'grid', placeItems: 'center',
                       }}
-                    />
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          width: i === activeTaskIdx ? 18 : 7,
+                          height: 7,
+                          borderRadius: 4,
+                          background: taskComplete(t) ? COLORS.mint : i === activeTaskIdx ? COLORS.sky : COLORS.border,
+                          transition: 'width 0.2s, background 0.2s',
+                        }}
+                      />
+                    </button>
                   ))}
                 </div>
               </div>
@@ -371,7 +408,7 @@ export default function LabView({ bundle, onBack, onDone, onOpenLab, celebrate, 
       )}
 
       <div style={{ ...styles.card, marginBottom: 10 }}>
-        <button type="button" onClick={() => setRevealVerify(v => !v)} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
+        <button type="button" onClick={() => setRevealVerify(v => !v)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', minHeight: 44, background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
           <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>🔍 VERIFY (show commands)</span>
           <span style={{ color: COLORS.silverMid }}>{revealVerify ? '−' : '+'}</span>
         </button>

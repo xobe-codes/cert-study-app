@@ -82,13 +82,14 @@ export default function MockExamDebriefActions({
     const sel = responses[idx]
     return sel != null && sel !== q.correctIndex
   })
-  const stemReplay = firstWrongIdx >= 0 ? getStemReplayLab(questions[firstWrongIdx]?.id) : null
+  const firstWrong = firstWrongIdx >= 0 ? questions[firstWrongIdx] : null
+  const stemReplay = firstWrong ? getStemReplayLab(firstWrong.id, firstWrong) : null
 
   const wrongStemReplays = questions
     .map((q, idx) => {
       const sel = responses[idx]
       if (sel == null || sel === q.correctIndex) return null
-      const replay = getStemReplayLab(q.id)
+      const replay = getStemReplayLab(q.id, q)
       if (!replay) return null
       return { questionId: q.id, objectiveId: q.objectiveId, ...replay }
     })
@@ -105,7 +106,7 @@ export default function MockExamDebriefActions({
       const sel = responses[idx]
       return sel != null && sel !== q.correctIndex
     })
-    const replay = wrongQ ? getStemReplayLab(wrongQ.id) : null
+    const replay = wrongQ ? getStemReplayLab(wrongQ.id, wrongQ) : null
     return replay ? { domainId: d.id, ...replay } : null
   }).filter(Boolean)
 

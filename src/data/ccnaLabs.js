@@ -25,6 +25,7 @@ import { applyCoreConfigLabWave } from './coreConfigLabWave.js'
 import { applyLabQuality99 } from '../lab/labQuality99.js'
 import { CLI_ROUTE_31_SHOW_OUTPUT, CLI_VLAN_TRUNK_21_SHOW_OUTPUT, CLI_OSPF_SINGLE_34_SHOW_OUTPUT, CLI_NAT_41_SHOW_OUTPUT } from '../lab/cliEngine.js'
 import { normalizeIosCli } from '../lab/iosShorthand.js'
+import { DOMAINS } from './ccnaDomains.js'
 
 /* -------------------------------------------------------------------------
    LAB: Dynamic ARP Inspection with DHCP Snooping
@@ -1331,12 +1332,18 @@ export function labProgress(labId, enteredNormalized) {
 export function validateLabs() {
   const errors = []
   const ids = new Set()
+  const objectiveDomains = new Map(DOMAINS.flatMap(domain => domain.objectives.map(objective => [objective.id, domain.id])))
   const dup = (id, where) => { if (!id) errors.push(`${where}: missing id`); else if (ids.has(id)) errors.push(`duplicate id ${id} (${where})`); else ids.add(id) }
   for (const { lab, topology, validator, diagram, packetFlows } of Object.values(LABS)) {
     dup(lab.id, 'lab')
+    if (!/^LAB-[A-Z0-9-]+$/.test(lab.id)) errors.push(`lab ${lab.id}: non-canonical lab id`)
     if (!lab.objectiveId) errors.push(`lab ${lab.id}: no objectiveId`)
+    if (objectiveDomains.get(lab.objectiveId) !== lab.domainId) errors.push(`lab ${lab.id}: domain ${lab.domainId} conflicts with objective ${lab.objectiveId}`)
     if (!lab.ckuIds?.length) errors.push(`lab ${lab.id}: no CKUs`)
+    if (lab.ckuIds?.some(id => !/^CKU-[A-Z0-9-]+$/.test(id))) errors.push(`lab ${lab.id}: non-canonical CKU id`)
     if (!lab.tasks?.length) errors.push(`lab ${lab.id}: no tasks`)
+    const taskIds = new Set()
+    lab.tasks.forEach(t => { if (!t.id || taskIds.has(t.id)) errors.push(`lab ${lab.id}: duplicate or missing checkpoint ${t.id || '(missing)'}`); taskIds.add(t.id) })
     lab.tasks.forEach((t, i) => { if (t.order !== i + 1) errors.push(`lab ${lab.id}: tasks not ordered at ${t.id}`); if (!t.instruction) errors.push(`lab ${lab.id}: task ${t.id} empty instruction`) })
     if (!lab.successCriteria?.length) errors.push(`lab ${lab.id}: no success criteria`)
     if (!lab.commonMistakes?.length) errors.push(`lab ${lab.id}: no common mistakes`)
@@ -1345,7 +1352,13 @@ export function validateLabs() {
     else { dup(topology.id, 'topology'); if (!topology.nodes?.length || !topology.links?.length) errors.push(`topology ${topology.id}: needs nodes and links`)
       topology.links.forEach(l => { const ns = new Set(topology.nodes.map(n => n.id)); if (!ns.has(l.source) || !ns.has(l.target)) errors.push(`topology ${topology.id}: link ${l.id} bad node ref`) }) }
     if (!validator) errors.push(`lab ${lab.id}: missing validator`)
-    else { if (!validator.requiredCommands?.length) errors.push(`validator ${lab.id}: no required commands`); if (!validator.verificationChecks?.length) errors.push(`validator ${lab.id}: no verification checks`) }
+    else {
+      if (validator.labId !== lab.id) errors.push(`validator ${lab.id}: labId mismatch`)
+      if (!validator.requiredCommands?.length) errors.push(`validator ${lab.id}: no required commands`)
+      if (!validator.verificationChecks?.length) errors.push(`validator ${lab.id}: no verification checks`)
+      const checkIds = validator.verificationChecks?.map(check => check.id) || []
+      if (checkIds.some((id, index) => !id || checkIds.indexOf(id) !== index)) errors.push(`validator ${lab.id}: duplicate or missing verification checkpoint`)
+    }
     if (!diagram?.nodes?.length || !diagram?.links?.length) errors.push(`lab ${lab.id}: diagram needs nodes and links`)
     if (!packetFlows?.length) errors.push(`lab ${lab.id}: no packet flows`)
     packetFlows?.forEach(pf => { dup(pf.id, 'packetFlow'); pf.steps.forEach((s, i) => { if (s.order !== i + 1) errors.push(`flow ${pf.id}: steps not ordered`) }) })
