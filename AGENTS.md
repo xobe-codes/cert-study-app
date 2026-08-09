@@ -1,6 +1,6 @@
 # CCNA Study App — Agent entry point
 
-**North star:** 99+ overall quality. **Current:** ~93/100. See `ai-improvement-logs/IMPLEMENTATION_TRACKER.md`.
+**North star:** 99+ overall quality. **Current score:** see `ai-improvement-logs/IMPLEMENTATION_TRACKER.md` — single source of truth, don't hardcode a snapshot here. (Fixed 2026-08-09: this line said "~93/100," already stale against the tracker's own ~99/100 as of 2026-07-28, and against `.cursor/rules/score-95-plus.mdc`'s separate stale "~79" — three numbers, one repo. Tracker wins; the other two now point to it instead of guessing.)
 
 ## Session start (read in order)
 
