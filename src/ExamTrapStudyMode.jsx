@@ -144,7 +144,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
   const traps = useMemo(() => {
     let raw = domainTraps
     const matched = matchExamTraps(raw, trapFilter)
-    if (matched.length) return matched
+    if (matched.length) return randomizeQuestionOrder(matched)
     if (objectiveFilter) raw = raw.filter(t => t.objectiveId === objectiveFilter)
     return randomizeQuestionOrder(raw)
   }, [domainTraps, trapFilter, objectiveFilter])
