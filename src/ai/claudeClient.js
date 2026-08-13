@@ -107,7 +107,7 @@ export async function callClaude(body, retries = 2, feature = 'other') {
       const isNetworkError = err instanceof TypeError || /failed to fetch|network/i.test(err.message || '')
       if (isNetworkError && attempt < retries) { await wait(delays[attempt] || 1600); continue }
       if (isNetworkError) {
-        throw new Error('Network error: could not reach the Claude API. Check your internet connection (this is common on flaky mobile/LTE connections) and try again.')
+        throw new Error('Network error: could not reach the Claude API. Check your internet connection (this is common on flaky mobile/LTE connections) and try again.', { cause: err })
       }
       throw err
     }

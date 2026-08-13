@@ -55,26 +55,33 @@ export function useAppNavigation() {
   const prevViewRef = useRef('home')
   const placementExpandOnReturnRef = useRef(null)
 
+  // Imperative escape hatch for hash-route handlers that need the latest
+  // setters without listing all of them as effect dependencies. Assigned in
+  // an effect rather than the render body — writing a ref during render is
+  // a side effect happening at the wrong time, even though these setters are
+  // themselves referentially stable across renders.
   const nestedApi = useRef(null)
-  nestedApi.current = {
-    setSelectedLab,
-    setTopicFocusConfig,
-    setActiveDomainPassId,
-    setDomainPassFocusPickerId,
-    setDomainPassFocusConfig,
-    setActiveDomainPlacementId,
-    setPlacementSessionMode,
-    setMockDomainPrefill,
-    setLabsDomainPrefill,
-    setCommandHubDomainPrefill,
-    setCommandHubTabPrefill,
-    setCommandHubPackPrefill,
-    setExamTrapPrefill,
-    setTrapDrillPrefill,
-    setSelectedObjective,
-    setReturnToView,
-    setView,
-  }
+  useEffect(() => {
+    nestedApi.current = {
+      setSelectedLab,
+      setTopicFocusConfig,
+      setActiveDomainPassId,
+      setDomainPassFocusPickerId,
+      setDomainPassFocusConfig,
+      setActiveDomainPlacementId,
+      setPlacementSessionMode,
+      setMockDomainPrefill,
+      setLabsDomainPrefill,
+      setCommandHubDomainPrefill,
+      setCommandHubTabPrefill,
+      setCommandHubPackPrefill,
+      setExamTrapPrefill,
+      setTrapDrillPrefill,
+      setSelectedObjective,
+      setReturnToView,
+      setView,
+    }
+  })
 
   const openLab = useCallback((labId, from = 'labs') => {
     setSelectedLab(labId)

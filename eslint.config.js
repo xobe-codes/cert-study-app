@@ -23,6 +23,8 @@ const browserGlobals = {
   Symbol: 'readonly', Map: 'readonly', Set: 'readonly', WeakMap: 'readonly',
   WeakSet: 'readonly', Proxy: 'readonly', Reflect: 'readonly',
   structuredClone: 'readonly', queueMicrotask: 'readonly',
+  CustomEvent: 'readonly', requestIdleCallback: 'readonly', cancelIdleCallback: 'readonly',
+  caches: 'readonly', SpeechSynthesisUtterance: 'readonly',
 }
 
 export default [
@@ -30,7 +32,16 @@ export default [
   // Plain JS files (utilities, tests) — no React plugin
   {
     files: ['src/**/*.js'],
-    ignores: ['src/**/*.test.js'],
+    ignores: [
+      'src/**/*.test.js',
+      // Custom hooks written as .js (no JSX) — covered by the hooks block below
+      // so rules-of-hooks / exhaustive-deps actually apply to them.
+      'src/hooks/**/*.js',
+      'src/ui/use*.js',
+      'src/ui/visualViewportInset.js',
+      'src/features/**/use*.js',
+      'src/ai/claudeClient.js',
+    ],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
@@ -41,9 +52,23 @@ export default [
       'no-console': 'off',
     },
   },
-  // JSX files — full React + hooks rules
+  // JSX files, and plain-.js custom hooks — full React + hooks rules.
+  // A hook doesn't stop being a hook for being written without JSX: these
+  // files call useEffect/useState/etc and need rules-of-hooks/exhaustive-deps
+  // checked same as any component, but were previously invisible to this
+  // config (matched only by the no-React block above), which is why an
+  // `eslint-disable-line react-hooks/exhaustive-deps` in one of them
+  // (useAppBootstrap.js) errored with "rule not found" — no plugin providing
+  // that rule was ever registered for the file.
   {
-    files: ['src/**/*.jsx'],
+    files: [
+      'src/**/*.jsx',
+      'src/hooks/**/*.js',
+      'src/ui/use*.js',
+      'src/ui/visualViewportInset.js',
+      'src/features/**/use*.js',
+      'src/ai/claudeClient.js',
+    ],
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooks,
@@ -96,6 +121,9 @@ export default [
         beforeEach: 'readonly',
         afterEach: 'readonly',
         vi: 'readonly',
+        // vitest runs under Node — a handful of file-size-guard tests read
+        // source files via process.cwd().
+        process: 'readonly',
       },
     },
     rules: {
