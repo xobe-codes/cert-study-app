@@ -69,9 +69,29 @@ describe('cliEngine', () => {
       expect(commandMatches('show version', 'interface gi0/1')).toBe(false)
     })
 
-    it('show ip route ospf includes show ip route as substring → true', () => {
-      // commandMatches uses inputNorm.includes(variant), so longer input can contain shorter expected
-      expect(commandMatches('show ip route ospf', 'show ip route')).toBe(true)
+    it('a longer command is not the command that was asked for', () => {
+      // `show ip route ospf` filters the table to OSPF routes — different
+      // command, different output. Extra parameters belong in a lab's accept
+      // list, not in a blanket substring match.
+      expect(commandMatches('show ip route ospf', 'show ip route')).toBe(false)
+    })
+
+    it('rejects the negation of the expected command', () => {
+      expect(commandMatches('no shutdown', 'shutdown')).toBe(false)
+      expect(commandMatches('shutdown', 'no shutdown')).toBe(false)
+      expect(commandMatches('no ip address 10.0.0.1 255.255.255.0', 'ip address 10.0.0.1 255.255.255.0')).toBe(false)
+      expect(commandMatches('no enable', 'enable')).toBe(false)
+    })
+
+    it('rejects the expected command buried in unrelated text', () => {
+      expect(commandMatches('xyz show ip route abc', 'show ip route')).toBe(false)
+      expect(commandMatches('do not type shutdown', 'shutdown')).toBe(false)
+    })
+
+    it('tolerates a pasted device prompt and a trailing comment', () => {
+      expect(commandMatches('R1(config-if)# no shutdown', 'no shutdown')).toBe(true)
+      expect(commandMatches('Switch> enable', 'enable')).toBe(true)
+      expect(commandMatches('no shutdown ! bring the link up', 'no shutdown')).toBe(true)
     })
 
     it('commandVariants produces canonical forms (int/interface unified via normalizeIosCli)', () => {

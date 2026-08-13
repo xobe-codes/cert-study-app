@@ -1,6 +1,7 @@
 import { normalizeCmd, CLI_SHOW_OUTPUT, CLI_MODE_PROMPT, CLI_MODE_HINT } from './cliEngine.js'
 import { normalizeIosCli, resolveShowOutput } from './iosShorthand.js'
 import { resolveIosAbbreviation } from './iosAbbrev.js'
+import { diagnoseCliMiss } from './cliMissDiagnosis.js'
 
 export function cliNavTarget(norm) {
   if (/^(enable|en)$/.test(norm)) return { to: 'priv', from: ['user', 'priv'] }
@@ -52,9 +53,21 @@ export function commandVariants(cmd) {
   return [...variants].map(normalizeIosCli)
 }
 
+/** Drop a pasted device prompt ("R1(config-if)#") and any trailing IOS comment. */
+export function stripCliPrompt(text) {
+  return String(text || '')
+    .replace(/^\s*[\w.-]+(?:\([\w-]+\))?\s*[>#]\s*/, '')
+    .replace(/\s*!.*$/, '')
+    .trim()
+}
+
 export function commandMatches(inputNorm, expectedCmd) {
-  const input = normalizeIosCli(inputNorm)
-  return commandVariants(expectedCmd).some(v => input === v || input.includes(v))
+  const input = normalizeIosCli(stripCliPrompt(inputNorm))
+  if (!input) return false
+  // Exact match only. A substring test used to accept any line *containing*
+  // the answer, which passed the negation of the command being asked for —
+  // "no shutdown" scored as "shutdown" — plus arbitrary surrounding tokens.
+  return commandVariants(expectedCmd).some(v => input === normalizeIosCli(stripCliPrompt(v)))
 }
 
 /** Shorthand-aware match — expands unique-prefix tokens before compare. */
@@ -200,6 +213,13 @@ export function processCliLine({
   }
 
   counters.syntaxErrors += 1
+  // Explain the miss before falling back to the generic message. Advisory only —
+  // grading already happened above.
+  const diagnosis = diagnoseCliMiss(norm, objectives, completed)
+  if (diagnosis) {
+    lines.push({ text: diagnosis.message, kind: 'warn' })
+    counters.missKind = diagnosis.kind
+  }
   const firstWord = norm.split(' ')[0]
   const near = objectives.find((d, i) => !completed[i] && normalizeCmd((d.answer || [])[0] || '').split(' ')[0] === firstWord)
   if (near) {
