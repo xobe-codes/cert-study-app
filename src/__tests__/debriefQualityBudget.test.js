@@ -24,8 +24,8 @@ import {
 // boilerplate was passing three separate low-quality checks uncaught) and
 // adding stem-anchored SADE coverage for the highest-volume degraded topics
 // in domains 3-6.
-const MAX_DEGRADED_RATE = 0.44
-const MAX_DEGRADED_BY_DOMAIN = { 1: 0.01, 2: 0.08, 3: 0.46, 4: 0.52, 5: 0.71, 6: 0.72 }
+const MAX_DEGRADED_RATE = 0.39
+const MAX_DEGRADED_BY_DOMAIN = { 1: 0.01, 2: 0.08, 3: 0.46, 4: 0.48, 5: 0.52, 6: 0.72 }
 
 async function loadRuntimeBank() {
   const out = []

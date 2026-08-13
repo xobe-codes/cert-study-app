@@ -330,26 +330,146 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/vlan traversal|denial of service/i.test(w) && /double tagging/i.test(c) && /native vlan/i.test(b)) {
     return `Double tagging exploits the native VLAN by stacking two 802.1Q tags so the outer tag is stripped at the first trunk, letting the inner tag reach a second VLAN — **${correct}** is that attack; **${wrong}** names a different (or nonspecific) attack category.`
   }
-  if (/dhcp snooping trust/i.test(w) && /ip dhcp snooping trust/i.test(c)) {
+  if (/dhcp (?:snooping )?trust/i.test(w) && /ip dhcp snooping trust/i.test(c)) {
     return `The trusted-port command is \`ip dhcp snooping trust\`, entered in interface config mode — **${correct}** has the right keyword and mode; **${wrong}** either drops the \`ip\` keyword or applies it at the wrong configuration level.`
+  }
+  if (/show interface|show security/i.test(w) && /show port-security/i.test(c)) {
+    return `\`show port-security\` is the diagnostic command for port-security state and violations — **${correct}** is that command; **${wrong}** either shows unrelated interface stats or isn't a real IOS command.`
+  }
+  if (/dynamic vlans?|\bacls?\b|vlan pruning|wired equivalent privacy|static mac addresses/i.test(w) && /^port security$/i.test(c) && /plugging|access point|rogue|unauthorized device/i.test(b)) {
+    return `Port security is what limits which MAC addresses may send traffic on an access port, stopping an unauthorized device from being plugged in — **${correct}** is that control; **${wrong}** solves a different problem (VLAN assignment, traffic filtering, or wireless encryption).`
+  }
+  if (/switchport port-security(?! maximum)/i.test(w) && /switchport port-security/i.test(c) && /config\)#/i.test(w) && !/config-if\)#/i.test(w)) {
+    return `\`switchport port-security\` is entered in interface config mode (\`config-if\`), not global config — **${correct}** has the right mode prefix; **${wrong}** applies the command one level too high.`
+  }
+  if (/port-security enable/i.test(w) && /switchport port-security/i.test(c)) {
+    return `The enabling command is \`switchport port-security\` — there's no separate \`port-security enable\` keyword — **${correct}** is the real syntax; **${wrong}** invents a command IOS doesn't have.`
+  }
+  if (/^2 mac addresses$|^0 mac addresses$|^10 mac addresses$/i.test(w) && /^1 mac address$/i.test(c) && !/voip|voice vlan/i.test(b)) {
+    return `Port security defaults to allowing exactly **1** MAC address per port until you raise the maximum — **${correct}** is that default; **${wrong}** states a different count.`
+  }
+  if (/^1 mac address$|^0 mac addresses$|^10 mac addresses$/i.test(w) && /^2 mac addresses$/i.test(c) && /voip|voice vlan/i.test(b)) {
+    return `A port carrying both a VoIP phone (voice VLAN) and a PC needs **2** learned MAC addresses, one per device — **${correct}** is that count; **${wrong}** doesn't account for both the phone and the PC behind it.`
+  }
+  if (/^layer 0$|^layer 1$/i.test(w) && /^layer 2$/i.test(c) && /port security/i.test(b)) {
+    return `Port security filters by MAC address, a Layer 2 (data link) construct — **${correct}** is the right layer; **${wrong}** names a layer that doesn't have MAC addressing (Layer 1 is physical signaling; "Layer 0" isn't part of the OSI model).`
+  }
+  if (/to allow or disallow vlans|to prevent unauthorized access by users/i.test(w) && /prevent unauthorized access by mac address/i.test(c)) {
+    return `Port security's job is filtering by **MAC address**, not VLAN membership or user identity — **${correct}** states that scope correctly; **${wrong}** describes a different control (VLAN assignment or 802.1X user authentication).`
+  }
+  if (/mobile environments|higher amount of memory|admin intervention to reset/i.test(w) && /works best in static environments/i.test(c)) {
+    return `Port security works best where the same devices stay plugged into the same ports — a static environment — **${correct}** states that correctly; **${wrong}** overstates a resource cost or operational burden port security doesn't inherently have.`
+  }
+  if (/no switchport dynamic|no dynamic/i.test(w) && /nonnegotiate/i.test(c)) {
+    return `A dynamic (DTP-negotiating) port must first be locked to access mode and told to stop negotiating (\`switchport mode access\` + \`switchport nonnegotiate\`) before port security will accept — **${correct}** includes that step; **${wrong}** invents a \`no switchport/no dynamic\` command IOS doesn't have.`
+  }
+  if (/switchport mode access\s*switchport port-security(?!\s*nonnegotiate)/i.test(w.replace(/\s+/g, ' ')) && /nonnegotiate/i.test(c)) {
+    return `Without \`switchport nonnegotiate\`, the port keeps sending DTP frames and IOS still rejects port security on a dynamic port — **${correct}** includes that missing step; **${wrong}** skips it.`
+  }
+  if (/switchport maximum \d|port-security maximum \d/i.test(w) && /switchport port-security maximum \d/i.test(c)) {
+    return `The full command keyword is \`switchport port-security maximum <n>\` — **${correct}** has the complete syntax; **${wrong}** drops part of the required keyword chain.`
   }
   if (/1 to 100\b|100 to 199|100 to 200/i.test(w) && /1 to 99/i.test(c)) {
     return `Standard ACLs use numbers 1–99 (and 1300–1999 expanded) — **${correct}** is the right range; **${wrong}** either overlaps the extended-ACL range (100–199) or shifts the boundary by one.`
   }
+  if (/^1 to 99$/i.test(w.trim()) && /^100 to 199$/i.test(c.trim())) {
+    return `Extended ACLs use numbers 100–199 (and 2000–2699 expanded) — **${correct}** is the right range; **${wrong}** is the standard-ACL range instead.`
+  }
+  if (/^log all$|^end of acl marker$/i.test(w) && /deny any any/i.test(c)) {
+    return `Every ACL ends with an implicit **deny any any** even if you don't type it — **${correct}** is that rule; **${wrong}** isn't a real automatic ACL behavior.`
+  }
+  if (/last matching condition is the action taken|if no matching rule exists, they are allowed|implicit allow/i.test(w) && /until a match is made/i.test(c)) {
+    return `ACLs process top-down and stop at the first match — there's no "last match wins" and no implicit allow (the implicit rule is deny) — **${correct}** states that correctly; **${wrong}** reverses the matching order or the implicit action.`
+  }
+  if (/more secure|more specific rules|blocking of applications/i.test(w) && /less processing overhead/i.test(c) && /standard acl/i.test(b)) {
+    return `A standard ACL's advantage is that matching only on source address is cheap to evaluate — **${correct}** is that advantage; **${wrong}** actually describes what extended ACLs do better (more specific matching, app/port blocking), not a standard-ACL strength.`
+  }
+  if (/^1000 to 1999$|^1100 to 1299$|^2000 to 2699$/i.test(w.trim()) && /^1300 to 1999$/i.test(c.trim())) {
+    return `The expanded standard-ACL range is 1300–1999 — **${correct}** is that range; **${wrong}** overlaps the extended-ACL numbering instead.`
+  }
+  if (/defining the broadcast address|defining no addresses|defining the network address/i.test(w) && /defining all addresses/i.test(c) && /wildcard/i.test(b)) {
+    return `A wildcard mask of 255.255.255.255 with address 0.0.0.0 matches every bit as "don't care" — that's the \`any\` keyword, matching all addresses — **${correct}** is that meaning; **${wrong}** misreads the wildcard as excluding or narrowing addresses instead.`
+  }
+  if (/^standard$|^dynamic$|^expanded$/i.test(w.trim()) && /^extended$/i.test(c.trim()) && /filter an application/i.test(b)) {
+    return `Filtering by application/port requires matching on more than source address, which only an extended ACL can do — **${correct}** is that type; **${wrong}** either can't match ports (standard) or isn't a real ACL type (expanded) here.`
+  }
+  if (/^1000 to 1999$|^1100 to 1299$|^1300 to 1999$/i.test(w.trim()) && /^2000 to 2699$/i.test(c.trim())) {
+    return `The expanded extended-ACL range is 2000–2699 — **${correct}** is that range; **${wrong}** is a different (standard-ACL or overlapping) range.`
+  }
+  if (/^standard$|^dynamic$|^extended$/i.test(w.trim()) && /^named$/i.test(c.trim()) && /removing a single entry/i.test(b)) {
+    return `Only a named ACL lets you delete one line without recreating the whole list — numbered ACLs (standard/extended) require removing and rebuilding — **${correct}** is that type; **${wrong}** doesn't support single-entry removal this way.`
+  }
+  if (/^standard$|^extended$|^named$/i.test(w.trim()) && /^dynamic$/i.test(c.trim()) && /successfully logged into/i.test(b)) {
+    return `Lock-and-key (dynamic) ACLs open a port only after the user authenticates — **${correct}** is that type; **${wrong}** is a static ACL type that doesn't react to a login event.`
+  }
   if (/source address and source port/i.test(w) && /only the source address/i.test(c)) {
     return `A standard ACL can only match on source address — it has no visibility into port numbers — **${correct}** states that limit correctly; **${wrong}** adds a port-matching capability only extended ACLs have.`
   }
-  if (/password enable|^enable \S+!?$|secret enable/i.test(w) && /enable secret/i.test(c)) {
+  if (/password enable|(?:^|#)enable \S+!?$|secret enable/i.test(w) && /enable secret/i.test(c)) {
     return `The command keyword order is \`enable secret <password>\` — **${correct}** has the right syntax; **${wrong}** reorders or drops the \`secret\` keyword, which IOS won't accept.`
   }
   if (/interface vlan/i.test(w) && /line vty/i.test(c) && /login password|telnet/i.test(b)) {
     return `A Telnet/SSH login password is set under the VTY lines, not an interface — **${correct}** is the right configuration context; **${wrong}** configures an SVI, which has nothing to do with line passwords.`
   }
+  if (/line console|line aux/i.test(w) && /line vty/i.test(c) && /telnet/i.test(b)) {
+    return `Telnet/SSH sessions terminate on the VTY lines, not console or aux — **${correct}** is the right line type; **${wrong}** configures a local-access line that has nothing to do with remote Telnet logins.`
+  }
+  if (/originally entered the wrong password|contains a special character|too long and has been truncated/i.test(w) && /enable secret password is set to something else/i.test(c)) {
+    return `\`enable secret\` always overrides \`enable password\` when both are configured — the router is checking a different (secret) password than the one just set — **${correct}** is that precedence rule; **${wrong}** blames user error or password formatting that isn't the actual cause.`
+  }
+  if (/set password.*request login|login password\b.*password/i.test(w.replace(/\s+/g, ' ')) && /password.*login/i.test(c.replace(/\s+/g, ' '))) {
+    return `A line needs \`password <pw>\` then \`login\` on separate lines — **${correct}** has the right two-command sequence; **${wrong}** invents keywords (\`set\`, \`request\`) or reorders them into a syntax IOS rejects.`
+  }
+  if (/the enable secret is not set|the enable password is not set|line is administratively down/i.test(w) && /line login password is not set/i.test(c)) {
+    return `"Password required, but none set" means \`login\` is configured on the VTY line with no \`password\` set — it's unrelated to the enable password/secret — **${correct}** is the actual cause; **${wrong}** points at a different (and here, irrelevant) setting.`
+  }
+  if (/config-line\)#version 2|config-ssh\)#version 2|config\)#ssh version 2/i.test(w) && /config\)#ip ssh version 2/i.test(c)) {
+    return `SSH version is set globally with \`ip ssh version 2\` in global config — there's no per-line or \`config-ssh\` mode for it, and the \`ip\` keyword is required — **${correct}** has the right mode and syntax; **${wrong}** applies it in the wrong context or drops \`ip\`.`
+  }
+  if (/ssh allows for file copy|easier to create acls/i.test(w) && /ssh is encrypted/i.test(c) && /telnet/i.test(b)) {
+    return `The reason to replace Telnet with SSH is that SSH encrypts the session (Telnet sends everything, including passwords, in cleartext) — **${correct}** is that reason; **${wrong}** names a true-but-irrelevant SSH feature that isn't why it replaces Telnet.`
+  }
+  if (/time and date need to be corrected|dns server is not configured|no host record/i.test(w) && /key strength needs to be 768 bits or higher/i.test(c)) {
+    return `SSHv2 specifically requires an RSA key of at least 768 bits — a shorter key (the IOS default) blocks v2 even though the keys already exist — **${correct}** is the actual blocker; **${wrong}** names a prerequisite for *generating* keys in the first place, which has already happened here.`
+  }
+  if (/config\)#account |config\)#user \S+ |config\)#user-account /i.test(w) && /config\)#username \S+ password/i.test(c)) {
+    return `The local-user command is \`username <name> password <pw>\` as a single line — **${correct}** has the right keyword and form; **${wrong}** invents a different keyword or mode (\`account\`, \`user\`, \`user-account\`) IOS doesn't have.`
+  }
+  if (/generate crypto key rsa|crypto generate key rsa|^router#crypto key generate rsa/i.test(w) && /config\)#crypto key generate rsa/i.test(c)) {
+    return `The command is \`crypto key generate rsa\`, in that exact keyword order, from global config mode — **${correct}** has both the right order and the right mode; **${wrong}** reorders the keywords or runs it from the wrong prompt.`
+  }
+  if (/config\)#exec-timeout 0$|config-line\)#timeout 0 0|no exec-timeout/i.test(w) && /config-line\)#exec-timeout 0 0/i.test(c)) {
+    return `Disabling the idle timeout takes both minutes and seconds set to \`0 0\`, entered in line config mode with the exact keyword \`exec-timeout\` — **${correct}** has that complete syntax; **${wrong}** is missing an argument, uses the wrong keyword, or applies it at the wrong level.`
+  }
+  if (/^console 0$/i.test(w) && /^vty 0$/i.test(c) && /show users/i.test(b)) {
+    return `\`show users\` lists active sessions by line type — a remote Telnet/SSH session shows as **VTY**, not Console (which is the local physical port) — **${correct}** is the right line type; **${wrong}** names the local-access line instead.`
+  }
   if (/gre uses ipsec|gre uses a protocol of|gre provides per-packet authentication/i.test(w) && /packet-in-packet encapsulation/i.test(c)) {
     return `GRE's job is packet-in-packet encapsulation — it doesn't provide encryption or authentication on its own (that's IPsec's role), and its IP protocol number is 47, not 57 — **${correct}** is the accurate GRE fact; **${wrong}** states something GRE doesn't actually do.`
   }
-  if (/^ppp$|\bl2tp\b|^ipsec$/i.test(w) && /^gre$/i.test(c) && /tunnel protocol/i.test(b)) {
+  if (/^ppp$|\bl2tp\b|^ipsec$|^ssl$/i.test(w) && /^gre$/i.test(c) && /tunnel protocol/i.test(b)) {
     return `This stem is asking specifically about the trait this stem attributes to GRE — **${correct}** matches what it's asking about; **${wrong}** is a different tunnel-related protocol that doesn't fit this stem's specific claim.`
+  }
+  if (/^protocol 4$|^protocol 43$|^protocol 57$/i.test(w.trim()) && /^protocol 47$/i.test(c.trim())) {
+    return `GRE is IP protocol number **47** — **${correct}** is that number; **${wrong}** is a different (and here, incorrect) protocol number.`
+  }
+  if (/^mtu 1492$|^mtu 1500$|^mtu 1528$/i.test(w.trim()) && /^mtu 1476$/i.test(c.trim())) {
+    return `A GRE tunnel's default MTU is **1476** bytes — 24 bytes smaller than a standard 1500-byte Ethernet MTU to leave room for the GRE/IP encapsulation header — **${correct}** is that value; **${wrong}** doesn't account for that overhead correctly.`
+  }
+  if (/^two hops$|^four hops$|^zero hops$/i.test(w.trim()) && /^one hop$/i.test(c.trim())) {
+    return `A GRE tunnel makes the underlying multi-hop path look like a single logical hop to routing protocols — **${correct}** is that count; **${wrong}** counts the physical path instead of the tunnel abstraction.`
+  }
+  if (/^hsrp$|^arp$|^gre$/i.test(w.trim()) && /^nhrp$/i.test(c.trim()) && /dmvpn/i.test(b)) {
+    return `NHRP is what DMVPN spokes use to resolve the NBMA (real) address behind a tunnel address — **${correct}** is that protocol; **${wrong}** is a different protocol that doesn't do NBMA-to-tunnel resolution.`
+  }
+  if (/point-to-point|full-mesh|dual-homed/i.test(w) && /hub-and-spoke/i.test(c) && /dmvpn/i.test(b)) {
+    return `DMVPN's classic topology is hub-and-spoke (spokes register with a hub, though spoke-to-spoke tunnels can form dynamically) — **${correct}** is that topology; **${wrong}** describes a different logical layout DMVPN isn't built around.`
+  }
+  if (/^authentication$|^anti-replay$|^confidentiality$/i.test(w.trim()) && /^data integrity$/i.test(c.trim()) && /tampered/i.test(b)) {
+    return `Detecting whether a packet was altered in transit is data integrity, verified via a hash/HMAC — **${correct}** is that benefit; **${wrong}** is a different VPN security property (verifying identity, blocking replayed packets, or hiding content) that doesn't detect tampering.`
+  }
+  if (/catalyst switches|cisco routers|policy-based routing/i.test(w) && /cisco ftd/i.test(c) && /vpn tunnels between sites/i.test(b)) {
+    return `This stem asks specifically about the Cisco platform it names for site-to-site VPN — **${correct}** matches what it's asking about; **${wrong}** is a different Cisco technology that isn't the one keyed here.`
   }
   if (/^dmz$|^internal$|^trusted$/i.test(w) && /^perimeter$/i.test(c)) {
     return `The perimeter is the network's outward-facing edge, outside the firewall — **${correct}** is that term; **${wrong}** names a related but different security zone (the DMZ, the trusted internal network, etc.).`
@@ -664,26 +784,140 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/vlan traversal|denial of service/i.test(w) && about(/native vlan|double tagging|vlan attack/i)) {
     return `**${choice}** names a different Layer 2 attack category than the native-VLAN double-tagging exploit.`
   }
-  if (/dhcp snooping trust/i.test(w) && about(/dhcp snooping/i)) {
+  if (/dhcp (?:snooping )?trust/i.test(w) && about(/dhcp snooping/i)) {
     return `**${choice}** uses the wrong keyword or configuration mode for the DHCP snooping trust command.`
+  }
+  if (/show interface|show security/i.test(w) && about(/port-security|port security/i)) {
+    return `**${choice}** names a different (or non-existent) diagnostic command than \`show port-security\`.`
+  }
+  if (/dynamic vlans?|\bacls?\b|vlan pruning|wired equivalent privacy|static mac addresses/i.test(w) && about(/port security|plugging|access point|rogue/i)) {
+    return `**${choice}** names a control that solves a different problem than restricting which MAC addresses may use an access port.`
+  }
+  if (/switchport port-security(?! maximum)/i.test(w) && about(/port security/i) && /config\)#/i.test(w) && !/config-if\)#/i.test(w)) {
+    return `**${choice}** applies the port-security command at global config mode instead of the interface.`
+  }
+  if (/port-security enable/i.test(w) && about(/port security/i)) {
+    return `**${choice}** invents a \`port-security enable\` keyword IOS doesn't have.`
+  }
+  if (/^\d+ mac addresses?$/i.test(w.trim()) && about(/port security|maximum/i)) {
+    return `**${choice}** states a specific default MAC-address maximum for port security.`
+  }
+  if (/^layer 0$|^layer 1$/i.test(w) && about(/port security/i)) {
+    return `**${choice}** names an OSI layer without MAC addressing.`
+  }
+  if (/to allow or disallow vlans|to prevent unauthorized access by users/i.test(w) && about(/port security/i)) {
+    return `**${choice}** describes a different control than MAC-address filtering.`
+  }
+  if (/mobile environments|higher amount of memory|admin intervention to reset/i.test(w) && about(/port security/i)) {
+    return `**${choice}** overstates a cost or misdescribes the environment port security fits best.`
+  }
+  if (/no switchport dynamic|no dynamic/i.test(w) && about(/dynamic port|nonnegotiate|port-security/i)) {
+    return `**${choice}** invents an IOS command that doesn't exist for clearing a dynamic port.`
+  }
+  if (/switchport maximum \d|port-security maximum \d/i.test(w) && about(/port security|maximum/i)) {
+    return `**${choice}** drops part of the required \`switchport port-security maximum\` keyword chain.`
   }
   if (/1 to 100\b|100 to 199|100 to 200/i.test(w) && about(/access list|acl|standard/i)) {
     return `**${choice}** states a numeric range that overlaps or misstates the standard-ACL boundary.`
   }
+  if (/^1 to 99$/i.test(w.trim()) && about(/extended acl|access list/i)) {
+    return `**${choice}** states the standard-ACL range instead of the extended-ACL range this stem asks about.`
+  }
+  if (/^log all$|^end of acl marker$/i.test(w) && about(/acl/i)) {
+    return `**${choice}** names something that isn't a real automatic ACL end-of-list behavior.`
+  }
+  if (/last matching condition is the action taken|if no matching rule exists, they are allowed|implicit allow/i.test(w) && about(/access list|acl/i)) {
+    return `**${choice}** reverses ACL matching order or the implicit deny at the end of the list.`
+  }
+  if (/more secure|more specific rules|blocking of applications/i.test(w) && about(/standard acl/i)) {
+    return `**${choice}** describes an extended-ACL strength, not a standard-ACL advantage.`
+  }
+  if (/^1000 to 1999$|^1100 to 1299$|^2000 to 2699$/i.test(w.trim()) && about(/standard access list|expanded/i)) {
+    return `**${choice}** states a range that overlaps the extended-ACL numbering rather than the standard-ACL expanded range.`
+  }
+  if (/defining the broadcast address|defining no addresses|defining the network address/i.test(w) && about(/wildcard/i)) {
+    return `**${choice}** misreads a fully-wildcarded ACL rule as excluding or narrowing addresses instead of matching all of them.`
+  }
+  if (/^standard$|^dynamic$|^expanded$/i.test(w.trim()) && about(/filter an application|extended acl/i)) {
+    return `**${choice}** names an ACL type that can't match on application/port the way this stem needs.`
+  }
+  if (/^1000 to 1999$|^1100 to 1299$|^1300 to 1999$/i.test(w.trim()) && about(/extended access list|expanded/i)) {
+    return `**${choice}** states a range that doesn't match the extended-ACL expanded numbering.`
+  }
+  if (/^standard$|^dynamic$|^extended$/i.test(w.trim()) && about(/named acl|removing a single entry/i)) {
+    return `**${choice}** names a numbered ACL type that can't remove a single entry without rebuilding the list.`
+  }
+  if (/^standard$|^extended$|^named$/i.test(w.trim()) && about(/dynamic acl|successfully logged into/i)) {
+    return `**${choice}** names a static ACL type that doesn't react to a login event.`
+  }
   if (/source address and source port/i.test(w) && about(/standard acl|access list/i)) {
     return `**${choice}** adds port-matching to a standard ACL, which only extended ACLs can do.`
   }
-  if (/password enable|^enable \S+!?$|secret enable/i.test(w) && about(/enable secret|enable password/i)) {
+  if (/password enable|(?:^|#)enable \S+!?$|secret enable/i.test(w) && about(/enable secret|enable password/i)) {
     return `**${choice}** reorders or drops a required keyword in the enable-secret command.`
   }
   if (/interface vlan/i.test(w) && about(/line vty|telnet|login password/i)) {
     return `**${choice}** configures an SVI rather than the VTY lines a login password needs.`
   }
+  if (/line console|line aux/i.test(w) && about(/line vty|telnet/i)) {
+    return `**${choice}** configures a local-access line, not the VTY lines Telnet/SSH sessions use.`
+  }
+  if (/originally entered the wrong password|contains a special character|too long and has been truncated/i.test(w) && about(/enable secret|enable password/i)) {
+    return `**${choice}** blames user error or password formatting rather than enable-secret/enable-password precedence.`
+  }
+  if (/set password.*request login|login password\b.*password/i.test(w.replace(/\s+/g, ' ')) && about(/line password|login|vty/i)) {
+    return `**${choice}** invents keywords or reorders them into line-password syntax IOS rejects.`
+  }
+  if (/the enable secret is not set|the enable password is not set|line is administratively down/i.test(w) && about(/login password|vty|telnet/i)) {
+    return `**${choice}** points at a setting unrelated to the actual "password required, but none set" cause.`
+  }
+  if (/config-line\)#version 2|config-ssh\)#version 2|config\)#ssh version 2/i.test(w) && about(/ssh version|ip ssh/i)) {
+    return `**${choice}** applies the SSH version command in the wrong mode or drops the required \`ip\` keyword.`
+  }
+  if (/ssh allows for file copy|easier to create acls/i.test(w) && about(/ssh|telnet/i)) {
+    return `**${choice}** names a true SSH feature that isn't the reason it replaces Telnet.`
+  }
+  if (/time and date need to be corrected|dns server is not configured|no host record/i.test(w) && about(/ssh|key strength|encryption keys/i)) {
+    return `**${choice}** names a prerequisite for generating SSH keys, not for enabling SSHv2 once keys already exist.`
+  }
+  if (/config\)#account |config\)#user \S+ |config\)#user-account /i.test(w) && about(/username|local user|ssh access/i)) {
+    return `**${choice}** invents a keyword or mode IOS doesn't use for creating a local user.`
+  }
+  if (/generate crypto key rsa|crypto generate key rsa|^router#crypto key generate rsa/i.test(w) && about(/crypto key|encryption keys/i)) {
+    return `**${choice}** reorders the crypto-key keywords or runs the command from the wrong prompt.`
+  }
+  if (/config\)#exec-timeout 0$|config-line\)#timeout 0 0|no exec-timeout/i.test(w) && about(/exec-timeout|idle|timeout/i)) {
+    return `**${choice}** is missing an argument, uses the wrong keyword, or applies exec-timeout at the wrong level.`
+  }
+  if (/^console 0$/i.test(w) && about(/show users|vty/i)) {
+    return `**${choice}** names the local console line instead of a remote VTY session.`
+  }
   if (/gre uses ipsec|gre uses a protocol of|gre provides per-packet authentication/i.test(w) && about(/gre|tunnel/i)) {
     return `**${choice}** attributes encryption, authentication, or a protocol number to GRE that it doesn't actually have.`
   }
-  if (/^ppp$|\bl2tp\b|^ipsec$/i.test(w) && about(/gre|tunnel protocol/i)) {
+  if (/^ppp$|\bl2tp\b|^ipsec$|^ssl$/i.test(w) && about(/gre|tunnel protocol/i)) {
     return `**${choice}** names a different tunnel-related protocol than the one this stem asks about.`
+  }
+  if (/^protocol 4$|^protocol 43$|^protocol 57$/i.test(w.trim()) && about(/gre/i)) {
+    return `**${choice}** states an IP protocol number other than GRE's actual 47.`
+  }
+  if (/^mtu 149\d$|^mtu 1500$|^mtu 1528$/i.test(w.trim()) && about(/gre|tunnel/i)) {
+    return `**${choice}** states an MTU that doesn't account for the GRE header's 24-byte overhead.`
+  }
+  if (/^two hops$|^four hops$|^zero hops$/i.test(w.trim()) && about(/gre|tunnel/i)) {
+    return `**${choice}** counts the underlying physical path instead of the tunnel's single logical hop.`
+  }
+  if (/^hsrp$|^arp$/i.test(w.trim()) && about(/dmvpn|nhrp/i)) {
+    return `**${choice}** names a different protocol that doesn't resolve NBMA-to-tunnel addresses.`
+  }
+  if (/point-to-point|full-mesh|dual-homed/i.test(w) && about(/dmvpn/i)) {
+    return `**${choice}** names a topology DMVPN isn't built around.`
+  }
+  if (/^authentication$|^anti-replay$|^confidentiality$/i.test(w.trim()) && about(/data integrity|tampered/i)) {
+    return `**${choice}** names a different VPN security property that doesn't detect tampering.`
+  }
+  if (/catalyst switches|cisco routers|policy-based routing/i.test(w) && about(/cisco ftd|vpn tunnels/i)) {
+    return `**${choice}** names a different Cisco technology than the one this stem asks about.`
   }
   if (/^dmz$|^internal$|^trusted$/i.test(w) && about(/perimeter|firewall|security zone/i)) {
     return `**${choice}** names a different network security zone than the outward-facing perimeter.`
