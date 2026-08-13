@@ -922,6 +922,30 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/always in the form of hardware appliances/i.test(w) && /logically centralized control plane/i.test(c)) {
     return `Controller-based networking's defining trait is a logically centralized control plane — it's commonly software, not a hardware requirement — **${correct}** states that correctly; **${wrong}** claims a hardware requirement that doesn't exist.`
   }
+  if (/logically centralized data plane|uses asics to centrally switch frames/i.test(w) && /logically centralized control plane/i.test(c)) {
+    return `The controller centralizes the **control plane** (the decision-making) — the data plane (actual frame forwarding) stays distributed across the individual switches — **${correct}** states that correctly; **${wrong}** centralizes the wrong plane.`
+  }
+  if (/^sdn$|^sd-lan$|^vpn$/i.test(w.trim()) && /^sd-wan$/i.test(c.trim()) && /combines multiple sites/i.test(b)) {
+    return `**SD-WAN** is the technology that abstracts multiple WAN links across sites into one logical, centrally managed network — **${correct}** is that term; **${wrong}** is a related but different concept (SDN is the broader controller-based paradigm; SD-LAN isn't a standard term; VPN is a point-to-point tunnel, not a multi-site fabric).`
+  }
+  if (/^scalability$|^security$|^centralized provisioning$/i.test(w.trim()) && /^maturity$/i.test(c.trim()) && /disadvantage/i.test(b)) {
+    return `Controller-based/SDN technology is relatively new, so **maturity** (fewer proven deployments, evolving standards) is the commonly cited disadvantage — **${correct}** is that drawback; **${wrong}** is actually one of controller-based networking's advantages, not a disadvantage.`
+  }
+  if (/^cpu utilization$|^memory utilization$|^forwarding of traffic$/i.test(w.trim()) && /^qos$/i.test(c.trim()) && /sdn controller/i.test(b)) {
+    return `An SDN controller centrally pushes **QoS** policy to switches — **${correct}** is that controllable element; **${wrong}** is a per-device operational metric or a data-plane function the controller doesn't directly configure this way.`
+  }
+  if (/all data is centrally switched at the sdn controller|all sdn switches are stateful with respect to configuration|all data flowing through the switch is stateless/i.test(w) && /all sdn switches are stateless with respect to configuration/i.test(c)) {
+    return `SDN switches hold no independent configuration state of their own — they're **stateless**, reprogrammed entirely by the controller — **${correct}** states that correctly (about configuration, not the data itself); **${wrong}** either misplaces where switching happens or misapplies "stateless" to the traffic rather than the switch's config.`
+  }
+  if (/^sdn$/i.test(w.trim()) && /^snmp$/i.test(c.trim()) && /central remote monitoring/i.test(b)) {
+    return `**SNMP** is the protocol built for centrally monitoring devices remotely (polling and traps) — **${correct}** is that technology; **${wrong}** (SDN) centralizes control/configuration, not monitoring.`
+  }
+  if (/^snmp agent$|^syslog server$/i.test(w.trim()) && /^nms$/i.test(c.trim()) && /aggregates all snmp messages/i.test(b)) {
+    return `The **NMS (Network Management Station)** is what collects and aggregates SNMP polls/traps from every managed device — **${correct}** is that component; **${wrong}** is the device-side agent (the source of the data) or an unrelated logging system, not the aggregator.`
+  }
+  if (/^capwap$|^lwapp$/i.test(w.trim()) && /^snmp$/i.test(c.trim()) && /cisco prime infrastructure/i.test(b)) {
+    return `Cisco Prime Infrastructure manages devices via **SNMP** — **${correct}** is that method; **${wrong}** is a wireless AP-to-controller tunneling protocol, not a network-management configuration method.`
+  }
   if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work/i.test(w) && /outcome that can be reproduced/i.test(c)) {
     return `Automation's core value is repeatability — the same script produces the same result every time — **${correct}** is that reason; **${wrong}** is a plausible-sounding side effect, not the actual reason to automate.`
   }
@@ -1705,6 +1729,30 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/decreased problems|increased throughput|increased complexity|always in the form of hardware appliances/i.test(w) && about(/controller-based networking/i)) {
     return `**${choice}** makes a claim controller-based networking doesn't specifically guarantee.`
+  }
+  if (/logically centralized data plane|uses asics to centrally switch frames/i.test(w) && about(/controller-based networking|control plane/i)) {
+    return `**${choice}** centralizes the wrong plane — controller-based networking centralizes control, not data forwarding.`
+  }
+  if (/^sdn$|^sd-lan$|^vpn$/i.test(w.trim()) && about(/sd-wan|combines multiple sites/i)) {
+    return `**${choice}** names a related but different concept, not the multi-site WAN abstraction technology.`
+  }
+  if (/^scalability$|^security$|^centralized provisioning$/i.test(w.trim()) && about(/maturity|disadvantage/i)) {
+    return `**${choice}** is actually an advantage of controller-based networking, not a disadvantage.`
+  }
+  if (/^cpu utilization$|^memory utilization$|^forwarding of traffic$/i.test(w.trim()) && about(/qos|sdn controller/i)) {
+    return `**${choice}** is a per-device metric or data-plane function, not what an SDN controller centrally configures here.`
+  }
+  if (/all data is centrally switched at the sdn controller|all sdn switches are stateful with respect to configuration|all data flowing through the switch is stateless/i.test(w) && about(/sdn switches/i)) {
+    return `**${choice}** misplaces where switching happens or misapplies "stateless" to the wrong thing.`
+  }
+  if (/^sdn$/i.test(w.trim()) && about(/snmp|central remote monitoring/i)) {
+    return `**${choice}** centralizes control/configuration, not monitoring.`
+  }
+  if (/^snmp agent$|^syslog server$/i.test(w.trim()) && about(/nms|aggregates all snmp/i)) {
+    return `**${choice}** is the device-side data source or an unrelated logging system, not the aggregator.`
+  }
+  if (/^capwap$|^lwapp$/i.test(w.trim()) && about(/snmp|cisco prime infrastructure/i)) {
+    return `**${choice}** is a wireless AP tunneling protocol, not a network-management configuration method.`
   }
   if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work|copy and paste scripts built in notepad\+\+/i.test(w) && about(/automate|automation/i)) {
     return `**${choice}** names a plausible-sounding but incorrect reason or method for automating device configuration.`
