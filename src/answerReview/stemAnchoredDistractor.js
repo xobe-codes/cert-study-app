@@ -498,6 +498,15 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/^configuring a group$|^configuring a user$/i.test(w.trim()) && /^configuring a view$/i.test(c.trim()) && /restricted oid/i.test(b)) {
     return `SNMPv3's restriction chain starts with a **view** (which OIDs are visible), then a group is bound to that view, then a user is assigned to the group — **${correct}** is the first step; **${wrong}** is a later step in the chain that depends on the view already existing.`
   }
+  if (/^router#show nat translations$|^router#debug ip nat translations$|^router#show translations nat$/i.test(w.trim()) && /^router#show ip nat translations$/i.test(c.trim())) {
+    return `The command is \`show ip nat translations\`, in that exact keyword order — **${correct}** has the right syntax; **${wrong}** either drops the \`ip\` keyword, reorders the keywords, or confuses it with the debug command.`
+  }
+  if (/^router#no ip nat translation$|^router#clear ip nat translation$|^router#clear ip nat$/i.test(w.trim()) && /^router#clear ip nat translation \*$/i.test(c.trim())) {
+    return `Clearing every dynamic NAT entry needs the wildcard \`*\` at the end of \`clear ip nat translation\` — **${correct}** has the complete syntax; **${wrong}** either uses \`no\` (which isn't how you clear a dynamic table) or omits the \`*\`, which without it requires specifying a single address instead of wiping the whole table.`
+  }
+  if (/^router#debug ip translations$/i.test(w.trim()) && /^router#debug ip nat$/i.test(c.trim())) {
+    return `The debug command is \`debug ip nat\` — **${correct}** has the right keyword; **${wrong}** drops \`nat\` and substitutes a keyword IOS doesn't recognize here.`
+  }
   if (/archive tftp|copy server:/i.test(w) && /copy tftp/i.test(c)) {
     return `Restoring a config from a TFTP server uses \`copy tftp: running-config\` — **${correct}** is the real command; **${wrong}** uses the wrong keyword or source alias.`
   }
@@ -1375,6 +1384,15 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/^configuring a group$|^configuring a user$/i.test(w.trim()) && about(/restricted oid|snmpv3/i)) {
     return `**${choice}** is a later step in the SNMPv3 restriction chain that depends on the view already existing.`
+  }
+  if (/^router#show nat translations$|^router#debug ip nat translations$|^router#show translations nat$/i.test(w.trim()) && about(/nat translations/i)) {
+    return `**${choice}** drops the \`ip\` keyword, reorders it, or confuses the show and debug commands.`
+  }
+  if (/^router#no ip nat translation$|^router#clear ip nat translation$|^router#clear ip nat$/i.test(w.trim()) && about(/wipe out.*nat translations|clear.*nat/i)) {
+    return `**${choice}** uses the wrong verb or drops the wildcard needed to clear the whole table.`
+  }
+  if (/^router#debug ip translations$/i.test(w.trim()) && about(/real-time network address translations|debug ip nat/i)) {
+    return `**${choice}** drops the \`nat\` keyword and substitutes one IOS doesn't recognize here.`
   }
   if (/archive tftp|copy server:/i.test(w) && about(/tftp|restore|configuration/i)) {
     return `**${choice}** uses the wrong command keyword or source alias for a TFTP config restore.`
