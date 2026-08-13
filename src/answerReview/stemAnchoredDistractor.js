@@ -771,6 +771,27 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/opensdn|openstack|opendaylight/i.test(w) && /^apic-em$/i.test(c) && /enterprise connectivity|sdn controller/i.test(b)) {
     return `APIC-EM is Cisco's SDN controller for enterprise networks — **${correct}** is that product; **${wrong}** is an open-source or unrelated controller platform.`
   }
+  if (/^routing plane$/i.test(w.trim()) && /^control plane$/i.test(c.trim()) && /routing protocol/i.test(b)) {
+    return `Routing protocols build and exchange topology/routing decisions, which is **control-plane** work — there's no separate "routing plane" in the standard SDN plane model — **${correct}** is the right plane; **${wrong}** names a plane that doesn't exist in this framework.`
+  }
+  if (/^data plane$|^control plane$|^network plane$/i.test(w.trim()) && /^management plane$/i.test(c.trim()) && /\bcdp\b/i.test(b)) {
+    return `CDP is a device-administration/discovery protocol, which runs on the **management plane** — **${correct}** is that plane; **${wrong}** names the plane that forwards traffic, builds routing state, or isn't a real plane in this model.`
+  }
+  if (/the core of the controller|applications hosted on the controller/i.test(w) && /southbound interface \(sbi\)/i.test(c)) {
+    return `The **southbound interface (SBI)** is what the controller uses to talk directly to network devices — **${correct}** is that interface; **${wrong}** names an internal controller component or the application layer, not the device-facing side.`
+  }
+  if (/an api is a program that allows for data transfer|an api is a programming language for network programmability|an api allows for programs to be virtualized/i.test(w) && /an api is a programming interface or standard allowing one program to communicate with another program/i.test(c)) {
+    return `An **API** is specifically an interface/standard that lets one program call another — **${correct}** states that definition correctly; **${wrong}** either narrows it to one use case (data transfer), confuses it with a programming language, or attributes it a virtualization role it doesn't have.`
+  }
+  if (/southbound interface \(sbi\)|the core of the controller|simple network management protocol \(snmp\)/i.test(w) && /northbound interface \(nbi\)/i.test(c)) {
+    return `Applications talk to the controller through the **northbound interface (NBI)** — the SBI faces devices, not applications — **${correct}** is that interface; **${wrong}** names the device-facing side, an internal component, or an unrelated management protocol.`
+  }
+  if (/^control plane$|^management plane$|^routing plane$/i.test(w.trim()) && /^data plane$/i.test(c.trim()) && /routing of packets to specific destinations/i.test(b)) {
+    return `Actually forwarding packets toward their destination is **data-plane** work — the control plane only decides the path, it doesn't move the traffic — **${correct}** is the right plane; **${wrong}** names the decision-making or administration plane, or a plane that doesn't exist in this model.`
+  }
+  if (/^1 hop$/i.test(w.trim()) && /^3 hops$/i.test(c.trim()) && /fabric switching/i.test(b)) {
+    return `A Spine/Leaf fabric caps the path at 3 hops (leaf-spine-leaf) — **${correct}** is that maximum; **${wrong}** understates it — a single hop would mean two leaves connect directly, which Spine/Leaf design doesn't allow.`
+  }
   if (/data plane|management plane|switch plane/i.test(w) && /control plane/i.test(c) && /spanning tree|\bstp\b/i.test(b)) {
     return `STP builds its topology by exchanging BPDUs, which is control-plane work — **${correct}** is the right plane; **${wrong}** names the plane that forwards traffic or handles device management instead.`
   }
@@ -888,6 +909,24 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/northbound interface|eastbound interface/i.test(w) && /southbound interface/i.test(c) && /restconf/i.test(b)) {
     return `RESTCONF talks device-to-controller, which is the **southbound** interface — northbound is controller-to-application, and eastbound isn't a standard SDN interface direction — **${correct}** is that direction; **${wrong}** names the wrong side of the controller.`
   }
+  if (/^westbound interface$/i.test(w.trim()) && /^southbound interface$/i.test(c.trim()) && /restconf/i.test(b)) {
+    return `RESTCONF talks device-to-controller, which is the **southbound** interface — "westbound" isn't a standard SDN interface direction — **${correct}** is that direction; **${wrong}** names a direction that doesn't exist in this model.`
+  }
+  if (/^http body$|^script variable$|^script data object$/i.test(w.trim()) && /^http header$/i.test(c.trim()) && /status code/i.test(b)) {
+    return `A REST response's status code (200, 404, 500, etc.) rides in the **HTTP header**, on the status line — it's not part of the response body or something your script has to construct itself — **${correct}** is that location; **${wrong}** names the payload or a client-side construct, not where the protocol actually carries the code.`
+  }
+  if (/^get$|^patch$|^delete$/i.test(w.trim()) && /^post$/i.test(c.trim()) && /201 from an sdn controller/i.test(b)) {
+    return `HTTP 201 means "Created" — the response to a successful **POST** that creates a new resource — **${correct}** is that verb; **${wrong}** is a different CRUD verb whose success code isn't 201 (GET/DELETE return 200/204, PATCH returns 200).`
+  }
+  if (/^backslash$|^forward slash$|^ampersand$/i.test(w.trim()) && /^question mark$/i.test(c.trim()) && /query parameters/i.test(b)) {
+    return `A URI's query string starts after a **question mark** (\`?\`) — additional parameters are then joined with \`&\` — **${correct}** is the starting character; **${wrong}** is either the path separator or the parameter-joining character, not the one that starts the query string.`
+  }
+  if (/^get$|^update$|^put$/i.test(w.trim()) && /^post$/i.test(c.trim()) && /insert or create a data item/i.test(b)) {
+    return `**POST** is the HTTP verb for creating a new resource — **${correct}** is that verb; **${wrong}** either reads data (GET), replaces an existing resource (PUT), or isn't a standard REST/CRUD verb (there's no "UPDATE" HTTP method — that's PATCH or PUT).`
+  }
+  if (/the command is missing parameters|the command is restricted|the service is down/i.test(w) && /the command has timed out/i.test(c) && /504 status code/i.test(b)) {
+    return `HTTP 504 is specifically **Gateway Timeout** — the upstream service took too long to respond — **${correct}** is that meaning; **${wrong}** describes a different failure (400 for bad parameters, 403 for restricted, 503 for a fully down service), not a timeout.`
+  }
   if (/openflow|cisco prime infrastructure|cisco sd-wan/i.test(w) && /cisco dna center/i.test(c) && /apic-em/i.test(b)) {
     return `Cisco DNA Center is the direct replacement for APIC-EM — **${correct}** is that product; **${wrong}** is a different Cisco platform or protocol that doesn't replace APIC-EM.`
   }
@@ -982,8 +1021,20 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work/i.test(w) && /outcome that can be reproduced/i.test(c)) {
     return `Automation's core value is repeatability — the same script produces the same result every time — **${correct}** is that reason; **${wrong}** is a plausible-sounding side effect, not the actual reason to automate.`
   }
-  if (/copy and paste scripts built in notepad\+\+/i.test(w) && /python script/i.test(c) && /20 routers|configure each/i.test(b)) {
-    return `A Python script run against many devices programmatically is the scalable, repeatable approach — **${correct}** is that method; **${wrong}** is still manual, error-prone copy-paste, just with extra steps.`
+  if (/copy and paste scripts built in notepad\+\+|copy and paste scripts built in excel/i.test(w) && /python script/i.test(c) && /20 routers|configure each/i.test(b)) {
+    return `A Python script run against many devices programmatically is the scalable, repeatable approach — **${correct}** is that method; **${wrong}** is still manual, error-prone copy-paste, just built or tracked in a different tool.`
+  }
+  if (/reduce the number of changes to be made|reduce the complications that arise from changes|reduce the planning time for the changes/i.test(w) && /reduce the human error factor/i.test(c) && /motivating factor to use network automation/i.test(b)) {
+    return `Consistency — removing manual typos and missed steps — is the number-one reason organizations automate — **${correct}** is that factor; **${wrong}** is a real benefit of automation but not the primary motivating factor this stem asks about.`
+  }
+  if (/^netops$|^sysops$|^secops$/i.test(w.trim()) && /^devops$/i.test(c.trim()) && /framework responsible for assisting in network automation/i.test(b)) {
+    return `**DevOps** is the culture/framework of merging development and operations practices that underpins network automation — **${correct}** is that term; **${wrong}** names a different operational specialty, not the automation-enabling framework.`
+  }
+  if (/^waterfall$|^kanban$|^scrum$/i.test(w.trim()) && /^lean and agile$/i.test(c.trim()) && /management methodology/i.test(b)) {
+    return `**Lean and Agile** (iterative, incremental delivery) is the methodology commonly paired with network automation/DevOps workflows — **${correct}** is that methodology; **${wrong}** is a different (or narrower) methodology — Kanban and Scrum are actually specific Agile frameworks, not the broader answer this stem asks for.`
+  }
+  if (/^testing$|^building$|^planning$/i.test(w.trim()) && /^monitoring$/i.test(c.trim()) && /release a network automation script to production/i.test(b)) {
+    return `After release, the ongoing step is **monitoring** the script's real-world behavior — testing, building, and planning all happen before release, not after — **${correct}** is that post-release step; **${wrong}** is a pre-release phase.`
   }
 
   const factText = normalize(fact)
@@ -1646,6 +1697,30 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/spine\/leaf|\bclos\b|\bsdn\b/i.test(w) && about(/campus|distribution layer/i)) {
     return `**${choice}** names a two-tier data-center design, not the three-tier campus model with a distribution layer.`
   }
+  if (/opensdn|openstack|opendaylight/i.test(w) && about(/apic-em|enterprise connectivity|sdn controller/i)) {
+    return `**${choice}** names an open-source or unrelated controller platform, not Cisco's enterprise SDN controller.`
+  }
+  if (/^routing plane$/i.test(w.trim()) && about(/control plane|routing protocol/i)) {
+    return `**${choice}** names a plane that doesn't exist in the standard SDN plane model.`
+  }
+  if (/^data plane$|^control plane$|^network plane$/i.test(w.trim()) && about(/management plane|\bcdp\b/i)) {
+    return `**${choice}** names a plane that forwards traffic or builds routing state, not device administration.`
+  }
+  if (/the core of the controller|applications hosted on the controller/i.test(w) && about(/southbound interface|northbound interface/i)) {
+    return `**${choice}** names an internal controller component or the application layer, not an interface.`
+  }
+  if (/an api is a program that allows for data transfer|an api is a programming language for network programmability|an api allows for programs to be virtualized/i.test(w) && about(/application program interface/i)) {
+    return `**${choice}** narrows, misidentifies, or overclaims what an API actually is.`
+  }
+  if (/southbound interface \(sbi\)|simple network management protocol \(snmp\)/i.test(w) && about(/northbound interface/i)) {
+    return `**${choice}** names the device-facing side or an unrelated management protocol, not the application-facing interface.`
+  }
+  if (/^control plane$|^management plane$|^routing plane$/i.test(w.trim()) && about(/data plane|routing of packets/i)) {
+    return `**${choice}** names the decision-making/administration plane, not the one that actually forwards packets.`
+  }
+  if (/^1 hop$/i.test(w.trim()) && about(/fabric switching|hop count/i)) {
+    return `**${choice}** understates the Spine/Leaf fabric's actual maximum hop count.`
+  }
   if (/data plane|management plane|switch plane|control plane|configuration plane/i.test(w) && about(/spanning tree|\bstp\b|syslog|network plane|web interface|acls/i)) {
     return `**${choice}** names a network plane that doesn't match the function this stem describes.`
   }
@@ -1718,7 +1793,7 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/user interface layout|source code of the device|data storage of the device/i.test(w) && about(/api reference|automation script/i)) {
     return `**${choice}** isn't something an automation script interacts with directly.`
   }
-  if (/^cli$|^syslog$/i.test(w) && about(/snmp|automation script|retrieves information/i)) {
+  if (/^cli$|^syslog$|^ssh$/i.test(w) && about(/snmp|automation script|retrieves information/i)) {
     return `**${choice}** names a human-oriented or one-way mechanism, not a structured, machine-queryable interface.`
   }
   if (/^syslog$|^ssh$/i.test(w) && about(/netconf|yang|replacement for snmp/i)) {
@@ -1757,14 +1832,32 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/northbound interface|eastbound interface/i.test(w) && about(/restconf|southbound/i)) {
     return `**${choice}** names the wrong side of the SDN controller for a device-facing RESTCONF call.`
   }
+  if (/^westbound interface$/i.test(w.trim()) && about(/restconf|southbound/i)) {
+    return `**${choice}** names a direction that doesn't exist in the standard SDN interface model.`
+  }
+  if (/^http body$|^script variable$|^script data object$/i.test(w.trim()) && about(/status code/i)) {
+    return `**${choice}** names the payload or a client-side construct, not where the HTTP status code actually travels.`
+  }
+  if (/^get$|^patch$|^delete$/i.test(w.trim()) && about(/201|sdn controller/i)) {
+    return `**${choice}** names a CRUD verb whose success status code isn't 201.`
+  }
+  if (/^backslash$|^forward slash$|^ampersand$/i.test(w.trim()) && about(/query parameters/i)) {
+    return `**${choice}** names the path separator or the parameter-joining character, not the query-string starter.`
+  }
+  if (/^get$|^update$|^put$/i.test(w.trim()) && about(/insert or create a data item/i)) {
+    return `**${choice}** either reads or replaces data, or isn't a real HTTP verb, not the create action.`
+  }
+  if (/the command is missing parameters|the command is restricted|the service is down/i.test(w) && about(/504 status code/i)) {
+    return `**${choice}** describes a different HTTP failure code than a gateway timeout.`
+  }
   if (/openflow|cisco prime infrastructure|cisco sd-wan|^ssh$|^https$|^netconf$/i.test(w) && about(/cisco dna center|apic-em|dna discovery/i)) {
     return `**${choice}** names a different Cisco platform or a protocol DNA Center's discovery process handles differently.`
   }
   if (/^design$|^policy$|^provision$|^assurance$|^platform$/i.test(w.trim()) && about(/cisco dna center/i)) {
     return `**${choice}** names a different DNA Center GUI section than the one this stem asks about.`
   }
-  if (/ip-based access control|group-based access control/i.test(w) && about(/plug and play|dna command runner|dna center/i)) {
-    return `**${choice}** names a DNA Center access-policy feature, not the one this stem asks about.`
+  if (/ip-based access control|group-based access control|^python$|^inventory$/i.test(w) && about(/plug and play|dna command runner|dna center|ospf area/i)) {
+    return `**${choice}** names a different DNA Center capability, access-control feature, or scripting language, not the built-in bulk-CLI tool.`
   }
   if (/easy-qos|system 360|cisco ise/i.test(w) && about(/sd-access|fabric/i)) {
     return `**${choice}** names a different DNA Center/Cisco capability than fabric automation.`
@@ -1778,7 +1871,7 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/curly brackets|square brackets/i.test(w) && about(/yaml file/i)) {
     return `**${choice}** describes JSON's bracket delimiters, not YAML's three-dash marker.`
   }
-  if (/^yaml$|^json$|^csv$/i.test(w.trim()) && about(/resembles html|structured by white ?space/i)) {
+  if (/^yaml$|^json$|^xml$|^csv$/i.test(w.trim()) && about(/resembles html|structured by white ?space/i)) {
     return `**${choice}** names a data format that structures itself differently than the one this stem asks about.`
   }
   if (/^three dashes$|^a square bracket$|^a double quote$/i.test(w.trim()) && about(/json file/i)) {
@@ -1820,8 +1913,20 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/^capwap$|^lwapp$/i.test(w.trim()) && about(/snmp|cisco prime infrastructure/i)) {
     return `**${choice}** is a wireless AP tunneling protocol, not a network-management configuration method.`
   }
-  if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work|copy and paste scripts built in notepad\+\+/i.test(w) && about(/automate|automation/i)) {
+  if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work|copy and paste scripts built in notepad\+\+|copy and paste scripts built in excel/i.test(w) && about(/automate|automation/i)) {
     return `**${choice}** names a plausible-sounding but incorrect reason or method for automating device configuration.`
+  }
+  if (/reduce the number of changes to be made|reduce the complications that arise from changes|reduce the planning time for the changes/i.test(w) && about(/motivating factor|network automation/i)) {
+    return `**${choice}** is a real benefit of automation, but not the number-one motivating factor.`
+  }
+  if (/^netops$|^sysops$|^secops$/i.test(w.trim()) && about(/devops|network automation/i)) {
+    return `**${choice}** names a different operational specialty, not the automation-enabling framework.`
+  }
+  if (/^waterfall$|^kanban$|^scrum$/i.test(w.trim()) && about(/lean and agile|management methodology/i)) {
+    return `**${choice}** is a different or narrower methodology than the one this stem asks about.`
+  }
+  if (/^testing$|^building$|^planning$/i.test(w.trim()) && about(/monitoring|release.*production/i)) {
+    return `**${choice}** is a pre-release phase, not the ongoing post-release step.`
   }
   if (/^true$|^false$/i.test(w.trim())) {
     return `**${choice}** states the opposite of the tested fact about ${hookPhrase(hooks, 'this topic')}.`
