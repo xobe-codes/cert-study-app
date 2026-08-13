@@ -516,17 +516,116 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/data plane|control plane/i.test(w) && /management plane/i.test(c) && /syslog/i.test(b)) {
     return `Syslog message delivery is device administration, which runs on the management plane — **${correct}** is that plane; **${wrong}** names the plane that forwards traffic or builds routing/switching state instead.`
   }
+  if (/^4 hops$|^5 hops$/i.test(w.trim()) && /^3 hops$/i.test(c.trim()) && /fabric switching/i.test(b)) {
+    return `Spine/Leaf fabrics cap the path at 3 hops (leaf-spine-leaf, or leaf-spine-spine-leaf in some designs) — **${correct}** is that maximum; **${wrong}** states a different hop count.`
+  }
+  if (/^overlay$|^tunnel$|^leaf$/i.test(w.trim()) && /^underlay$/i.test(c.trim()) && /\bmtu\b/i.test(b)) {
+    return `The underlay is the physical/IP transport whose links you size the MTU on (to absorb overlay encapsulation overhead) — **${correct}** is that layer; **${wrong}** names the logical/virtual layer built on top of it instead.`
+  }
+  if (/^management plane$|^configuration plane$|^data plane$/i.test(w.trim()) && /^control plane$/i.test(c.trim()) && /web interface|acls/i.test(b)) {
+    return `This stem keys **${correct}** as the plane affected here — **${wrong}** names a different plane (forwarding traffic, or device administration) than the one this stem asks about.`
+  }
+  if (/^vxlan$|^vlan$|^ecmp$/i.test(w.trim()) && /^dmvpn$/i.test(c.trim()) && /remote offices|wan technology/i.test(b)) {
+    return `DMVPN is the WAN overlay technology for connecting remote-office sites over the Internet — **${correct}** is that technology; **${wrong}** is a different overlay/tunneling or load-balancing mechanism, not a WAN-site-interconnect tool.`
+  }
+  if (/^ecmp$|^dmvpn$|^eigrp$/i.test(w.trim()) && /^vxlan$/i.test(c.trim()) && /layer 2 traffic over a layer 3/i.test(b)) {
+    return `VXLAN is the protocol that tunnels Layer 2 frames inside Layer 3 UDP packets, extending a VLAN across a routed network — **${correct}** is that protocol; **${wrong}** is a different tunneling, routing, or load-spreading mechanism that doesn't encapsulate L2 over L3.`
+  }
+  if (/^cdp$|^icmp$|^vtp$/i.test(w.trim()) && /^snmp$/i.test(c.trim()) && /management plane/i.test(b)) {
+    return `SNMP is the classic management-plane protocol (device monitoring/administration) — **${correct}** is that protocol; **${wrong}** is a control-plane (VTP) or diagnostic (ICMP, CDP) protocol instead.`
+  }
+  if (/^ospf$|^mpls$|^clos$/i.test(w.trim()) && /^ecmp$/i.test(c.trim()) && /next-hop packet forwarding/i.test(b)) {
+    return `ECMP (Equal-Cost Multi-Path) is the forwarding mechanism that spreads traffic across multiple equal-cost next hops in SDN fabrics — **${correct}** is that mechanism; **${wrong}** is a routing protocol, label-switching technology, or topology name, not the forwarding mechanism itself.`
+  }
   if (/network management station|software-defined networking|centralized logging/i.test(w) && /configuration management/i.test(c) && /ansible|chef|puppet/i.test(b)) {
     return `Ansible, Chef, and Puppet all perform configuration management — pushing and enforcing consistent device configs — **${correct}** is that function; **${wrong}** names a different network-operations category.`
   }
   if (/cisco dna center|^chef$|^puppet$/i.test(w) && /^ansible$/i.test(c) && /yaml/i.test(b)) {
     return `Ansible is the configuration-management tool that uses YAML playbooks — **${correct}** is that tool; **${wrong}** either uses a different language (Chef/Puppet use Ruby-based DSLs) or isn't a config-management tool at all.`
   }
+  if (/^playbook$|^settings$|^modules$/i.test(w.trim()) && /^inventory$/i.test(c.trim()) && /ansible/i.test(b)) {
+    return `Ansible's inventory file is what lists hosts/groups and their connection details — **${correct}** is that component; **${wrong}** is a different Ansible piece (the task list, config, or code library) that doesn't hold connection info.`
+  }
+  if (/^agent$|^class$|^module$/i.test(w.trim()) && /^manifest$/i.test(c.trim()) && /puppet/i.test(b)) {
+    return `A Puppet manifest (.pp file) is where the desired configuration state is declared — **${correct}** is that component; **${wrong}** is a different Puppet piece (the daemon, a reusable manifest group, or a packaged bundle) that doesn't itself hold the configuration.`
+  }
+  if (/^cookbook$|^crock pot$|^chef node$/i.test(w.trim()) && /^recipe$/i.test(c.trim()) && /chef/i.test(b)) {
+    return `A Chef recipe is the file with the actual instructions to configure a node — **${correct}** is that component; **${wrong}** is a different Chef concept (a collection of recipes, an unrelated term, or the managed host itself).`
+  }
+  if (/^chef-client$|^chef workstation$|^knife$/i.test(w.trim()) && /^ohai$/i.test(c.trim()) && /chef/i.test(b)) {
+    return `Ohai is the Chef component that gathers system state (attributes) and reports it to the server — **${correct}** is that component; **${wrong}** is a different Chef piece (the agent process, the admin workstation, or the CLI tool) that doesn't itself collect system facts.`
+  }
+  if (/^ansible_settings$|^ansible_connection$|^\/etc\/ansible\/hosts$/i.test(w.trim()) && /^ansible_config$/i.test(c.trim())) {
+    return `The environment variable Ansible checks for its settings-file location is ANSIBLE_CONFIG — **${correct}** is that variable; **${wrong}** is a different (or made-up) variable/path name.`
+  }
+  if (/^man$|^cat$|^ad-hoc$/i.test(w.trim()) && /^ansible-doc$/i.test(c.trim())) {
+    return `\`ansible-doc\` is the command that shows detailed module documentation inside Ansible — **${correct}** is that command; **${wrong}** is a generic shell command or a different Ansible feature, not the docs command.`
+  }
+  if (/^knife interface$|^ansible_playbook command$|^ansible tower$/i.test(w.trim()) && /^ad-hoc interface$/i.test(c.trim())) {
+    return `The ad-hoc interface runs a single Ansible command against hosts without writing a playbook — **${correct}** is that tool; **${wrong}** is a Chef tool, the normal playbook runner, or the paid orchestration platform — none of which is the no-playbook quick-command tool.`
+  }
+  if (/^resource$|^class$|^module$/i.test(w.trim()) && /^facts$/i.test(c.trim()) && /puppet/i.test(b)) {
+    return `Puppet facts are the global variables holding node-specific information (gathered by Facter) — **${correct}** is that term; **${wrong}** is a different Puppet building block (a managed item, a reusable manifest group, or a packaged bundle).`
+  }
+  if (/^chef workstation$|^chef node$|^chef-client$/i.test(w.trim()) && /^bookshelf$/i.test(c.trim()) && /cookbook/i.test(b)) {
+    return `A finished Cookbook is uploaded to the Bookshelf on the Chef Server — **${correct}** is that destination; **${wrong}** is a different Chef component (the admin machine, the managed host, or the local agent), not where cookbooks are stored.`
+  }
+  if (/^ansible$/i.test(w.trim()) && /^ansible tower$/i.test(c.trim()) && /central management|rbac/i.test(b)) {
+    return `Central management, scheduling, and RBAC on top of plain Ansible is what Ansible Tower adds — **${correct}** is that product; **${wrong}** (plain Ansible/AWX core) doesn't include that management layer by itself.`
+  }
+  if (/^python$/i.test(w.trim()) && /^ansible$/i.test(c.trim()) && /easy configuration of cisco network devices/i.test(b)) {
+    return `**${correct}** is the configuration-management tool with built-in Cisco IOS modules for easy device config — **${wrong}** is the language Ansible modules happen to be written in, not the config-management tool itself.`
+  }
+  if (/storage of the bookshelf|storage of the configuration of chef|client-side agent/i.test(w) && /cli utility for the management of chef/i.test(c)) {
+    return `Knife is the command-line tool admins use to manage a Chef deployment — **${correct}** is that function; **${wrong}** misassigns Knife's job to storage or the client-side agent (chef-client), which are separate components.`
+  }
+  if (/iaas helps maintain configuration|prevents drift with ntp|requires per-host licensing/i.test(w) && /iac solutions prevent drift with idempotence/i.test(c)) {
+    return `Idempotence — applying the same config repeatedly yields the same result — is what lets Infrastructure as Code prevent configuration drift — **${correct}** states that correctly; **${wrong}** confuses IaC with a different service model (IaaS), an unrelated protocol (NTP), or a licensing claim that isn't the defining trait.`
+  }
+  if (/^yaml$|^csv$|^xml$/i.test(w.trim()) && /^python$/i.test(c.trim()) && /custom ansible module/i.test(b)) {
+    return `Custom Ansible modules are written in Python — playbooks (not modules) are YAML — **${correct}** is that language; **${wrong}** is a data/markup format, not a module-authoring language.`
+  }
   if (/user interface layout|source code of the device|data storage of the device/i.test(w) && /api reference/i.test(c) && /automation script|controlled with/i.test(b)) {
     return `The API reference documents exactly what an API exposes and how to call it — **${correct}** is what you'd research; **${wrong}** isn't something an automation script interacts with directly.`
   }
-  if (/^cli$/i.test(w) && /^snmp$/i.test(c) && /retrieves information|act similar to an api/i.test(b)) {
-    return `SNMP exposes a structured, machine-queryable interface similar to an API — **${correct}** fits that role; **${wrong}** (the CLI) is a human-oriented text interface, harder to parse programmatically.`
+  if (/^cli$|^syslog$|^ssh$/i.test(w) && /^snmp$/i.test(c) && /retrieves information|act similar to an api/i.test(b)) {
+    return `SNMP exposes a structured, machine-queryable interface similar to an API — **${correct}** fits that role; **${wrong}** is a human-oriented (CLI) or one-way/transport (Syslog, SSH) mechanism, not a programmatic query interface.`
+  }
+  if (/^syslog$|^ssh$/i.test(w) && /^netconf$/i.test(c) && /replacement for snmp/i.test(b)) {
+    return `NETCONF (RFC 6241) is the protocol built to replace SNMP for configuration management — **${correct}** is that protocol; **${wrong}** is a different management/transport protocol that isn't SNMP's replacement.`
+  }
+  if (/^snmp$/i.test(w) && /^netconf$/i.test(c) && /yang data model/i.test(b)) {
+    return `NETCONF is the protocol that structures its config data with the YANG model — **${correct}** is that protocol; **${wrong}** (SNMP) uses MIBs/OIDs instead, not YANG.`
+  }
+  if (/^snmp$|^syslog$/i.test(w) && /^restconf$/i.test(c) && /https transport/i.test(b)) {
+    return `RESTCONF is the protocol that runs over HTTPS for programmatic config/retrieval — **${correct}** is that protocol; **${wrong}** doesn't use HTTPS as its transport.`
+  }
+  if (/^snmp$|^sntp$|^soap$/i.test(w) && /^http$/i.test(c) && /rest apis/i.test(b)) {
+    return `REST APIs are built on HTTP (using its verbs — GET/POST/PUT/DELETE) — **${correct}** is that protocol; **${wrong}** is a different protocol not used as REST's transport.`
+  }
+  if (/pass the username and password in every request|send a get to the api for an auth token|create a public private key pair/i.test(w) && /send a post to the api for an authentication token/i.test(c)) {
+    return `DNA Center's REST API is authenticated by POSTing credentials once to get a short-lived token, then reusing that token — **${correct}** is that flow; **${wrong}** either resends credentials on every call or uses the wrong HTTP verb/mechanism.`
+  }
+  if (/^memory cleanup$|^data encoding$/i.test(w) && /^data actions$/i.test(c) && /crud/i.test(b)) {
+    return `CRUD (Create, Read, Update, Delete) names the four basic data actions an API exposes — **${correct}** is that category; **${wrong}** is unrelated to what CRUD stands for.`
+  }
+  if (/^ad integrated$|^ssl$|^pass-through$/i.test(w) && /^basic$/i.test(c) && /token requests? to the cisco dna center/i.test(b)) {
+    return `DNA Center token requests use HTTP **Basic** authentication (a Base64-encoded username:password header) — **${correct}** is that method; **${wrong}** names a different authentication mechanism DNA Center doesn't use for this call.`
+  }
+  if (/add it as a variable named x-auth-token|pass the token in the uri/i.test(w) && /place it in the header/i.test(c)) {
+    return `The token is sent back as an **X-Auth-Token** HTTP header on subsequent requests, not embedded in the URI or kept only as a local script variable — **${correct}** is that placement; **${wrong}** doesn't actually transmit the token to the server correctly.`
+  }
+  if (/^ssl$|^aaa$|^basic$/i.test(w.trim()) && /^base64$/i.test(c.trim()) && /x-auth-token/i.test(b)) {
+    return `The credentials are Base64-encoded before being sent for the token request — **${correct}** is that encoding; **${wrong}** names a different mechanism (a protocol or auth scheme), not the encoding itself.`
+  }
+  if (/^openflow$|^snmp$/i.test(w) && /^restconf$/i.test(c) && /yang data model/i.test(b) && /configure a cisco switch/i.test(b)) {
+    return `RESTCONF is the HTTP-based API that operates on a device's YANG-modeled configuration — **${correct}** is that API; **${wrong}** either isn't YANG-based (SNMP) or isn't a Cisco config API here (OpenFlow, a southbound flow-table protocol).`
+  }
+  if (/format your response correctly|authenticate to the device first|nothing; this code means ok/i.test(w) && /restart the rest-based service/i.test(c)) {
+    return `HTTP 500 is a **server**-side error — the fix is on the server (restart the REST service), not something wrong with your request formatting or authentication — **${correct}** is that fix; **${wrong}** treats it as a client-side problem, which 500 specifically isn't.`
+  }
+  if (/northbound interface|eastbound interface/i.test(w) && /southbound interface/i.test(c) && /restconf/i.test(b)) {
+    return `RESTCONF talks device-to-controller, which is the **southbound** interface — northbound is controller-to-application, and eastbound isn't a standard SDN interface direction — **${correct}** is that direction; **${wrong}** names the wrong side of the controller.`
   }
   if (/openflow|cisco prime infrastructure|cisco sd-wan/i.test(w) && /cisco dna center/i.test(c) && /apic-em/i.test(b)) {
     return `Cisco DNA Center is the direct replacement for APIC-EM — **${correct}** is that product; **${wrong}** is a different Cisco platform or protocol that doesn't replace APIC-EM.`
@@ -534,11 +633,60 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/^ssh$/i.test(w) && /^openflow$/i.test(c) && /dna discovery|not used/i.test(b)) {
     return `DNA Center's discovery process reads device inventory over SSH/SNMP/NETCONF, not OpenFlow — **${correct}** is the protocol it does NOT use; **${wrong}** is one it does use, so it doesn't fit this "which is not used" stem.`
   }
+  if (/^https$|^netconf$/i.test(w) && /^openflow$/i.test(c) && /dna discovery|not used/i.test(b)) {
+    return `DNA Center's discovery process reads device inventory over HTTPS/NETCONF/SSH/SNMP, not OpenFlow (a southbound flow-table protocol, not a discovery/read protocol) — **${correct}** is the one it does NOT use; **${wrong}** is one it does use, so it doesn't fit this "which is not used" stem.`
+  }
+  if (/^design$|^policy$|^provision$|^assurance$|^platform$/i.test(w.trim()) && /^design$|^policy$|^provision$|^assurance$|^platform$/i.test(c.trim()) && /cisco dna center/i.test(b)) {
+    const DNA_SECTION_ROLE = {
+      design: 'defining the network hierarchy, sites, and configuration templates before anything is deployed',
+      policy: 'defining group-based access, application, and IP-based policies enforced across the fabric',
+      provision: 'deploying and viewing the connectivity/inventory of devices at a site',
+      assurance: 'monitoring overall network and client health after deployment',
+      platform: 'exposing the APIs (and API documentation) for programmatic/scripted integration',
+    }
+    const role = DNA_SECTION_ROLE[correct.trim().toLowerCase()]
+    if (role) {
+      return `In Cisco DNA Center, **${correct}** is the section for ${role} — that's what this stem asks about; **${wrong}** is a different section of the GUI with a different job.`
+    }
+  }
+  if (/ip-based access control|group-based access control|^assurance$/i.test(w) && /plug and play/i.test(c) && /template and apply standard configuration/i.test(b)) {
+    return `Plug and Play is the DNA Center feature for pushing a standard configuration template (DNS/NTP/AAA servers) to devices as they onboard — **${correct}** is that feature; **${wrong}** is a different DNA Center capability (access policy or health monitoring) that doesn't template device config.`
+  }
+  if (/ip-based access control|^python$|^inventory$/i.test(w) && /dna command runner/i.test(c) && /ospf area/i.test(b)) {
+    return `Command Runner is the DNA Center tool for pushing the same CLI command(s) to many devices at once — **${correct}** is that tool; **${wrong}** is a different DNA Center capability, an access-control feature, or a scripting language, not the built-in bulk-CLI tool.`
+  }
+  if (/easy-qos|system 360|cisco ise/i.test(w) && /sd-access/i.test(c) && /fabric of the underlay and overlay/i.test(b)) {
+    return `SD-Access is the DNA Center feature that automates fabric provisioning across the underlay and overlay — **${correct}** is that feature; **${wrong}** is a different DNA Center/Cisco capability (QoS automation, dashboarding, or identity services) that doesn't automate the fabric itself.`
+  }
+  if (/client coverage heat maps|client triangulation support|application health/i.test(w) && /device configuration backup/i.test(c) && /prime infrastructure/i.test(b)) {
+    return `Device configuration backup/archival is a legacy Prime Infrastructure feature DNA Center doesn't carry forward the same way — **${correct}** is that gap; **${wrong}** is a wireless/assurance capability DNA Center actually does provide (via Assurance), so it doesn't fit this "cannot provide" stem.`
+  }
   if (/^definition$|^lists$|^keys$/i.test(w) && /^mapping$/i.test(c) && /yaml/i.test(b)) {
     return `YAML's key-value pair construct is called a mapping — **${correct}** is the right term; **${wrong}** names a different YAML element (a list/sequence, or just a bare key).`
   }
   if (/hashbang preprocessor/i.test(w) && /three dashes/i.test(c) && /yaml/i.test(b)) {
     return `A YAML file/document starts with three dashes (---) — **${correct}** is that marker; **${wrong}** describes a shebang line, which is a shell-script convention, not YAML's.`
+  }
+  if (/curly brackets|square brackets/i.test(w) && /three dashes/i.test(c) && /yaml file/i.test(b)) {
+    return `A YAML file/document starts with three dashes (---) — **${correct}** is that marker; **${wrong}** describes JSON's bracket delimiters, not YAML's.`
+  }
+  if (/^yaml$|^json$|^csv$/i.test(w.trim()) && /^xml$/i.test(c.trim()) && /resembles html/i.test(b)) {
+    return `XML shares HTML's angle-bracket tag syntax (both descend from SGML) — **${correct}** is that format; **${wrong}** uses a different structuring style (indentation, braces, or delimited text), not tags.`
+  }
+  if (/^json$|^xml$|^csv$/i.test(w.trim()) && /^yaml$/i.test(c.trim()) && /structured by white ?space/i.test(b)) {
+    return `YAML uses indentation (whitespace) to express structure instead of brackets or tags — **${correct}** is that format; **${wrong}** structures data with braces, angle brackets, or delimiters instead.`
+  }
+  if (/^three dashes$|^a square bracket$|^a double quote$/i.test(w.trim()) && /^a curly bracket$/i.test(c.trim()) && /json file/i.test(b)) {
+    return `A JSON document/object begins with a curly bracket \`{\` — **${correct}** is that marker; **${wrong}** is either YAML's marker (three dashes) or a JSON character that isn't the opening one.`
+  }
+  if (/the value that follows the square bracket is the value|the value is after the matching square bracket|the value is unknown/i.test(w) && /several key-value pairs/i.test(c) && /json file/i.test(b)) {
+    return `A square bracket after a key in JSON means the value is an **array** — multiple values under that one key, not a single value — **${correct}** states that correctly; **${wrong}** treats the array marker as if it pointed to one specific value.`
+  }
+  if (/values can be used that contain spaces|multiple values for a particular key|read line by line for every value/i.test(w) && /hierarchical structure allows for programmability/i.test(c) && /json.*csv|csv.*json/i.test(b)) {
+    return `JSON's real advantage over CSV is its nested/hierarchical structure, which programs can walk directly — **${correct}** is that advantage; **${wrong}** names a minor formatting detail that isn't JSON's defining strength over CSV.`
+  }
+  if (/^csv$/i.test(w.trim()) && /^json$/i.test(c.trim()) && /rest-based api/i.test(b) && /dna center/i.test(b)) {
+    return `REST APIs (including DNA Center's) return structured responses as **JSON** — **${correct}** is that format; **${wrong}** is a flat tabular format REST APIs don't typically return.`
   }
   if (/decreased problems|increased throughput|increased complexity/i.test(w) && /increased security/i.test(c) && /controller-based networking/i.test(b) && /benefit/i.test(b)) {
     return `Centralizing policy and visibility in a controller is what improves security posture — **${correct}** is the benefit this stem asks for; **${wrong}** is a plausible-sounding claim controller-based networking doesn't specifically guarantee.`
@@ -952,8 +1100,26 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/spine\/leaf|\bclos\b|\bsdn\b/i.test(w) && about(/campus|distribution layer/i)) {
     return `**${choice}** names a two-tier data-center design, not the three-tier campus model with a distribution layer.`
   }
-  if (/data plane|management plane|switch plane|control plane/i.test(w) && about(/spanning tree|\bstp\b|syslog|network plane/i)) {
+  if (/data plane|management plane|switch plane|control plane|configuration plane/i.test(w) && about(/spanning tree|\bstp\b|syslog|network plane|web interface|acls/i)) {
     return `**${choice}** names a network plane that doesn't match the function this stem describes.`
+  }
+  if (/^4 hops$|^5 hops$/i.test(w.trim()) && about(/fabric switching|hop count/i)) {
+    return `**${choice}** states a hop count higher than a Spine/Leaf fabric's maximum path length.`
+  }
+  if (/^overlay$|^tunnel$|^leaf$/i.test(w.trim()) && about(/underlay|\bmtu\b/i)) {
+    return `**${choice}** names the logical/virtual layer, not the physical underlay this MTU setting applies to.`
+  }
+  if (/^vxlan$|^vlan$|^ecmp$/i.test(w.trim()) && about(/dmvpn|remote offices/i)) {
+    return `**${choice}** names a different overlay/tunneling or load-balancing mechanism, not the WAN site-interconnect technology.`
+  }
+  if (/^ecmp$|^dmvpn$|^eigrp$/i.test(w.trim()) && about(/vxlan|layer 2 traffic over a layer 3/i)) {
+    return `**${choice}** doesn't tunnel Layer 2 frames inside Layer 3 the way VXLAN does.`
+  }
+  if (/^cdp$|^icmp$|^vtp$/i.test(w.trim()) && about(/snmp|management plane/i)) {
+    return `**${choice}** names a control-plane or diagnostic protocol, not a management-plane one.`
+  }
+  if (/^ospf$|^mpls$|^clos$/i.test(w.trim()) && about(/ecmp|next-hop packet forwarding/i)) {
+    return `**${choice}** names a routing protocol, label technology, or topology name, not the ECMP forwarding mechanism.`
   }
   if (/network management station|software-defined networking|centralized logging/i.test(w) && about(/ansible|chef|puppet|configuration management/i)) {
     return `**${choice}** names a different network-operations category than configuration management.`
@@ -961,17 +1127,125 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/cisco dna center|^chef$|^puppet$/i.test(w) && about(/ansible|yaml/i)) {
     return `**${choice}** names a tool that doesn't use YAML playbooks the way Ansible does.`
   }
+  if (/^playbook$|^settings$|^modules$/i.test(w.trim()) && about(/inventory|ansible/i)) {
+    return `**${choice}** names a different Ansible component than the one holding connection details.`
+  }
+  if (/^agent$|^class$|^module$/i.test(w.trim()) && about(/manifest|puppet/i)) {
+    return `**${choice}** names a different Puppet building block than the manifest.`
+  }
+  if (/^cookbook$|^crock pot$|^chef node$/i.test(w.trim()) && about(/recipe|chef/i)) {
+    return `**${choice}** names a different Chef concept than the recipe file itself.`
+  }
+  if (/^chef-client$|^chef workstation$|^knife$/i.test(w.trim()) && about(/ohai|chef/i)) {
+    return `**${choice}** names a different Chef component than the one that collects system state.`
+  }
+  if (/^ansible_settings$|^ansible_connection$|^\/etc\/ansible\/hosts$/i.test(w.trim()) && about(/ansible_config/i)) {
+    return `**${choice}** names a different (or made-up) variable/path name.`
+  }
+  if (/^man$|^cat$|^ad-hoc$/i.test(w.trim()) && about(/ansible-doc/i)) {
+    return `**${choice}** names a generic shell command or different feature, not Ansible's docs command.`
+  }
+  if (/^knife interface$|^ansible_playbook command$|^ansible tower$/i.test(w.trim()) && about(/ad-hoc interface/i)) {
+    return `**${choice}** names a different tool than the no-playbook quick-command interface.`
+  }
+  if (/^resource$|^class$|^module$/i.test(w.trim()) && about(/facts|puppet/i)) {
+    return `**${choice}** names a different Puppet building block than the global node-info variables.`
+  }
+  if (/^chef workstation$|^chef node$|^chef-client$/i.test(w.trim()) && about(/bookshelf|cookbook/i)) {
+    return `**${choice}** names a different Chef component, not where cookbooks are stored.`
+  }
+  if (/^ansible$/i.test(w.trim()) && about(/ansible tower|rbac|central management/i)) {
+    return `**${choice}** names plain Ansible, which doesn't include the RBAC/central-management layer this stem asks about.`
+  }
+  if (/^python$/i.test(w.trim()) && about(/easy configuration of cisco network devices/i)) {
+    return `**${choice}** names the language Ansible modules are written in, not the config-management tool itself.`
+  }
+  if (/storage of the bookshelf|storage of the configuration of chef|client-side agent/i.test(w) && about(/knife|cli utility/i)) {
+    return `**${choice}** misassigns Knife's job to storage or the client-side agent instead.`
+  }
+  if (/iaas helps maintain configuration|prevents drift with ntp|requires per-host licensing/i.test(w) && about(/idempotence|configuration drift|iac/i)) {
+    return `**${choice}** confuses configuration management with a different service model, protocol, or licensing claim.`
+  }
+  if (/^yaml$|^csv$|^xml$/i.test(w.trim()) && about(/custom ansible module/i)) {
+    return `**${choice}** names a data/markup format, not the language Ansible modules are written in.`
+  }
   if (/user interface layout|source code of the device|data storage of the device/i.test(w) && about(/api reference|automation script/i)) {
     return `**${choice}** isn't something an automation script interacts with directly.`
   }
-  if (/^cli$/i.test(w) && about(/snmp|automation script|retrieves information/i)) {
-    return `**${choice}** names the human-oriented CLI, harder to parse programmatically than a structured API-like interface.`
+  if (/^cli$|^syslog$/i.test(w) && about(/snmp|automation script|retrieves information/i)) {
+    return `**${choice}** names a human-oriented or one-way mechanism, not a structured, machine-queryable interface.`
   }
-  if (/openflow|cisco prime infrastructure|cisco sd-wan|^ssh$/i.test(w) && about(/cisco dna center|apic-em|dna discovery/i)) {
+  if (/^syslog$|^ssh$/i.test(w) && about(/netconf|yang|replacement for snmp/i)) {
+    return `**${choice}** names a different management/transport protocol than NETCONF.`
+  }
+  if (/^snmp$/i.test(w) && about(/netconf|yang data model/i)) {
+    return `**${choice}** uses MIBs/OIDs, not the YANG data model this stem asks about.`
+  }
+  if (/^snmp$|^syslog$/i.test(w) && about(/restconf|https transport/i)) {
+    return `**${choice}** doesn't use HTTPS as its transport the way RESTCONF does.`
+  }
+  if (/^snmp$|^sntp$|^soap$/i.test(w) && about(/rest apis|http/i)) {
+    return `**${choice}** names a protocol that isn't REST's actual HTTP transport.`
+  }
+  if (/pass the username and password in every request|send a get to the api for an auth token|create a public private key pair/i.test(w) && about(/authentication token|dna center/i)) {
+    return `**${choice}** either resends credentials repeatedly or uses the wrong verb/mechanism for token-based auth.`
+  }
+  if (/^memory cleanup$|^data encoding$/i.test(w) && about(/crud/i)) {
+    return `**${choice}** is unrelated to what CRUD actually stands for.`
+  }
+  if (/^ad integrated$|^ssl$|^pass-through$/i.test(w) && about(/basic authentication|token requests|dna center/i)) {
+    return `**${choice}** names an authentication mechanism DNA Center doesn't use for this token request.`
+  }
+  if (/add it as a variable named x-auth-token|pass the token in the uri/i.test(w) && about(/x-auth-token|header/i)) {
+    return `**${choice}** doesn't actually transmit the token to the server correctly.`
+  }
+  if (/^ssl$|^aaa$|^basic$/i.test(w.trim()) && about(/base64|x-auth-token/i)) {
+    return `**${choice}** names a different mechanism than the Base64 encoding used here.`
+  }
+  if (/^openflow$/i.test(w) && about(/restconf|yang data model/i)) {
+    return `**${choice}** is a southbound flow-table protocol, not a YANG-based config API.`
+  }
+  if (/format your response correctly|authenticate to the device first|nothing; this code means ok/i.test(w) && about(/500 status code|rest-based service/i)) {
+    return `**${choice}** treats a server-side (500) error as if it were a client-side problem.`
+  }
+  if (/northbound interface|eastbound interface/i.test(w) && about(/restconf|southbound/i)) {
+    return `**${choice}** names the wrong side of the SDN controller for a device-facing RESTCONF call.`
+  }
+  if (/openflow|cisco prime infrastructure|cisco sd-wan|^ssh$|^https$|^netconf$/i.test(w) && about(/cisco dna center|apic-em|dna discovery/i)) {
     return `**${choice}** names a different Cisco platform or a protocol DNA Center's discovery process handles differently.`
+  }
+  if (/^design$|^policy$|^provision$|^assurance$|^platform$/i.test(w.trim()) && about(/cisco dna center/i)) {
+    return `**${choice}** names a different DNA Center GUI section than the one this stem asks about.`
+  }
+  if (/ip-based access control|group-based access control/i.test(w) && about(/plug and play|dna command runner|dna center/i)) {
+    return `**${choice}** names a DNA Center access-policy feature, not the one this stem asks about.`
+  }
+  if (/easy-qos|system 360|cisco ise/i.test(w) && about(/sd-access|fabric/i)) {
+    return `**${choice}** names a different DNA Center/Cisco capability than fabric automation.`
+  }
+  if (/client coverage heat maps|client triangulation support|application health/i.test(w) && about(/prime infrastructure|device configuration backup/i)) {
+    return `**${choice}** names a capability DNA Center's Assurance already provides, not the gap this stem asks about.`
   }
   if (/^definition$|^lists$|^keys$|hashbang preprocessor/i.test(w) && about(/yaml/i)) {
     return `**${choice}** names a different YAML element or file-marker convention.`
+  }
+  if (/curly brackets|square brackets/i.test(w) && about(/yaml file/i)) {
+    return `**${choice}** describes JSON's bracket delimiters, not YAML's three-dash marker.`
+  }
+  if (/^yaml$|^json$|^csv$/i.test(w.trim()) && about(/resembles html|structured by white ?space/i)) {
+    return `**${choice}** names a data format that structures itself differently than the one this stem asks about.`
+  }
+  if (/^three dashes$|^a square bracket$|^a double quote$/i.test(w.trim()) && about(/json file/i)) {
+    return `**${choice}** names YAML's marker or a non-opening JSON character, not JSON's opening curly bracket.`
+  }
+  if (/the value that follows the square bracket is the value|the value is after the matching square bracket|the value is unknown/i.test(w) && about(/json file/i)) {
+    return `**${choice}** misreads a JSON array marker as pointing to one specific value.`
+  }
+  if (/values can be used that contain spaces|multiple values for a particular key|read line by line for every value/i.test(w) && about(/json|csv/i)) {
+    return `**${choice}** names a minor formatting detail, not JSON's real hierarchical advantage over CSV.`
+  }
+  if (/^csv$/i.test(w.trim()) && about(/rest-based api|dna center/i)) {
+    return `**${choice}** names a flat tabular format REST APIs don't typically return.`
   }
   if (/decreased problems|increased throughput|increased complexity|always in the form of hardware appliances/i.test(w) && about(/controller-based networking/i)) {
     return `**${choice}** makes a claim controller-based networking doesn't specifically guarantee.`
