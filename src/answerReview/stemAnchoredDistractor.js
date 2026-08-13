@@ -525,7 +525,7 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/show interface|show security/i.test(w) && /show port-security/i.test(c)) {
     return `\`show port-security\` is the diagnostic command for port-security state and violations — **${correct}** is that command; **${wrong}** either shows unrelated interface stats or isn't a real IOS command.`
   }
-  if (/dynamic vlans?|\bacls?\b|vlan pruning|wired equivalent privacy|static mac addresses/i.test(w) && /^port security$/i.test(c) && /plugging|access point|rogue|unauthorized device/i.test(b)) {
+  if (/dynamic vlans?|\bacls?\b|access control lists?|vlan pruning|wired equivalent privacy|static mac addresses/i.test(w) && /^port security$/i.test(c) && /plugging|access point|rogue|unauthorized device/i.test(b)) {
     return `Port security is what limits which MAC addresses may send traffic on an access port, stopping an unauthorized device from being plugged in — **${correct}** is that control; **${wrong}** solves a different problem (VLAN assignment, traffic filtering, or wireless encryption).`
   }
   if (/switchport port-security(?! maximum)/i.test(w) && /switchport port-security/i.test(c) && /config\)#/i.test(w) && !/config-if\)#/i.test(w)) {
@@ -557,6 +557,30 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   }
   if (/switchport maximum \d|port-security maximum \d/i.test(w) && /switchport port-security maximum \d/i.test(c)) {
     return `The full command keyword is \`switchport port-security maximum <n>\` — **${correct}** has the complete syntax; **${wrong}** drops part of the required keyword chain.`
+  }
+  if (/port-security limit \d/i.test(w) && /port-security maximum \d/i.test(c)) {
+    return `The keyword is \`maximum\`, not \`limit\` — **${correct}** has the real keyword; **${wrong}** invents one IOS doesn't accept.`
+  }
+  if (/show port-security details interface|show port-security gi \d/i.test(w) && /show port-security interface gi/i.test(c)) {
+    return `The syntax is \`show port-security interface <intf>\` — **${correct}** has it right; **${wrong}** adds an extra keyword or drops \`interface\`.`
+  }
+  if (/^static port security$|^dynamic port security$|^time limit port security$/i.test(w.trim()) && /^sticky port security$/i.test(c.trim())) {
+    return `**Sticky** learning auto-adds the first MAC seen to the running-config as if typed manually — **${correct}** is that mode; **${wrong}** names a mode that doesn't persist learned addresses this way.`
+  }
+  if (/mac-address dynamic|mac-address static|mac-address learn/i.test(w) && /mac-address sticky/i.test(c)) {
+    return `The keyword to persist the first-learned MAC is \`sticky\` — **${correct}** has it; **${wrong}** uses a keyword IOS doesn't accept here.`
+  }
+  if (/no port-security$|no switchport port-security/i.test(w) && /shutdown.*no shutdown/i.test(c)) {
+    return `Recovering an err-disabled port needs \`shutdown\` then \`no shutdown\` to bounce it — **${correct}** is that fix; **${wrong}** disables the feature instead.`
+  }
+  if (/^switch#show port-security details$|^switch#show port-security address$/i.test(w.trim()) && /^switch#show port-security$/i.test(c.trim())) {
+    return `The bare \`show port-security\` command is what this stem asks for — **${correct}** is that command; **${wrong}** adds a keyword that changes (or doesn't match) the output this stem describes.`
+  }
+  if (/clear err-disable$|clear switchport port-security|clear port-security violation/i.test(w) && /errdisable recovery cause psecure_violation/i.test(c)) {
+    return `\`errdisable recovery cause psecure_violation\` auto-recovers every violated port after a timer — **${correct}** is that command; **${wrong}** isn't real syntax or needs touching each port manually.`
+  }
+  if (/^switcha#show port-security$|^switcha#show port-security details$|^switcha#show port-security status$/i.test(w.trim()) && /^switcha#show running-config$/i.test(c.trim())) {
+    return `Sticky MACs are written into the config as \`switchport port-security mac-address sticky <mac>\` lines — **${correct}** is where to see them; **${wrong}** shows state/counters, not the addresses.`
   }
   if (/1 to 100\b|100 to 199|100 to 200/i.test(w) && /1 to 99/i.test(c)) {
     return `Standard ACLs use numbers 1–99 (and 1300–1999 expanded) — **${correct}** is the right range; **${wrong}** either overlaps the extended-ACL range (100–199) or shifts the boundary by one.`
@@ -1463,7 +1487,7 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/show interface|show security/i.test(w) && about(/port-security|port security/i)) {
     return `**${choice}** names a different (or non-existent) diagnostic command than \`show port-security\`.`
   }
-  if (/dynamic vlans?|\bacls?\b|vlan pruning|wired equivalent privacy|static mac addresses/i.test(w) && about(/port security|plugging|access point|rogue/i)) {
+  if (/dynamic vlans?|\bacls?\b|access control lists?|vlan pruning|wired equivalent privacy|static mac addresses/i.test(w) && about(/port security|plugging|access point|rogue/i)) {
     return `**${choice}** names a control that solves a different problem than restricting which MAC addresses may use an access port.`
   }
   if (/switchport port-security(?! maximum)/i.test(w) && about(/port security/i) && /config\)#/i.test(w) && !/config-if\)#/i.test(w)) {
@@ -1472,7 +1496,7 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/port-security enable/i.test(w) && about(/port security/i)) {
     return `**${choice}** invents a \`port-security enable\` keyword IOS doesn't have.`
   }
-  if (/^\d+ mac addresses?$/i.test(w.trim()) && about(/port security|maximum/i)) {
+  if (/^\d+ mac address(es)?$/i.test(w.trim()) && about(/port security|maximum/i)) {
     return `**${choice}** states a specific default MAC-address maximum for port security.`
   }
   if (/^layer 0$|^layer 1$/i.test(w) && about(/port security/i)) {
@@ -1489,6 +1513,30 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/switchport maximum \d|port-security maximum \d/i.test(w) && about(/port security|maximum/i)) {
     return `**${choice}** drops part of the required \`switchport port-security maximum\` keyword chain.`
+  }
+  if (/port-security limit \d/i.test(w) && about(/port security|maximum/i)) {
+    return `**${choice}** uses a keyword IOS doesn't accept for this command.`
+  }
+  if (/show port-security details interface|show port-security gi \d/i.test(w) && about(/port-security interface/i)) {
+    return `**${choice}** adds an extra keyword or drops \`interface\` from the command.`
+  }
+  if (/^static port security$|^dynamic port security$|^time limit port security$/i.test(w.trim()) && about(/sticky/i)) {
+    return `**${choice}** names a mode that doesn't persist learned addresses the way sticky does.`
+  }
+  if (/mac-address dynamic|mac-address static|mac-address learn/i.test(w) && about(/mac-address sticky/i)) {
+    return `**${choice}** uses a keyword IOS doesn't accept for persisting the learned MAC.`
+  }
+  if (/no port-security$|no switchport port-security/i.test(w) && about(/err-disabled|shutdown/i)) {
+    return `**${choice}** disables the feature instead of bouncing the port to clear the violation.`
+  }
+  if (/^switch#show port-security details$|^switch#show port-security address$/i.test(w.trim()) && about(/show port-security/i)) {
+    return `**${choice}** adds a keyword that changes the output from the bare command this stem asks for.`
+  }
+  if (/clear err-disable$|clear switchport port-security|clear port-security violation/i.test(w) && about(/errdisable recovery/i)) {
+    return `**${choice}** isn't real IOS syntax or requires touching each port manually.`
+  }
+  if (/^switcha#show port-security$|^switcha#show port-security details$|^switcha#show port-security status$/i.test(w.trim()) && about(/show running-config|sticky/i)) {
+    return `**${choice}** shows port-security state/counters, not the learned sticky addresses themselves.`
   }
   if (/1 to 100\b|100 to 199|100 to 200/i.test(w) && about(/access list|acl|standard/i)) {
     return `**${choice}** states a numeric range that overlaps or misstates the standard-ACL boundary.`
