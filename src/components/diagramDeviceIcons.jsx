@@ -114,10 +114,16 @@ export function shouldShowLinkLabel(link, { detail, linkCount }) {
   return linkCount <= 3
 }
 
-export function diagramCanvasSize({ expanded, compact, isPreview, isMobile, isLandscape, spanX, spanY }) {
+/**
+ * @param containerWidth measured CSS width of the frame, when known. The viewBox
+ * then matches CSS pixels 1:1, so the mobile font floors below are real rendered
+ * sizes instead of viewBox units that shrink when the SVG scales down to fit.
+ */
+export function diagramCanvasSize({ expanded, compact, isPreview, isMobile, isLandscape, spanX, spanY, containerWidth }) {
   let W
   if (expanded) W = isMobile ? (isLandscape ? 520 : 390) : 520
   else W = isMobile ? (isLandscape ? 420 : 360) : 360
+  if (Number.isFinite(containerWidth) && containerWidth >= 200) W = Math.round(containerWidth)
   const H = Math.round(W * (spanY / spanX) * (isLandscape ? 0.55 : 0.72))
   let clampH
   if (expanded) {

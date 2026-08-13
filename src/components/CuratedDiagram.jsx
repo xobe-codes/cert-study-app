@@ -7,6 +7,7 @@ import {
   shouldShowLinkLabel,
 } from './diagramDeviceIcons.jsx'
 import { useDiagramPanZoom } from '../hooks/useDiagramPanZoom.js'
+import { projectDiagramNodes, fitDiagramLabel, clampLinkLabelY, fitNodeBoxWidth } from './diagramLayout.js'
 import {
   pickPhoneInlineDiagram,
   diagramCaption,
@@ -89,6 +90,31 @@ function useTouchFriendly() {
   return touchFriendly
 }
 
+/**
+ * Live CSS width of the diagram frame. Lets the viewBox track real pixels so
+ * text renders at the size the font floors specify rather than being scaled
+ * down with the rest of the drawing.
+ */
+function useMeasuredWidth(ref) {
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const read = () => {
+      const next = Math.round(el.clientWidth || 0)
+      setWidth(prev => (Math.abs(prev - next) >= 2 ? next : prev))
+    }
+    read()
+    if (typeof ResizeObserver === 'undefined') return
+    const ro = new ResizeObserver(read)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [ref])
+
+  return width
+}
+
 function useFocusTrap(containerRef) {
   useEffect(() => {
     const root = containerRef.current
@@ -130,16 +156,6 @@ function useFocusTrap(containerRef) {
       if (previous?.focus) previous.focus()
     }
   }, [containerRef])
-}
-
-function splitDiagramLabel(text, max = 16) {
-  const s = String(text || '')
-  if (s.length <= max) return [s]
-  const mid = Math.floor(s.length / 2)
-  let split = s.lastIndexOf(' ', mid)
-  if (split < 4) split = s.indexOf(' ', mid)
-  if (split < 0) return [s.slice(0, max), s.slice(max)]
-  return [s.slice(0, split), s.slice(split + 1)]
 }
 
 function diagramShortLabel(node) {
@@ -209,6 +225,8 @@ function DiagramAnnotations({ annotations, visuallyHidden = false }) {
 
 function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = false, isLandscape = false }) {
   const uid = useId().replace(/:/g, '')
+  const svgRef = useRef(null)
+  const measuredWidth = useMeasuredWidth(svgRef)
   const isPreview = detail === 'preview'
   const links = diagram?.links || []
   const linkCount = links.length
@@ -226,36 +244,46 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
     const spanY = Math.max(22, maxY - minY)
     const { W, H: clampH } = diagramCanvasSize({
       expanded, compact, isPreview, isMobile, isLandscape, spanX, spanY,
+      containerWidth: measuredWidth,
     })
     const density = nodes.length
     const fonts = diagramFontSizes({ expanded, compact, isPreview, isMobile, density })
-    const nodeW = Math.min(
+    const nodeHint = Math.min(
       expanded ? (isMobile ? 128 : 136) : (isMobile ? 116 : 120),
       Math.max(84, (expanded ? 124 : 112) - density * 3),
+      Math.max(56, W - 12),
     )
     const nodeH = expanded ? (isMobile ? 42 : 38) : (isMobile ? 38 : 34)
-    const toX = v => ((v - minX) / spanX) * W
-    const toY = v => ((v - minY) / spanY) * clampH
-    const labelMax = isPreview
-      ? (isMobile ? 14 : 12)
-      : compact ? (isMobile ? 16 : 14) : expanded ? (isMobile ? 22 : 20) : (isMobile ? 18 : 16)
+    const nodeW = fitNodeBoxWidth({ nodes, W, H: clampH, nodeW: nodeHint, nodeH })
+    const { toX, toY } = projectDiagramNodes({ nodes, W, H: clampH, nodeW, nodeH })
     const iconSlot = fonts.icon + 10
+    // Text lives to the right of the icon slot, inside the box, with breathing room.
+    const labelWidth = Math.max(24, nodeW - iconSlot - 8)
     const nodeMap = Object.fromEntries(nodes.map(n => {
       const text = isPreview ? diagramShortLabel(n) : n.label
-      const lines = splitDiagramLabel(text, labelMax)
+      const lines = fitDiagramLabel(text, { maxWidthPx: labelWidth, fontSize: fonts.node, maxLines: 2 })
       return [n.id, { ...n, cx: toX(n.x), cy: toY(n.y), lines, hw: nodeW / 2, hh: nodeH / 2 }]
     }))
     return { W, H: clampH, nodeW, nodeH, fonts, iconSlot, nodeMap, nodes }
-  }, [diagram, compact, expanded, isPreview, isMobile, isLandscape])
+  }, [diagram, compact, expanded, isPreview, isMobile, isLandscape, measuredWidth])
 
   if (!layout) return null
   const { W, H, nodeW, nodeH, fonts, iconSlot, nodeMap, nodes } = layout
   const nodeAt = id => nodeMap[id]
   const showGlow = detail === 'full'
-  let linkLabelIndex = 0
+  // Stagger offsets are resolved up front — mutating a counter while mapping
+  // over links is a render-phase side effect.
+  const labelOffsets = new Map()
+  let staggerIndex = 0
+  for (const l of links) {
+    if (!l.label || !shouldShowLinkLabel(l, { detail, linkCount })) continue
+    labelOffsets.set(l.id ?? `${l.source}->${l.target}`, (staggerIndex % 3) * 10 - 10)
+    staggerIndex += 1
+  }
 
   return (
     <svg
+      ref={svgRef}
       className="curated-diagram-svg"
       viewBox={`0 0 ${W} ${H}`}
       preserveAspectRatio="xMidYMid meet"
@@ -291,8 +319,7 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
         const midY = (p1.y + p2.y) / 2
         const labelShort = l.label && l.label.length > 28 ? `${l.label.slice(0, 26)}…` : l.label
         const showLabel = shouldShowLinkLabel(l, { detail, linkCount })
-        const offset = (linkLabelIndex % 3) * 10 - 10
-        if (showLabel && labelShort) linkLabelIndex += 1
+        const offset = labelOffsets.get(l.id ?? `${l.source}->${l.target}`) ?? 0
         const labelW = Math.min(120, Math.max(56, (labelShort?.length || 0) * (fonts.link * 0.55) + 12))
         return (
           <g key={l.id}>
@@ -306,8 +333,8 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
             {labelShort && showLabel && (
               <g>
                 <rect
-                  x={midX - labelW / 2}
-                  y={midY - 14 + offset}
+                  x={Math.min(Math.max(0, midX - labelW / 2), Math.max(0, W - labelW))}
+                  y={clampLinkLabelY(midY - 14 + offset, fonts.link + 6, H)}
                   width={labelW}
                   height={fonts.link + 6}
                   rx="4"
@@ -315,8 +342,8 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
                   opacity="0.94"
                 />
                 <text
-                  x={midX}
-                  y={midY - 14 + offset + fonts.link + 1}
+                  x={Math.min(Math.max(labelW / 2, midX), Math.max(labelW / 2, W - labelW / 2))}
+                  y={clampLinkLabelY(midY - 14 + offset, fonts.link + 6, H) + fonts.link + 1}
                   fontSize={fonts.link}
                   fill={COLORS.silverMid}
                   textAnchor="middle"
