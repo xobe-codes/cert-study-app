@@ -40,8 +40,12 @@ test.describe('AnswerReview mobile debrief (390×844)', () => {
     }
 
     expect(found).toBe(true)
-    await expect(page.getByText(/What this choice implies/i)).toBeVisible()
-    await expect(page.getByText(/Why it is wrong here/i)).toBeVisible()
+    // A revealed question can show a structured debrief for more than one
+    // wrong choice at once (accordion / multi-select), so more than one
+    // heading is legitimate — assert the first is visible, not that there's
+    // exactly one.
+    await expect(page.getByText(/What this choice implies/i).first()).toBeVisible()
+    await expect(page.getByText(/Why it is wrong here/i).first()).toBeVisible()
 
     const reviewRoot = page.locator('.ccna-answer-review').first()
     await expect(reviewRoot).toBeVisible()
