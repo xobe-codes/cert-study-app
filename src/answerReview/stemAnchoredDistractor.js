@@ -333,17 +333,137 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/access control lists?|layer 2 asics?|route tables?|frame filters?/i.test(w + c) && /qos|classify/i.test(b)) {
     return `QoS classification (${hook}) uses ACLs (or protocol/NBAR matching) to identify traffic — **${correct}** is that mechanism; **${wrong}** is not how routers classify packets for QoS.`
   }
+  if (/^bandwidth$|^delay$|^loss$/i.test(w.trim()) && /^jitter$/i.test(c.trim()) && /consecutive packet/i.test(b)) {
+    return `Jitter is specifically the variation in packet-to-packet arrival timing — **${correct}** is that measurement; **${wrong}** measures a different QoS metric (capacity, one-way latency, or drops) that doesn't describe timing variation.`
+  }
+  if (/layer 3 field|present from end to end|is 6 bits/i.test(w) && /only present in 802\.1q frames/i.test(c)) {
+    return `CoS is a 3-bit field carried only inside an 802.1Q trunk tag, so it exists only on tagged Layer 2 links, not end-to-end and not at Layer 3 — **${correct}** states that scope correctly; **${wrong}** either misstates its layer, its persistence, or its bit width (that's DSCP's 6 bits, not CoS's 3).`
+  }
+  if (/^bandwidth$|^delay$|^jitter$/i.test(w.trim()) && /^loss$/i.test(c.trim()) && /discarded due to congestion/i.test(b)) {
+    return `Loss is specifically the measurement of packets dropped from a congested queue — **${correct}** is that metric; **${wrong}** measures a different QoS dimension (capacity, one-way latency, or timing variation) that isn't about discarded packets.`
+  }
+  if (/dscp af 4[013]|dscp af 11|dscp af 00/i.test(w) && /dscp ef 46/i.test(c)) {
+    return `DSCP **EF (Expedited Forwarding, value 46)** is the highest-priority marking, reserved for voice-like low-latency traffic — **${correct}** is that marking; **${wrong}** is an Assured Forwarding class, which ranks below EF regardless of its drop precedence.`
+  }
+  if (/^cbwfq$|^fifo$|^cir$/i.test(w.trim()) && /^llq$/i.test(c.trim()) && /priority over all other queues/i.test(b)) {
+    return `LLQ (Low Latency Queuing) is the strict-priority queue serviced first, ahead of every other queue in the scheduler — **${correct}** is that queue; **${wrong}** is a different queuing method or an unrelated QoS term (CIR is a policing/shaping rate, not a queue type).`
+  }
+  if (/^llq$|^cbwfq$|^fifo$/i.test(w.trim()) && /^policing$/i.test(c.trim()) && /queue starvation/i.test(b)) {
+    return `Policing prevents any one flow from monopolizing bandwidth (and starving other queues) by dropping or remarking excess traffic at the edge — **${correct}** is that method; **${wrong}** names a queuing mechanism, not the traffic-conditioning method that combats starvation.`
+  }
+  if (/cause jitter|adhere to the speed/i.test(w) && /holds packets in the queue over the configured bit rate to cause delay/i.test(c)) {
+    return `Shaping buffers (holds) excess packets and releases them later, which adds delay — it doesn't specifically target jitter and it doesn't "slow" packets, it queues them — **${correct}** states that correctly; **${wrong}** either names the wrong side effect or blurs shaping with policing's rate-limiting behavior.`
+  }
+  if (/^llq$|^fifo$|^pq$/i.test(w.trim()) && /^cbwfq$/i.test(c.trim()) && /round-robin scheduler/i.test(b)) {
+    return `CBWFQ (Class-Based Weighted Fair Queuing) services its class queues in a weighted round-robin fashion — **${correct}** is that method; **${wrong}** is a different queuing method (strict priority, first-in-first-out, or priority queuing) that doesn't round-robin.`
+  }
+  if (/holds packets in the queue over the configured bit rate to cause delay|holds packets in the queue over the configured bit rate to cause jitter|slows packets in the queue over the configured bit rate/i.test(w) && /drops packets over the configured bit rate to cause loss/i.test(c)) {
+    return `Policing enforces a rate by **dropping** (or remarking) packets over the limit immediately — it doesn't queue/hold them the way shaping does — **${correct}** states that correctly; **${wrong}** describes shaping's buffering behavior instead of policing's drop behavior.`
+  }
+  if (/help police lan applications|help police wan applications|maintain a contracted burst rate/i.test(w) && /maintain a contracted cir/i.test(c)) {
+    return `Policing exists to enforce the **committed information rate (CIR)** a customer contracted for — **${correct}** is that reason; **${wrong}** either names the wrong traffic scope or the wrong contracted metric (burst size, not CIR).`
+  }
+  if (/^af31 marked traffic has a better queue than af41 marked traffic$/i.test(w.trim()) && /^af41 marked traffic has a better queue than af31 marked traffic$/i.test(c.trim())) {
+    return `Within Assured Forwarding, a higher class number gets better queuing treatment — AF4x outranks AF3x — **${correct}** states that correctly; **${wrong}** reverses the class-number priority order.`
+  }
   if (/logging (?:server|debugging)\s*\d*|log-level/i.test(w) && /logging trap/i.test(c)) {
     return `The syslog severity sent to a remote server is set with \`logging trap <level>\` — **${correct}** is the real command syntax; **${wrong}** is not valid IOS syslog configuration.`
   }
+  if (/logging timestamps log datetime|logging timestamps datetime|service datetime timestamps/i.test(w) && /service timestamps log datetime/i.test(c)) {
+    return `The command is \`service timestamps log datetime\`, in that exact keyword order — **${correct}** has the right syntax; **${wrong}** reorders the keywords or uses \`logging\` instead of \`service\`, which IOS won't accept.`
+  }
+  if (/config-line\)#logging level \d|config\)#logging console 7/i.test(w) && /config\)#logging console 0/i.test(c)) {
+    return `The command is \`logging console <level>\`, entered in global config mode — **${correct}** has the right mode, keyword, and level; **${wrong}** either uses a keyword IOS doesn't have (\`logging level\`) at the wrong mode, or a different severity number.`
+  }
+  if (/config\)#logging 1$|config\)#logging buffered 2|config\)#logging 2$/i.test(w) && /config\)#logging buffered 1/i.test(c)) {
+    return `Storing logs in RAM requires the \`buffered\` keyword plus a severity level — **${correct}** has the right keyword and level; **${wrong}** either drops \`buffered\` or specifies a different severity number.`
+  }
+  if (/^show commands$|^show log$|^show buffer$/i.test(w.trim()) && /^show history$/i.test(c.trim())) {
+    return `\`show history\` lists the commands you've typed in this session — **${correct}** is that command; **${wrong}** is not a real IOS command or shows something else (message logs, not command history).`
+  }
+  if (/^informational \(6\)$|^warnings \(4\)$|^debugging \(7\)$/i.test(w.trim()) && /^notifications \(5\)$/i.test(c.trim())) {
+    return `This stem's syslog excerpt keys to severity level 5 (Notifications) — **${correct}** matches that level/name pairing; **${wrong}** names a different severity level than what the excerpt shows.`
+  }
+  if (/^show cpu$|^show cpu-stats$|^show environment cpu$/i.test(w.trim()) && /^show processes$/i.test(c.trim())) {
+    return `\`show processes\` is the IOS command that reports CPU utilization (per-process and overall) — **${correct}** is that command; **${wrong}** is not a real IOS command for this.`
+  }
+  if (/config\)#logging internal|config\)#logging ram|config\)#logging console/i.test(w) && /config\)#logging buffered/i.test(c)) {
+    return `Directing logs to the router's internal (RAM) buffer uses the \`logging buffered\` command — **${correct}** is that command; **${wrong}** either invents a keyword IOS doesn't have or sends logs somewhere else (the console line, not RAM).`
+  }
+  if (/^tty$|^nvram$/i.test(w.trim()) && /^console$/i.test(c.trim()) && /default destination/i.test(b)) {
+    return `Cisco devices send syslog messages to the **console** line by default, before any other destination is configured — **${correct}** is that default; **${wrong}** names a destination or storage type that isn't the out-of-the-box default.`
+  }
+  if (/^notification \(5\)$|^informational \(6\)$|^warning \(4\)$/i.test(w.trim()) && /^debugging \(7\)$/i.test(c.trim()) && /default level/i.test(b)) {
+    return `The default syslog facility logging level is **Debugging (7)** — the least restrictive level, logging everything — **${correct}** is that default; **${wrong}** names a more restrictive level that isn't the out-of-the-box default.`
+  }
   if (/ntp (?:server|clock source|trusted)/i.test(w) && /ntp master/i.test(c)) {
     return `\`ntp master\` tells the device to trust and advertise its own internal clock — **${correct}** is that command; **${wrong}** either points to an external time source or isn't a real IOS NTP command.`
+  }
+  if (/^show ntp$|^show time$|^show time source$/i.test(w.trim()) && /^show clock detail$/i.test(c.trim())) {
+    return `\`show clock detail\` reports whether the clock is authoritative (NTP-synced) or not — **${correct}** is that command; **${wrong}** is not a real IOS command for checking NTP sync state.`
+  }
+  if (/^show clock detail$|^show ntp detail$|^show ntp skew$/i.test(w.trim()) && /^show ntp associations detail$/i.test(c.trim())) {
+    return `\`show ntp associations detail\` reports per-server sync details (offset, delay, reachability) — **${correct}** is that command; **${wrong}** either checks local clock authority, not server association, or isn't a real IOS command.`
+  }
+  if (/^show ntp$|^debug ntp messages$/i.test(w.trim()) && /^debug ntp packets$/i.test(c.trim())) {
+    return `\`debug ntp packets\` shows the actual NTP packet exchange with the server, confirming a reply is received — **${correct}** is that command; **${wrong}** either shows static state with no live packet exchange, or isn't the right debug keyword.`
+  }
+  if (/configure all devices as master servers/i.test(w) && /always configure the time source to a dns address/i.test(c)) {
+    return `Using a DNS name (rather than a hardcoded IP) for the NTP source is best practice, since it survives the server's IP changing — **${correct}** states that practice; **${wrong}** would create multiple unsynchronized authoritative clocks instead of a consistent time hierarchy.`
+  }
+  if (/^show ntp$|^debug ntp drift$/i.test(w.trim()) && /^show ntp status$/i.test(c.trim())) {
+    return `\`show ntp status\` reports the clock's offset and drift from its NTP source — **${correct}** is that command; **${wrong}** either isn't a complete/real command or isn't how drift is checked.`
+  }
+  if (/clock timezone pacific|timezone pacific|timezone pst -8/i.test(w) && /clock timezone pst -8 0/i.test(c)) {
+    return `The full syntax is \`clock timezone <name> <hour-offset> <minute-offset>\` — **${correct}** has the complete syntax; **${wrong}** drops the \`clock\` keyword, uses a name IOS doesn't recognize, or omits the numeric offset.`
+  }
+  if (/^tunnel interface$|^ntp interface$/i.test(w.trim()) && /^loopback interface$/i.test(c.trim())) {
+    return `A loopback interface never goes down as long as the device is up, making it the resilient source for NTP even if a physical interface fails — **${correct}** is that interface type; **${wrong}** either depends on other infrastructure (tunnel) or isn't a real interface type.`
+  }
+  if (/ntp loopback 0|ntp master loopback 0|ntp clock loopback 0/i.test(w) && /ntp source loopback 0/i.test(c)) {
+    return `The command to source NTP packets from an interface is \`ntp source <interface>\` — **${correct}** has the right keyword; **${wrong}** drops \`source\` or substitutes a different (wrong) keyword.`
+  }
+  if (/config\)#clock set|^router#clock \d/i.test(w) && /^router#clock set 2:24:00 1 august 2019$/i.test(c.trim())) {
+    return `\`clock set\` is a privileged EXEC command (not global config) with syntax \`clock set hh:mm:ss day month year\` — **${correct}** has the right mode, keyword, and date order; **${wrong}** either runs it from config mode, drops the \`set\` keyword, or reorders day/month.`
   }
   if (/reversed to another dns server|without asking another dns server/i.test(w) && /resolution of an ip address to fqdn/i.test(c)) {
     return `A reverse lookup resolves an IP address back to a hostname (FQDN) via a PTR record — **${correct}** states that definition; **${wrong}** describes DNS server iteration, not what a reverse lookup is.`
   }
   if (/\ba record\b/i.test(w) && /\bptr record\b/i.test(c)) {
     return `The **PTR** record maps an IPv4 address to an FQDN (reverse DNS) — **${correct}** is the right record type; **${wrong}** (the A record) does the opposite, mapping a name to an address.`
+  }
+  if (/^the cname record$|^the aaaa record$/i.test(w.trim()) && /^the ptr record$/i.test(c.trim())) {
+    return `The **PTR** record is what maps an IPv4 address back to an FQDN — **${correct}** is that record type; **${wrong}** either aliases one name to another (CNAME) or holds an IPv6 address (AAAA), neither of which does address-to-name mapping.`
+  }
+  if (/^the dns zone$|^the host header$|^the hostname ptr record$/i.test(w.trim()) && /^the dns domain name$/i.test(c.trim())) {
+    return `A device appends its configured DNS **domain name** to unqualified hostname queries before resolving them — **${correct}** is that suffix; **${wrong}** names a different DNS concept that isn't the appended suffix.`
+  }
+  if (/^dns$|^ptr records$|^llmnr$/i.test(w.trim()) && /^static hostname entries$/i.test(c.trim()) && /most secure method/i.test(b)) {
+    return `A locally configured static hostname entry can't be spoofed or poisoned the way a network-based lookup can — **${correct}** is that most-secure method; **${wrong}** all rely on network resolution, which introduces an attack surface static entries don't have.`
+  }
+  if (/^the cname record$|^the ptr record$|^the aaaa record$/i.test(w.trim()) && /^the a record$/i.test(c.trim())) {
+    return `The **A** record holds a hostname's IPv4 address — **${correct}** is that record type; **${wrong}** either aliases a name (CNAME), maps address-to-name (PTR), or holds an IPv6 address (AAAA), not an IPv4 address.`
+  }
+  if (/^soa$/i.test(w.trim()) && /^ttl$/i.test(c.trim()) && /dns cache/i.test(b)) {
+    return `The record's **TTL (Time To Live)** value is what limits how long it stays cached — **${correct}** is that field; **${wrong}** (SOA) holds zone-administration data, not a per-record cache expiry.`
+  }
+  if (/^default of 5 minutes$/i.test(w.trim()) && /^ttl$/i.test(c.trim())) {
+    return `Cache duration is controlled by the record's **TTL** value, which the zone administrator sets per record — **${correct}** is that mechanism; **${wrong}** assumes a fixed universal timeout that doesn't actually exist in DNS.`
+  }
+  if (/^layer 3 unicast$/i.test(w.trim()) && /^layer 3 broadcast$/i.test(c.trim()) && /initially acquire/i.test(b)) {
+    return `A DHCP client has no IP address yet, so its initial DHCPDISCOVER must go out as a Layer 3 **broadcast** — it has no server address to unicast to — **${correct}** is that method; **${wrong}** isn't possible before the client has an address.`
+  }
+  if (/one-quarter of the lease|seven-eighths of the lease|end of the lease/i.test(w) && /one-half of the lease/i.test(c)) {
+    return `A DHCP client sends its renewal request (T1 timer) at **50% (one-half)** of the lease duration — **${correct}** is that point; **${wrong}** states a different fraction that doesn't match the T1 default.`
+  }
+  if (/dhcp uses multicasting between the client and server|the dhcp lease is negotiated between client and server/i.test(w) && /dhcp client is responsible for maintaining the life cycle/i.test(c)) {
+    return `The **client** — not the server — tracks and renews its own lease timers throughout the address's life cycle — **${correct}** states that correctly; **${wrong}** either names the wrong transport (DHCP uses broadcast/unicast, not multicast) or misplaces where lease tracking happens.`
+  }
+  if (/^rarp$/i.test(w.trim()) && /^udp$/i.test(c.trim()) && /transport protocol/i.test(b)) {
+    return `DHCP runs over **UDP** (ports 67/68) — **${correct}** is that transport; **${wrong}** (RARP) is a separate, unrelated Layer 2/3 address-resolution protocol, not DHCP's transport.`
+  }
+  if (/the dhcp server will halt/i.test(w) && /the ip address is removed from the dhcp pool/i.test(c)) {
+    return `On detecting a duplicate address (via gratuitous ARP/ping), the DHCP server pulls that address from its available pool rather than shutting itself down — **${correct}** states that correctly; **${wrong}** overstates the impact — one conflict doesn't halt the whole DHCP service.`
   }
   if (/\bcidr\b|classful addressing|\bvpn\b/i.test(w) && /\bnat\b/i.test(c) && /rfc 1918|internet requests|private address/i.test(b)) {
     return `NAT is what translates private RFC 1918 addresses to routable public addresses — **${correct}** is that mechanism; **${wrong}** is a different addressing or tunneling concept that doesn't translate addresses.`
@@ -971,17 +1091,137 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/layer 2 asics?|route tables?|frame filters?/i.test(w) && about(/qos|classify/i)) {
     return `**${choice}** names a mechanism that isn't how routers classify traffic for QoS.`
   }
+  if (/^bandwidth$|^delay$|^loss$/i.test(w.trim()) && about(/jitter|consecutive packet/i)) {
+    return `**${choice}** names a different QoS metric than packet-to-packet timing variation.`
+  }
+  if (/layer 3 field|present from end to end|is 6 bits/i.test(w) && about(/class of service|802\.1q/i)) {
+    return `**${choice}** misstates the CoS field's layer, persistence, or bit width.`
+  }
+  if (/^bandwidth$|^delay$|^jitter$/i.test(w.trim()) && about(/loss|discarded due to congestion/i)) {
+    return `**${choice}** names a different QoS dimension than dropped packets.`
+  }
+  if (/dscp af 4[013]|dscp af 11|dscp af 00/i.test(w) && about(/dscp ef|highest priority/i)) {
+    return `**${choice}** names an Assured Forwarding class, which ranks below EF.`
+  }
+  if (/^cbwfq$|^fifo$|^cir$/i.test(w.trim()) && about(/llq|priority over all other queues/i)) {
+    return `**${choice}** names a different queuing method or an unrelated QoS term, not the strict-priority queue.`
+  }
+  if (/^llq$|^cbwfq$|^fifo$/i.test(w.trim()) && about(/policing|queue starvation/i)) {
+    return `**${choice}** names a queuing mechanism, not the traffic-conditioning method that combats starvation.`
+  }
+  if (/cause jitter|adhere to the speed/i.test(w) && about(/shaping/i)) {
+    return `**${choice}** names the wrong side effect or blurs shaping with policing.`
+  }
+  if (/^llq$|^fifo$|^pq$/i.test(w.trim()) && about(/cbwfq|round-robin scheduler/i)) {
+    return `**${choice}** names a different queuing method that doesn't round-robin.`
+  }
+  if (/holds packets in the queue over the configured bit rate to cause delay|holds packets in the queue over the configured bit rate to cause jitter|slows packets in the queue over the configured bit rate/i.test(w) && about(/policing/i)) {
+    return `**${choice}** describes shaping's buffering behavior instead of policing's drop behavior.`
+  }
+  if (/help police lan applications|help police wan applications|maintain a contracted burst rate/i.test(w) && about(/policing|contracted cir/i)) {
+    return `**${choice}** names the wrong traffic scope or the wrong contracted metric.`
+  }
+  if (/^af31 marked traffic has a better queue than af41 marked traffic$/i.test(w.trim()) && about(/assured forwarding|af4|af3/i)) {
+    return `**${choice}** reverses the Assured Forwarding class-number priority order.`
+  }
   if (/logging (?:server|debugging)\s*\d*|log-level/i.test(w) && about(/syslog|logging|trap/i)) {
     return `**${choice}** uses invalid or mismatched IOS syslog command syntax.`
   }
+  if (/logging timestamps log datetime|logging timestamps datetime|service datetime timestamps/i.test(w) && about(/timestamps|syslog/i)) {
+    return `**${choice}** reorders the timestamp command's keywords or uses the wrong verb.`
+  }
+  if (/config-line\)#logging level \d|config\)#logging console 7/i.test(w) && about(/console logging|severity/i)) {
+    return `**${choice}** uses the wrong config mode, keyword, or severity number for console logging.`
+  }
+  if (/config\)#logging 1$|config\)#logging buffered 2|config\)#logging 2$/i.test(w) && about(/logging buffered|ram/i)) {
+    return `**${choice}** drops the \`buffered\` keyword or specifies the wrong severity number.`
+  }
+  if (/^show commands$|^show log$|^show buffer$/i.test(w.trim()) && about(/show history|previously entered/i)) {
+    return `**${choice}** is not a real IOS command or shows a different kind of log, not command history.`
+  }
+  if (/^informational \(6\)$|^warnings \(4\)$|^debugging \(7\)$/i.test(w.trim()) && about(/notifications|syslog configuration/i)) {
+    return `**${choice}** names a different syslog severity level than the one the excerpt keys to.`
+  }
+  if (/^show cpu$|^show cpu-stats$|^show environment cpu$/i.test(w.trim()) && about(/cpu utilization/i)) {
+    return `**${choice}** is not a real IOS command for checking CPU utilization.`
+  }
+  if (/config\)#logging internal|config\)#logging ram|config\)#logging console/i.test(w) && about(/logging buffered|internal log space/i)) {
+    return `**${choice}** invents a keyword IOS doesn't have or directs logs to a different destination than RAM.`
+  }
+  if (/^tty$|^nvram$/i.test(w.trim()) && about(/default destination|syslog messages/i)) {
+    return `**${choice}** names a destination or storage type that isn't the default syslog target.`
+  }
+  if (/^notification \(5\)$|^informational \(6\)$|^warning \(4\)$/i.test(w.trim()) && about(/default level|facility logging/i)) {
+    return `**${choice}** names a more restrictive severity level than the actual default.`
+  }
   if (/ntp (?:server|clock source|trusted)/i.test(w) && about(/\bntp\b/i)) {
     return `**${choice}** names a different (or non-existent) NTP configuration command.`
+  }
+  if (/^show ntp$|^show time$|^show time source$/i.test(w.trim()) && about(/show clock detail|ntp sync/i)) {
+    return `**${choice}** is not a real IOS command for checking NTP sync state.`
+  }
+  if (/^show clock detail$|^show ntp detail$|^show ntp skew$/i.test(w.trim()) && about(/ntp associations/i)) {
+    return `**${choice}** checks local clock authority or isn't a real command, not the per-server association details.`
+  }
+  if (/^show ntp$|^debug ntp messages$/i.test(w.trim()) && about(/debug ntp packets/i)) {
+    return `**${choice}** shows static state or uses the wrong debug keyword, not a live packet exchange.`
+  }
+  if (/configure all devices as master servers/i.test(w) && about(/ntp best practice|time source/i)) {
+    return `**${choice}** would create multiple unsynchronized authoritative clocks instead of a consistent hierarchy.`
+  }
+  if (/^show ntp$|^debug ntp drift$/i.test(w.trim()) && about(/ntp status|time drift/i)) {
+    return `**${choice}** isn't a complete/real command or isn't how drift is actually checked.`
+  }
+  if (/clock timezone pacific|timezone pacific|timezone pst -8/i.test(w) && about(/clock timezone/i)) {
+    return `**${choice}** drops the \`clock\` keyword, uses an unrecognized name, or omits the numeric offset.`
+  }
+  if (/^tunnel interface$|^ntp interface$/i.test(w.trim()) && about(/loopback|ntp resilien/i)) {
+    return `**${choice}** depends on other infrastructure or isn't a real interface type.`
+  }
+  if (/ntp loopback 0|ntp master loopback 0|ntp clock loopback 0/i.test(w) && about(/ntp source/i)) {
+    return `**${choice}** drops the \`source\` keyword or substitutes the wrong one.`
+  }
+  if (/config\)#clock set|^router#clock \d/i.test(w) && about(/clock set/i)) {
+    return `**${choice}** runs the command from the wrong mode, drops the \`set\` keyword, or reorders day/month.`
   }
   if (/reversed to another dns server|without asking another dns server/i.test(w) && about(/dns|reverse lookup/i)) {
     return `**${choice}** describes DNS server behavior rather than what a reverse lookup actually is.`
   }
   if (/\ba record\b/i.test(w) && about(/dns|record|ptr/i)) {
     return `**${choice}** names the A record, which maps a name to an address — the opposite direction.`
+  }
+  if (/^the cname record$|^the aaaa record$/i.test(w.trim()) && about(/ptr record/i)) {
+    return `**${choice}** aliases a name or holds an IPv6 address, not the address-to-name mapping this stem asks about.`
+  }
+  if (/^the dns zone$|^the host header$|^the hostname ptr record$/i.test(w.trim()) && about(/hostname queries|dns resolution/i)) {
+    return `**${choice}** names a different DNS concept than the appended suffix.`
+  }
+  if (/^dns$|^ptr records$|^llmnr$/i.test(w.trim()) && about(/most secure|name resolution/i)) {
+    return `**${choice}** relies on network resolution, which introduces an attack surface static entries don't have.`
+  }
+  if (/^the cname record$|^the ptr record$|^the aaaa record$/i.test(w.trim()) && about(/holds the ipv4/i)) {
+    return `**${choice}** doesn't hold an IPv4 address the way an A record does.`
+  }
+  if (/^soa$/i.test(w.trim()) && about(/dns cache|ttl/i)) {
+    return `**${choice}** holds zone-administration data, not a per-record cache expiry.`
+  }
+  if (/^default of 5 minutes$/i.test(w.trim()) && about(/dns cache|ttl/i)) {
+    return `**${choice}** assumes a fixed universal timeout that doesn't actually exist in DNS.`
+  }
+  if (/^layer 3 unicast$/i.test(w.trim()) && about(/dhcp|acquire an ip address/i)) {
+    return `**${choice}** isn't possible before the client has an IP address to unicast from.`
+  }
+  if (/one-quarter of the lease|seven-eighths of the lease|end of the lease/i.test(w) && about(/dhcp lease|renewal/i)) {
+    return `**${choice}** states a fraction that doesn't match the DHCP T1 renewal default.`
+  }
+  if (/dhcp uses multicasting between the client and server|the dhcp lease is negotiated between client and server/i.test(w) && about(/dhcp process/i)) {
+    return `**${choice}** names the wrong transport or misplaces where lease tracking happens.`
+  }
+  if (/^rarp$/i.test(w.trim()) && about(/dhcp|transport protocol/i)) {
+    return `**${choice}** is a separate address-resolution protocol, not DHCP's transport.`
+  }
+  if (/the dhcp server will halt/i.test(w) && about(/duplicate ip address/i)) {
+    return `**${choice}** overstates the impact of one address conflict.`
   }
   if (/\bcidr\b|classful addressing|\bvpn\b/i.test(w) && about(/nat|rfc 1918|private address/i)) {
     return `**${choice}** names a different addressing or tunneling concept, not address translation.`
