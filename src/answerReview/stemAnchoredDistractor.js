@@ -474,6 +474,30 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/snmp version [12]\w*/i.test(w) && /snmp version 3/i.test(c)) {
     return `Only SNMPv3 adds user-based authentication and encryption — SNMPv1/v2c/v2e send community strings in cleartext — **${correct}** is the secure version; **${wrong}** lacks that protection.`
   }
+  if (/^object identifiers \(oids\)$|^snmp agent$/i.test(w.trim()) && /^management information base$/i.test(c.trim()) && /database of variables/i.test(b)) {
+    return `The **MIB (Management Information Base)** is the database of manageable variables SNMP polls — **${correct}** is that database; **${wrong}** is either an individual variable address within the MIB (OID) or the process that reads it (agent), not the database itself.`
+  }
+  if (/^object identifier$/i.test(w.trim()) && /^network management station$/i.test(c.trim()) && /snmp agent sends information to/i.test(b)) {
+    return `An SNMP agent reports to the **NMS (Network Management Station)** — **${correct}** is that destination; **${wrong}** (an OID) is a variable address inside the data, not a device the agent talks to.`
+  }
+  if (/get-request message|get-response message|set-request message/i.test(w) && /trap message/i.test(c) && /interface goes down/i.test(b)) {
+    return `A **trap** is an unsolicited, agent-initiated message sent the instant something like an interface going down happens — Get/Set messages are all NMS-initiated polls/writes, not spontaneous alerts — **${correct}** is that message type; **${wrong}** requires the NMS to ask first, which doesn't fit an event notification.`
+  }
+  if (/^the snmp agent$|^snmp messages$/i.test(w.trim()) && /^object identifiers \(oids\)$/i.test(c.trim()) && /hierarchical set of variables/i.test(b)) {
+    return `**OIDs** are the hierarchical (tree-structured) variable names that make up the MIB — **${correct}** is that structure; **${wrong}** is the process that reads the MIB or the messages that carry MIB data, not the hierarchy itself.`
+  }
+  if (/^encryption$|^user authentication$|^message integrity$/i.test(w.trim()) && /^community strings$/i.test(c.trim()) && /snmp version 2c/i.test(b)) {
+    return `SNMPv2c's only security mechanism is a plaintext **community string** acting as a shared password — **${correct}** is that method; **${wrong}** names a protection SNMPv2c doesn't have (those arrived with SNMPv3).`
+  }
+  if (/^encrypted communities$|^snmp callback security$|^sha-256$/i.test(w.trim()) && /^access control lists$/i.test(c.trim()) && /added security/i.test(b)) {
+    return `An **ACL** applied to the SNMP configuration restricts which hosts may even query the agent, adding a layer beyond the community string — **${correct}** is that mechanism; **${wrong}** either isn't a real SNMP feature or isn't how SNMPv2c-style security is hardened.`
+  }
+  if (/^switch#show snmp$|^switch#show snmp notifications$/i.test(w.trim()) && /^switch#show snmp host$/i.test(c.trim())) {
+    return `\`show snmp host\` lists the configured trap/inform receivers — **${correct}** is that command; **${wrong}** either shows general SNMP stats or isn't a real IOS command, not the host receiver list.`
+  }
+  if (/^configuring a group$|^configuring a user$/i.test(w.trim()) && /^configuring a view$/i.test(c.trim()) && /restricted oid/i.test(b)) {
+    return `SNMPv3's restriction chain starts with a **view** (which OIDs are visible), then a group is bound to that view, then a user is assigned to the group — **${correct}** is the first step; **${wrong}** is a later step in the chain that depends on the view already existing.`
+  }
   if (/archive tftp|copy server:/i.test(w) && /copy tftp/i.test(c)) {
     return `Restoring a config from a TFTP server uses \`copy tftp: running-config\` — **${correct}** is the real command; **${wrong}** uses the wrong keyword or source alias.`
   }
@@ -1327,6 +1351,30 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/snmp version [12]\w*/i.test(w) && about(/snmp/i)) {
     return `**${choice}** names an SNMP version that only supports cleartext community strings.`
+  }
+  if (/^object identifiers \(oids\)$|^snmp agent$/i.test(w.trim()) && about(/management information base|database of variables/i)) {
+    return `**${choice}** names a variable address or the polling process, not the MIB database itself.`
+  }
+  if (/^object identifier$/i.test(w.trim()) && about(/network management station|snmp agent sends/i)) {
+    return `**${choice}** is a variable address inside the data, not a device the agent reports to.`
+  }
+  if (/get-request message|get-response message|set-request message/i.test(w) && about(/trap message|interface goes down/i)) {
+    return `**${choice}** requires the NMS to initiate the exchange, unlike a spontaneous event notification.`
+  }
+  if (/^the snmp agent$|^snmp messages$/i.test(w.trim()) && about(/oids|hierarchical set of variables/i)) {
+    return `**${choice}** names the process or the messages, not the hierarchical variable structure itself.`
+  }
+  if (/^encryption$|^user authentication$|^message integrity$/i.test(w.trim()) && about(/community strings|snmp version 2c/i)) {
+    return `**${choice}** names a protection SNMPv2c doesn't have.`
+  }
+  if (/^encrypted communities$|^snmp callback security$|^sha-256$/i.test(w.trim()) && about(/access control lists|added security/i)) {
+    return `**${choice}** isn't a real SNMP feature or isn't how this security is actually hardened.`
+  }
+  if (/^switch#show snmp$|^switch#show snmp notifications$/i.test(w.trim()) && about(/trap notifications|snmp host/i)) {
+    return `**${choice}** shows general SNMP stats or isn't a real command, not the trap-receiver list.`
+  }
+  if (/^configuring a group$|^configuring a user$/i.test(w.trim()) && about(/restricted oid|snmpv3/i)) {
+    return `**${choice}** is a later step in the SNMPv3 restriction chain that depends on the view already existing.`
   }
   if (/archive tftp|copy server:/i.test(w) && about(/tftp|restore|configuration/i)) {
     return `**${choice}** uses the wrong command keyword or source alias for a TFTP config restore.`
