@@ -1,8 +1,9 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import { gradeQuestion, randomizeQuestionOrder } from '../../questionUtils.js'
 import { COLORS, styles } from '../../ui/appTheme.js'
 import McChoices from '../../components/McChoices.jsx'
 import AnswerReview from '../../components/AnswerReview.jsx'
+import { answerReviewSessionProps } from '../../components/answerReviewSessionProps.js'
 import { McChoiceShuffleProvider } from '../../context/McChoiceShuffleContext.jsx'
 import { applyAnswerReviewToQuestion } from '../../answerReviewLogic.js'
 import {
@@ -15,6 +16,20 @@ import StudyModeHeader from '../../components/StudyModeHeader.jsx'
 import { useMasteryProgress } from '../progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../progress/masteryEngagement.js'
 import { recordAnswerOutcome } from '../study/answerOutcome.js'
+import { STORAGE_KEYS } from '../../storageKeys.js'
+
+const TRAP_DRILL_HISTORY_CAP = 30
+
+function buildTrapDrillHistoryEntry({ scope, resolved, stats }) {
+  return {
+    at: Date.now(),
+    ckuId: scope?.kind === 'cku' ? (scope.ckuId || resolved?.ckuId) : undefined,
+    trapLabel: scope?.kind === 'cku' ? (scope.trapLabel || resolved?.trapLabel) : undefined,
+    domainId: scope?.kind === 'domain' ? scope.domainId : undefined,
+    correct: stats.correct,
+    total: stats.total,
+  }
+}
 
 function buildScopeFromPrefill(prefill, resolved) {
   if (resolved || prefill?.ckuId || prefill?.trapLabel) {
@@ -28,7 +43,7 @@ function buildScopeFromPrefill(prefill, resolved) {
   return null
 }
 
-export default function TrapDrillSession({ prefill, onBack }) {
+export default function TrapDrillSession({ prefill, onBack, onOpenLab, onOpenTrapDrill, onOpenSubnet }) {
   const { recordEngagement } = useMasteryProgress()
   const resolved = useMemo(() => resolveTrapDrillCku(prefill || {}), [prefill])
   const [scope, setScope] = useState(() => buildScopeFromPrefill(prefill, resolved))
@@ -38,6 +53,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
   const [stats, setStats] = useState({ correct: 0, total: 0 })
   const [missedIds, setMissedIds] = useState(new Set())
   const [isFirstPass, setIsFirstPass] = useState(true)
+  const historySavedRef = useRef(false)
 
   useEffect(() => {
     setScope(buildScopeFromPrefill(prefill, resolved))
@@ -47,6 +63,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setStats({ correct: 0, total: 0 })
     setMissedIds(new Set())
     setIsFirstPass(true)
+    historySavedRef.current = false
   }, [prefill, resolved])
 
   const questions = useMemo(() => {
@@ -66,6 +83,16 @@ export default function TrapDrillSession({ prefill, onBack }) {
   const current = questions[idx]
   const done = scope && idx >= questions.length
 
+  useEffect(() => {
+    if (!done || historySavedRef.current || stats.total === 0) return
+    historySavedRef.current = true
+    ;(async () => {
+      const hist = (await window.storage.getItem(STORAGE_KEYS.trapDrillHistory)) || []
+      hist.push(buildTrapDrillHistoryEntry({ scope, resolved, stats }))
+      await window.storage.setItem(STORAGE_KEYS.trapDrillHistory, hist.slice(-TRAP_DRILL_HISTORY_CAP))
+    })()
+  }, [done, scope, resolved, stats])
+
   function startDomain(domainId) {
     setScope({ kind: 'domain', domainId: String(domainId) })
     setIdx(0)
@@ -74,6 +101,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setStats({ correct: 0, total: 0 })
     setMissedIds(new Set())
     setIsFirstPass(true)
+    historySavedRef.current = false
   }
 
   function startCku(ckuId) {
@@ -84,6 +112,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setStats({ correct: 0, total: 0 })
     setMissedIds(new Set())
     setIsFirstPass(true)
+    historySavedRef.current = false
   }
 
   function backToHub() {
@@ -94,6 +123,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setStats({ correct: 0, total: 0 })
     setMissedIds(new Set())
     setIsFirstPass(true)
+    historySavedRef.current = false
   }
 
   function selectChoice(choiceIdx) {
@@ -133,6 +163,7 @@ export default function TrapDrillSession({ prefill, onBack }) {
     setRevealed(false)
     setStats({ correct: 0, total: 0 })
     setIsFirstPass(false)
+    historySavedRef.current = false
   }
 
   if (!scope) {
@@ -241,7 +272,15 @@ export default function TrapDrillSession({ prefill, onBack }) {
             <div style={{ fontWeight: 700, color: isCorrect ? COLORS.mint : COLORS.rose, marginBottom: 6, fontSize: 'var(--ccna-type-sm)' }}>
               {isCorrect ? '✓ Correct' : '✗ Incorrect'}
             </div>
-            <AnswerReview q={enriched} selected={selected} />
+            <AnswerReview {...answerReviewSessionProps({
+              q: current,
+              selected,
+              objectiveId: current.objectiveId,
+              domainId: scope.kind === 'domain' ? scope.domainId : undefined,
+              onOpenLab,
+              onOpenTrapDrill,
+              onOpenSubnet,
+            })} />
           </div>
         )}
         </McChoiceShuffleProvider>

@@ -399,7 +399,8 @@ export default function DomainPassSession({
     const showLabsCta = domainMeta.labCount > 0 && Boolean(onOpenLabs)
     const showCommandHubCta = Boolean(onOpenCommandHub)
     const showWildcardCta = shouldShowWildcardBridge(domainId, onOpenSubnet)
-    const showDomainActions = showTrapCta || showLabsCta || showCommandHubCta || showWildcardCta
+    const showPlacementPulseCta = isPlacementDomain(domainId) && Boolean(onOpenPlacementPulse)
+    const showDomainActions = showTrapCta || showLabsCta || showCommandHubCta || showWildcardCta || showPlacementPulseCta
     const topWeakId = weakObjectiveIds[0] || null
 
     function stashDebriefResume() {
@@ -593,13 +594,25 @@ export default function DomainPassSession({
                 {showWildcardCta && (
                   <button
                     type="button"
-                    style={{ ...domainActionBtn, marginBottom: 0 }}
+                    style={domainActionBtn}
                     onClick={() => {
                       stashDebriefResume()
                       onOpenSubnet()
                     }}
                   >
                     Subnetting Wildcard (ACL/OSPF) →
+                  </button>
+                )}
+                {showPlacementPulseCta && (
+                  <button
+                    type="button"
+                    style={{ ...domainActionBtn, marginBottom: 0 }}
+                    onClick={() => {
+                      stashDebriefResume()
+                      onOpenPlacementPulse(domainId)
+                    }}
+                  >
+                    Recheck placement level →
                   </button>
                 )}
               </div>
