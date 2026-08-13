@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
+import McChoices from '../components/McChoices.jsx'
+import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import { buildTermsCatalog, filterTermsCatalog } from './termsCatalog.js'
 import {
   buildFlashItems,
@@ -178,28 +180,26 @@ export default function TermsHubStudio({ onBack, domainPrefill = null }) {
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 8 }}>{idx + 1}/{items.length}</div>
           <div style={{ fontWeight: 700, color: COLORS.sky, marginBottom: 10 }}>{current.prompt}</div>
-          {current.choices.map((c, i) => (
-            <button
-              key={i}
-              type="button"
-              disabled={picked != null}
-              onClick={() => {
+          <McChoiceShuffleProvider q={current}>
+            <McChoices
+              q={current}
+              selected={picked}
+              revealed={picked != null}
+              onSelect={i => {
+                if (picked != null) return
                 setPicked(i)
                 const ok = i === current.correctIndex
                 record(current.card, ok)
                 setStats(s => ({ correct: s.correct + (ok ? 1 : 0), total: s.total + 1 }))
-                setTimeout(() => { setPicked(null); setIdx(x => x + 1) }, 500)
               }}
-              style={{
-                ...styles.secondaryBtn,
-                textAlign: 'left',
-                marginBottom: 6,
-                borderColor: picked == null ? COLORS.border : (i === current.correctIndex ? COLORS.mintBorder : (picked === i ? COLORS.roseBorder : COLORS.border)),
-              }}
-            >
-              {c}
+              shuffleChoices={false}
+            />
+          </McChoiceShuffleProvider>
+          {picked != null && (
+            <button type="button" style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={() => { setPicked(null); setIdx(x => x + 1) }}>
+              {idx + 1 >= items.length ? 'See results' : 'Next'}
             </button>
-          ))}
+          )}
         </div>
       )}
     </div>
