@@ -19,9 +19,13 @@ import {
   isTemplateWhyWrongHere,
 } from '../answerReview/answerReviewQuality.js'
 
-// Measured 2026-08-13 after the cross-topic splice fix.
-const MAX_DEGRADED_RATE = 0.54
-const MAX_DEGRADED_BY_DOMAIN = { 1: 0.01, 2: 0.10, 3: 0.60, 4: 0.66, 5: 0.80, 6: 0.94 }
+// Measured 2026-08-13 after closing the isGenericStructuredFeedback quality-gate
+// gap (legacy "matches the required behavior" / "points to a related idea"
+// boilerplate was passing three separate low-quality checks uncaught) and
+// adding stem-anchored SADE coverage for the highest-volume degraded topics
+// in domains 3-6.
+const MAX_DEGRADED_RATE = 0.44
+const MAX_DEGRADED_BY_DOMAIN = { 1: 0.01, 2: 0.08, 3: 0.46, 4: 0.52, 5: 0.71, 6: 0.72 }
 
 async function loadRuntimeBank() {
   const out = []

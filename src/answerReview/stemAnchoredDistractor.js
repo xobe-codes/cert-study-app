@@ -246,6 +246,192 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/discover|offer|request|ack|relay|helper/i.test(w) && /dhcp/i.test(b)) {
     return `DHCP (${hook}): **${correct}** is the message or role this stem describes — **${wrong}** is a different DORA step or relay/server mix-up.`
   }
+  if (/hop count/i.test(w) && /link-state|ospf|distance-vector|metric/i.test(b)) {
+    return `Link-state protocols (${hook}) use a cost-based metric built from interface characteristics, not hop count alone — **${correct}** is the actual distinguishing trait; **${wrong}** describes distance-vector routing like RIP.`
+  }
+  if (/small amount of (?:resources|cpu|ram)|less (?:cpu|ram|memory)|requires only/i.test(w) && /link-state|ospf/i.test(b)) {
+    return `Maintaining a full topology database and running SPF costs more memory and CPU than distance-vector routing, not less — **${correct}** is the real link-state trait; **${wrong}** overstates its efficiency.`
+  }
+  if (/\bcidr\b|\bvlsm\b/i.test(w) && /link-state|ospf|advantage/i.test(b)) {
+    return `Both link-state and modern classless distance-vector protocols support CIDR/VLSM, so it isn't link-state-specific — **${correct}** is the trait unique to link-state operation that this stem asks for; **${wrong}** names a shared, non-distinguishing feature.`
+  }
+  if (/share (?:the )?topology database (?:among|with) all routers|link-state database of all routers/i.test(w) && /link-state|ospf|topology/i.test(b)) {
+    return `Link-state routers don't share one literal database instance — each router builds and maintains its own topology database from flooded LSAs, which is what **${correct}** describes; **${wrong}** implies a single shared copy.`
+  }
+  if (/lowest cost|highest cost/i.test(w) && /longest|prefix|overlapping/i.test(`${c} ${hook.toLowerCase()}`)) {
+    return `Overlapping prefixes are resolved by longest prefix match first, before any metric or cost comparison — **${correct}** is that rule; **${wrong}** jumps straight to a metric that never gets evaluated here.`
+  }
+  if (/(?:highest|lowest) ad\b/i.test(w) && /longest|prefix|overlapping/i.test(`${c} ${hook.toLowerCase()}`)) {
+    return `Administrative distance only breaks ties between routes to the exact same prefix — when prefix lengths differ, **${correct}** (longest match) is chosen before AD is ever compared; **${wrong}** applies the wrong tiebreaker.`
+  }
+  if (/highest ad\b/i.test(w) && /lowest ad|lower ad/i.test(c)) {
+    return `Routers prefer the route with the lowest administrative distance (the most trustworthy source), not the highest — **${correct}** states the rule correctly; **${wrong}** reverses it.`
+  }
+  if (/dynamic routing|distance-vector routing|link-state routing/i.test(w) && /static rout/i.test(c) && /administrator intervention|manual/i.test(b)) {
+    return `**${correct}** is configured and maintained manually by an administrator — **${wrong}** is a routing method that updates itself automatically, the opposite of what this stem describes.`
+  }
+  if (/static rout|directly connected/i.test(w) && /dynamic rout/i.test(c) && /no administrator intervention|automatically/i.test(b)) {
+    return `**${correct}** reconverges on its own when a route fails — **${wrong}** either needs manual reconfiguration (static) or only ever describes locally attached networks (connected), neither of which self-heals.`
+  }
+  if (/dynamic route|ospf route|rip route|eigrp route/i.test(w) && /default route/i.test(c) && /routing table|marked|s\*/i.test(b)) {
+    return `The **S\\*** code marks a static default route — the asterisk flags it as a candidate default — **${correct}** matches that code; **${wrong}** names a route type carried by a different table code.`
+  }
+  if (/ad of 0/i.test(w) && /ad of 1\b/i.test(c)) {
+    return `AD 0 is reserved for directly connected interfaces, not static routes — a manually configured static route defaults to **${correct}**; **${wrong}** is the connected-route value.`
+  }
+  if (/ad of \d+/i.test(w) && /ad of 1\b/i.test(c)) {
+    return `A static route's default administrative distance is **${correct}** — **${wrong}** states a different AD value that doesn't match the Cisco default.`
+  }
+  if (/^(?:0|1|20|90|100|110|120|170|200|255)$/.test(w.trim()) && /administrative distance|\bad\b/i.test(b)) {
+    return `Administrative distance values are fixed per source (connected = 0, static = 1, eBGP = 20, EIGRP = 90, OSPF = 110, RIP = 120, iBGP = 200, unusable = 255) — **${correct}** matches the source in this stem; **${wrong}** is another protocol's or route type's AD.`
+  }
+  if (/proxy arp/i.test(w) && /vrrp|glbp|hsrp/i.test(c)) {
+    return `Proxy ARP is a separate Layer 2 mechanism, not a first-hop redundancy protocol — **${correct}** is the FHRP this stem actually asks for; **${wrong}** answers a different question.`
+  }
+  if (/0c07/i.test(w) && /hsrp|mac address/i.test(b)) {
+    return `In the virtual MAC 0000.0c07.acXX, only the last byte encodes the HSRP group number — 0c07 is the fixed HSRP vendor prefix, not the group — **${correct}** is the group; **${wrong}** points at the fixed prefix instead.`
+  }
+  if (/^\d{2,3}$/.test(w.trim()) && /hsrp|priority/i.test(b) && !/\bad\b|administrative distance/i.test(b)) {
+    return `HSRP's default priority is **${correct}** — **${wrong}** states a different value; only a priority you explicitly configure above the default wins an election.`
+  }
+  if (/access control lists?|layer 2 asics?|route tables?|frame filters?/i.test(w + c) && /qos|classify/i.test(b)) {
+    return `QoS classification (${hook}) uses ACLs (or protocol/NBAR matching) to identify traffic — **${correct}** is that mechanism; **${wrong}** is not how routers classify packets for QoS.`
+  }
+  if (/logging (?:server|debugging)\s*\d*|log-level/i.test(w) && /logging trap/i.test(c)) {
+    return `The syslog severity sent to a remote server is set with \`logging trap <level>\` — **${correct}** is the real command syntax; **${wrong}** is not valid IOS syslog configuration.`
+  }
+  if (/ntp (?:server|clock source|trusted)/i.test(w) && /ntp master/i.test(c)) {
+    return `\`ntp master\` tells the device to trust and advertise its own internal clock — **${correct}** is that command; **${wrong}** either points to an external time source or isn't a real IOS NTP command.`
+  }
+  if (/reversed to another dns server|without asking another dns server/i.test(w) && /resolution of an ip address to fqdn/i.test(c)) {
+    return `A reverse lookup resolves an IP address back to a hostname (FQDN) via a PTR record — **${correct}** states that definition; **${wrong}** describes DNS server iteration, not what a reverse lookup is.`
+  }
+  if (/\ba record\b/i.test(w) && /\bptr record\b/i.test(c)) {
+    return `The **PTR** record maps an IPv4 address to an FQDN (reverse DNS) — **${correct}** is the right record type; **${wrong}** (the A record) does the opposite, mapping a name to an address.`
+  }
+  if (/\bcidr\b|classful addressing|\bvpn\b/i.test(w) && /\bnat\b/i.test(c) && /rfc 1918|internet requests|private address/i.test(b)) {
+    return `NAT is what translates private RFC 1918 addresses to routable public addresses — **${correct}** is that mechanism; **${wrong}** is a different addressing or tunneling concept that doesn't translate addresses.`
+  }
+  if (/setting the (?:time and date|key strength|key repository)/i.test(w) && /hostname and domain name/i.test(c) && /ssh|encryption keys/i.test(b)) {
+    return `SSH key generation on IOS requires a hostname and domain name (used to build the key's identity) — **${correct}** is that prerequisite; **${wrong}** is not required before \`crypto key generate rsa\` succeeds.`
+  }
+  if (/snmp version [12]\w*/i.test(w) && /snmp version 3/i.test(c)) {
+    return `Only SNMPv3 adds user-based authentication and encryption — SNMPv1/v2c/v2e send community strings in cleartext — **${correct}** is the secure version; **${wrong}** lacks that protection.`
+  }
+  if (/archive tftp|copy server:/i.test(w) && /copy tftp/i.test(c)) {
+    return `Restoring a config from a TFTP server uses \`copy tftp: running-config\` — **${correct}** is the real command; **${wrong}** uses the wrong keyword or source alias.`
+  }
+  if (/copy tftp ios/i.test(w) && /copy tftp flash/i.test(c)) {
+    return `An IOS image upgrade is copied into **flash**, not to a made-up "ios" destination — **${correct}** is the real command; **${wrong}** invents a destination keyword IOS doesn't use.`
+  }
+  if (/\bciaddr\b|\bsiaddr\b|\bchaddr\b/i.test(w) && /\bgiaddr\b/i.test(c)) {
+    return `**GIADDR** is the relay agent's field the DHCP server uses to pick the right scope — **${correct}** is that field; **${wrong}** is a different DHCP header field (client, server, or hardware address) with a different job.`
+  }
+  if (/vlan traversal|denial of service/i.test(w) && /double tagging/i.test(c) && /native vlan/i.test(b)) {
+    return `Double tagging exploits the native VLAN by stacking two 802.1Q tags so the outer tag is stripped at the first trunk, letting the inner tag reach a second VLAN — **${correct}** is that attack; **${wrong}** names a different (or nonspecific) attack category.`
+  }
+  if (/dhcp snooping trust/i.test(w) && /ip dhcp snooping trust/i.test(c)) {
+    return `The trusted-port command is \`ip dhcp snooping trust\`, entered in interface config mode — **${correct}** has the right keyword and mode; **${wrong}** either drops the \`ip\` keyword or applies it at the wrong configuration level.`
+  }
+  if (/1 to 100\b|100 to 199|100 to 200/i.test(w) && /1 to 99/i.test(c)) {
+    return `Standard ACLs use numbers 1–99 (and 1300–1999 expanded) — **${correct}** is the right range; **${wrong}** either overlaps the extended-ACL range (100–199) or shifts the boundary by one.`
+  }
+  if (/source address and source port/i.test(w) && /only the source address/i.test(c)) {
+    return `A standard ACL can only match on source address — it has no visibility into port numbers — **${correct}** states that limit correctly; **${wrong}** adds a port-matching capability only extended ACLs have.`
+  }
+  if (/password enable|^enable \S+!?$|secret enable/i.test(w) && /enable secret/i.test(c)) {
+    return `The command keyword order is \`enable secret <password>\` — **${correct}** has the right syntax; **${wrong}** reorders or drops the \`secret\` keyword, which IOS won't accept.`
+  }
+  if (/interface vlan/i.test(w) && /line vty/i.test(c) && /login password|telnet/i.test(b)) {
+    return `A Telnet/SSH login password is set under the VTY lines, not an interface — **${correct}** is the right configuration context; **${wrong}** configures an SVI, which has nothing to do with line passwords.`
+  }
+  if (/gre uses ipsec|gre uses a protocol of|gre provides per-packet authentication/i.test(w) && /packet-in-packet encapsulation/i.test(c)) {
+    return `GRE's job is packet-in-packet encapsulation — it doesn't provide encryption or authentication on its own (that's IPsec's role), and its IP protocol number is 47, not 57 — **${correct}** is the accurate GRE fact; **${wrong}** states something GRE doesn't actually do.`
+  }
+  if (/^ppp$|\bl2tp\b|^ipsec$/i.test(w) && /^gre$/i.test(c) && /tunnel protocol/i.test(b)) {
+    return `This stem is asking specifically about the trait this stem attributes to GRE — **${correct}** matches what it's asking about; **${wrong}** is a different tunnel-related protocol that doesn't fit this stem's specific claim.`
+  }
+  if (/^dmz$|^internal$|^trusted$/i.test(w) && /^perimeter$/i.test(c)) {
+    return `The perimeter is the network's outward-facing edge, outside the firewall — **${correct}** is that term; **${wrong}** names a related but different security zone (the DMZ, the trusted internal network, etc.).`
+  }
+  if (/^authenticator$|^aaa server$|^radius server$/i.test(w) && /^supplicant$/i.test(c) && /802\.1x/i.test(b)) {
+    return `In 802.1X, the **supplicant** is the end device presenting credentials — the authenticator (switch/AP) forwards them, and the AAA/RADIUS server validates them — **${correct}** is the credential-sender; **${wrong}** names a different role in the same exchange.`
+  }
+  if (/creation of a psk|192-bit key strength/i.test(w) && /radius\/eap|802\.1x/i.test(c) && /wpa2-enterprise/i.test(b)) {
+    return `WPA2-Enterprise authenticates each user through 802.1X/RADIUS/EAP rather than a shared secret — **${correct}** is that requirement; **${wrong}** describes WPA2-Personal (PSK) or WPA3 (192-bit suite), not the Enterprise requirement this stem asks about.`
+  }
+  if (/^aes$/i.test(w) && /^mic$/i.test(c) && /replay|integrity|alter/i.test(b)) {
+    return `The **Message Integrity Check (MIC)** is what detects tampering and replay of WPA frames — AES is the encryption cipher, a separate function — **${correct}** is the integrity mechanism; **${wrong}** names the encryption algorithm instead.`
+  }
+  if (/anti-?malware software|antivirus software|certificates/i.test(w) && /^training$/i.test(c) && /phishing/i.test(b)) {
+    return `Phishing targets human judgment, so user **training** (recognizing suspicious emails) is the actual defense this stem asks for — **${correct}** is that control; **${wrong}** is a technical control that doesn't stop a user from being socially engineered.`
+  }
+  if (/^certificate$|^smart card$|^license$/i.test(w) && /^token$/i.test(c) && /medical data|sensitive|multi-?factor|second factor/i.test(b)) {
+    return `**${correct}** matches the specific second-factor mechanism this stem is asking about — **${wrong}** is a different (though related) credential/authentication artifact, not the one keyed here.`
+  }
+  if (/three tier|collapsed core|san fabric/i.test(w) && /spine\/leaf/i.test(c) && /controller-based|architecture/i.test(b)) {
+    return `Controller-based (SDN) fabrics use a Spine/Leaf (CLOS) topology for predictable, non-blocking paths — **${correct}** is that architecture; **${wrong}** names a different (often legacy three-tier) design.`
+  }
+  if (/leaf switches connect to other leaf|one spine switch per network|spine switches provide access to hosts/i.test(w) && /leaf.*never connect.*leaf.*only spine/i.test(c)) {
+    return `In Spine/Leaf, every Leaf connects only to Spine switches — Leaf-to-Leaf and Spine-to-Spine links don't exist, and hosts attach to Leaf switches, not Spine — **${correct}** states that rule; **${wrong}** breaks it.`
+  }
+  if (/leaf to leaf to spine|spine to leaf to spine|^leaf to leaf$/i.test(w) && /leaf to spine to leaf/i.test(c)) {
+    return `Traffic between two hosts always goes Leaf → Spine → Leaf, never directly Leaf-to-Leaf — **${correct}** is that path; **${wrong}** routes through a hop this topology doesn't have.`
+  }
+  if (/apic-em|opendaylight|sd-wan|prime infrastructure|open ?sdn|open ?stack/i.test(w) && /cisco aci/i.test(c) && /data center/i.test(b)) {
+    return `Cisco ACI is Cisco's data-center-focused SDN solution — **${correct}** matches that scope; **${wrong}** is a different Cisco or open-source SDN offering built for a different use case.`
+  }
+  if (/apic-em|prime infrastructure|opendaylight/i.test(w) && /sd-wan/i.test(c) && /branch|remote office/i.test(b)) {
+    return `Cisco SD-WAN is the solution built for secure branch/remote-office connectivity to applications — **${correct}** matches that use case; **${wrong}** targets a different deployment (data center, network management, or open-source controller).`
+  }
+  if (/spine\/leaf|\bclos\b|\bsdn\b/i.test(w) && /^campus$/i.test(c) && /distribution layer/i.test(b)) {
+    return `The classic three-tier Campus model is the one with a distribution layer — Spine/Leaf and CLOS are two-tier data-center designs without one — **${correct}** is the campus model; **${wrong}** names a different architecture.`
+  }
+  if (/opensdn|openstack|opendaylight/i.test(w) && /^apic-em$/i.test(c) && /enterprise connectivity|sdn controller/i.test(b)) {
+    return `APIC-EM is Cisco's SDN controller for enterprise networks — **${correct}** is that product; **${wrong}** is an open-source or unrelated controller platform.`
+  }
+  if (/data plane|management plane|switch plane/i.test(w) && /control plane/i.test(c) && /spanning tree|\bstp\b/i.test(b)) {
+    return `STP builds its topology by exchanging BPDUs, which is control-plane work — **${correct}** is the right plane; **${wrong}** names the plane that forwards traffic or handles device management instead.`
+  }
+  if (/data plane|control plane/i.test(w) && /management plane/i.test(c) && /syslog/i.test(b)) {
+    return `Syslog message delivery is device administration, which runs on the management plane — **${correct}** is that plane; **${wrong}** names the plane that forwards traffic or builds routing/switching state instead.`
+  }
+  if (/network management station|software-defined networking|centralized logging/i.test(w) && /configuration management/i.test(c) && /ansible|chef|puppet/i.test(b)) {
+    return `Ansible, Chef, and Puppet all perform configuration management — pushing and enforcing consistent device configs — **${correct}** is that function; **${wrong}** names a different network-operations category.`
+  }
+  if (/cisco dna center|^chef$|^puppet$/i.test(w) && /^ansible$/i.test(c) && /yaml/i.test(b)) {
+    return `Ansible is the configuration-management tool that uses YAML playbooks — **${correct}** is that tool; **${wrong}** either uses a different language (Chef/Puppet use Ruby-based DSLs) or isn't a config-management tool at all.`
+  }
+  if (/user interface layout|source code of the device|data storage of the device/i.test(w) && /api reference/i.test(c) && /automation script|controlled with/i.test(b)) {
+    return `The API reference documents exactly what an API exposes and how to call it — **${correct}** is what you'd research; **${wrong}** isn't something an automation script interacts with directly.`
+  }
+  if (/^cli$/i.test(w) && /^snmp$/i.test(c) && /retrieves information|act similar to an api/i.test(b)) {
+    return `SNMP exposes a structured, machine-queryable interface similar to an API — **${correct}** fits that role; **${wrong}** (the CLI) is a human-oriented text interface, harder to parse programmatically.`
+  }
+  if (/openflow|cisco prime infrastructure|cisco sd-wan/i.test(w) && /cisco dna center/i.test(c) && /apic-em/i.test(b)) {
+    return `Cisco DNA Center is the direct replacement for APIC-EM — **${correct}** is that product; **${wrong}** is a different Cisco platform or protocol that doesn't replace APIC-EM.`
+  }
+  if (/^ssh$/i.test(w) && /^openflow$/i.test(c) && /dna discovery|not used/i.test(b)) {
+    return `DNA Center's discovery process reads device inventory over SSH/SNMP/NETCONF, not OpenFlow — **${correct}** is the protocol it does NOT use; **${wrong}** is one it does use, so it doesn't fit this "which is not used" stem.`
+  }
+  if (/^definition$|^lists$|^keys$/i.test(w) && /^mapping$/i.test(c) && /yaml/i.test(b)) {
+    return `YAML's key-value pair construct is called a mapping — **${correct}** is the right term; **${wrong}** names a different YAML element (a list/sequence, or just a bare key).`
+  }
+  if (/hashbang preprocessor/i.test(w) && /three dashes/i.test(c) && /yaml/i.test(b)) {
+    return `A YAML file/document starts with three dashes (---) — **${correct}** is that marker; **${wrong}** describes a shebang line, which is a shell-script convention, not YAML's.`
+  }
+  if (/decreased problems|increased throughput|increased complexity/i.test(w) && /increased security/i.test(c) && /controller-based networking/i.test(b) && /benefit/i.test(b)) {
+    return `Centralizing policy and visibility in a controller is what improves security posture — **${correct}** is the benefit this stem asks for; **${wrong}** is a plausible-sounding claim controller-based networking doesn't specifically guarantee.`
+  }
+  if (/always in the form of hardware appliances/i.test(w) && /logically centralized control plane/i.test(c)) {
+    return `Controller-based networking's defining trait is a logically centralized control plane — it's commonly software, not a hardware requirement — **${correct}** states that correctly; **${wrong}** claims a hardware requirement that doesn't exist.`
+  }
+  if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work/i.test(w) && /outcome that can be reproduced/i.test(c)) {
+    return `Automation's core value is repeatability — the same script produces the same result every time — **${correct}** is that reason; **${wrong}** is a plausible-sounding side effect, not the actual reason to automate.`
+  }
+  if (/copy and paste scripts built in notepad\+\+/i.test(w) && /python script/i.test(c) && /20 routers|configure each/i.test(b)) {
+    return `A Python script run against many devices programmatically is the scalable, repeatable approach — **${correct}** is that method; **${wrong}** is still manual, error-prone copy-paste, just with extra steps.`
+  }
 
   const factText = normalize(fact)
   let evidence = factText.slice(0, 180)
@@ -402,6 +588,162 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/static route|ip route/i.test(w) && about(/route|routing|next-hop|next hop|gateway|forward/i)) {
     return `**${choice}** configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.`
+  }
+  if (/hop count/i.test(w) && about(/link-state|ospf|distance-vector|metric/i)) {
+    return `**${choice}** treats hop count as the deciding routing metric.`
+  }
+  if (/small amount of (?:resources|cpu|ram)|less (?:cpu|ram|memory)|requires only/i.test(w) && about(/link-state|ospf/i)) {
+    return `**${choice}** claims link-state routing needs only minimal CPU/RAM.`
+  }
+  if (/\bcidr\b|\bvlsm\b/i.test(w) && about(/link-state|ospf|advantage/i)) {
+    return `**${choice}** cites classless addressing (CIDR/VLSM) support as the advantage.`
+  }
+  if (/share (?:the )?topology database (?:among|with) all routers|link-state database of all routers/i.test(w) && about(/link-state|ospf|topology/i)) {
+    return `**${choice}** describes one topology database shared across all routers.`
+  }
+  if (/lowest cost|highest cost/i.test(w) && about(/longest|prefix|overlapping|route selected/i)) {
+    return `**${choice}** picks a route based on metric/cost.`
+  }
+  if (/(?:highest|lowest) ad\b/i.test(w)) {
+    return `**${choice}** picks a route based on administrative distance.`
+  }
+  if (/dynamic routing|distance-vector routing|link-state routing/i.test(w) && about(/administrator intervention|manual|static rout/i)) {
+    return `**${choice}** names a routing method that reconverges automatically.`
+  }
+  if (/static rout|directly connected/i.test(w) && about(/no administrator intervention|automatically|dynamic rout/i)) {
+    return `**${choice}** names a route type that is either manually configured or only ever locally attached.`
+  }
+  if (/dynamic route|ospf route|rip route|eigrp route/i.test(w) && about(/default route|routing table|marked|s\*/i)) {
+    return `**${choice}** names a dynamically learned route type.`
+  }
+  if (/proxy arp/i.test(w) && about(/vrrp|glbp|hsrp|fhrp|first.?hop|gateway/i)) {
+    return `**${choice}** names Proxy ARP, a Layer 2 mechanism rather than a first-hop redundancy protocol.`
+  }
+  if (/0c07/i.test(w) && about(/hsrp|mac address/i)) {
+    return `**${choice}** points at the fixed HSRP virtual-MAC vendor prefix instead of the group field.`
+  }
+  if (/^\d{1,3}$/.test(w.trim()) && about(/administrative distance|\bad\b/i)) {
+    return `**${choice}** states a specific administrative-distance number.`
+  }
+  if (/^\d{2,3}$/.test(w.trim()) && about(/hsrp|priority/i)) {
+    return `**${choice}** states a specific HSRP priority value.`
+  }
+  if (/layer 2 asics?|route tables?|frame filters?/i.test(w) && about(/qos|classify/i)) {
+    return `**${choice}** names a mechanism that isn't how routers classify traffic for QoS.`
+  }
+  if (/logging (?:server|debugging)\s*\d*|log-level/i.test(w) && about(/syslog|logging|trap/i)) {
+    return `**${choice}** uses invalid or mismatched IOS syslog command syntax.`
+  }
+  if (/ntp (?:server|clock source|trusted)/i.test(w) && about(/\bntp\b/i)) {
+    return `**${choice}** names a different (or non-existent) NTP configuration command.`
+  }
+  if (/reversed to another dns server|without asking another dns server/i.test(w) && about(/dns|reverse lookup/i)) {
+    return `**${choice}** describes DNS server behavior rather than what a reverse lookup actually is.`
+  }
+  if (/\ba record\b/i.test(w) && about(/dns|record|ptr/i)) {
+    return `**${choice}** names the A record, which maps a name to an address — the opposite direction.`
+  }
+  if (/\bcidr\b|classful addressing|\bvpn\b/i.test(w) && about(/nat|rfc 1918|private address/i)) {
+    return `**${choice}** names a different addressing or tunneling concept, not address translation.`
+  }
+  if (/setting the (?:time and date|key strength|key repository)/i.test(w) && about(/ssh|encryption keys/i)) {
+    return `**${choice}** names a setting that isn't required before SSH key generation.`
+  }
+  if (/snmp version [12]\w*/i.test(w) && about(/snmp/i)) {
+    return `**${choice}** names an SNMP version that only supports cleartext community strings.`
+  }
+  if (/archive tftp|copy server:/i.test(w) && about(/tftp|restore|configuration/i)) {
+    return `**${choice}** uses the wrong command keyword or source alias for a TFTP config restore.`
+  }
+  if (/copy tftp ios/i.test(w) && about(/tftp|ios|upgrade|flash/i)) {
+    return `**${choice}** invents a destination keyword IOS doesn't use for an image copy.`
+  }
+  if (/\bciaddr\b|\bsiaddr\b|\bchaddr\b/i.test(w) && about(/dhcp|giaddr|relay/i)) {
+    return `**${choice}** names a different DHCP header field than the relay-agent address.`
+  }
+  if (/vlan traversal|denial of service/i.test(w) && about(/native vlan|double tagging|vlan attack/i)) {
+    return `**${choice}** names a different Layer 2 attack category than the native-VLAN double-tagging exploit.`
+  }
+  if (/dhcp snooping trust/i.test(w) && about(/dhcp snooping/i)) {
+    return `**${choice}** uses the wrong keyword or configuration mode for the DHCP snooping trust command.`
+  }
+  if (/1 to 100\b|100 to 199|100 to 200/i.test(w) && about(/access list|acl|standard/i)) {
+    return `**${choice}** states a numeric range that overlaps or misstates the standard-ACL boundary.`
+  }
+  if (/source address and source port/i.test(w) && about(/standard acl|access list/i)) {
+    return `**${choice}** adds port-matching to a standard ACL, which only extended ACLs can do.`
+  }
+  if (/password enable|^enable \S+!?$|secret enable/i.test(w) && about(/enable secret|enable password/i)) {
+    return `**${choice}** reorders or drops a required keyword in the enable-secret command.`
+  }
+  if (/interface vlan/i.test(w) && about(/line vty|telnet|login password/i)) {
+    return `**${choice}** configures an SVI rather than the VTY lines a login password needs.`
+  }
+  if (/gre uses ipsec|gre uses a protocol of|gre provides per-packet authentication/i.test(w) && about(/gre|tunnel/i)) {
+    return `**${choice}** attributes encryption, authentication, or a protocol number to GRE that it doesn't actually have.`
+  }
+  if (/^ppp$|\bl2tp\b|^ipsec$/i.test(w) && about(/gre|tunnel protocol/i)) {
+    return `**${choice}** names a different tunnel-related protocol than the one this stem asks about.`
+  }
+  if (/^dmz$|^internal$|^trusted$/i.test(w) && about(/perimeter|firewall|security zone/i)) {
+    return `**${choice}** names a different network security zone than the outward-facing perimeter.`
+  }
+  if (/^authenticator$|^aaa server$|^radius server$/i.test(w) && about(/802\.1x|supplicant/i)) {
+    return `**${choice}** names a different role in the 802.1X exchange than the credential-sending device.`
+  }
+  if (/creation of a psk|192-bit key strength/i.test(w) && about(/wpa2-enterprise|wpa3|802\.1x/i)) {
+    return `**${choice}** describes a WPA2-Personal or WPA3 trait, not the WPA2-Enterprise requirement this stem asks about.`
+  }
+  if (/^aes$/i.test(w) && about(/mic|integrity|replay/i)) {
+    return `**${choice}** names the encryption cipher, not the integrity-check mechanism this stem asks about.`
+  }
+  if (/anti-?malware software|antivirus software|certificates/i.test(w) && about(/phishing|social engineering/i)) {
+    return `**${choice}** names a technical control that doesn't address the human-judgment gap phishing exploits.`
+  }
+  if (/^certificate$|^smart card$|^license$/i.test(w) && about(/token|multi-?factor|second factor/i)) {
+    return `**${choice}** names a different (though related) authentication artifact than the one keyed here.`
+  }
+  if (/three tier|collapsed core|san fabric/i.test(w) && about(/spine\/leaf|controller-based|architecture/i)) {
+    return `**${choice}** names a different (often legacy) network architecture than Spine/Leaf.`
+  }
+  if (/leaf switches connect to other leaf|one spine switch per network|spine switches provide access to hosts/i.test(w) && about(/spine\/leaf/i)) {
+    return `**${choice}** misstates a Spine/Leaf topology rule (leaf-to-leaf links, spine count, or host attachment).`
+  }
+  if (/leaf to leaf to spine|spine to leaf to spine|^leaf to leaf$/i.test(w) && about(/spine\/leaf/i)) {
+    return `**${choice}** routes traffic through a hop the Spine/Leaf topology doesn't have.`
+  }
+  if (/apic-em|opendaylight|sd-wan|prime infrastructure|open ?sdn|open ?stack/i.test(w) && about(/cisco aci|data center|sdn solution/i)) {
+    return `**${choice}** names a different Cisco or open-source SDN offering built for a different use case.`
+  }
+  if (/spine\/leaf|\bclos\b|\bsdn\b/i.test(w) && about(/campus|distribution layer/i)) {
+    return `**${choice}** names a two-tier data-center design, not the three-tier campus model with a distribution layer.`
+  }
+  if (/data plane|management plane|switch plane|control plane/i.test(w) && about(/spanning tree|\bstp\b|syslog|network plane/i)) {
+    return `**${choice}** names a network plane that doesn't match the function this stem describes.`
+  }
+  if (/network management station|software-defined networking|centralized logging/i.test(w) && about(/ansible|chef|puppet|configuration management/i)) {
+    return `**${choice}** names a different network-operations category than configuration management.`
+  }
+  if (/cisco dna center|^chef$|^puppet$/i.test(w) && about(/ansible|yaml/i)) {
+    return `**${choice}** names a tool that doesn't use YAML playbooks the way Ansible does.`
+  }
+  if (/user interface layout|source code of the device|data storage of the device/i.test(w) && about(/api reference|automation script/i)) {
+    return `**${choice}** isn't something an automation script interacts with directly.`
+  }
+  if (/^cli$/i.test(w) && about(/snmp|automation script|retrieves information/i)) {
+    return `**${choice}** names the human-oriented CLI, harder to parse programmatically than a structured API-like interface.`
+  }
+  if (/openflow|cisco prime infrastructure|cisco sd-wan|^ssh$/i.test(w) && about(/cisco dna center|apic-em|dna discovery/i)) {
+    return `**${choice}** names a different Cisco platform or a protocol DNA Center's discovery process handles differently.`
+  }
+  if (/^definition$|^lists$|^keys$|hashbang preprocessor/i.test(w) && about(/yaml/i)) {
+    return `**${choice}** names a different YAML element or file-marker convention.`
+  }
+  if (/decreased problems|increased throughput|increased complexity|always in the form of hardware appliances/i.test(w) && about(/controller-based networking/i)) {
+    return `**${choice}** makes a claim controller-based networking doesn't specifically guarantee.`
+  }
+  if (/increase the possibility for misconfiguration|decrease problems from the new configuration|allow you to do less work|copy and paste scripts built in notepad\+\+/i.test(w) && about(/automate|automation/i)) {
+    return `**${choice}** names a plausible-sounding but incorrect reason or method for automating device configuration.`
   }
   if (/^true$|^false$/i.test(w.trim())) {
     return `**${choice}** states the opposite of the tested fact about ${hookPhrase(hooks, 'this topic')}.`

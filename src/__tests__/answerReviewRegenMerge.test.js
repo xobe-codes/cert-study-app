@@ -74,7 +74,7 @@ describe('generateAnswerReview regen merge', () => {
     expect(item.explanation).toMatch(/Layer 1 handles bits/)
   })
 
-  it('uses backfilled regen embedded in a lazy domain chunk', () => {
+  it('rejects legacy-template regen data instead of applying it verbatim', () => {
     mockGoldFor.mockReturnValue(null)
     const q = Object.values(DOMAIN_6_QUESTIONS)
       .flat()
@@ -85,7 +85,12 @@ describe('generateAnswerReview regen merge', () => {
     const review = generateAnswerReview(q)
     const applied = review.incorrect.find(item => item.choiceIndex === raw.choiceIndex)
 
-    expect(applied.whyWrongHere).toBe(raw.whyWrongHere)
-    expect(applied.whatItDoes).toContain(raw.contrast)
+    // This fixture's regen-ledger entry is legacy "matches the required
+    // behavior" boilerplate — and it's also factually wrong (it references
+    // "JSON" as the keyed answer when this question's correct choice is
+    // "Python"). The quality gate must reject it rather than apply it as-is.
+    expect(raw.whyWrongHere).toMatch(/matches the required behavior/)
+    expect(applied.whyWrongHere).not.toBe(raw.whyWrongHere)
+    expect(applied.whyWrongHere).not.toMatch(/matches the required behavior/)
   })
 })
