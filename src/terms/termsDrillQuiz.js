@@ -36,7 +36,7 @@ export function gradeTypeTerm(input, expected) {
   const b = String(expected || '').trim().toLowerCase()
   if (!a || !b) return false
   if (a === b) return true
-  // Accept if expected is contained as whole-ish match for short aliases
+  // Whitespace-only normalization (e.g. double spaces, tabs) — not an alias match.
   return a.replace(/\s+/g, ' ') === b.replace(/\s+/g, ' ')
 }
 

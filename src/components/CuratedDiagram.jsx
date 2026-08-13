@@ -201,7 +201,7 @@ function DiagramLegend({ linkStatuses }) {
       {linkStatuses.has('forwarding') && <span><span style={{ color: COLORS.mint }}>—</span> Forwarding</span>}
       {linkStatuses.has('blocked') && <span><span style={{ color: COLORS.rose }}>- -</span> Blocked</span>}
       {linkStatuses.has('dropped') && <span><span style={{ color: COLORS.rose }}>- -</span> Dropped</span>}
-      {linkStatuses.has('modified') && <span><span style={{ color: COLORS.sky }}>—</span> Modified</span>}
+      {linkStatuses.has('modified') && <span><span style={{ color: COLORS.sky }}>┄┄</span> Modified</span>}
     </div>
   )
 }
@@ -313,6 +313,7 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
         const p2 = diagramEdgePoint(b.cx, b.cy, b.hw, b.hh, a.cx, a.cy)
         const stroke = linkStroke(l.status)
         const dashed = l.status === 'dropped' || l.status === 'blocked'
+        const dotted = l.status === 'modified'
         const showArrow = l.status === 'forwarding' || l.status === 'normal' || l.status === 'modified'
         const markerId = dashed ? `${uid}-blk` : `${uid}-fwd`
         const midX = (p1.x + p2.x) / 2
@@ -326,7 +327,7 @@ function DiagramSvg({ diagram, detail, compact, expanded = false, isMobile = fal
             <line
               x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
               stroke={stroke} strokeWidth={isPreview ? 1.75 : 2.25}
-              strokeDasharray={dashed ? '5 4' : undefined} strokeLinecap="round"
+              strokeDasharray={dashed ? '5 4' : dotted ? '1.5 3.5' : undefined} strokeLinecap="round"
               markerEnd={showArrow ? `url(#${markerId})` : undefined}
               opacity={dashed ? 0.85 : 1}
             />
