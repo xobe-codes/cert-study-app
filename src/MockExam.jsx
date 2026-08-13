@@ -462,23 +462,43 @@ export default function MockExam({ onExit, examMode = false, missed = [], initia
         return [{ tip, trap: inferTrapForChoice(enriched, trapIdx) }]
       })
       : []
-    const result = { correct, total: questions.length, byDomain, trapDebrief, deferredTips }
+    return { correct, total: questions.length, byDomain, trapDebrief, deferredTips }
+  }, [phase, questions, responses, examMode, isStudyMode])
+
+  // Recording the attempt is a one-time side effect on completion, not part of
+  // the report's own derivation — a useMemo isn't guaranteed to run exactly
+  // once per completion (any dependency changing reference re-invokes it), so
+  // living inside `report` above let re-renders after phase==='done' (e.g.
+  // navigating to Review and back) append duplicate ccna_mock_history_v1
+  // entries for the same attempt.
+  //
+  // The guard resets on 'active' (a genuinely new attempt: setQuestions +
+  // setResponses({}) always precede setPhase('active')) rather than on
+  // "phase leaves done", unlike doneHintFired above. 'review' is only
+  // reachable from 'done' and always returns to 'done' — resetting on leaving
+  // 'done' (the doneHintFired pattern, fine for a re-showable toast) would
+  // re-arm the guard on every review round trip and reproduce the same bug
+  // this effect exists to fix.
+  const historySavedRef = useRef(false)
+  useEffect(() => {
+    if (phase === 'active') historySavedRef.current = false
+  }, [phase])
+  useEffect(() => {
     // Only true Exam sim attempts count toward mock history (bank burn / domain sim are practice surfaces).
-    if (sessionKind === 'exam') {
-      ;(async () => {
-        const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
-        hist.push(buildMockHistoryEntry({
-          correct,
-          total: questions.length,
-          questions,
-          responses,
-          byDomain,
-        }))
-        await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30))
-      })()
-    }
-    return result
-  }, [phase, questions, responses, examMode, isStudyMode, sessionKind])
+    if (phase !== 'done' || historySavedRef.current || sessionKind !== 'exam' || !report) return
+    historySavedRef.current = true
+    ;(async () => {
+      const hist = (await window.storage.getItem(STORAGE_KEYS.mockHistory)) || []
+      hist.push(buildMockHistoryEntry({
+        correct: report.correct,
+        total: report.total,
+        questions,
+        responses,
+        byDomain: report.byDomain,
+      }))
+      await window.storage.setItem(STORAGE_KEYS.mockHistory, hist.slice(-30))
+    })()
+  }, [phase, sessionKind, report, questions, responses])
 
   if (phase === 'intro') {
     const staticCount = bankReady
