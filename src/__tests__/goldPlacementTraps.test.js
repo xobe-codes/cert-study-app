@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviews.js'
+import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviewsData.js'
 import { PLACEMENT_TRAP_GOLD } from '../answerReview/goldAnswerReviewsPlacementTraps.js'
 import { PLACEMENT_TRAP_GOLD_BATCH2 } from '../answerReview/goldAnswerReviewsPlacementTrapsBatch2.js'
 import { PLACEMENT_TRAP_GOLD_BATCH3 } from '../answerReview/goldAnswerReviewsPlacementTrapsBatch3.js'

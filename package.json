@@ -16,6 +16,7 @@
     "validate:pipeline": "npm run validate:clean-bank && npm run validate:answer-reviews && npm run validate:regen-coverage && npm run validate:mechanism-language && npm run validate:compiled && npm run validate:single-source && npm run validate:alignment-flashcards && npm run validate:blueprint-adjacent && npm run validate:voice && npm run validate:answer-voice && npm run validate:placement-blueprints && npm run audit:cli-mode && npm run audit:domain-visuals",
     "validate:placement-blueprints": "node scripts/validatePlacementBlueprints.mjs",
     "audit:cli-mode": "node scripts/auditCliModeContext.mjs",
+    "check:bundle": "node scripts/checkBundleBudget.mjs",
     "audit:domain6-visuals": "node scripts/auditDomain6Visuals.mjs",
     "audit:domain-visuals": "node scripts/auditDomain6Visuals.mjs",
     "build:kb": "node scripts/buildKnowledgeBase.mjs",

@@ -15,6 +15,10 @@ export default defineConfig({
   reporter: 'list',
   expect: { timeout: 15_000 },
   use: {
+    // Some environments preinstall Chromium outside the Playwright cache.
+    ...(process.env.PW_EXECUTABLE_PATH
+      ? { launchOptions: { executablePath: process.env.PW_EXECUTABLE_PATH } }
+      : {}),
     baseURL: E2E_BASE,
     trace: 'on-first-retry',
     browserName: 'chromium',
