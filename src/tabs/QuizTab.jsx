@@ -71,7 +71,7 @@ export function QuizTab({
   const removeMissedByQuestionId = (qid) => removeMissedByQuestionIds?.([qid])
   const doneHintFired = useRef(false)
   const justMasteredRef = useRef(false)
-  const deferredTips = useRef([])
+  const [deferredTips, setDeferredTips] = useState([])
   const [overconfidentCallout, setOverconfidentCallout] = useState(false)
   const [preAssessDone, setPreAssessDone] = useState(false)
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
@@ -87,8 +87,7 @@ export function QuizTab({
   const [sourceLabel, setSourceLabel] = useState(null) // where this session's questions came from
   const sessionRatings = useRef([])
   const missedOnce = useRef(new Set()) // question IDs missed once this session → 2nd miss = near-front re-queue
-  const trapStreakRef = useRef(createTrapStreakState())
-  const [trapStreakTick, setTrapStreakTick] = useState(0) // bump to re-render after trap-family miss
+  const [trapStreak, setTrapStreak] = useState(createTrapStreakState())
   const [streak, setStreak] = useState(0) // consecutive correct answers this session
   const sessionQuestionIdsRef = useRef([])
   const exposureRecordedRef = useRef(false)
@@ -101,7 +100,7 @@ export function QuizTab({
     const tip = enriched.answerReview?.examTip
     if (!tip) return
     const trap = selectedIndex != null ? inferTrapForChoice(enriched, selectedIndex) : null
-    deferredTips.current.push({ tip, trap })
+    setDeferredTips(prev => [...prev, { tip, trap }])
   }
   const [bankSize, setBankSize] = useState(0)
   const [bankQuestions, setBankQuestions] = useState([])
@@ -200,7 +199,7 @@ export function QuizTab({
   const startQuiz = useCallback(async (forceNew) => {
     setError(null)
     sessionRatings.current = []
-    deferredTips.current = []
+    setDeferredTips([])
     setOverconfidentCallout(false)
     try {
       await preloadCleanBankForObjective(objective.id)
@@ -313,9 +312,8 @@ export function QuizTab({
     setConfidenceHint(null)
     setStreak(0)
     sessionRatings.current = []
-    deferredTips.current = []
-    trapStreakRef.current = createTrapStreakState()
-    setTrapStreakTick(0)
+    setDeferredTips([])
+    setTrapStreak(createTrapStreakState())
     setOverconfidentCallout(false)
     missedOnce.current = new Set()
     refreshBankSize()
@@ -387,9 +385,8 @@ export function QuizTab({
       recordMissClearAttempt(current.id, { correct: false }).catch(() => {})
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, idx)
       if (trapPrefill) {
-        const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
-        trapStreakRef.current = recorded.state
-        setTrapStreakTick(t => t + 1)
+        const recorded = recordTrapMiss(trapStreak, trapPrefill)
+        setTrapStreak(recorded.state)
       }
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
@@ -481,9 +478,8 @@ export function QuizTab({
       onMissed(missEntry(current, selectedIndexes, correct, { selectedIndexes: [...selectedIndexes] }))
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, firstWrong ?? selectedIndexes[0])
       if (trapPrefill) {
-        const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
-        trapStreakRef.current = recorded.state
-        setTrapStreakTick(t => t + 1)
+        const recorded = recordTrapMiss(trapStreak, trapPrefill)
+        setTrapStreak(recorded.state)
       }
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
@@ -741,7 +737,7 @@ export function QuizTab({
           }) : undefined}
           onOpenMockExam={onSelectObjective}
         />
-        {examMode && <DeferredExamTips tips={deferredTips.current} />}
+        {examMode && <DeferredExamTips tips={deferredTips} />}
       </>
     )
   }
@@ -836,7 +832,7 @@ export function QuizTab({
                   : selected,
               )
               if (!prefill) return null
-              const streakCta = trapStreakTick >= 0 && shouldShowTrapStreakCta(trapStreakRef.current, prefill)
+              const streakCta = shouldShowTrapStreakCta(trapStreak, prefill)
               if (!streakCta) return null
               return (
                 <button
