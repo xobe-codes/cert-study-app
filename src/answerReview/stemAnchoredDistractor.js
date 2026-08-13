@@ -294,6 +294,42 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/^\d{2,3}$/.test(w.trim()) && /hsrp|priority/i.test(b) && !/\bad\b|administrative distance/i.test(b)) {
     return `HSRP's default priority is **${correct}** — **${wrong}** states a different value; only a priority you explicitly configure above the default wins an election.`
   }
+  if (/^egp$/i.test(w.trim()) && /^ospf$/i.test(c.trim())) {
+    return `OSPF is the nonproprietary interior gateway protocol this stem asks about — **${correct}** is that protocol; EGP is an obsolete exterior routing protocol, not an IGP choice here.`
+  }
+  if (/^autonomous system router$/i.test(w.trim()) && /^autonomous system boundary router$/i.test(c.trim())) {
+    return `The router that redistributes routes between OSPF and an outside routing domain is the **ASBR** (Autonomous System Boundary Router) — **${correct}** is that full term; **${wrong}** drops "boundary," which isn't standard OSPF terminology.`
+  }
+  if (/^autonomous system routers?$|^autonomous system boundary routers?$/i.test(w.trim()) && /^area border routers?$/i.test(c.trim())) {
+    return `Routers that sit between two OSPF areas are **Area Border Routers (ABRs)** — **${correct}** is that term; **${wrong}** names a different OSPF router role (the ASBR, which connects to an external domain, not between two internal areas).`
+  }
+  if (/ospf is a distance-vector protocol|ospf performs default auto-summarization/i.test(w) && /ospf updates are event triggered/i.test(c)) {
+    return `OSPF is a link-state protocol that sends triggered (event-driven) updates and does not auto-summarize by default — **${correct}** states that correctly; **${wrong}** describes a distance-vector trait (like RIP/EIGRP), not OSPF's actual behavior.`
+  }
+  if (/^the highest mac address configured on the router$/i.test(w.trim()) && /^the highest ip address configured on the router$/i.test(c.trim())) {
+    return `A Cisco router's OSPF Router ID defaults to its highest active IP address (loopback preferred, else physical interface) — **${correct}** is that rule; **${wrong}** substitutes MAC address, which OSPF RID selection doesn't use.`
+  }
+  if (/two routers participating in ospf routing|two routers that share the same as number/i.test(w) && /a routed interface added to the ospf process/i.test(c)) {
+    return `An OSPF **link** is a routed interface enabled for OSPF, not a relationship between two routers (that's a neighbor/adjacency) — **${correct}** is that definition; **${wrong}** describes a neighbor relationship instead of the interface-level link.`
+  }
+  if (/^the topological database$/i.test(w.trim()) && /^the neighborship database$/i.test(c.trim()) && /hello packets/i.test(b)) {
+    return `Routers discovered via Hello packet exchange are tracked in the neighborship (neighbor) database — the topological (LSDB) database instead holds the full link-state advertisements describing the network graph — **${correct}** is the Hello-based table this stem asks about; **${wrong}** is a different OSPF data structure.`
+  }
+  if (/used in routing to determine the destination network|the router uses its subnet mask when routing a packet|checks the subnet mask on the packet/i.test(w) && /used by the host to determine the destination network/i.test(c)) {
+    return `The sending **host** ANDs its own subnet mask with the destination IP to decide whether the destination is local or needs a gateway — a router doesn't use the sender's mask, and packets don't carry a subnet mask field at all — **${correct}** states that correctly; **${wrong}** misassigns the mask's use to the router or the packet itself.`
+  }
+  if (/^igmp$|^rarp$|^icmp$/i.test(w.trim()) && /^arp$/i.test(c.trim()) && /mac address for the frame/i.test(b)) {
+    return `ARP resolves an IP address to a MAC address for local delivery — **${correct}** is that protocol; **${wrong}** is a different protocol (multicast group management, reverse address resolution, or diagnostics) that doesn't do IP-to-MAC lookup.`
+  }
+  if (/source mac address is changed to the original source mac address|all of the above/i.test(w) && /packet.s ttl is decremented/i.test(c)) {
+    return `Each router hop decrements the IP TTL by 1 (and rewrites the Layer 2 source/destination MACs to itself and the next hop, not back to the original sender) — **${correct}** states the TTL behavior correctly; **${wrong}** either restores the original source MAC (routers don't do that) or overclaims with "all of the above."`
+  }
+  if (/process switching|fast switching|intelligent packet forwarding/i.test(w) && /cisco express forwarding/i.test(c)) {
+    return `CEF (Cisco Express Forwarding) is the current default forwarding method on Cisco routers, using a pre-built FIB/adjacency table instead of per-packet or per-flow lookups — **${correct}** is that method; **${wrong}** names an older or made-up forwarding method Cisco routers don't use by default anymore.`
+  }
+  if (/^ip routing$|^packet hopping$/i.test(w.trim()) && /^frame rewrite$/i.test(c.trim())) {
+    return `Rewriting the Layer 2 header (source/destination MAC) at each hop is called **frame rewrite** — **${correct}** is that term; **${wrong}** either names the Layer 3 process (routing) or isn't a real networking term.`
+  }
   if (/access control lists?|layer 2 asics?|route tables?|frame filters?/i.test(w + c) && /qos|classify/i.test(b)) {
     return `QoS classification (${hook}) uses ACLs (or protocol/NBAR matching) to identify traffic — **${correct}** is that mechanism; **${wrong}** is not how routers classify packets for QoS.`
   }
@@ -895,6 +931,42 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/^\d{2,3}$/.test(w.trim()) && about(/hsrp|priority/i)) {
     return `**${choice}** states a specific HSRP priority value.`
+  }
+  if (/^egp$/i.test(w.trim()) && about(/interior gateway|nonproprietary|administrative unit/i)) {
+    return `**${choice}** names an obsolete exterior routing protocol, not an interior gateway protocol.`
+  }
+  if (/^autonomous system router$/i.test(w.trim()) && about(/ospf hierarchy|asbr/i)) {
+    return `**${choice}** drops "boundary" from the OSPF router-role term.`
+  }
+  if (/^autonomous system routers?$|^autonomous system boundary routers?$/i.test(w.trim()) && about(/multi-area|area border/i)) {
+    return `**${choice}** names a different OSPF router role than the one connecting two internal areas.`
+  }
+  if (/ospf is a distance-vector protocol|ospf performs default auto-summarization/i.test(w) && about(/ospf/i)) {
+    return `**${choice}** describes a distance-vector trait, not OSPF's actual link-state behavior.`
+  }
+  if (/^the highest mac address configured on the router$/i.test(w.trim()) && about(/router id|\brid\b/i)) {
+    return `**${choice}** substitutes MAC address for the IP address OSPF RID selection actually uses.`
+  }
+  if (/two routers participating in ospf routing|two routers that share the same as number/i.test(w) && about(/ospf link/i)) {
+    return `**${choice}** describes a neighbor relationship, not the interface-level OSPF link.`
+  }
+  if (/^the topological database$/i.test(w.trim()) && about(/hello packets|neighborship/i)) {
+    return `**${choice}** names the LSDB, not the Hello-based neighbor table this stem asks about.`
+  }
+  if (/used in routing to determine the destination network|the router uses its subnet mask when routing a packet|checks the subnet mask on the packet/i.test(w) && about(/subnet mask/i)) {
+    return `**${choice}** misassigns the subnet mask's use to the router or the packet itself instead of the sending host.`
+  }
+  if (/^igmp$|^rarp$|^icmp$/i.test(w.trim()) && about(/mac address for the frame/i)) {
+    return `**${choice}** names a protocol that doesn't do IP-to-MAC address resolution.`
+  }
+  if (/source mac address is changed to the original source mac address|all of the above/i.test(w) && about(/moves through a router|packet.s ttl/i)) {
+    return `**${choice}** either restores the original sender's MAC (routers don't) or overclaims with "all of the above."`
+  }
+  if (/process switching|fast switching|intelligent packet forwarding/i.test(w) && about(/cisco express forwarding|packet forwarding/i)) {
+    return `**${choice}** names an older or made-up forwarding method, not Cisco's current default.`
+  }
+  if (/^ip routing$|^packet hopping$/i.test(w.trim()) && about(/frame rewrite|layer 2/i)) {
+    return `**${choice}** names the Layer 3 process or a non-standard term, not the Layer 2 rewrite this stem asks about.`
   }
   if (/layer 2 asics?|route tables?|frame filters?/i.test(w) && about(/qos|classify/i)) {
     return `**${choice}** names a mechanism that isn't how routers classify traffic for QoS.`
