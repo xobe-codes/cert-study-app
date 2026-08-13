@@ -64,6 +64,19 @@ describe('dedupeMissedByQuestionId', () => {
     expect(dedupeMissedByQuestionId([])).toEqual([])
     expect(dedupeMissedByQuestionId(undefined)).toEqual([])
   })
+
+  it('collapses the same question recorded under two different objectiveIds', () => {
+    // The write-time guard (isDuplicateMissedEntry) keys on questionId +
+    // objectiveId, so this pair is NOT caught there — it produces two raw
+    // rows. dedupeMissedByQuestionId keys on questionId only, so this is
+    // exactly the case MissedReview's "Prove it" gate must count as one, not
+    // two, per MISSED_RETEST_PROVE_UNLOCK_MAX's own documented contract.
+    const missed = [
+      mkMissed({ questionId: 'q1', objectiveId: '1.5', addedAt: BASE }),
+      mkMissed({ questionId: 'q1', objectiveId: '3.2', addedAt: BASE + 1000 }),
+    ]
+    expect(dedupeMissedByQuestionId(missed)).toHaveLength(1)
+  })
 })
 
 describe('buildMissedRetestPool ordering', () => {

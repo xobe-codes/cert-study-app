@@ -509,7 +509,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "2.8-align-f14",
         "ckuId": "CKU-CERTIFICATES",
         "front": "What should you remember about Certificates?",
-        "back": "**Exam cue:** Which type of security can be implemented on a WLAN that requires the host PC to present a certificate before being allowed onto the wireless network? **Key response:** 802.1X. **Why:** 802.1X requires the client to present a certificate (or credentials via EAP) before network access — per-user authentication."
+        "back": "**Exam cue:** What does a digital certificate actually prove, and who vouches for it? **Key response:** A certificate binds a public key to an identity and is signed by a trusted Certificate Authority (CA). **Why:** Presenting a certificate (e.g. in 802.1X EAP-TLS or HTTPS) lets a device or user prove its identity cryptographically, without sending a shared secret over the network — the CA's signature is what the other side trusts."
       },
       {
         "id": "2.8-align-f15",
@@ -539,7 +539,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "2.8-align-f19",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "2.8-align-f20",
@@ -2162,7 +2162,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.3-align-f17",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.3-align-f18",
@@ -2196,13 +2196,13 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.4-align-f2",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.4-align-f3",
         "ckuId": "CKU-AAA-COMPARISON",
         "front": "What should you remember about Aaa Comparison?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** Contrast RADIUS and TACACS+ across protocol, encryption, and AAA structure. **Key response:** TACACS+ (TCP/49) separates authentication, authorization, and accounting into distinct processes, encrypts the whole packet, and supports per-command authorization for device administration; RADIUS (UDP 1812/1813) combines authentication and authorization into one response, encrypts only the password, and is used for network access (802.1X, VPN, wireless). **Why:** Pick TACACS+ for admin AAA on the devices themselves; pick RADIUS for authenticating users/devices trying to get onto the network."
       },
       {
         "id": "5.4-align-f4",
@@ -2340,7 +2340,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.7-align-f4",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.7-align-f5",
@@ -2475,7 +2475,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.8-align-f11",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.8-align-f12",

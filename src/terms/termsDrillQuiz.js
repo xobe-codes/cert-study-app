@@ -45,7 +45,22 @@ export function buildPickDefinitionItems(cards, count = 10) {
   const items = []
   for (const c of pool) {
     if (items.length >= count) break
-    const distractors = shuffle(cards.filter(x => x.id !== c.id)).slice(0, 3)
+    // Any two choices sharing definition text (content-authoring duplicates
+    // exist in the bank) makes choices.indexOf() ambiguous: two buttons
+    // render identical text and indexOf silently picks whichever occurrence
+    // comes first, which can flag the wrong one as correct. It is not enough
+    // to exclude distractors matching the target's definition — two
+    // *different* distractors can also match each other. Dedupe the
+    // candidate pool to one card per unique definition text first, so no
+    // combination of choices can collide.
+    const seenDefs = new Set([c.definition])
+    const candidates = []
+    for (const x of shuffle(cards)) {
+      if (x.id === c.id || seenDefs.has(x.definition)) continue
+      seenDefs.add(x.definition)
+      candidates.push(x)
+    }
+    const distractors = candidates.slice(0, 3)
     if (distractors.length < 3) continue
     const choices = shuffle([c.definition, ...distractors.map(d => d.definition)])
     items.push({
