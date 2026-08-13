@@ -633,6 +633,42 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/^authenticator$|^aaa server$|^radius server$/i.test(w) && /^supplicant$/i.test(c) && /802\.1x/i.test(b)) {
     return `In 802.1X, the **supplicant** is the end device presenting credentials — the authenticator (switch/AP) forwards them, and the AAA/RADIUS server validates them — **${correct}** is the credential-sender; **${wrong}** names a different role in the same exchange.`
   }
+  if (/^supplicant$/i.test(w.trim()) && /^authenticator$/i.test(c.trim()) && /802\.1x/i.test(b)) {
+    return `The **authenticator** is the switch (or AP) in an 802.1X exchange — it controls the port and forwards credentials between the supplicant and the authentication server — **${correct}** is that role; **${wrong}** names the end device requesting access, not the switch.`
+  }
+  if (/^ipsec$|^radius$/i.test(w.trim()) && /^eap$/i.test(c.trim()) && /802\.1x/i.test(b)) {
+    return `802.1X carries authentication using **EAP** (Extensible Authentication Protocol) between the supplicant, authenticator, and server — **${correct}** is that protocol; **${wrong}** is a different security/AAA protocol that isn't 802.1X's carrier protocol (RADIUS transports EAP between authenticator and server, but isn't itself EAP).`
+  }
+  if (/the server that is providing authentication|the device connecting the layer 3 network/i.test(w) && /the device requesting access/i.test(c)) {
+    return `The **supplicant** is the end device asking to join the network (e.g., the laptop plugging into a port) — **${correct}** states that role correctly; **${wrong}** describes the authentication server or a Layer 3 device, not the requesting endpoint.`
+  }
+  if (/^active directory server$|^terminal server$/i.test(w.trim()) && /^aaa server$/i.test(c.trim()) && /centralize authentication for all cisco/i.test(b)) {
+    return `A dedicated **AAA server** (RADIUS/TACACS+) is what centralizes authentication, authorization, and accounting for Cisco network devices — **${correct}** is that server; **${wrong}** is a different directory/access service that isn't the network-device AAA server.`
+  }
+  if (/^ad$/i.test(w.trim()) && /^tacacs\+$/i.test(c.trim()) && /secure telnet authentication/i.test(b)) {
+    return `**TACACS+** is Cisco's AAA protocol for authenticating device-management access like Telnet/SSH — **${correct}** is that protocol; **${wrong}** (AD) is a directory service, not an AAA protocol a router speaks directly.`
+  }
+  if (/^eap$/i.test(w.trim()) && /^tacacs\+$/i.test(c.trim()) && /secure telnet authentication/i.test(b)) {
+    return `**TACACS+** is Cisco's AAA protocol for device-management authentication — **${correct}** is that protocol; **${wrong}** (EAP) carries 802.1X port-authentication, a different use case than Telnet login.`
+  }
+  if (/config\)#authentication login group tacacs\+ local/i.test(w) && /config\)#aaa authentication login default group tacacs\+ local/i.test(c)) {
+    return `The command needs the \`aaa\` keyword up front — **${correct}** has the complete syntax; **${wrong}** drops \`aaa\`, which IOS requires to recognize this as an AAA command.`
+  }
+  if (/config\)#aaa-authentication login default tacacs\+ local/i.test(w) && /config\)#aaa authentication login default group tacacs\+ local/i.test(c)) {
+    return `The keywords are two separate words, \`aaa authentication\`, and require \`group\` before naming the server type — **${correct}** has the complete syntax; **${wrong}** hyphenates \`aaa-authentication\` and drops \`group\`, neither of which IOS accepts.`
+  }
+  if (/config\)#aaa authentication login tacacs\+ local$/i.test(w) && /config\)#aaa authentication login default group tacacs\+ local/i.test(c)) {
+    return `The method list needs a name (\`default\`, or a custom name) and the \`group\` keyword before the server type — **${correct}** has the complete syntax; **${wrong}** drops both \`default\` and \`group\`.`
+  }
+  if (/the enable secret will work|the console will still be available|nothing, since a username and password have not been set/i.test(w) && /the router will lock you out/i.test(c)) {
+    return `Once \`aaa authentication login default local\` is configured, the router requires a matching local username — with none created, no credentials satisfy the login prompt and you're locked out (this is why you always keep a console session open when testing AAA changes) — **${correct}** states that correctly; **${wrong}** assumes a fallback or bypass that doesn't exist once AAA login is enforced.`
+  }
+  if (/^active$|^proactive$|^auditing$/i.test(w.trim()) && /^passive$/i.test(c.trim()) && /routinely looking at logs/i.test(b)) {
+    return `Discovering an incident by reviewing logs after the fact is **passive** detection — you weren't alerted in real time, you found it during routine review — **${correct}** is that category; **${wrong}** implies real-time monitoring or a proactive hunt, neither of which matches "routinely looking at logs."`
+  }
+  if (/^dns$|^email$|^proxy$/i.test(w.trim()) && /^authentication$/i.test(c.trim()) && /radius server is an example/i.test(b)) {
+    return `RADIUS is a server type built for centralized **authentication** (and authorization/accounting) — **${correct}** is that category; **${wrong}** names an unrelated server role RADIUS doesn't perform.`
+  }
   if (/creation of a psk|192-bit key strength/i.test(w) && /radius\/eap|802\.1x/i.test(c) && /wpa2-enterprise/i.test(b)) {
     return `WPA2-Enterprise authenticates each user through 802.1X/RADIUS/EAP rather than a shared secret — **${correct}** is that requirement; **${wrong}** describes WPA2-Personal (PSK) or WPA3 (192-bit suite), not the Enterprise requirement this stem asks about.`
   }
@@ -1384,6 +1420,42 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/^authenticator$|^aaa server$|^radius server$/i.test(w) && about(/802\.1x|supplicant/i)) {
     return `**${choice}** names a different role in the 802.1X exchange than the credential-sending device.`
+  }
+  if (/^supplicant$/i.test(w.trim()) && about(/802\.1x|authenticator/i)) {
+    return `**${choice}** names the end device requesting access, not the switch controlling the port.`
+  }
+  if (/^ipsec$|^radius$/i.test(w.trim()) && about(/802\.1x|eap/i)) {
+    return `**${choice}** names a different security/AAA protocol, not 802.1X's carrier protocol.`
+  }
+  if (/the server that is providing authentication|the device connecting the layer 3 network/i.test(w) && about(/supplicant|802\.1x/i)) {
+    return `**${choice}** describes the authentication server or a Layer 3 device, not the requesting endpoint.`
+  }
+  if (/^active directory server$|^terminal server$/i.test(w.trim()) && about(/aaa server|centralize authentication/i)) {
+    return `**${choice}** names a different directory/access service, not the network-device AAA server.`
+  }
+  if (/^ad$/i.test(w.trim()) && about(/tacacs\+|telnet authentication/i)) {
+    return `**${choice}** names a directory service, not an AAA protocol a router speaks directly.`
+  }
+  if (/^eap$/i.test(w.trim()) && about(/tacacs\+|telnet authentication/i)) {
+    return `**${choice}** carries 802.1X port-authentication, a different use case than device-management login.`
+  }
+  if (/config\)#authentication login group tacacs\+ local/i.test(w) && about(/aaa authentication/i)) {
+    return `**${choice}** drops the required \`aaa\` keyword.`
+  }
+  if (/config\)#aaa-authentication login default tacacs\+ local/i.test(w) && about(/aaa authentication/i)) {
+    return `**${choice}** hyphenates the keyword and drops \`group\`, neither of which IOS accepts.`
+  }
+  if (/config\)#aaa authentication login tacacs\+ local$/i.test(w) && about(/aaa authentication/i)) {
+    return `**${choice}** drops both the method-list name and the \`group\` keyword.`
+  }
+  if (/the enable secret will work|the console will still be available|nothing, since a username and password have not been set/i.test(w) && about(/aaa authentication|lock/i)) {
+    return `**${choice}** assumes a fallback or bypass that doesn't exist once AAA login is enforced.`
+  }
+  if (/^active$|^proactive$|^auditing$/i.test(w.trim()) && about(/passive|routinely looking at logs/i)) {
+    return `**${choice}** implies real-time monitoring or a proactive hunt, not routine log review.`
+  }
+  if (/^dns$|^email$|^proxy$/i.test(w.trim()) && about(/radius server|authentication/i)) {
+    return `**${choice}** names an unrelated server role RADIUS doesn't perform.`
   }
   if (/creation of a psk|192-bit key strength/i.test(w) && about(/wpa2-enterprise|wpa3|802\.1x/i)) {
     return `**${choice}** describes a WPA2-Personal or WPA3 trait, not the WPA2-Enterprise requirement this stem asks about.`
