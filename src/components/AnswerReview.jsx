@@ -56,6 +56,7 @@ function ReviewBlock({ icon, title, accent, children, collapsible, defaultOpen =
       <button
         type="button"
         onClick={() => collapsible && setOpen(o => !o)}
+        aria-expanded={collapsible ? open : undefined}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', minHeight: 44, background: 'none', border: 'none', padding: '6px 0', cursor: collapsible ? 'pointer' : 'default', color: c.text, fontFamily: 'inherit' }}
       >
         <span className="ccna-review-block__title" style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, textAlign: 'left', overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{icon} {title}</span>

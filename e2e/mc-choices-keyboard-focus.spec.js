@@ -54,7 +54,7 @@ test.describe('McChoices keyboard focus', () => {
     // specific digit-key selection moves real DOM focus to that exact
     // choice — not that it silently stays wherever Tab first landed.
     const choiceCTexts = await radios.allTextContents()
-    expect(choiceCTexts[2]).toMatch(/^C\./)
+    expect(choiceCTexts[2]).toMatch(/^[○●]?\s*C\./)
     await page.keyboard.press('3')
 
     const after = await page.evaluate(() => ({

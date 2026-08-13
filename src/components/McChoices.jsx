@@ -60,7 +60,10 @@ function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect,
       <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: revealed && idx === selected && idx !== correctIndex ? COLORS.rose : COLORS.silverMid }}>
         {revealed
           ? (idx === correctIndex ? '✓ ' : '✗ ')
-          : ''}{String.fromCharCode(65 + idx)}.
+          // Pre-reveal, selection was previously shown by background/border
+          // color alone. A filled-vs-empty radio glyph gives the same
+          // signal without depending on color perception.
+          : (idx === selected ? '● ' : '○ ')}{String.fromCharCode(65 + idx)}.
       </span>
       <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{choice}</span>
     </button>
