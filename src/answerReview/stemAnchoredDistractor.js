@@ -2,6 +2,7 @@
  * Stem-Anchored Distractor Engine (SADE) — choice-specific wrong-answer reviews
  * anchored to stem hooks, correct answer contrast, and distractor text.
  */
+import { correctChoiceText } from '../questionUtils.js'
 
 const STOP_WORDS = new Set([
   'which', 'what', 'when', 'where', 'that', 'this', 'with', 'from', 'does', 'have',
@@ -407,7 +408,7 @@ function buildWhatItDoes(wrong, hooks, blob) {
 /** Build structured stem-anchored review for one wrong choice. */
 export function buildStemAnchoredIncorrect({ q, choiceIndex }) {
   const wrong = q.choices?.[choiceIndex] || ''
-  const correct = q.choices?.[q.correctIndex] || ''
+  const correct = correctChoiceText(q)
   const fact = (q.explanation || '').trim()
   const hooks = extractStemHooks(q.question, q.explanation, q.concept)
   const blob = `${q.question || ''} ${q.concept || ''} ${fact} ${correct}`.toLowerCase()
