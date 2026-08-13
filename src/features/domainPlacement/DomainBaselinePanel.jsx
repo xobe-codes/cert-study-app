@@ -99,6 +99,10 @@ export default function DomainBaselinePanel({
     () => buildDomainBaselineSummary({ domain, lastAttempt: record?.lastAttempt }),
     [domain, record],
   )
+  // Every hook must run before the early return below — otherwise a switch
+  // between a placement and non-placement domain at the same tree position
+  // changes the hook count and React throws "Rendered fewer hooks than expected".
+  const [mapToolsOpen, setMapToolsOpen] = useState(false)
 
   if (!isPlacementDomain(domain.id)) return null
 
@@ -126,8 +130,6 @@ export default function DomainBaselinePanel({
   const buildingObjs = domain.objectives.filter(o => summary.buildingObjectives.includes(o.id))
   const strongObjs = domain.objectives.filter(o => summary.strongObjectives.includes(o.id))
   const uncheckedObjs = domain.objectives.filter(o => summary.notCheckedObjectives.includes(o.id))
-
-  const [mapToolsOpen, setMapToolsOpen] = useState(false)
 
   return (
     <div

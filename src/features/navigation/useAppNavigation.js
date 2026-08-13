@@ -351,7 +351,6 @@ export function useAppNavigation() {
     openCommandHub,
     openTermsHub,
     termsHubDomainPrefill,
-    clearCommandHubLaunch,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,
     consumeTrapDrillPrefill,
