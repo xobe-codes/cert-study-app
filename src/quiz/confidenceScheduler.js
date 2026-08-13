@@ -7,6 +7,22 @@ export const CONFIDENCE_RATINGS = ['easy', 'medium', 'hard', 'practice']
 const DAY_MS = 86400000
 export const SRS_LADDER = [2, 7, 14, 30, 60]
 
+/**
+ * Relearning step, in days, for a question that was just missed.
+ * Sits below SRS_LADDER[0] so a miss is always scheduled sooner than a first
+ * correct answer — without it, `Math.max(reps - 1, 0)` floors both to the same
+ * ladder rung and a wrong answer returns on the same day as a right one.
+ */
+export const RELEARN_INTERVAL = 1
+
+/**
+ * Ladder ceiling for a question with a lapse history. Repeatedly-missed items
+ * stop climbing to the long intervals: 0 lapses → 60d, 1 → 30d, 2+ → 14d.
+ */
+export function ladderCapForLapses(lapses = 0) {
+  return Math.max(0, SRS_LADDER.length - 1 - Math.min(lapses || 0, 2))
+}
+
 /** Base SRS step from correctness only. */
 export function nextSrsFromCorrect(prev, correct) {
   const s = prev || { reps: 0, lapses: 0 }
@@ -14,7 +30,16 @@ export function nextSrsFromCorrect(prev, correct) {
   let lapses = s.lapses || 0
   if (correct) reps += 1
   else { reps = 0; lapses += 1 }
-  const intervalIndex = Math.min(Math.max(reps - 1, 0), SRS_LADDER.length - 1)
+  if (!correct) {
+    return {
+      interval: RELEARN_INTERVAL,
+      reps,
+      lapses,
+      intervalIndex: 0,
+      due: Date.now() + RELEARN_INTERVAL * DAY_MS,
+    }
+  }
+  const intervalIndex = Math.min(Math.max(reps - 1, 0), ladderCapForLapses(lapses))
   const interval = SRS_LADDER[intervalIndex]
   return { interval, reps, lapses, intervalIndex, due: Date.now() + interval * DAY_MS }
 }
@@ -51,8 +76,9 @@ export function applyConfidenceToSrs(srs, rating, lastCorrect, now = Date.now())
         confidencePin: 'overconfident',
       }
     }
-    // Easy + correct — graduate (jump one ladder step, min 7d if already progressing)
-    const nextIdx = Math.min((intervalIndex ?? 0) + 1, SRS_LADDER.length - 1)
+    // Easy + correct — graduate (jump one ladder step, min 7d if already progressing),
+    // still bounded by the lapse ceiling so a repeatedly-missed item cannot jump to 60d.
+    const nextIdx = Math.min((intervalIndex ?? 0) + 1, ladderCapForLapses(lapses))
     const nextInterval = SRS_LADDER[Math.max(nextIdx, 1)]
     return {
       interval: nextInterval,
