@@ -1,7 +1,7 @@
 import { STORAGE_KEYS } from './storageKeys.js'
 import { LEARNING_EVENT_SCHEMA_VERSION, normalizeLearningEvent } from './features/metrics/learningMetrics.js'
 
-const EVENT_LOG_CAP = 5000
+export const EVENT_LOG_CAP = 5000
 let eventSequence = 0
 
 function nextEventId(at) {

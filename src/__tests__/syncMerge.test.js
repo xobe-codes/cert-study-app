@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import {
-  mergeProgress, mergeMissed, mergeQuizBank, mergeStreak, mergeSyncData,
+  mergeProgress, mergeMissed, mergeQuizBank, mergeStreak, mergeSyncData, mergeEvents,
 } from '../features/sync/syncMerge.js'
 
 describe('syncMerge', () => {
@@ -35,5 +35,25 @@ describe('syncMerge', () => {
     const once = mergeSyncData(local, remote)
     const twice = mergeSyncData(once, remote)
     expect(twice).toEqual(once)
+  })
+
+  it('mergeEvents unions by eventId and sorts chronologically', () => {
+    const a = [{ eventId: 'e1', type: 'user_completed_quiz', at: 1 }]
+    const b = [{ eventId: 'e1', type: 'user_completed_quiz', at: 1 }, { eventId: 'e2', type: 'user_completed_lab', at: 2 }]
+    const out = mergeEvents(a, b)
+    expect(out).toHaveLength(2)
+    expect(out.map(e => e.eventId)).toEqual(['e1', 'e2'])
+  })
+
+  it('mergeEvents falls back to legacy id field', () => {
+    const out = mergeEvents([{ id: 'legacy-1', at: 1 }], [])
+    expect(out).toHaveLength(1)
+  })
+
+  it('mergeSyncData carries the event log through a round trip — a Raw Data\n     restore or cross-device sync must not silently drop it', () => {
+    const local = { progress: {}, missed: [], quizBank: {}, cliStats: {}, streak: { count: 0 }, events: [{ eventId: 'e1', at: 1 }] }
+    const remote = { progress: {}, missed: [], quizBank: {}, cliStats: {}, streak: { count: 0 }, events: [{ eventId: 'e2', at: 2 }] }
+    const merged = mergeSyncData(local, remote)
+    expect(merged.events.map(e => e.eventId)).toEqual(['e1', 'e2'])
   })
 })
