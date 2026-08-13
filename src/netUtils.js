@@ -297,18 +297,38 @@ export function masteryScoreSessions(entry) {
   return [...quiz, ...engagement].sort((a, b) => (a.date || 0) - (b.date || 0))
 }
 
+/** Ratings that still count toward confidence — recent enough to be recoverable. */
+export const CONFIDENCE_WINDOW = 10
+
 export function computeMastery(entry) {
   if (!entry) return { score: 0, mastered: false }
-  const scores = masteryScoreSessions(entry)
-  if (scores.length === 0) return { score: 0, mastered: false }
-  const recent = scores.slice(-3)
+  const sessions = masteryScoreSessions(entry)
+  if (sessions.length === 0) return { score: 0, mastered: false }
+
+  // Assessment evidence wins. Engagement (labs, drills, Terms Hub) is recorded
+  // in the same shape as quiz results, so three of them used to displace the
+  // quiz history entirely from a three-session window — an objective could read
+  // as mastered without a recent answered question. Engagement now fills the
+  // window only when the learner has not answered questions here at all.
+  const quizSessions = sessions.filter(s => s.kind === 'quiz')
+  const recent = (quizSessions.length ? quizSessions : sessions).slice(-3)
   const acc = recent.reduce((s, r) => s + (r.score / Math.max(r.total, 1)), 0) / recent.length
-  const ratings = entry.confidenceRatings || []
+
+  // Unrated confidence used to default to 0.6 — the same value as rating
+  // everything "medium", and above the 0.5 gate. That scored better than
+  // honestly marking material "hard" (0.3), so skipping the control beat using
+  // it. Absent ratings now mirror demonstrated accuracy instead of inventing a
+  // number, and only recent ratings count so an early "hard" is recoverable.
+  const ratings = (entry.confidenceRatings || []).slice(-CONFIDENCE_WINDOW)
   const conf = ratings.length
     ? ratings.reduce((s, r) => s + (RATING_CONFIDENCE[r] ?? 0.6), 0) / ratings.length
-    : 0.6
+    : acc
+
   const score = acc * 0.7 + conf * 0.3
-  const mastered = acc >= 0.8 && conf >= 0.5 && recent.some(r => r.total >= 3)
+  const mastered = acc >= 0.8
+    && conf >= 0.5
+    && recent.some(r => r.total >= 3)
+    && quizSessions.length > 0
   return { score, mastered }
 }
 

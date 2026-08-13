@@ -102,6 +102,10 @@ export function QuizTab({
     const trap = selectedIndex != null ? inferTrapForChoice(enriched, selectedIndex) : null
     setDeferredTips(prev => [...prev, { tip, trap }])
   }
+  // A missed question is exactly what spaced repetition is for, so it schedules
+  // immediately. Correct answers still wait for the objective's review gate,
+  // which is what stops an untouched objective flooding Daily Review.
+  const shouldSchedule = correct => (correct ? !!progress?.[objective.id]?.reviewEligible : true)
   const [bankSize, setBankSize] = useState(0)
   const [bankQuestions, setBankQuestions] = useState([])
   const [orderDraft, setOrderDraft] = useState([])
@@ -352,7 +356,7 @@ export function QuizTab({
         return q
       })
     }
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     if (current.id) {
       recordQuestionHealthSignal(current.id, objective.id, {
         correct,
@@ -408,7 +412,7 @@ export function QuizTab({
     haptic([10, 40, 10])
     setStats(s => ({ correct: s.correct, total: s.total + 1, missedCount: s.missedCount + 1 }))
     setStreak(0)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct: false, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct: false, schedule: shouldSchedule(false) })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
@@ -455,7 +459,7 @@ export function QuizTab({
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     if (current.id) {
       recordQuestionHealthSignal(current.id, objective.id, {
         correct,
@@ -501,7 +505,7 @@ export function QuizTab({
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
@@ -533,7 +537,7 @@ export function QuizTab({
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
