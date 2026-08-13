@@ -18,7 +18,7 @@ import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets } from './studyQuizShared.jsx'
 import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
 import { logEvent } from '../eventLog.js'
-import { lessonCkuAnchor, lessonSectionAnchor } from '../lesson/lessonAnchors.js'
+import { lessonCkuAnchor, lessonSectionAnchor, resolveLessonAnchor } from '../lesson/lessonAnchors.js'
 import { consumeLessonRemediation } from '../lesson/lessonRemediation.js'
 
 /** Spec 9+15 curated unified lesson spine (extracted from ExplainTab for size). */
@@ -44,8 +44,14 @@ export default function CuratedUnifiedReading({
     const token = consumeLessonRemediation(data.objectiveId)
     if (!token?.lessonAnchor) return
     const timer = window.setTimeout(() => {
-      document.getElementById(token.lessonAnchor)?.scrollIntoView({ block: 'start', behavior: 'smooth' })
-      document.getElementById(token.lessonAnchor)?.focus?.({ preventScroll: true })
+      // The question's concept may not be one this lesson renders, so fall back
+      // down to the concepts block and finally the top rather than scrolling to
+      // a missing element and appearing to do nothing.
+      const target = resolveLessonAnchor(token, data.objectiveId, id => !!document.getElementById(id))
+      if (!target) return
+      const el = document.getElementById(target)
+      el?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      el?.focus?.({ preventScroll: true })
     }, 0)
     return () => window.clearTimeout(timer)
   }, [data.objectiveId])

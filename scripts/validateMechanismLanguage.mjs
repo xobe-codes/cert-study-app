@@ -5,6 +5,11 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { isBannedMechanismLanguage, isTemplateWhyWrongHere } from '../src/answerReview/answerReviewQuality.js'
 import { applyAnswerReviewToQuestion } from '../src/answerReviewLogic.js'
+import { loadGoldAnswerReviews } from '../src/answerReview/goldAnswerReviews.js'
+
+// Gold reviews load on demand in the browser; scripts must install them
+// explicitly or they validate/generate against a chain missing its top tier.
+await loadGoldAnswerReviews()
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')

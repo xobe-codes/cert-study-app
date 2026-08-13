@@ -34,5 +34,10 @@ for (const path of walkJsonFiles(CLEAN_ROOT)) {
 console.log(`✓ Refreshed answerReview on ${questions} questions in ${files} files`)
 
 import { spawnSync } from 'node:child_process'
+import { loadGoldAnswerReviews } from '../src/answerReview/goldAnswerReviews.js'
+
+// Gold reviews load on demand in the browser; scripts must install them
+// explicitly or they validate/generate against a chain missing its top tier.
+await loadGoldAnswerReviews()
 const r = spawnSync(process.execPath, [join(ROOT, 'scripts', 'compileCleanQuestionsModule.mjs')], { stdio: 'inherit' })
 process.exit(r.status ?? 1)
