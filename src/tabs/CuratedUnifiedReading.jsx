@@ -135,17 +135,17 @@ export default function CuratedUnifiedReading({
           <CuratedVisualBundle data={data} />
         </div>
       )}
-      <div id={lessonSectionAnchor(data.objectiveId, 'plain')} style={sectionStyle('plain')} onFocusCapture={() => sectionViewed('plain')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'plain')} tabIndex={-1} style={sectionStyle('plain')} onFocusCapture={() => sectionViewed('plain')}>
         <ExplainBlock icon="📖" title="IN PLAIN ENGLISH" accent="sky" speechText={lesson.plainEnglish} onListen={() => playlistRef.current?.toggle('plain')}>
           <RichText text={lesson.plainEnglish} />
         </ExplainBlock>
       </div>
-      <div id={lessonSectionAnchor(data.objectiveId, 'how')} style={sectionStyle('how')} onFocusCapture={() => sectionViewed('how')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'how')} tabIndex={-1} style={sectionStyle('how')} onFocusCapture={() => sectionViewed('how')}>
         <ExplainBlock icon="⚙️" title="HOW IT WORKS" accent="amber" collapsible defaultOpen speechText={lesson.howItWorks} onListen={() => playlistRef.current?.toggle('how')}>
           <RichText text={lesson.howItWorks} />
         </ExplainBlock>
       </div>
-      <div id={lessonSectionAnchor(data.objectiveId, 'exam')} style={sectionStyle('exam')} onFocusCapture={() => sectionViewed('exam')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'exam')} tabIndex={-1} style={sectionStyle('exam')} onFocusCapture={() => sectionViewed('exam')}>
         <ExplainBlock icon="🎯" title="EXAM / ENGINEER" accent="mint" collapsible defaultOpen speechText={lesson.examEngineer} onListen={() => playlistRef.current?.toggle('exam')}>
           <RichText text={lesson.examEngineer} />
         </ExplainBlock>
@@ -173,7 +173,7 @@ export default function CuratedUnifiedReading({
           </div>
         </ExplainBlock>
       )}
-      <div id={lessonSectionAnchor(data.objectiveId, 'concepts')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'concepts')} tabIndex={-1}>
         <CoreConceptsBlock
           ckus={(data.ckus || []).map(cku => ({ ...cku, lessonAnchor: lessonCkuAnchor(data.objectiveId, cku.id) }))}
           onConceptViewed={(cku) => sectionViewed('concept', cku.id)}
