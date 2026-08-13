@@ -247,7 +247,11 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
     return `DHCP (${hook}): **${correct}** is the message or role this stem describes — **${wrong}** is a different DORA step or relay/server mix-up.`
   }
 
-  const evidence = normalize(fact).slice(0, 180) || `${correct} is the keyed result for ${hook}`
+  const factText = normalize(fact)
+  let evidence = factText.slice(0, 180)
+  if (evidence && evidence.length < factText.length) evidence = `${evidence.replace(/[\s.,;:]+$/, '')}…`
+  else if (evidence && !/[.!?…]$/.test(evidence)) evidence = `${evidence}.`
+  if (!evidence) evidence = `${correct} is the keyed result for ${hook}.`
   return `The explanation establishes: **${evidence}** Therefore **${correct}** fits the tested condition, while **${wrong}** would produce a different routing or protocol result.`
 }
 
@@ -282,10 +286,14 @@ function inferMisconception({ wrong, correct, hooks, blob }) {
 }
 
 function buildWhatItDoes(wrong, hooks, blob) {
-  const choice = normalize(wrong)
+  // Templates below continue the sentence after the choice, so a choice that
+  // already ends in punctuation would splice ("...at the router. applies ...").
+  const choice = normalize(wrong).replace(/[.!?;:,]+$/, '')
   const w = choice.toLowerCase()
   const hook = hookPhrase(hooks, 'this scenario')
   const b = String(blob || '').toLowerCase()
+  // Topic-specific copy must only fire on questions about that topic.
+  const about = re => re.test(b)
 
   if (impliesDropOrDiscard(w)) {
     return `**${choice}** implies the device should discard the frame instead of forwarding or flooding it.`
@@ -329,70 +337,70 @@ function buildWhatItDoes(wrong, hooks, blob) {
   if (/inside local|inside global|outside local|outside global/i.test(w)) {
     return `**${choice}** assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.`
   }
-  if (/overload|pat|port address/i.test(w)) {
+  if (/\boverload\b|\bpat\b|\bport address\b/i.test(w) && about(/nat|pat\b|translat|inside (?:local|global)|outside (?:local|global)/i)) {
     return `**${choice}** implies many-inside-to-few-outside PAT/overload translation.`
   }
-  if (/discover|offer|request|acknowledge|nak/i.test(w)) {
+  if (/\bdiscover\b|\boffer\b|\brequest\b|\backnowledge\b|\bnak\b/i.test(w) && about(/dhcp|dora|lease|ip helper/i)) {
     return `**${choice}** names a DHCP DORA message step that may not be the phase described in the stem.`
   }
-  if (/relay|ip helper|giaddr/i.test(w)) {
+  if (/\brelay\b|\bip helper\b|\bgiaddr\b/i.test(w) && about(/dhcp|lease|broadcast forward/i)) {
     return `**${choice}** forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.`
   }
-  if (/standard acl|extended acl|access-list \d+/i.test(w)) {
+  if (/standard acl|extended acl|access-list \d+/i.test(w) && about(/acl|access-list|access list|permit|deny|filter/i)) {
     return `**${choice}** applies an ACL type (standard vs extended) or number range that may not match placement rules here.`
   }
-  if (/wep\b|tkip\b|open authentication/i.test(w)) {
+  if (/\bwep\b|\btkip\b|open authentication/i.test(w) && about(/wpa|wireless|wlan|802\.11|wifi|ssid|security/i)) {
     return `**${choice}** selects a weak or deprecated WLAN security option.`
   }
-  if (/2\.4\s*ghz|5\s*ghz|6\s*ghz|channel width/i.test(w)) {
+  if (/2\.4\s*ghz|5\s*ghz|6\s*ghz|channel width/i.test(w) && about(/wireless|wlan|802\.11|wifi|band|channel|rf/i)) {
     return `**${choice}** picks a wireless band or channel plan that may not fit range, overlap, or standard requirements.`
   }
-  if (/\bwlc\b|lightweight ap|capwap/i.test(w)) {
+  if (/\bwlc\b|lightweight ap|capwap/i.test(w) && about(/wireless|wlan|access point|\bap\b|802\.11|wifi/i)) {
     return `**${choice}** assumes a centralized WLC/CAPWAP architecture rather than standalone AP operation.`
   }
-  if (/\bdr\b|\bbdr\b|designated router|backup designated/i.test(w)) {
+  if (/\bdr\b|\bbdr\b|designated router|backup designated/i.test(w) && about(/ospf|adjacency|election|multiaccess|broadcast segment/i)) {
     return `**${choice}** states an OSPF DR/BDR election outcome or role that may not apply on this segment.`
   }
-  if (/eigrp|rip|bgp|isis/i.test(w)) {
+  if (/\beigrp\b|\brip\b|\bbgp\b|\bis-?is\b/i.test(w) && about(/ospf|routing protocol|route|adjacency|lsa|area \d/i)) {
     return `**${choice}** applies another routing protocol's behavior instead of OSPF-specific rules.`
   }
-  if (/json|yaml|xml|rest|ansible|terraform|netconf|gnmi|python/i.test(w)) {
+  if (/\bjson\b|\byaml\b|\bxml\b|\brest\b|\bansible\b|\bterraform\b|\bnetconf\b|\bgnmi\b|\bpython\b/i.test(w) && about(/automation|api|controller|sdn|programmab|orchestrat|payload|script/i)) {
     return `**${choice}** names an automation tool, data format, or API style that may not match the stem's orchestration model.`
   }
-  if (/telnet\b/i.test(w)) {
+  if (/\btelnet\b/i.test(w) && about(/remote|management|ssh|access|secure|line vty/i)) {
     return `**${choice}** uses cleartext Telnet for remote device management.`
   }
-  if (/arp request|gratuitous arp/i.test(w)) {
+  if (/arp request|gratuitous arp/i.test(w) && about(/arp|mac|layer 2|frame|switch/i)) {
     return `**${choice}** expects the switch to originate ARP instead of forwarding based on MAC lookup.`
   }
   if (/show (?:ip|mac|vlan|cdp|ospf|run)|display/i.test(w)) {
     return `**${choice}** is a verification command that inspects a different table or feature than the stem asks about.`
   }
-  if (/\/\d{1,3}|ipv6|slaac|fe80|link-local/i.test(w)) {
+  if (/\/\d{1,3}|\bipv6\b|\bslaac\b|fe80|link-local/i.test(w) && about(/ipv6|prefix|address|subnet|slaac|eui-64/i)) {
     return `**${choice}** states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.`
   }
-  if (/tcp\b|udp\b|icmp\b|port \d+/i.test(w)) {
+  if (/\btcp\b|\budp\b|\bicmp\b|port \d+/i.test(w) && about(/transport|tcp|udp|icmp|port|segment|handshake|reliab/i)) {
     return `**${choice}** names a transport protocol or port behavior that may not match reliability or connection requirements.`
   }
-  if (/ffff\.ffff\.ffff|broadcast mac|multicast/i.test(w)) {
+  if (/ffff\.ffff\.ffff|broadcast mac|\bmulticast\b/i.test(w) && about(/mac|frame|ethernet|layer 2|broadcast|multicast/i)) {
     return `**${choice}** gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.`
   }
-  if (/\bhub\b/i.test(w)) {
+  if (/\bhub\b/i.test(w) && about(/switch|collision|frame|forward|ethernet|layer 2/i)) {
     return `**${choice}** treats a hub's repeat-all-ports behavior as equivalent to selective switch forwarding.`
   }
-  if (/aging|timer|\d+\s*seconds/i.test(w)) {
+  if (/\baging\b|\btimer\b|\d+\s*seconds/i.test(w) && about(/aging|timer|mac|cam|table|hold|dead|hello/i)) {
     return `**${choice}** states a MAC aging timer or timeout value that may not match the default or configured setting.`
   }
-  if (/svi|inter-vlan|vlan interface|router-on-a-stick/i.test(w)) {
+  if (/\bsvi\b|inter-vlan|vlan interface|router-on-a-stick/i.test(w) && about(/vlan|inter-vlan|routing|layer 3|svi|subinterface/i)) {
     return `**${choice}** describes an inter-VLAN routing approach (SVI or router-on-a-stick) that may not fit this topology.`
   }
-  if (/snmp v1|snmp v2|trap|inform|community/i.test(w)) {
+  if (/snmp\s*v[123]|\btrap\b|\binform\b|\bcommunity\b/i.test(w) && about(/snmp|monitor|management|trap|mib/i)) {
     return `**${choice}** mixes SNMP version, trap/inform, or community/security features.`
   }
-  if (/severity|facility|syslog/i.test(w)) {
+  if (/\bseverity\b|\bfacility\b|\bsyslog\b/i.test(w) && about(/syslog|logging|severity|facility|log level/i)) {
     return `**${choice}** assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.`
   }
-  if (/static route|ip route/i.test(w)) {
+  if (/static route|ip route/i.test(w) && about(/route|routing|next-hop|next hop|gateway|forward/i)) {
     return `**${choice}** configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.`
   }
   if (/^true$|^false$/i.test(w.trim())) {
@@ -406,9 +414,18 @@ function buildWhatItDoes(wrong, hooks, blob) {
 }
 
 /** Build structured stem-anchored review for one wrong choice. */
+/**
+ * Choice text used inside a generated sentence. Trailing sentence punctuation
+ * is stripped because every template continues the clause after it — without
+ * this, an authored choice ending in a period splices two sentences together.
+ */
+function clause(text) {
+  return normalize(text).replace(/[.!?;:,]+$/, '')
+}
+
 export function buildStemAnchoredIncorrect({ q, choiceIndex }) {
-  const wrong = q.choices?.[choiceIndex] || ''
-  const correct = correctChoiceText(q)
+  const wrong = clause(q.choices?.[choiceIndex] || '')
+  const correct = clause(correctChoiceText(q))
   const fact = (q.explanation || '').trim()
   const hooks = extractStemHooks(q.question, q.explanation, q.concept)
   const blob = `${q.question || ''} ${q.concept || ''} ${fact} ${correct}`.toLowerCase()

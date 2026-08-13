@@ -25,6 +25,24 @@ export function isTemplateWhyWrongHere(text) {
   return FALLBACK_EXPLANATION_RE.some(re => re.test(text))
 }
 
+/**
+ * Sentence-splice / cross-topic contamination: a generated clause stapled onto
+ * a choice that already ended a sentence ("...at the router. applies another
+ * routing protocol's behavior"). Always a generation defect, never authored.
+ */
+const SPLICED_PROSE_RE = /[a-z0-9)\]]\.\s+(?:implies|matches|gives|points|is the|applies|names|describes|treats|expects|selects|states|uses|relies|assigns|configures|sends|claims|shifts|lists|hides|picks|assumes|forwards)\b/
+
+export function isSplicedProse(text) {
+  if (!text || typeof text !== 'string') return false
+  return SPLICED_PROSE_RE.test(text)
+}
+
+/** Any debrief field carrying a splice. */
+export function hasSplicedProse(item) {
+  if (!item) return false
+  return isSplicedProse(item.whatItDoes) || isSplicedProse(item.whyWrongHere) || isSplicedProse(item.explanation)
+}
+
 export const GENERIC_TRAP_RE = /^Picking a familiar term without matching the exact behavior tested$/i
 
 export function isFallbackExplanation(text) {
@@ -127,6 +145,11 @@ export function validateQuestionAnswerReview(q) {
     }
     if (isGenericTrap(item.misconceptionTested)) {
       errors.push(`${where}: generic trap for choice ${item.choiceIndex}`)
+    }
+    // Sentence-splice / cross-topic contamination is always a generation
+    // defect — it renders to the learner as confident, specific, wrong copy.
+    if (hasSplicedProse(item)) {
+      errors.push(`${where}: spliced cross-topic prose for choice ${item.choiceIndex}`)
     }
     if (identicalWhyWrong && item.whyWrongHere && whyWrongTexts.filter(t => t === item.whyWrongHere).length > 1) {
       errors.push(`${where}: identical whyWrongHere across sibling distractors for choice ${item.choiceIndex}`)

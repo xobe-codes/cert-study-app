@@ -6,6 +6,7 @@ import {
   isFallbackExplanation,
   isGenericTrap,
   isTemplateWhyWrongHere,
+  hasSplicedProse,
 } from './answerReview/answerReviewQuality.js'
 import {
   resolveWrongChoice,
@@ -118,6 +119,9 @@ function bankIncorrectFor(q, choiceIndex) {
   if (!item) return null
   const resolved = resolveIncorrectItem(q, item)
   if (resolved.genericDebrief || isTemplateWhyWrongHere(resolved.whyWrongHere)) return null
+  // Stored text can carry splices baked in by an older generator — regenerate
+  // rather than teaching an unrelated topic's boilerplate.
+  if (hasSplicedProse(resolved)) return null
   return resolved
 }
 
@@ -127,6 +131,7 @@ function resolveWrongChoiceForReview(q, choiceIndex, { fromGold = null } = {}) {
     const goldExplicit = hasExplicitSadeFields(fromGold)
       && !isTemplateWhyWrongHere(fromGold.whyWrongHere)
       && !isTemplateWhyWrongHere(fromGold.whatItDoes)
+      && !hasSplicedProse(fromGold)
       && fromGold.explanation
       && !isFallbackExplanation(fromGold.explanation)
     if (goldExplicit) {
