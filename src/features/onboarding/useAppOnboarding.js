@@ -2,8 +2,8 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import { saveProgress } from '../../storage/appPersistence.js'
 import { loadTourDone, saveTourDone } from '../../settings/settingsActions.js'
-import { computeMastery } from '../../netUtils.js'
 import { logEvent } from '../../eventLog.js'
+import { mergeOnboardingResultsIntoProgress } from './onboardingProgressMerge.js'
 import { loadAllPlacementRecords } from '../domainPlacement/domainPlacementStorage.js'
 import { getNextUncheckedBaselineDomain } from '../domainPlacement/domainBaselineStudyPlan.js'
 
@@ -14,32 +14,20 @@ export function useAppOnboarding({ loaded, view, setView, setProgress }) {
   const [showTour, setShowTour] = useState(false)
 
   const finishOnboarding = useCallback(async (results) => {
-    if (!onboardingReplayRef.current) {
-      setProgress(prev => {
-        const next = { ...prev }
-        for (const [objectiveId, r] of Object.entries(results || {})) {
-          const entry = next[objectiveId] || { status: 'unseen', quizScores: [] }
-          const newScores = [...(entry.quizScores || []), { score: r.correct, total: r.total, date: Date.now() }]
-          const { score: masteryScore, mastered } = computeMastery({
-            quizScores: newScores,
-            confidenceRatings: entry.confidenceRatings || [],
-          })
-          next[objectiveId] = {
-            ...entry,
-            status: mastered ? 'mastered' : 'in_progress',
-            quizScores: newScores,
-            masteryScore,
-            lastSeen: Date.now(),
-          }
-        }
-        saveProgress(next)
-        return next
-      })
-      logEvent('user_completed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
-    } else {
-      logEvent('user_replayed_onboarding', { objectivesCovered: Object.keys(results || {}).length })
-    }
     const wasReplay = onboardingReplayRef.current
+    // Recording the quiz results is not first-time-only setup — a replay is a
+    // real retake and its answers must update mastery the same way the first
+    // pass does. Onboarding.jsx's completion screen tells the learner their
+    // progress was saved regardless of replay status, so this used to make
+    // that claim false: retaking silently discarded every answer.
+    setProgress(prev => {
+      const next = mergeOnboardingResultsIntoProgress(prev, results)
+      saveProgress(next)
+      return next
+    })
+    logEvent(wasReplay ? 'user_replayed_onboarding' : 'user_completed_onboarding', {
+      objectivesCovered: Object.keys(results || {}).length,
+    })
     onboardingReplayRef.current = false
     await window.storage.setItem(STORAGE_KEYS.onboardDone, true)
     if (!wasReplay) {
