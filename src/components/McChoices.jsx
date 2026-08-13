@@ -37,16 +37,17 @@ function choiceStyle(idx, { revealed, selected, correctIndex }) {
   return { bg, border, color, borderWidth, fontWeight }
 }
 
-function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect, dimmed = false }) {
+function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect, dimmed = false, tabbable = false, buttonRef }) {
   const { bg, border, color, borderWidth, fontWeight } = choiceStyle(idx, { revealed, selected, correctIndex })
   return (
     <button
+      ref={buttonRef}
       type="button"
       role="radio"
       aria-checked={selected === idx}
-      tabIndex={-1}
+      tabIndex={tabbable ? 0 : -1}
       aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${choice}`}
-      onClick={() => onSelect(idx)}
+      onClick={e => { onSelect(idx); e.currentTarget.focus() }}
       onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
       style={{
         display: 'block', width: '100%', maxWidth: '100%', textAlign: 'left', minHeight: 44, marginBottom: 8,
@@ -79,6 +80,13 @@ export default function McChoices({
   shuffleChoices = true,
 }) {
   const groupRef = useRef(null)
+  // Real DOM focus follows the roving tabindex (WAI-ARIA radiogroup pattern):
+  // exactly one choice is a tab stop at a time, and arrow/digit-key selection
+  // moves actual focus there — not just the visual highlight. Without this,
+  // Tab never reaches an individual choice (the group div was the only stop,
+  // with its outline suppressed and nothing to replace it), and a screen
+  // reader gets no per-choice focus event to announce aria-checked from.
+  const buttonRefs = useRef({})
   const [othersOpen, setOthersOpen] = useState(false)
   const ctxShuffle = useMcChoiceShuffleContext()
   const localShuffle = useMcChoiceShuffle(q, { enabled: shuffleChoices && !ctxShuffle })
@@ -87,6 +95,9 @@ export default function McChoices({
   const choiceCount = displayQ?.choices?.length || 0
   const displaySelected = selected == null ? null : toDisplayIndex(selected)
   const displayCorrect = displayQ?.correctIndex ?? q?.correctIndex
+  const activeDisplayIdx = displaySelected ?? 0
+
+  const focusDisplayIdx = idx => { buttonRefs.current[idx]?.focus() }
 
   useEffect(() => {
     if (!revealed) setOthersOpen(false)
@@ -101,16 +112,19 @@ export default function McChoices({
       if (digit >= 1 && digit <= choiceCount) {
         e.preventDefault()
         onSelect(toCanonicalIndex(digit - 1))
+        focusDisplayIdx(digit - 1)
         return
       }
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault()
         const nextDisplay = displaySelected == null ? 0 : (displaySelected + 1) % choiceCount
         onSelect(toCanonicalIndex(nextDisplay))
+        focusDisplayIdx(nextDisplay)
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault()
         const nextDisplay = displaySelected == null ? choiceCount - 1 : (displaySelected - 1 + choiceCount) % choiceCount
         onSelect(toCanonicalIndex(nextDisplay))
+        focusDisplayIdx(nextDisplay)
       }
     }
 
@@ -130,9 +144,7 @@ export default function McChoices({
       ref={groupRef}
       role="radiogroup"
       aria-label="Answer choices"
-      tabIndex={revealed ? -1 : 0}
       className="mc-choices"
-      style={{ outline: 'none' }}
       data-choice-shuffle={shuffled ? 'on' : 'off'}
     >
       {useAccordion ? (
@@ -145,6 +157,8 @@ export default function McChoices({
               correctIndex={displayCorrect}
               selected={displaySelected}
               revealed={revealed}
+              tabbable={!revealed && idx === activeDisplayIdx}
+              buttonRef={el => { buttonRefs.current[idx] = el }}
               onSelect={displayIdx => onSelect(toCanonicalIndex(displayIdx))}
             />
           ))}
@@ -173,6 +187,8 @@ export default function McChoices({
                   correctIndex={displayCorrect}
                   selected={displaySelected}
                   revealed={revealed}
+                  tabbable={!revealed && idx === activeDisplayIdx}
+                  buttonRef={el => { buttonRefs.current[idx] = el }}
                   onSelect={displayIdx => onSelect(toCanonicalIndex(displayIdx))}
                   dimmed
                 />
@@ -189,6 +205,8 @@ export default function McChoices({
             correctIndex={displayCorrect}
             selected={displaySelected}
             revealed={revealed}
+            tabbable={!revealed && idx === activeDisplayIdx}
+            buttonRef={el => { buttonRefs.current[idx] = el }}
             onSelect={displayIdx => onSelect(toCanonicalIndex(displayIdx))}
           />
         ))
