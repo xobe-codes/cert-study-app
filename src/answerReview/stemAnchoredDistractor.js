@@ -675,6 +675,42 @@ function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   if (/^aes$/i.test(w) && /^mic$/i.test(c) && /replay|integrity|alter/i.test(b)) {
     return `The **Message Integrity Check (MIC)** is what detects tampering and replay of WPA frames — AES is the encryption cipher, a separate function — **${correct}** is the integrity mechanism; **${wrong}** names the encryption algorithm instead.`
   }
+  if (/^crc$/i.test(w) && /^mic$/i.test(c) && /replay|altering/i.test(b)) {
+    return `WPA's **MIC** is a cryptographic check that detects both tampering and replay — plain CRC only catches accidental bit errors and can be forged, which is exactly why WEP's CRC-based integrity check was considered broken — **${correct}** is the secure mechanism; **${wrong}** is the weaker checksum WPA replaced.`
+  }
+  if (/^64-bit$|^128-bit$|^256-bit$/i.test(w.trim()) && /^192-bit$/i.test(c.trim()) && /wpa3-enterprise/i.test(b)) {
+    return `WPA3-Enterprise's highest security mode uses a **192-bit** cryptographic suite (CNSA-aligned) — **${correct}** is that value; **${wrong}** states a different bit length that doesn't match WPA3-Enterprise's actual suite.`
+  }
+  if (/released as a fix for poor coverage/i.test(w) && /released as a fix for poor encryption/i.test(c)) {
+    return `WPA was rushed out specifically to replace WEP's broken **encryption** (RC4/static keys), not to address coverage or range — **${correct}** states that correctly; **${wrong}** attributes WPA's purpose to a problem it wasn't designed to solve.`
+  }
+  if (/the use of certificates|pre-shared keys|crc checking/i.test(w) && /frame-level encryption/i.test(c) && /802\.11i/i.test(b)) {
+    return `802.11i is the amendment that added real **frame-level encryption** (AES-CCMP) to replace WEP's weak per-frame protection — **${correct}** is that feature; **${wrong}** names a WPA/WPA2 authentication or integrity detail that already existed, not what 802.11i specifically added.`
+  }
+  if (/^rc4$|^md5$|^sha1$/i.test(w.trim()) && /^aes-ccmp$/i.test(c.trim()) && /802\.11i.*wpa2|wpa2.*802\.11i/i.test(b)) {
+    return `802.11i (WPA2) introduced **AES-CCMP** as its encryption mode, replacing WEP/WPA's RC4-based TKIP — **${correct}** is that mode; **${wrong}** is a stream cipher or hash algorithm, not the block-cipher encryption mode WPA2 introduced.`
+  }
+  if (/^certificate support$|^per-frame encryption$/i.test(w.trim()) && /^sae authentication$/i.test(c.trim()) && /wpa3/i.test(b)) {
+    return `WPA3's headline addition is **SAE (Simultaneous Authentication of Equals)**, replacing WPA2-Personal's vulnerable 4-way handshake — **${correct}** is that feature; **${wrong}** names a capability that already existed (certificates in Enterprise mode) or isn't the specific WPA3 addition this stem asks about.`
+  }
+  if (/^ntp server$|^psk$|^captive portal$/i.test(w.trim()) && /^radius server$/i.test(c.trim()) && /wpa2-enterprise/i.test(b)) {
+    return `WPA2-Enterprise authenticates each user through 802.1X, which requires a **RADIUS server** as the authentication backend — **${correct}** is that requirement; **${wrong}** is unrelated to Enterprise authentication (PSK is what Personal mode uses instead).`
+  }
+  if (/^aes$/i.test(w.trim()) && /^tkip$/i.test(c.trim()) && /fall back to the older wpa specification/i.test(b)) {
+    return `**TKIP** is the WPA (not WPA2) cipher — leaving it enabled lets the AP negotiate down to the weaker original WPA — disabling TKIP (allowing only AES) forces WPA2-only operation — **${correct}** is what to disable; **${wrong}** (AES) is the stronger cipher you want to keep, not remove.`
+  }
+  if (/^mac filtering$/i.test(w.trim()) && /^tkip$/i.test(c.trim()) && /fall back to the older wpa specification/i.test(b)) {
+    return `Disabling **TKIP** (the WPA-era cipher) is what prevents fallback to original WPA — **${correct}** is that parameter; **${wrong}** (MAC filtering) is an unrelated access-control feature that has nothing to do with cipher negotiation.`
+  }
+  if (/^aes$/i.test(w.trim()) && /^psk$/i.test(c.trim()) && /symmetrical key with wpa2/i.test(b)) {
+    return `**PSK (Pre-Shared Key)** is the symmetric-key authentication mechanism in WPA2-Personal — **${correct}** is that mechanism; **${wrong}** (AES) is the encryption cipher used once a session is established, not the authentication method itself.`
+  }
+  if (/^certificates$/i.test(w.trim()) && /^psk$/i.test(c.trim()) && /symmetrical key with wpa2/i.test(b)) {
+    return `**PSK** is WPA2's symmetric-key authentication mechanism — everyone shares the same secret — **${correct}** is that mechanism; **${wrong}** (certificates) is an asymmetric-key mechanism used in Enterprise mode, not a symmetric one.`
+  }
+  if (/^aes$|^ccmp$|^psk$/i.test(w.trim()) && /^tkip$/i.test(c.trim()) && /high throughput rates/i.test(b)) {
+    return `**TKIP**'s per-packet key mixing and Michael integrity check add processing overhead that caps throughput well below 802.11n/ac rates (many chipsets disable high-throughput modes entirely when TKIP is configured) — **${correct}** is that protocol; **${wrong}** is a cipher or authentication mechanism that doesn't carry TKIP's throughput penalty.`
+  }
   if (/anti-?malware software|antivirus software|certificates/i.test(w) && /^training$/i.test(c) && /phishing/i.test(b)) {
     return `Phishing targets human judgment, so user **training** (recognizing suspicious emails) is the actual defense this stem asks for — **${correct}** is that control; **${wrong}** is a technical control that doesn't stop a user from being socially engineered.`
   }
@@ -1462,6 +1498,42 @@ function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/^aes$/i.test(w) && about(/mic|integrity|replay/i)) {
     return `**${choice}** names the encryption cipher, not the integrity-check mechanism this stem asks about.`
+  }
+  if (/^crc$/i.test(w) && about(/mic|replay|altering/i)) {
+    return `**${choice}** is the weaker checksum WPA's MIC replaced — it can't detect deliberate tampering.`
+  }
+  if (/^64-bit$|^128-bit$|^256-bit$/i.test(w.trim()) && about(/wpa3-enterprise|192-bit/i)) {
+    return `**${choice}** states a bit length that doesn't match WPA3-Enterprise's actual 192-bit suite.`
+  }
+  if (/released as a fix for poor coverage/i.test(w) && about(/wpa|wep/i)) {
+    return `**${choice}** attributes WPA's purpose to a problem it wasn't designed to solve.`
+  }
+  if (/the use of certificates|pre-shared keys|crc checking/i.test(w) && about(/802\.11i|frame-level encryption/i)) {
+    return `**${choice}** names an authentication or integrity detail that already existed, not what 802.11i specifically added.`
+  }
+  if (/^rc4$|^md5$|^sha1$/i.test(w.trim()) && about(/aes-ccmp|802\.11i/i)) {
+    return `**${choice}** names a stream cipher or hash algorithm, not WPA2's block-cipher encryption mode.`
+  }
+  if (/^certificate support$|^per-frame encryption$/i.test(w.trim()) && about(/sae authentication|wpa3/i)) {
+    return `**${choice}** names a capability that already existed or isn't the specific addition WPA3 introduced.`
+  }
+  if (/^ntp server$|^psk$|^captive portal$/i.test(w.trim()) && about(/radius server|wpa2-enterprise/i)) {
+    return `**${choice}** is unrelated to (or the wrong mode for) WPA2-Enterprise's 802.1X authentication backend.`
+  }
+  if (/^aes$/i.test(w.trim()) && about(/tkip|fall back to the older wpa/i)) {
+    return `**${choice}** names the stronger cipher you want to keep, not the one to disable.`
+  }
+  if (/^mac filtering$/i.test(w.trim()) && about(/tkip|fall back to the older wpa/i)) {
+    return `**${choice}** is an unrelated access-control feature, not the cipher-negotiation setting.`
+  }
+  if (/^aes$/i.test(w.trim()) && about(/psk|symmetrical key/i)) {
+    return `**${choice}** names the encryption cipher, not the authentication method itself.`
+  }
+  if (/^certificates$/i.test(w.trim()) && about(/psk|symmetrical key/i)) {
+    return `**${choice}** is an asymmetric-key mechanism, not the symmetric one this stem asks about.`
+  }
+  if (/^aes$|^ccmp$|^psk$/i.test(w.trim()) && about(/tkip|throughput rates/i)) {
+    return `**${choice}** doesn't carry TKIP's per-packet processing overhead that caps throughput.`
   }
   if (/anti-?malware software|antivirus software|certificates/i.test(w) && about(/phishing|social engineering/i)) {
     return `**${choice}** names a technical control that doesn't address the human-judgment gap phishing exploits.`
