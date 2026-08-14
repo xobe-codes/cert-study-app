@@ -15,3 +15,10 @@ import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviewsData.js'
 import { setGoldAnswerReviewsRegistry } from '../answerReview/goldAnswerReviews.js'
 
 setGoldAnswerReviewsRegistry(GOLD_ANSWER_REVIEWS)
+
+// Same reasoning for the SADE distractor templates: they lazy-load alongside
+// the question bank in the browser, so install them synchronously here too.
+import * as stemAnchoredTemplates from '../answerReview/stemAnchoredTemplates.js'
+import { setStemAnchoredTemplatesModule } from '../answerReview/stemAnchoredDistractor.js'
+
+setStemAnchoredTemplatesModule(stemAnchoredTemplates)

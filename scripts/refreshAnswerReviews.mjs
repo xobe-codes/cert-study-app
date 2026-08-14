@@ -35,9 +35,11 @@ console.log(`✓ Refreshed answerReview on ${questions} questions in ${files} fi
 
 import { spawnSync } from 'node:child_process'
 import { loadGoldAnswerReviews } from '../src/answerReview/goldAnswerReviews.js'
+import { loadStemAnchoredTemplates } from '../src/answerReview/stemAnchoredDistractor.js'
 
 // Gold reviews load on demand in the browser; scripts must install them
 // explicitly or they validate/generate against a chain missing its top tier.
 await loadGoldAnswerReviews()
+await loadStemAnchoredTemplates()
 const r = spawnSync(process.execPath, [join(ROOT, 'scripts', 'compileCleanQuestionsModule.mjs')], { stdio: 'inherit' })
 process.exit(r.status ?? 1)

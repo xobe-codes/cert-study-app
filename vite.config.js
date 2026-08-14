@@ -41,6 +41,8 @@ export default defineConfig({
           // Gold reviews are no longer in the startup chunk, so precache them
           // explicitly or offline debriefs lose their hand-authored copy.
           'assets/goldAnswerReviewsData*.js',
+          // Same reasoning for the SADE distractor templates.
+          'assets/stemAnchoredTemplates*.js',
           'assets/mock-exam*.js',
           'assets/study-modes*.js',
           'assets/labs*.js',
@@ -225,6 +227,11 @@ export default defineConfig({
           // chunk *name*: naming this aggregator-of-many-leaves is what
           // reproduced the same-chunk TDZ described earlier.
           if (id.includes('/answerReview/goldAnswerReviews')) return undefined
+          // Same treatment: the SADE distractor templates (hundreds of topic-
+          // specific explanation branches) are reached only through the
+          // dynamic import in stemAnchoredDistractor.js's loadStemAnchoredTemplates,
+          // so let Rollup give this its own async chunk instead of bloating core.
+          if (id.includes('/answerReview/stemAnchoredTemplates')) return undefined
           if (id.includes('/src/')) return 'core'
         },
       },
