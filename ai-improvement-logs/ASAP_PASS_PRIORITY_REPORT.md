@@ -8,14 +8,14 @@ _None at floor._
 
 
 ## Automation domain (6.1–6.6)
-- 6.1: tier A, 12 traps, 16 Q, lab ✓
-- 6.2: tier A, 12 traps, 19 Q, lab ✓
-- 6.3: tier A, 12 traps, 34 Q, lab ✓
-- 6.4: tier A, 12 traps, 21 Q, lab ✓
-- 6.5: tier A, 12 traps, 30 Q, lab ✓
-- 6.6: tier A, 12 traps, 40 Q, lab ✓
+- 6.1: tier A, 15 traps, 21 Q, lab ✓
+- 6.2: tier A, 14 traps, 23 Q, lab ✓
+- 6.3: tier A, 15 traps, 38 Q, lab ✓
+- 6.4: tier A, 14 traps, 26 Q, lab ✓
+- 6.5: tier A, 14 traps, 34 Q, lab ✓
+- 6.6: tier A, 14 traps, 45 Q, lab ✓
 
 ## WLAN watch
-- 5.8: 23 Q, 12 traps, tier A
-- 5.9: 16 Q, 12 traps, tier A
+- 5.8: 27 Q, 14 traps, tier A
+- 5.9: 15 Q, 14 traps, tier A
 
