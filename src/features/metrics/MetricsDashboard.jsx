@@ -5,6 +5,7 @@ import { DOMAINS, ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from '../../ui/appTheme.js'
 import { STATIC_COPY } from '../../ui/staticContentCopy.js'
 import CuratedStaticBadge from '../../components/CuratedStaticBadge.jsx'
+import { QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import QuestionHealthAdminSection from '../../components/QuestionHealthAdminSection.jsx'
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import Spinner from '../../components/Spinner.jsx'
@@ -682,7 +683,7 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
                                 </div>
                                 {correctAnswer && (
                                   <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.mint, marginTop: 2 }}>
-                                    ✓ {correctAnswer}
+                                    ✓ <QuizRichText text={correctAnswer} />
                                   </div>
                                 )}
                               </div>

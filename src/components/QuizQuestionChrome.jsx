@@ -185,7 +185,7 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
             }}
           >
             <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0, minWidth: 22, textAlign: 'center' }}>{idx + 1}</span>
-            <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{item}</span>
+            <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={item} /></span>
             {!revealed && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                 <button type="button" onClick={() => reorder(idx, idx - 1)} disabled={idx === 0}
@@ -198,7 +198,14 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
         )
       })}
       {revealed && correctOrder && (
-        <div style={{ ...styles.small, marginTop: 4 }}>Correct order: {correctOrder.map((s, i) => `${i + 1}. ${s}`).join(' → ')}</div>
+        <div style={{ ...styles.small, marginTop: 4 }}>
+          Correct order: {correctOrder.map((s, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && ' → '}
+              {i + 1}. <QuizRichText text={s} />
+            </React.Fragment>
+          ))}
+        </div>
       )}
     </div>
   )

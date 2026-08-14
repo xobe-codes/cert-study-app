@@ -20,6 +20,7 @@ import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 import { regenIncorrectFor } from './features/explanationIntegration.js'
 import { sanitizeAnswerText } from './lib/voiceProse.js'
 import { isMultiQuestion, multiCorrectIndexes, correctChoiceText } from './questionUtils.js'
+import { stripRichTextMarkup } from './lesson/richTextParse.js'
 
 export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
@@ -27,7 +28,7 @@ const CHOICE_HEADER_TRUNCATE = 80
 
 /** Trim choice text for AnswerReview block titles (~80 chars). */
 export function truncateChoiceLabel(text, maxLen = CHOICE_HEADER_TRUNCATE) {
-  const s = String(text ?? '').replace(/\s+/g, ' ').trim()
+  const s = stripRichTextMarkup(text).replace(/\s+/g, ' ').trim()
   if (!s) return ''
   if (s.length <= maxLen) return s
   return `${s.slice(0, maxLen - 1)}…`

@@ -4,6 +4,8 @@ import { getRevealedChoiceLayout } from '../mcChoicesLogic.js'
 import { useMcChoiceShuffle } from '../hooks/useMcChoiceShuffle.js'
 import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
+import { QuizRichText } from './QuizQuestionChrome.jsx'
+import { stripRichTextMarkup } from '../lesson/richTextParse.js'
 
 function choiceStyle(idx, { revealed, selected, correctIndex }) {
   let bg = COLORS.surface
@@ -46,7 +48,7 @@ function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect,
       role="radio"
       aria-checked={selected === idx}
       tabIndex={tabbable ? 0 : -1}
-      aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${choice}`}
+      aria-label={`Choice ${String.fromCharCode(65 + idx)}: ${stripRichTextMarkup(choice)}`}
       onClick={e => { onSelect(idx); e.currentTarget.focus() }}
       onKeyDown={e => { if (!revealed && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onSelect(idx) } }}
       style={{
@@ -65,7 +67,7 @@ function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect,
           // signal without depending on color perception.
           : (idx === selected ? '● ' : '○ ')}{String.fromCharCode(65 + idx)}.
       </span>
-      <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{choice}</span>
+      <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={choice} /></span>
     </button>
   )
 }
