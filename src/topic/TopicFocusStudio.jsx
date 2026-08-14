@@ -19,6 +19,7 @@ import {
   loadFocusSets,
   loadPinnedConcepts,
   saveFocusSet,
+  togglePinnedConcept,
 } from './topicFocusStorage.js'
 
 const SORT_OPTIONS = [
@@ -258,6 +259,11 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
     setSaveName('')
     setShowSave(false)
     return entry
+  }
+
+  async function handlePin(conceptId) {
+    const next = await togglePinnedConcept(conceptId)
+    setPinned(next)
   }
 
   function startQuiz() {
@@ -523,21 +529,40 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
                     const isWeak = con.ckuIds?.some(k => weakCkUs.has(k))
                     const isPin = pinned.includes(con.id)
                     return (
-                      <button
+                      <div
                         key={con.id}
-                        type="button"
                         className={sel && flashConceptId === con.id ? 'topic-focus-concept-pill--selected' : undefined}
-                        onClick={() => toggleConcept(con.id)}
                         style={{
                           ...styles.pill(sel ? kindAccent(con.kind) : 'silver'),
                           border: sel ? 'none' : `1px solid ${COLORS.border}`,
-                          cursor: 'pointer', fontFamily: 'inherit', maxWidth: '100%',
-                          textAlign: 'left', lineHeight: 1.3, padding: '6px 10px',
+                          display: 'flex', alignItems: 'center', gap: 4, maxWidth: '100%', padding: '4px 4px 4px 10px',
                         }}
                       >
-                        <span style={{ fontSize: 'var(--ccna-type-micro)', opacity: 0.85 }}>{CONCEPT_KIND_LABEL[con.kind]} · {con.objectiveId}</span>
-                        <div style={{ fontSize: 'var(--ccna-type-xs)' }}>{con.label}{isWeak ? ' · weak' : ''}{isPin ? ' · 📌' : ''}</div>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleConcept(con.id)}
+                          style={{
+                            background: 'none', border: 'none', padding: '2px 0', margin: 0, color: 'inherit',
+                            cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', lineHeight: 1.3, minWidth: 0,
+                          }}
+                        >
+                          <span style={{ fontSize: 'var(--ccna-type-micro)', opacity: 0.85 }}>{CONCEPT_KIND_LABEL[con.kind]} · {con.objectiveId}</span>
+                          <div style={{ fontSize: 'var(--ccna-type-xs)' }}>{con.label}{isWeak ? ' · weak' : ''}</div>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handlePin(con.id)}
+                          aria-label={isPin ? `Unpin ${con.label}` : `Pin ${con.label}`}
+                          aria-pressed={isPin}
+                          style={{
+                            background: 'none', border: 'none', padding: 4, margin: 0, cursor: 'pointer',
+                            fontSize: 'var(--ccna-type-sm)', lineHeight: 1, flexShrink: 0, opacity: isPin ? 1 : 0.4,
+                            minWidth: 28, minHeight: 28,
+                          }}
+                        >
+                          📌
+                        </button>
+                      </div>
                     )
                   })}
                 </div>
