@@ -319,7 +319,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       }
     })()
     return () => { cancelled = true }
-  }, [progress, missed])
+  }, [progress, missed, commandDrills])
 
   // Retention health feeds the Exam Readiness score below — reload whenever
   // progress changes (a finished quiz can shift a section's SRS state).

@@ -328,7 +328,7 @@ export function QuizTab({
       shownAtRef.current = Date.now()
       setUnknownMarked(false)
     }
-  }, [phase, current?.id, current?.question])
+  }, [phase, current?.id, current?.question]) // eslint-disable-line react-hooks/exhaustive-deps -- keyed on content, not the `current` ref
 
   // Optional, backward-compatible diagnosis (pure — reuses existing answer-review resolution).
   function missEntry(question, submittedAnswer, correct, extra) {

@@ -81,7 +81,12 @@ export function useAppNavigation() {
       setReturnToView,
       setView,
     }
-  })
+    // Every setter above is a plain useState setter, guaranteed referentially
+    // stable by React for the component's lifetime — so running this once on
+    // mount produces the exact same nestedApi.current as re-running it after
+    // every render (nothing in it can ever actually change). `[]` avoids the
+    // pointless per-render reassignment without changing behavior.
+  }, [])
 
   const openLab = useCallback((labId, from = 'labs') => {
     setSelectedLab(labId)

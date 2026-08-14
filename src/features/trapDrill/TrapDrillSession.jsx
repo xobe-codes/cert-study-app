@@ -78,7 +78,12 @@ export default function TrapDrillSession({ prefill, onBack, onOpenLab, onOpenTra
       ? pool.filter(q => missedIds.has(q.id))
       : pool
     return randomizeQuestionOrder(filtered)
-  }, [scope, resolved, isFirstPass])
+    // Deliberately excludes missedIds: it's read here, but the intent is
+    // "reshuffle once when the pass boundary flips" (isFirstPass), not "on
+    // every wrong answer" — missedIds changes on every wrong answer during
+    // the first pass, and re-shuffling then would scramble `questions` out
+    // from under the current `idx`, skipping/repeating questions mid-session.
+  }, [scope, resolved, isFirstPass]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const current = questions[idx]
   const done = scope && idx >= questions.length
