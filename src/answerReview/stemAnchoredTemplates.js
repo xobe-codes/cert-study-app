@@ -980,7 +980,7 @@ export function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
   return `The explanation establishes: **${evidence}** Therefore **${correct}** fits the tested condition, while **${wrong}** would produce a different routing or protocol result.`
 }
 
-export function buildWhatItDoes(wrong, hooks, blob) {
+export function buildWhatItDoes(wrong, hooks, blob, fact) {
   // Templates below continue the sentence after the choice, so a choice that
   // already ends in punctuation would splice ("...at the router. applies ...").
   const choice = normalize(wrong).replace(/[.!?;:,]+$/, '')
@@ -1131,8 +1131,8 @@ export function buildWhatItDoes(wrong, hooks, blob) {
   if (/0c07/i.test(w) && about(/hsrp|mac address/i)) {
     return `**${choice}** points at the fixed HSRP virtual-MAC vendor prefix instead of the group field.`
   }
-  if (/^\d{1,3}$/.test(w.trim()) && about(/administrative distance|\bad\b/i)) {
-    return `**${choice}** states a specific administrative-distance number.`
+  if (/^\d{1,3}$|^ad of \d+$/i.test(w.trim()) && about(/administrative distance|\bad\b/i)) {
+    return `**${choice}** states a specific administrative-distance value.`
   }
   if (/^\d{2,3}$/.test(w.trim()) && about(/hsrp|priority/i)) {
     return `**${choice}** states a specific HSRP priority value.`
@@ -1862,6 +1862,19 @@ export function buildWhatItDoes(wrong, hooks, blob) {
   }
   if (/^\d+$/.test(w.trim()) || /\d+\s*(?:seconds?|ms|mbps|ghz|mhz)/i.test(w)) {
     return `**${choice}** gives a numeric value (timer, prefix, or rate) that may not match the fact tested in ${hook}.`
+  }
+
+  // No topic-specific template matched — before falling back to fully generic
+  // copy, quote the authored fact (when there is one) so the learner still
+  // gets a concrete reason instead of a content-free placeholder. Truncate by
+  // length rather than splitting on sentence punctuation: facts routinely
+  // contain IPs/decimals ("10.1.1.10", "87.5%") whose dots aren't sentence
+  // boundaries, so a naive split can leave one digit as "the first sentence."
+  const factText = normalize(fact)
+  let evidence = factText.slice(0, 160)
+  if (evidence && evidence.length < factText.length) evidence = `${evidence.replace(/[\s.,;:—-]+$/, '')}…`
+  if (evidence && evidence.length >= 12) {
+    return `**${choice}** does not match what this stem tests — ${evidence}`
   }
 
   return `**${choice}** points to a related idea, but not the specific behavior or value required for ${hook}.`

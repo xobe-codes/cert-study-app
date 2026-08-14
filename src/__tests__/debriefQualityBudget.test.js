@@ -19,13 +19,16 @@ import {
   isTemplateWhyWrongHere,
 } from '../answerReview/answerReviewQuality.js'
 
-// Measured 2026-08-13 after closing the isGenericStructuredFeedback quality-gate
-// gap (legacy "matches the required behavior" / "points to a related idea"
-// boilerplate was passing three separate low-quality checks uncaught) and
-// adding stem-anchored SADE coverage for the highest-volume degraded topics
-// in domains 3-6.
-const MAX_DEGRADED_RATE = 0.237
-const MAX_DEGRADED_BY_DOMAIN = { 1: 0.01, 2: 0.08, 3: 0.42, 4: 0.176, 5: 0.394, 6: 0.031 }
+// Measured 2026-08-14 (0/2682) after two architectural fixes rather than more
+// per-topic templates: (1) buildStemAnchoredIncorrect now falls back to the
+// correct choice's answerReview.explanation when a question has no top-level
+// explanation, so hook extraction and template matching aren't starved of
+// real content; (2) buildWhatItDoes quotes the authored fact instead of
+// emitting the fully generic line when no topic-specific template matches.
+// Both changes generalize instead of special-casing, so the whole backlog
+// closed in one pass. Small headroom left for future content additions.
+const MAX_DEGRADED_RATE = 0.005
+const MAX_DEGRADED_BY_DOMAIN = { 1: 0.01, 2: 0.01, 3: 0.02, 4: 0.01, 5: 0.02, 6: 0.01 }
 
 async function loadRuntimeBank() {
   const out = []

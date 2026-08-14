@@ -191,8 +191,12 @@ function fallbackContrastWithCorrect(wrong, correct, hook) {
 export function buildStemAnchoredIncorrect({ q, choiceIndex }) {
   const wrong = clause(q.choices?.[choiceIndex] || '')
   const correct = clause(correctChoiceText(q))
-  const fact = (q.explanation || '').trim()
-  const hooks = extractStemHooks(q.question, q.explanation, q.concept)
+  // Some clean-bank questions carry no top-level explanation but do carry a
+  // rich one on the correct choice's answerReview entry — fall back to that
+  // rather than starving the hook extractor (and the templates below) of any
+  // real content to anchor on.
+  const fact = (q.explanation || q.answerReview?.correct?.explanation || '').trim()
+  const hooks = extractStemHooks(q.question, fact, q.concept)
   const blob = `${q.question || ''} ${q.concept || ''} ${fact} ${correct}`.toLowerCase()
 
   if (!wrong || wrong === correct) {
@@ -206,7 +210,7 @@ export function buildStemAnchoredIncorrect({ q, choiceIndex }) {
 
   const hook = hookPhrase(hooks, 'the scenario constraint')
   const whatItDoes = templatesModule
-    ? templatesModule.buildWhatItDoes(wrong, hooks, blob)
+    ? templatesModule.buildWhatItDoes(wrong, hooks, blob, fact)
     : fallbackWhatItDoes(wrong, hook)
   const whyWrongHere = templatesModule
     ? templatesModule.contrastWithCorrect({ wrong, correct, hooks, fact, blob })
