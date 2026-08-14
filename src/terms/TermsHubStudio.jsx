@@ -14,6 +14,8 @@ import {
 import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import { speak, stopSpeaking, isTtsSupported } from '../lib/browserTts.js'
+import { QuizRichText } from '../components/QuizQuestionChrome.jsx'
+import { stripRichTextMarkup } from '../lesson/richTextParse.js'
 
 const MODES = [
   { id: 'browse', label: 'Browse' },
@@ -117,14 +119,14 @@ export default function TermsHubStudio({ onBack, domainPrefill = null }) {
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
                 <div style={{ fontWeight: 700, color: COLORS.sky }}>{card.term}</div>
                 {isTtsSupported() && (
-                  <button type="button" style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 28, padding: '2px 8px', fontSize: 'var(--ccna-type-micro)' }} onClick={() => { stopSpeaking(); speak(`${card.term}. ${card.definition}`, { rate: 0.95 }) }}>
+                  <button type="button" style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 28, padding: '2px 8px', fontSize: 'var(--ccna-type-micro)' }} onClick={() => { stopSpeaking(); speak(`${card.term}. ${stripRichTextMarkup(card.definition)}`, { rate: 0.95 }) }}>
                     ▶ Hear
                   </button>
                 )}
               </div>
-              <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45, marginTop: 6 }}>{card.definition}</div>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45, marginTop: 6 }}><QuizRichText text={card.definition} /></div>
               {card.dontConfuse && (
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, marginTop: 6 }}>{card.dontConfuse}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, marginTop: 6 }}><QuizRichText text={card.dontConfuse} /></div>
               )}
               {card.objectiveId && (
                 <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 6 }}>{card.objectiveId}</div>

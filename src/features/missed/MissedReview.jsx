@@ -10,7 +10,7 @@ import {
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
-import { QuizQuestionStem, CliModeBanner } from '../../components/QuizQuestionChrome.jsx'
+import { QuizQuestionStem, CliModeBanner, QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import { handoffStudyFromWeakSignal } from '../study/batchHandoff.js'
 import { MISSED_RETEST_PROVE_UNLOCK_MAX, dedupeMissedByQuestionId } from './missedRetestPool.js'
 
@@ -160,7 +160,7 @@ export default function MissedReview({
                 {attempt && (
                   <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.rose, marginBottom: 8, lineHeight: 1.5 }}>{attempt}</div>
                 )}
-                <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
+                <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}><QuizRichText text={m.explanation} /></div>
                 {(() => {
                   const { trap, domainId } = getMissedTrapInfo(m)
                   if (!isActionableMissedTrap(trap)) return null

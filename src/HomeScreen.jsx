@@ -24,6 +24,7 @@ import DomainBaselinePrompt from './features/domainPlacement/DomainBaselinePromp
 import ExamReadyBanner from './home/ExamReadyBanner.jsx'
 import HomeSectionLabel from './home/HomeSectionLabel.jsx'
 import ContentHealthHomeStrip from './components/ContentHealthHomeStrip.jsx'
+import { QuizRichText } from './components/QuizQuestionChrome.jsx'
 import { pickBaselineAwareStudyNext } from './features/domainPlacement/domainBaselineStudyPlan.js'
 import { resumeStudyHandoff, pickDomainLessonObjective } from './home/resumeStudy.js'
 import {
@@ -250,8 +251,8 @@ function ExamTrapWidget() {
         <span style={homePill('rose')}>⚠️ EXAM TRAP OF THE DAY</span>
         <span style={{ ...homePillCount('silver'), color: COLORS.silverMid }}>{trap.objectiveId}</span>
       </div>
-      <div style={{ ...homeTitleSm, color: COLORS.rose, marginBottom: 6 }}>{trap.trap}</div>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
+      <div style={{ ...homeTitleSm, color: COLORS.rose, marginBottom: 6 }}><QuizRichText text={trap.trap} /></div>
+      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}><QuizRichText text={trap.correction} /></div>
     </div>
   )
 }
