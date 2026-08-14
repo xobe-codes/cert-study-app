@@ -29,18 +29,20 @@ export const OBJ_11 = {
   reading: {
     id: 'READ-1.1', ckuIds: ['CKU-ROUTER', 'CKU-SWITCH', 'CKU-FIREWALL', 'CKU-AP-WLAN'], estimatedReadMinutes: 7,
     tiers: {
-      beginner: 'Every network is built from a few key device types. Routers connect different networks at Layer 3. Switches connect devices inside one LAN at Layer 2 (or route between VLANs if they are Layer 3 switches). Firewalls filter traffic for security. Access points give Wi‑Fi clients a path to the wired network. Controllers manage many APs (or other devices) from one place. Endpoints are PCs, phones, and IoT; servers provide services like DNS and web hosting.',
+      beginner: 'Every network is built from a few key device types. Routers connect different networks at Layer 3. Switches connect devices inside one LAN at Layer 2 (or route between VLANs if they are Layer 3 switches). Firewalls filter traffic for security.\n\nAccess points give Wi‑Fi clients a path to the wired network. Controllers manage many APs (or other devices) from one place. Endpoints are PCs, phones, and IoT; servers provide services like DNS and web hosting.',
       intermediate: 'Routers use routing tables to forward IP packets between subnets — they are the default gateway for LANs. L2 switches learn MAC addresses and forward frames within a broadcast domain; L3 switches add SVIs to route between VLANs without an external router. NGFWs do stateful filtering plus application-aware inspection, often with integrated IPS/IDS. APs bridge 802.11 clients to Ethernet — autonomous (standalone) or lightweight (WLC-managed). Controllers (WLC, DNA Center) push config and policy to many devices. Endpoints consume services; servers (DNS, DHCP, web) serve clients.',
-      examReady: 'Know each device’s OSI layer and role: **Router** — L3, inter-network forwarding via routing table, default gateway. **L2 switch** — MAC table, same-VLAN forwarding. **L3 switch** — L2 + inter-VLAN routing via SVIs. **NGFW** — stateful + app-aware filtering, IPS/IDS inline or OOB. **AP** — wireless-to-wired bridge; autonomous vs lightweight (WLC). **Controller** — centralized config/monitoring (WLC for WLAN, DNA Center for automation). **Endpoint** — client device (PC, phone, IoT). **Server** — provides network services (DNS, DHCP, file, web). Exam items often ask which device belongs at a boundary vs inside a LAN.',
+      examReady: 'Know each device’s OSI layer and where it sits: L2 switches and APs stay inside one broadcast domain, while routers and L3 switches route between them. Exam items often ask which device belongs at a network boundary versus inside a single LAN.',
     },
     definition: 'A modern network combines **routers** (L3 inter-network), **switches** (L2/L3 LAN), **firewalls** (security enforcement), **access points** (wireless access), and **controllers** (centralized management), with **endpoints** and **servers** at the edge.',
     keyPoints: [
-      'Router = Layer 3, routing table, connects subnets.',
-      'L2 switch = MAC table, same broadcast domain.',
-      'L3 switch = switching + SVI-based inter-VLAN routing.',
-      'NGFW = stateful + application-aware filtering, often with IPS/IDS.',
-      'AP bridges wireless to wired; lightweight APs need a WLC.',
-      'Controllers centralize config and monitoring for many devices.',
+      'Router = Layer 3, routing table, connects subnets — the default gateway.',
+      'L2 switch = MAC table, forwards within one broadcast domain.',
+      'L3 switch = L2 switching + SVI-based inter-VLAN routing.',
+      'NGFW = stateful + application-aware filtering, often with inline or out-of-band IPS/IDS.',
+      'AP bridges wireless to wired; lightweight APs register to a WLC, autonomous APs don’t.',
+      'Controller centralizes config/monitoring — WLC for WLAN, DNA Center for campus automation.',
+      'Endpoint = client device (PC, phone, IoT) that consumes network services.',
+      'Server = provides network services (DNS, DHCP, file, web) to endpoints.',
     ],
     realWorld: 'A branch office might use an L3 switch for user VLANs, a router for WAN, an NGFW at the edge, and lightweight APs registered to a WLC. DNS/DHCP run on servers; laptops and phones are endpoints.',
     commonMistakes: [
