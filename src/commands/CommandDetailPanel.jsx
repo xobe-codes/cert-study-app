@@ -5,7 +5,7 @@ import {
 } from './commandWorkflows.js'
 import { speak, stopSpeaking, isTtsSupported } from '../lib/browserTts.js'
 import { pickScenarioSession } from './commandScenarioQuiz.js'
-import { QuizRichText } from '../components/QuizQuestionChrome.jsx'
+import { QuizRichText, QuizChoiceText } from '../components/QuizQuestionChrome.jsx'
 
 async function copyText(text) {
   try {
@@ -149,7 +149,7 @@ export default function CommandDetailPanel({
                   : (i === scenario.correctIndex ? COLORS.mintBorder : (scenarioPick === i ? COLORS.roseBorder : COLORS.border)),
               }}
             >
-              <QuizRichText text={c} />
+              <QuizChoiceText text={c} />
             </button>
           ))}
           {scenarioPick != null && (

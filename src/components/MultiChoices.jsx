@@ -3,7 +3,7 @@ import { isMultiQuestion, multiCorrectIndexes } from '../questionUtils.js'
 import { useMcChoiceShuffle } from '../hooks/useMcChoiceShuffle.js'
 import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { QuizRichText } from './QuizQuestionChrome.jsx'
+import { QuizChoiceText } from './QuizQuestionChrome.jsx'
 import { stripRichTextMarkup } from '../lesson/richTextParse.js'
 
 function multiChoiceStyle(idx, { revealed, selectedSet, correctSet }) {
@@ -121,7 +121,7 @@ export default function MultiChoices({
             <span aria-hidden="true" style={{ fontWeight: 700, marginRight: 8, color: COLORS.silverMid }}>
               {mark}{String.fromCharCode(65 + idx)}.
             </span>
-            <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={choice} /></span>
+            <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizChoiceText text={choice} /></span>
           </button>
         )
       })}

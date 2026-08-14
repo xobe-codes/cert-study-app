@@ -4,7 +4,7 @@ import { getRevealedChoiceLayout } from '../mcChoicesLogic.js'
 import { useMcChoiceShuffle } from '../hooks/useMcChoiceShuffle.js'
 import { useMcChoiceShuffleContext } from '../context/McChoiceShuffleContext.jsx'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { QuizRichText } from './QuizQuestionChrome.jsx'
+import { QuizChoiceText } from './QuizQuestionChrome.jsx'
 import { stripRichTextMarkup } from '../lesson/richTextParse.js'
 
 function choiceStyle(idx, { revealed, selected, correctIndex }) {
@@ -67,7 +67,7 @@ function ChoiceButton({ idx, choice, correctIndex, selected, revealed, onSelect,
           // signal without depending on color perception.
           : (idx === selected ? '● ' : '○ ')}{String.fromCharCode(65 + idx)}.
       </span>
-      <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizRichText text={choice} /></span>
+      <span style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizChoiceText text={choice} /></span>
     </button>
   )
 }
