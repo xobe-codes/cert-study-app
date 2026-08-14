@@ -1,0 +1,897 @@
+/** Trap-drill MC questions, part 2 of 2 — split from trapDrillQuestions.js for maintainability. */
+export const TRAP_DRILL_QUESTIONS_PART2 = [
+  // CKU-CDP-LLDP (3)
+  {
+    id: 'trap-cdp-1',
+    ckuId: 'CKU-CDP-LLDP',
+    trapLabel: 'Expecting CDP to work on non-Cisco devices.',
+    objectiveId: '2.3',
+    question: 'A third-party switch is cabled to a Cisco switch. Which discovery protocol will the Cisco device use by default for multi-vendor neighbors?',
+    choices: ['CDP only', 'LLDP', 'VTP', 'DTP routing'],
+    correctIndex: 1,
+    explanation: 'CDP is Cisco-proprietary — LLDP (IEEE 802.1AB) is the open standard for multi-vendor discovery.',
+    type: 'definition',
+    concept: 'cdp',
+  },
+  {
+    id: 'trap-cdp-2',
+    ckuId: 'CKU-CDP-LLDP',
+    trapLabel: 'Expecting CDP to work on non-Cisco devices.',
+    objectiveId: '2.3',
+    question: '`show cdp neighbors` is empty on a link to a non-Cisco router. What should you try?',
+    choices: [
+      'Enable VTP server mode',
+      'Enable LLDP or check `show lldp neighbors`',
+      'Change native VLAN to 1',
+      'Disable spanning tree',
+    ],
+    correctIndex: 1,
+    explanation: 'Non-Cisco neighbors appear with LLDP — CDP will not show them.',
+    type: 'troubleshooting',
+    concept: 'cdp',
+  },
+  {
+    id: 'trap-cdp-3',
+    ckuId: 'CKU-CDP-LLDP',
+    trapLabel: 'Confusing CDP with routing.',
+    objectiveId: '2.3',
+    question: 'What information does CDP provide?',
+    choices: [
+      'IP routing table entries',
+      'Directly connected neighbor device ID, platform, and IP address',
+      'DHCP lease times',
+      'Wireless client RSSI',
+    ],
+    correctIndex: 1,
+    explanation: 'CDP/LLDP advertise Layer 2 neighbor identity — they do not populate routing tables.',
+    type: 'definition',
+    concept: 'cdp',
+  },
+  // CKU-ARP (3)
+  {
+    id: 'trap-arp-1',
+    ckuId: 'CKU-ARP',
+    trapLabel: 'Expecting ARP to resolve a remote host MAC address.',
+    objectiveId: '1.5',
+    question: 'Host A (192.168.1.10) pings 8.8.8.8. Whose MAC does A resolve with ARP?',
+    choices: [
+      'The MAC of 8.8.8.8 on the Internet',
+      'The MAC of its default gateway on the local subnet',
+      'The MAC of the DNS server only',
+      'No ARP is used for ICMP',
+    ],
+    correctIndex: 1,
+    explanation: 'ARP resolves local Layer 2 neighbors — remote IPs use the default gateway\'s MAC.',
+    type: 'scenario',
+    concept: 'arp',
+  },
+  {
+    id: 'trap-arp-2',
+    ckuId: 'CKU-ARP',
+    trapLabel: 'Expecting ARP to cross routers.',
+    objectiveId: '1.5',
+    question: 'Which statement about ARP is correct?',
+    choices: [
+      'ARP requests are forwarded by routers to remote subnets',
+      'ARP operates within a broadcast domain (subnet)',
+      'ARP maps IP to UDP port numbers',
+      'ARP replaces the need for a default gateway',
+    ],
+    correctIndex: 1,
+    explanation: 'ARP is local to a subnet — routers do not forward ARP broadcasts to other networks.',
+    type: 'definition',
+    concept: 'arp',
+  },
+  {
+    id: 'trap-arp-3',
+    ckuId: 'CKU-ARP',
+    trapLabel: 'Expecting ARP to resolve a remote host MAC address.',
+    objectiveId: '1.5',
+    question: 'PC1 in VLAN 10 pings PC2 in VLAN 20 through a router. Which device does PC1 ARP for first?',
+    choices: [
+      'PC2\'s MAC address',
+      'The router interface MAC on VLAN 10 (default gateway)',
+      'The router interface on VLAN 20',
+      'The switch CPU MAC',
+    ],
+    correctIndex: 1,
+    explanation: 'Inter-VLAN traffic goes to the router — PC1 ARPs for its default gateway MAC, not the remote host.',
+    type: 'scenario',
+    concept: 'arp',
+  },
+  // CKU-TCP-UDP (3)
+  {
+    id: 'trap-tcp-1',
+    ckuId: 'CKU-TCP-UDP',
+    trapLabel: 'Choosing UDP when guaranteed delivery is required.',
+    objectiveId: '1.5',
+    question: 'A file transfer must arrive complete and in order. Which transport protocol?',
+    choices: ['UDP', 'TCP', 'ICMP', 'ARP'],
+    correctIndex: 1,
+    explanation: 'TCP provides reliability, sequencing, and retransmission — UDP is best-effort.',
+    type: 'application',
+    concept: 'tcp-udp',
+  },
+  {
+    id: 'trap-tcp-2',
+    ckuId: 'CKU-TCP-UDP',
+    trapLabel: 'Choosing UDP when guaranteed delivery is required.',
+    objectiveId: '1.5',
+    question: 'VoIP tolerates some loss but needs low latency. Which protocol is typical at Layer 4?',
+    choices: ['TCP', 'UDP', 'SMTP', 'FTP'],
+    correctIndex: 1,
+    explanation: 'Real-time voice often uses UDP — retransmission delays hurt more than occasional lost packets.',
+    type: 'scenario',
+    concept: 'tcp-udp',
+  },
+  {
+    id: 'trap-tcp-3',
+    ckuId: 'CKU-TCP-UDP',
+    trapLabel: 'Confusing TCP reliability with encryption.',
+    objectiveId: '1.5',
+    question: 'True or False: TCP encrypts data so it cannot be read on the wire.',
+    choices: ['True', 'False'],
+    correctIndex: 1,
+    explanation: 'TCP ensures delivery — encryption requires TLS/IPsec. Reliable ≠ secure.',
+    type: 'true-false',
+    concept: 'tcp-udp',
+  },
+  // CKU-OSPF-AREA (3)
+  {
+    id: 'trap-ospf-area-1',
+    ckuId: 'CKU-OSPF-AREA',
+    trapLabel: 'Placing all OSPF routers outside area 0.',
+    objectiveId: '3.4',
+    question: 'Which OSPF area must all other areas connect to?',
+    choices: ['Area 1', 'Area 0 (backbone)', 'Stub area 51', 'Any area with the lowest router ID'],
+    correctIndex: 1,
+    explanation: 'Area 0 is the OSPF backbone — all non-backbone areas must attach to it.',
+    type: 'definition',
+    concept: 'ospf',
+  },
+  {
+    id: 'trap-ospf-area-2',
+    ckuId: 'CKU-OSPF-AREA',
+    trapLabel: 'Placing all OSPF routers outside area 0.',
+    objectiveId: '3.4',
+    question: 'Area 5 routers connect only to Area 5. Area 0 exists elsewhere. What is wrong?',
+    choices: [
+      'Nothing — areas are independent',
+      'Area 5 must connect to the backbone (area 0) directly or via a virtual link',
+      'OSPF requires exactly two areas',
+      'Area numbers must be multiples of 10',
+    ],
+    correctIndex: 1,
+    explanation: 'Inter-area routing requires reachability to area 0 — disconnected areas break OSPF design rules.',
+    type: 'troubleshooting',
+    concept: 'ospf',
+  },
+  {
+    id: 'trap-ospf-area-3',
+    ckuId: 'CKU-OSPF-AREA',
+    trapLabel: 'Placing all OSPF routers outside area 0.',
+    objectiveId: '3.4',
+    question: 'Which interface belongs in OSPF area 0 on a border router?',
+    choices: [
+      'Only loopback 0',
+      'The backbone-facing interface connecting to other area 0 routers',
+      'Every interface must be area 0',
+      'No interfaces — area 0 is logical only',
+    ],
+    correctIndex: 1,
+    explanation: 'ABRs have interfaces in area 0 (backbone) and in other areas — backbone links must be in area 0.',
+    type: 'application',
+    concept: 'ospf',
+  },
+  // CKU-ETHERCHANNEL (3)
+  {
+    id: 'trap-po-1',
+    ckuId: 'CKU-ETHERCHANNEL',
+    trapLabel: 'Mixing different port speeds in one EtherChannel.',
+    objectiveId: '2.4',
+    question: 'Gi0/1 (1 Gbps) and Gi0/2 (100 Mbps) are bundled into Port-channel 1. What happens?',
+    choices: [
+      'LACP negotiates 1.1 Gbps aggregate',
+      'The bundle will not form — member ports must match speed and duplex',
+      'Only the faster link carries traffic',
+      'STP blocks the slower port automatically',
+    ],
+    correctIndex: 1,
+    explanation: 'EtherChannel members must have matching speed, duplex, and VLAN settings — mixed speeds fail.',
+    type: 'scenario',
+    concept: 'etherchannel',
+  },
+  {
+    id: 'trap-po-2',
+    ckuId: 'CKU-ETHERCHANNEL',
+    trapLabel: 'Configuring channel on one switch only.',
+    objectiveId: '2.4',
+    question: 'Po1 is configured on SW1 but SW2 ports are still independent access ports. Result?',
+    choices: [
+      'Full 2 Gbps throughput immediately',
+      'EtherChannel will not negotiate — both ends must match mode/group',
+      'VTP creates the bundle automatically',
+      'Only STP blocks one link',
+    ],
+    correctIndex: 1,
+    explanation: 'LACP/PAgP requires consistent configuration on both sides — channel-group and matching modes.',
+    type: 'troubleshooting',
+    concept: 'etherchannel',
+  },
+  {
+    id: 'trap-po-3',
+    ckuId: 'CKU-ETHERCHANNEL',
+    trapLabel: 'Mixing different port speeds in one EtherChannel.',
+    objectiveId: '2.4',
+    question: 'Which settings must match on all EtherChannel member ports?',
+    choices: [
+      'Only IP addresses',
+      'Speed, duplex, VLAN/trunk mode, and allowed VLANs',
+      'Only spanning-tree priority',
+      'Only the hostname',
+    ],
+    correctIndex: 1,
+    explanation: 'Mismatched speed/duplex/VLAN config prevents a stable Port-channel — homogeneity is required.',
+    type: 'definition',
+    concept: 'etherchannel',
+  },
+  // CKU-IPV6 (3)
+  {
+    id: 'trap-ipv6-1',
+    ckuId: 'CKU-IPV6',
+    trapLabel: 'Thinking IPv6 has no multicast — only broadcast.',
+    objectiveId: '1.8',
+    question: 'How does IPv6 handle broadcast traffic that IPv4 would send to 255.255.255.255?',
+    choices: [
+      'IPv6 uses broadcast the same way',
+      'IPv6 has no broadcast — uses multicast (e.g. ff02::1 all-nodes)',
+      'IPv6 uses ARP broadcast',
+      'IPv6 drops all one-to-many traffic',
+    ],
+    correctIndex: 1,
+    explanation: 'IPv6 eliminated broadcast — multicast groups replace broadcast functions.',
+    type: 'definition',
+    concept: 'ipv6',
+  },
+  {
+    id: 'trap-ipv6-2',
+    ckuId: 'CKU-IPV6',
+    trapLabel: 'Using link-local addresses across routers.',
+    objectiveId: '1.8',
+    question: 'Can routers forward packets sourced from fe80::/10 link-local addresses across subnets?',
+    choices: [
+      'Yes — link-local is globally routable',
+      'No — link-local scope is the local link only',
+      'Only if OSPFv3 is enabled',
+      'Only on tunnel interfaces',
+    ],
+    correctIndex: 1,
+    explanation: 'fe80::/10 addresses are not routed beyond the local segment — they are for on-link communication.',
+    type: 'scenario',
+    concept: 'ipv6',
+  },
+  {
+    id: 'trap-ipv6-3',
+    ckuId: 'CKU-IPV6',
+    trapLabel: 'Thinking IPv6 has no multicast — only broadcast.',
+    objectiveId: '1.8',
+    question: 'Which IPv6 address type is assigned by SLAAC on an interface?',
+    choices: [
+      'Loopback ::1 only',
+      'Global unicast 2000::/3 from RA prefix + EUI-64',
+      'IPv4-mapped 0:0:0:0:0:ffff::',
+      'Anycast is the only option',
+    ],
+    correctIndex: 1,
+    explanation: 'SLAAC combines the RA prefix with the interface identifier (often EUI-64) for global unicast.',
+    type: 'application',
+    concept: 'ipv6',
+  },
+  // CKU-WIFI (3)
+  {
+    id: 'trap-wifi-1',
+    ckuId: 'CKU-WIFI',
+    trapLabel: 'Expecting 5 GHz to penetrate walls better than 2.4 GHz.',
+    objectiveId: '1.11',
+    question: 'Which band typically penetrates walls better but offers fewer non-overlapping channels?',
+    choices: ['5 GHz', '2.4 GHz', '6 GHz only', 'Both are identical'],
+    correctIndex: 1,
+    explanation: 'Lower frequency 2.4 GHz penetrates obstacles better — 5 GHz is faster but shorter range through walls.',
+    type: 'definition',
+    concept: 'wireless',
+  },
+  {
+    id: 'trap-wifi-2',
+    ckuId: 'CKU-WIFI',
+    trapLabel: 'Expecting 5 GHz to penetrate walls better than 2.4 GHz.',
+    objectiveId: '1.11',
+    question: 'An AP is placed behind several drywall partitions. Clients far away drop off. Best first fix?',
+    choices: [
+      'Disable 2.4 GHz and force 5 GHz only',
+      'Enable 2.4 GHz for better range through walls or add another AP',
+      'Switch to WPA3 only',
+      'Lower the MTU on clients',
+    ],
+    correctIndex: 1,
+    explanation: '2.4 GHz carries farther through obstacles — forcing 5 GHz-only often worsens coverage.',
+    type: 'troubleshooting',
+    concept: 'wireless',
+  },
+  {
+    id: 'trap-wifi-3',
+    ckuId: 'CKU-WIFI',
+    trapLabel: 'Confusing SSID with VLAN.',
+    objectiveId: '1.11',
+    question: 'What does an SSID represent in a WLAN?',
+    choices: [
+      'The Layer 3 subnet mask',
+      'The wireless network name clients join',
+      'The switch trunk native VLAN',
+      'The WPA encryption key itself',
+    ],
+    correctIndex: 1,
+    explanation: 'SSID is the human-readable network name — VLAN mapping is a separate design step on the WLC/AP.',
+    type: 'definition',
+    concept: 'wireless',
+  },
+  // CKU-VTP (3)
+  {
+    id: 'trap-vtp-1', ckuId: 'CKU-VTP', trapLabel: 'Expecting VTP to assign IP addresses to VLANs.', objectiveId: '2.2',
+    question: 'What does VTP synchronize between switches?', choices: ['IP helper addresses', 'VLAN database and names', 'OSPF routes', 'MAC address tables'],
+    correctIndex: 1, explanation: 'VTP propagates VLAN configuration — not IP addressing or routing.', type: 'definition', concept: 'vtp',
+  },
+  {
+    id: 'trap-vtp-2', ckuId: 'CKU-VTP', trapLabel: 'Expecting VTP to assign IP addresses to VLANs.', objectiveId: '2.2',
+    question: 'A new VLAN exists on SW1 but not SW2 in the same VTP domain. Likely cause?', choices: ['Missing ip routing', 'VTP not propagating or wrong mode', 'STP blocking', 'CDP disabled'],
+    correctIndex: 1, explanation: 'VTP domain/mode/revision controls VLAN propagation — not Layer 3.', type: 'scenario', concept: 'vtp',
+  },
+  {
+    id: 'trap-vtp-3', ckuId: 'CKU-VTP', trapLabel: 'Expecting VTP to assign IP addresses to VLANs.', objectiveId: '2.2',
+    question: 'Which device role creates VLANs that propagate via VTP?', choices: ['VTP client only', 'VTP server', 'Access port', 'DHCP server'],
+    correctIndex: 1, explanation: 'VTP server can create/modify VLANs that clients learn — clients cannot create VLANs.', type: 'definition', concept: 'vtp',
+  },
+  // CKU-BPDU-GUARD (3)
+  {
+    id: 'trap-bpdu-1', ckuId: 'CKU-BPDU-GUARD', trapLabel: 'Enabling BPDU Guard on trunk uplinks.', objectiveId: '2.5',
+    question: 'BPDU Guard should be enabled on which ports?', choices: ['Trunk uplinks to core', 'Access ports with PortFast edge', 'Loopback interfaces', 'SVIs'],
+    correctIndex: 1, explanation: 'BPDU Guard protects PortFast edge ports — not trunk uplinks carrying legitimate BPDUs.', type: 'scenario', concept: 'stp',
+  },
+  {
+    id: 'trap-bpdu-2', ckuId: 'CKU-BPDU-GUARD', trapLabel: 'Enabling BPDU Guard on trunk uplinks.', objectiveId: '2.5',
+    question: 'An access port with BPDU Guard receives a BPDU. What happens?', choices: ['Port stays forwarding', 'Port err-disables', 'Root bridge changes', 'VTP revision increments'],
+    correctIndex: 1, explanation: 'BPDU on an edge port triggers err-disable — prevents rogue switch attachment.', type: 'application', concept: 'stp',
+  },
+  {
+    id: 'trap-bpdu-3', ckuId: 'CKU-BPDU-GUARD', trapLabel: 'Enabling BPDU Guard on trunk uplinks.', objectiveId: '2.5',
+    question: 'Which feature pairs with PortFast on user-facing switch ports?', choices: ['Root guard on uplink', 'BPDU Guard on access', 'EtherChannel LACP', 'VTP pruning'],
+    correctIndex: 1, explanation: 'PortFast + BPDU Guard is the classic access-edge hardening pair.', type: 'definition', concept: 'stp',
+  },
+  // CKU-SNMPv2 (3)
+  {
+    id: 'trap-snmp-1', ckuId: 'CKU-SNMPv2', trapLabel: 'Using SNMPv1 community strings for write access.', objectiveId: '4.4',
+    question: 'SNMPv2c read-only monitoring typically uses which community string keyword?', choices: ['rw', 'RO', 'enable', 'secret'],
+    correctIndex: 1, explanation: 'RO (read-only) community limits polling — RW is for configuration changes.', type: 'definition', concept: 'snmp',
+  },
+  {
+    id: 'trap-snmp-2', ckuId: 'CKU-SNMPv2', trapLabel: 'Using SNMPv1 community strings for write access.', objectiveId: '4.4',
+    question: 'Why avoid SNMPv1/v2c RW communities on production devices?', choices: ['They block syslog', 'Community strings are cleartext and allow config changes', 'They disable CDP', 'They break NTP'],
+    correctIndex: 1, explanation: 'SNMPv2c communities are plaintext — RW grants dangerous remote control.', type: 'scenario', concept: 'snmp',
+  },
+  {
+    id: 'trap-snmp-3', ckuId: 'CKU-SNMPv2', trapLabel: 'Using SNMPv1 community strings for write access.', objectiveId: '4.4',
+    question: 'Which SNMP version adds encryption and user-based security?', choices: ['SNMPv1', 'SNMPv2c', 'SNMPv3', 'SNMPv4'],
+    correctIndex: 2, explanation: 'SNMPv3 provides authPriv — v1/v2c rely on community strings only.', type: 'definition', concept: 'snmp',
+  },
+  // CKU-QoS-TRUST (3)
+  {
+    id: 'trap-qos-1', ckuId: 'CKU-QoS-TRUST', trapLabel: 'Trusting DSCP on an access port facing end hosts.', objectiveId: '4.7',
+    question: 'Where should QoS classification and marking ideally occur?', choices: ['Access port facing PCs', 'Network edge/trust boundary', 'End-user laptop', 'DNS server'],
+    correctIndex: 1, explanation: 'Mark at controlled trust boundaries — not on untrusted host-facing ports.', type: 'definition', concept: 'qos',
+  },
+  {
+    id: 'trap-qos-2', ckuId: 'CKU-QoS-TRUST', trapLabel: 'Trusting DSCP on an access port facing end hosts.', objectiveId: '4.7',
+    question: 'A PC marks all traffic EF to game the queue. Best mitigation?', choices: ['Trust DSCP on access port', 'Remap/untrust at access — reclassify at edge', 'Disable QoS globally', 'Increase bandwidth only'],
+    correctIndex: 1, explanation: 'Do not trust host markings — police/reclassify at the access layer.', type: 'scenario', concept: 'qos',
+  },
+  {
+    id: 'trap-qos-3', ckuId: 'CKU-QoS-TRUST', trapLabel: 'Trusting DSCP on an access port facing end hosts.', objectiveId: '4.7',
+    question: 'Voice is typically marked with which DSCP class?', choices: ['AF21', 'EF', 'CS0', 'AF32'],
+    correctIndex: 1, explanation: 'Expedited Forwarding (EF, DSCP 46) is the standard voice marking.', type: 'definition', concept: 'qos',
+  },
+  // CKU-WILDCARD-ACL (3)
+  {
+    id: 'trap-wacl-1', ckuId: 'CKU-WILDCARD-ACL', trapLabel: 'Using subnet mask syntax in a standard ACL.', objectiveId: '5.5',
+    question: 'Standard numbered ACLs match traffic based on…', choices: ['Source IP only', 'Source and destination IP', 'Layer 4 ports only', 'MAC addresses'],
+    correctIndex: 0, explanation: 'Standard ACLs filter source address only — extended ACLs add destination and ports.', type: 'definition', concept: 'acl',
+  },
+  {
+    id: 'trap-wacl-2', ckuId: 'CKU-WILDCARD-ACL', trapLabel: 'Using subnet mask syntax in a standard ACL.', objectiveId: '5.5',
+    question: 'In `access-list 10 permit 192.168.1.0 0.0.0.255`, what is `0.0.0.255`?', choices: ['Subnet mask', 'Wildcard mask', 'Default gateway', 'VLAN ID'],
+    correctIndex: 1, explanation: 'IOS ACLs use wildcard masks — inverse of subnet masks.', type: 'definition', concept: 'acl',
+  },
+  {
+    id: 'trap-wacl-3', ckuId: 'CKU-WILDCARD-ACL', trapLabel: 'Using subnet mask syntax in a standard ACL.', objectiveId: '5.5',
+    question: 'Which ACL type can filter TCP destination port 443?', choices: ['Standard numbered ACL', 'Extended named ACL', 'Standard named only', 'VLAN map ACL'],
+    correctIndex: 1, explanation: 'Extended ACLs match protocol and port — standard ACLs cannot.', type: 'application', concept: 'acl',
+  },
+  // CKU-VLAN-1 (3)
+  {
+    id: 'trap-vlan1-1', ckuId: 'CKU-VLAN-1', trapLabel: 'Deleting VLAN 1 because it is unused.', objectiveId: '2.1',
+    question: 'Can VLAN 1 be deleted on a Cisco switch?', choices: ['Yes, like any VLAN', 'No — VLAN 1 is default and cannot be removed', 'Only on routers', 'Only with VTP transparent'],
+    correctIndex: 1, explanation: 'VLAN 1 is the default — you can move ports off it but not delete it.', type: 'definition', concept: 'vlan',
+  },
+  {
+    id: 'trap-vlan1-2', ckuId: 'CKU-VLAN-1', trapLabel: 'Deleting VLAN 1 because it is unused.', objectiveId: '2.1',
+    question: 'Best practice for unused default VLAN 1?', choices: ['Delete VLAN 1', 'Move access ports to dedicated VLANs and shut unused VLAN 1 SVI if present', 'Disable STP', 'Set native VLAN to 999 only'],
+    correctIndex: 1, explanation: 'Segment users off VLAN 1 — do not attempt to delete the default VLAN.', type: 'scenario', concept: 'vlan',
+  },
+  {
+    id: 'trap-vlan1-3', ckuId: 'CKU-VLAN-1', trapLabel: 'Deleting VLAN 1 because it is unused.', objectiveId: '2.1',
+    question: 'Inter-VLAN routing on an L3 switch typically uses…', choices: ['VLAN 1 only', 'SVIs per VLAN', 'PortFast', 'CDP'],
+    correctIndex: 1, explanation: 'Each routed VLAN gets an SVI — not reliance on undeletable VLAN 1 alone.', type: 'definition', concept: 'vlan',
+  },
+  // CKU-DUPLEX (3)
+  {
+    id: 'trap-dup-1', ckuId: 'CKU-DUPLEX', trapLabel: 'Leaving one side half-duplex on a Gigabit link.', objectiveId: '1.4',
+    question: 'A Gigabit link shows late collisions and CRC errors. First check?', choices: ['OSPF area', 'Speed/duplex mismatch', 'DNS', 'VTP domain'],
+    correctIndex: 1, explanation: 'Duplex mismatch causes collisions/CRC — classic physical-layer symptom.', type: 'scenario', concept: 'physical',
+  },
+  {
+    id: 'trap-dup-2', ckuId: 'CKU-DUPLEX', trapLabel: 'Leaving one side half-duplex on a Gigabit link.', objectiveId: '1.4',
+    question: 'Two auto-negotiating Gigabit ports should settle on…', choices: ['Half duplex', 'Full duplex', 'Simplex only', '10 Mbps half'],
+    correctIndex: 1, explanation: 'Gigabit Ethernet auto-negotiates full duplex when both sides support it.', type: 'definition', concept: 'physical',
+  },
+  {
+    id: 'trap-dup-3', ckuId: 'CKU-DUPLEX', trapLabel: 'Leaving one side half-duplex on a Gigabit link.', objectiveId: '1.4',
+    question: 'Which counter growth suggests duplex mismatch?', choices: ['Input errors and late collisions', 'OSPF adjacency drops', 'DHCP declines', 'ARP time-outs only'],
+    correctIndex: 0, explanation: 'Late collisions on full-speed links often mean one end is half-duplex.', type: 'application', concept: 'physical',
+  },
+  // CKU-REST-API (3)
+  {
+    id: 'trap-rest-1', ckuId: 'CKU-REST-API', trapLabel: 'Confusing northbound REST with southbound NETCONF.', objectiveId: '6.3',
+    question: 'A network automation app talks to the SDN controller GUI API. Which direction is this?', choices: ['Southbound', 'Northbound', 'East-west', 'Data plane'],
+    correctIndex: 1, explanation: 'Northbound APIs face applications/orchestration above the controller.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-rest-2', ckuId: 'CKU-REST-API', trapLabel: 'Confusing northbound REST with southbound NETCONF.', objectiveId: '6.3',
+    question: 'The controller pushes config to switches via NETCONF. This is…', choices: ['Northbound REST', 'Southbound device API', 'DNS', 'SNMP trap only'],
+    correctIndex: 1, explanation: 'Southbound protocols connect controller to infrastructure devices.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-rest-3', ckuId: 'CKU-REST-API', trapLabel: 'Confusing northbound REST with southbound NETCONF.', objectiveId: '6.3',
+    question: 'JSON is commonly used with which controller interface style?', choices: ['Only console', 'REST northbound APIs', 'Ethernet frames', 'CDP TLVs'],
+    correctIndex: 1, explanation: 'REST/JSON is typical for northbound automation integrations.', type: 'application', concept: 'sdn',
+  },
+  // CKU-CONTROLLER (3)
+  {
+    id: 'trap-ctrl-1', ckuId: 'CKU-CONTROLLER', trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.', objectiveId: '6.2',
+    question: 'In controller-based networking, where is control-plane policy centralized?', choices: ['Every access port', 'The SDN controller', 'DNS server', 'DHCP scope'],
+    correctIndex: 1, explanation: 'SDN centralizes control decisions in the controller — devices forward data plane.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-ctrl-2', ckuId: 'CKU-CONTROLLER', trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.', objectiveId: '6.2',
+    question: 'Traditional networking vs SDN — key difference?', choices: ['No data plane in SDN', 'Distributed control plane vs centralized controller', 'SDN removes VLANs', 'Traditional uses only APIs'],
+    correctIndex: 1, explanation: 'Traditional = per-device control plane; SDN = centralized control with distributed forwarding.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-ctrl-3', ckuId: 'CKU-CONTROLLER', trapLabel: 'Expecting each switch to keep independent control-plane policy in SDN.', objectiveId: '6.2',
+    question: 'Cisco DNA Center provides which benefit over box-by-box CLI?', choices: ['Eliminates switching', 'Centralized design, policy, and assurance', 'Removes need for routing', 'Disables APIs'],
+    correctIndex: 1,     explanation: 'Controller platforms unify design, provisioning, and telemetry across the campus.', type: 'scenario', concept: 'sdn',
+  },
+  // CKU-SYSLOG (3)
+  {
+    id: 'trap-syslog-1', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
+    question: 'Which syslog severity level is **informational** (not debug)?', choices: ['0 — emergency', '6 — informational', '7 — debug', '4 — warning only'],
+    correctIndex: 1, explanation: 'Severity 6 is informational — level 7 is debug and floods the collector.', type: 'definition', concept: 'syslog',
+  },
+  {
+    id: 'trap-syslog-2', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
+    question: 'An interface flaps — which severity is appropriate for logging without debug noise?', choices: ['7 debug', '4 warning / 3 error', '0 emergency only', '6 informational only'],
+    correctIndex: 1, explanation: 'Link down events are typically warning/error — not every debug line.', type: 'scenario', concept: 'syslog',
+  },
+  {
+    id: 'trap-syslog-3', ckuId: 'CKU-SYSLOG', trapLabel: 'Setting all syslog messages to severity 7 (debug).', objectiveId: '4.5',
+    question: 'Lower syslog severity numbers mean…', choices: ['Less important', 'More severe / higher priority', 'Only local console', 'Encrypted messages'],
+    correctIndex: 1, explanation: '0 = emergency, 7 = debug — lower number = more critical.', type: 'definition', concept: 'syslog',
+  },
+  // CKU-SSH (3)
+  {
+    id: 'trap-ssh-1', ckuId: 'CKU-SSH', trapLabel: '`transport input ssh` works without generating RSA keys.', objectiveId: '4.8',
+    question: 'You configured `transport input ssh` on VTY lines but SSH fails. What is the most likely missing step?', choices: ['Enable CDP globally', 'Generate RSA keys with `crypto key generate rsa`', 'Configure `ip helper-address`', 'Enable port security'],
+    correctIndex: 1, explanation: 'IOS requires RSA keys before SSH can accept sessions — `transport input ssh` alone is not enough.', type: 'scenario', concept: 'ssh',
+  },
+  {
+    id: 'trap-ssh-2', ckuId: 'CKU-SSH', trapLabel: 'Telnet and SSH are equally secure for management.', objectiveId: '4.8',
+    question: 'Why does CCNA expect SSH instead of Telnet for remote device management?', choices: ['SSH uses UDP for speed', 'SSH encrypts the session; Telnet sends credentials in clear text', 'Telnet requires RSA keys', 'SSH only works on routers'],
+    correctIndex: 1, explanation: 'Telnet has no encryption — SSH protects credentials and command traffic in transit.', type: 'definition', concept: 'ssh',
+  },
+  {
+    id: 'trap-ssh-3', ckuId: 'CKU-SSH', trapLabel: '`transport input ssh` works without generating RSA keys.', objectiveId: '4.8',
+    question: 'Which command restricts VTY access to SSH only?', choices: ['`access-list 1 permit ssh`', '`transport input ssh` under line vty', '`ip ssh enable` on every interface', '`service password-encryption`'],
+    correctIndex: 1, explanation: '`transport input ssh` on line vty blocks Telnet — but RSA keys must exist first.', type: 'application', concept: 'ssh',
+  },
+  // CKU-AAA-SERVERS (3)
+  {
+    id: 'trap-aaa-srv-1', ckuId: 'CKU-AAA-SERVERS', trapLabel: 'TACACS+ and RADIUS use the same port and protocol.', objectiveId: '5.4',
+    question: 'Which AAA protocol uses TCP port 49 and is Cisco-proprietary?', choices: ['RADIUS', 'TACACS+', 'LDAP', 'SNMP'],
+    correctIndex: 1, explanation: 'TACACS+ uses TCP/49; RADIUS uses UDP/1812 for authentication.', type: 'definition', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-srv-2', ckuId: 'CKU-AAA-SERVERS', trapLabel: 'RADIUS is preferred for per-command authorization on Cisco devices.', objectiveId: '5.4',
+    question: 'For granular per-command CLI authorization on Cisco IOS, which server type is preferred?', choices: ['RADIUS', 'TACACS+', 'NTP', 'TFTP'],
+    correctIndex: 1, explanation: 'TACACS+ separates auth, authorization, and accounting — ideal for command-level control.', type: 'application', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-srv-3', ckuId: 'CKU-AAA-SERVERS', trapLabel: 'TACACS+ and RADIUS use the same port and protocol.', objectiveId: '5.4',
+    question: 'RADIUS authentication typically uses which transport?', choices: ['TCP port 49', 'UDP port 1812', 'TCP port 443', 'UDP port 69'],
+    correctIndex: 1, explanation: 'RADIUS auth uses UDP/1812 — do not confuse with TACACS+ TCP/49.', type: 'definition', concept: 'aaa',
+  },
+  // CKU-AAA-CONCEPTS (3)
+  {
+    id: 'trap-aaa-con-1', ckuId: 'CKU-AAA-CONCEPTS', trapLabel: 'Authentication and authorization are the same AAA function.', objectiveId: '5.7',
+    question: 'In AAA, authorization answers which question?', choices: ['Who are you?', 'What are you allowed to do?', 'What did you do?', 'When did you log in?'],
+    correctIndex: 1, explanation: 'Authentication = identity; authorization = permitted actions; accounting = audit trail.', type: 'definition', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-con-2', ckuId: 'CKU-AAA-CONCEPTS', trapLabel: 'Accounting only tracks failed login attempts.', objectiveId: '5.7',
+    question: 'What does AAA accounting typically record?', choices: ['Only failed passwords', 'Session activity such as commands and duration', 'MAC addresses only', 'DHCP leases'],
+    correctIndex: 1, explanation: 'Accounting logs what happened during a session — not just login failures.', type: 'definition', concept: 'aaa',
+  },
+  {
+    id: 'trap-aaa-con-3', ckuId: 'CKU-AAA-CONCEPTS', trapLabel: 'Authentication and authorization are the same AAA function.', objectiveId: '5.7',
+    question: 'A user passes login (username/password) but cannot enter `configure terminal`. Which AAA function blocked them?', choices: ['Authentication', 'Authorization', 'Accounting', 'Encryption'],
+    correctIndex: 1, explanation: 'They authenticated successfully but lack authorization for privileged config commands.', type: 'scenario', concept: 'aaa',
+  },
+  // CKU-WLAN-SEC (3)
+  {
+    id: 'trap-wsec-1', ckuId: 'CKU-WLAN-SEC', trapLabel: 'WEP is acceptable for enterprise WLAN security.', objectiveId: '5.8',
+    question: 'Which WLAN encryption should you deploy in a production enterprise?', choices: ['WEP', 'WPA2-AES (or WPA3)', 'Open (no encryption)', 'WEP with longer keys only'],
+    correctIndex: 1, explanation: 'WEP is broken — CCNA expects WPA2-AES or WPA3 for real deployments.', type: 'definition', concept: 'wlan',
+  },
+  {
+    id: 'trap-wsec-2', ckuId: 'CKU-WLAN-SEC', trapLabel: 'WPA3-Personal removes the need for a strong passphrase.', objectiveId: '5.8',
+    question: 'WPA3-Personal improves key exchange with SAE. What is still required?', choices: ['No passphrase needed', 'A strong pre-shared key/passphrase', 'WEP fallback', 'Disable AES'],
+    correctIndex: 1, explanation: 'WPA3 strengthens handshake but personal networks still need a strong PSK.', type: 'application', concept: 'wlan',
+  },
+  {
+    id: 'trap-wsec-3', ckuId: 'CKU-WLAN-SEC', trapLabel: 'WEP is acceptable for enterprise WLAN security.', objectiveId: '5.8',
+    question: 'An auditor finds WEP on guest Wi-Fi. Primary risk?', choices: ['Slower throughput only', 'Trivially crackable encryption — traffic exposed', 'Requires more APs', 'Breaks DHCP'],
+    correctIndex: 1, explanation: 'WEP keys are recovered in minutes — never acceptable for sensitive traffic.', type: 'scenario', concept: 'wlan',
+  },
+  // CKU-VPN (3)
+  {
+    id: 'trap-vpn-1', ckuId: 'CKU-VPN', trapLabel: 'Site-to-site VPN and remote-access VPN are identical.', objectiveId: '5.10',
+    question: 'A branch office router connects to HQ over IPsec. Which VPN type is this?', choices: ['Remote-access (client VPN)', 'Site-to-site (gateway-to-gateway)', 'SSL bookmark only', 'GRE without encryption'],
+    correctIndex: 1, explanation: 'Site-to-site VPNs connect networks via gateways — remote-access serves individual users.', type: 'definition', concept: 'vpn',
+  },
+  {
+    id: 'trap-vpn-2', ckuId: 'CKU-VPN', trapLabel: 'IPsec only provides confidentiality, not integrity.', objectiveId: '5.10',
+    question: 'IPsec ESP provides which protections?', choices: ['Encryption only', 'Authentication, integrity, and encryption of payload', 'DNS resolution', 'MAC learning'],
+    correctIndex: 1, explanation: 'ESP authenticates and encrypts — AH adds integrity without encryption.', type: 'definition', concept: 'vpn',
+  },
+  {
+    id: 'trap-vpn-3', ckuId: 'CKU-VPN', trapLabel: 'Site-to-site VPN and remote-access VPN are identical.', objectiveId: '5.10',
+    question: 'A traveling employee uses Cisco AnyConnect from a laptop. VPN type?', choices: ['Site-to-site', 'Remote-access', 'EtherChannel', 'VTP trunk'],
+    correctIndex: 1, explanation: 'Individual user endpoints use remote-access VPN — not gateway-to-gateway site-to-site.', type: 'scenario', concept: 'vpn',
+  },
+  // CKU-SEGMENTATION (3)
+  {
+    id: 'trap-seg-1', ckuId: 'CKU-SEGMENTATION', trapLabel: 'VLANs alone provide complete security isolation.', objectiveId: '5.11',
+    question: 'Can VLANs alone stop routed traffic between subnets?', choices: ['Yes — VLANs are firewalls', 'No — routing/ACLs/firewalls still needed between segments', 'Only on routers', 'Only with WEP'],
+    correctIndex: 1, explanation: 'VLANs are L2 boundaries — L3 devices can route between them unless policy blocks it.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-seg-2', ckuId: 'CKU-SEGMENTATION', trapLabel: 'Micro-segmentation means one flat VLAN for all servers.', objectiveId: '5.11',
+    question: 'Micro-segmentation primarily aims to…', choices: ['Use one VLAN for simplicity', 'Limit lateral movement between trust zones', 'Disable STP', 'Remove ACLs'],
+    correctIndex: 1, explanation: 'Segmentation divides zones (VLANs, VRFs, firewalls) to contain breaches.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-seg-3', ckuId: 'CKU-SEGMENTATION', trapLabel: 'VLANs alone provide complete security isolation.', objectiveId: '5.11',
+    question: 'Servers in VLAN 10 and users in VLAN 20 share an L3 switch with SVIs. To restrict server access you need…', choices: ['Only change native VLAN', 'ACLs or firewall policy on the L3 path', 'Disable CDP', 'PortFast on all ports'],
+    correctIndex: 1, explanation: 'Inter-VLAN routing is enabled by SVIs — ACLs/firewalls enforce security between segments.', type: 'scenario', concept: 'security',
+  },
+  // CKU-SECURITY-PROGRAM (3)
+  {
+    id: 'trap-secprog-1', ckuId: 'CKU-SECURITY-PROGRAM', trapLabel: 'Deploying ACLs alone completes a security program.', objectiveId: '5.2',
+    question: 'A complete security program includes which elements?', choices: ['ACLs only', 'People, process, and technology controls', 'Firewalls only', 'SNMP traps only'],
+    correctIndex: 1, explanation: 'Defense in depth layers training, policies, and technical controls — ACLs are one piece.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-secprog-2', ckuId: 'CKU-SECURITY-PROGRAM', trapLabel: 'Physical security is outside network security scope.', objectiveId: '5.2',
+    question: 'Why is physical access to a wiring closet a network security concern?', choices: ['It only affects Wi-Fi', 'Console access can bypass logical controls', 'It improves throughput', 'It enables OSPF only'],
+    correctIndex: 1, explanation: 'Physical access to devices can compromise the network regardless of ACLs.', type: 'scenario', concept: 'security',
+  },
+  {
+    id: 'trap-secprog-3', ckuId: 'CKU-SECURITY-PROGRAM', trapLabel: 'Deploying ACLs alone completes a security program.', objectiveId: '5.2',
+    question: 'Which is a process (not technology) security control?', choices: ['Extended ACL', 'Incident response plan', 'Port security', 'IPsec VPN'],
+    correctIndex: 1, explanation: 'Policies and incident response are process controls — ACLs are technology.', type: 'application', concept: 'security',
+  },
+  // CKU-PRIVILEGE-LEVELS (3)
+  {
+    id: 'trap-priv-1', ckuId: 'CKU-PRIVILEGE-LEVELS', trapLabel: 'Use `enable password` instead of `enable secret`.', objectiveId: '5.3',
+    question: 'Which enable command stores a hashed privileged password?', choices: ['`enable password`', '`enable secret`', '`password enable`', '`secret enable`'],
+    correctIndex: 1, explanation: '`enable secret` uses a strong hash; `enable password` is reversible in config.', type: 'definition', concept: 'security',
+  },
+  {
+    id: 'trap-priv-2', ckuId: 'CKU-PRIVILEGE-LEVELS', trapLabel: 'Telnet is acceptable when `login local` is configured.', objectiveId: '5.3',
+    question: '`login local` is configured on VTY but Telnet is still allowed. What is missing?', choices: ['Nothing — Telnet is secure with local users', '`transport input ssh` to block clear-text Telnet', 'Disable ARP', 'VTP server mode'],
+    correctIndex: 1, explanation: 'Local auth verifies users but Telnet still exposes credentials — restrict to SSH.', type: 'scenario', concept: 'security',
+  },
+  {
+    id: 'trap-priv-3', ckuId: 'CKU-PRIVILEGE-LEVELS', trapLabel: 'Use `enable password` instead of `enable secret`.', objectiveId: '5.3',
+    question: 'If both `enable password` and `enable secret` exist, which is used at the enable prompt?', choices: ['`enable password`', '`enable secret`', 'The longer one', 'Neither — only AAA'],
+    correctIndex: 1, explanation: 'When both are set, `enable secret` takes precedence — prefer secret only.', type: 'application', concept: 'security',
+  },
+  // CKU-DNA (3)
+  {
+    id: 'trap-dna-1', ckuId: 'CKU-DNA', trapLabel: 'On-box CLI and DNA Center are mutually exclusive.', objectiveId: '6.4',
+    question: 'DNA Center manages campus devices centrally. Can you still SSH to a switch CLI?', choices: ['No — DNA replaces all CLI', 'Yes — IOS CLI remains for troubleshooting', 'Only via Telnet', 'Only on WLCs'],
+    correctIndex: 1, explanation: 'DNA orchestrates policy; per-device CLI still exists for outages and deep troubleshooting.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-dna-2', ckuId: 'CKU-DNA', trapLabel: 'Expecting DNA Center to replace all per-device CLI troubleshooting.', objectiveId: '6.4',
+    question: 'DNA Center Assurance primarily provides…', choices: ['Elimination of routing tables', 'Health scores and root-cause hints from telemetry', 'Replacement of all SNMP', 'Automatic CCNA pass'],
+    correctIndex: 1, explanation: 'Assurance aggregates telemetry for proactive troubleshooting — does not remove IOS show commands.', type: 'definition', concept: 'sdn',
+  },
+  {
+    id: 'trap-dna-3', ckuId: 'CKU-DNA', trapLabel: 'On-box CLI and DNA Center are mutually exclusive.', objectiveId: '6.4',
+    question: 'Day-zero onboarding of 12 branch switches via DNA template replaces…', choices: ['All future design decisions', '12 manual per-device CLI onboarding sessions', 'The data plane on switches', 'DHCP entirely'],
+    correctIndex: 1, explanation: 'Templates automate repetitive provisioning — engineers still use CLI and DNA GUI together.', type: 'scenario', concept: 'sdn',
+  },
+  // CKU-JSON-ANSIBLE (3)
+  {
+    id: 'trap-ansible-1', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.', objectiveId: '6.6',
+    question: 'How does Ansible configure Cisco IOS devices?', choices: ['Installs a permanent agent on each router', 'Agentless SSH/API modules (e.g. ios_config)', 'Only via CDP', 'Requires SNMP write on every port'],
+    correctIndex: 1, explanation: 'Ansible is agentless — it connects over SSH (network_cli) without installing software on IOS.', type: 'definition', concept: 'automation',
+  },
+  {
+    id: 'trap-ansible-2', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Using single quotes in JSON — keys/strings require double quotes.', objectiveId: '6.6',
+    question: 'Which JSON snippet is valid?', choices: ["{ 'hostname': 'R1' }", '{ "hostname": "R1" }', '{ hostname: R1 }', '[hostname=R1]'],
+    correctIndex: 1, explanation: 'JSON requires double-quoted keys and string values — single quotes are invalid.', type: 'application', concept: 'automation',
+  },
+  {
+    id: 'trap-ansible-3', ckuId: 'CKU-JSON-ANSIBLE', trapLabel: 'Thinking Ansible requires an agent on Cisco IOS.', objectiveId: '6.6',
+    question: 'Puppet/Chef on network devices often differ from Ansible because they…', choices: ['Never use YAML', 'Use agent-based pull models on managed nodes', 'Cannot configure VLANs', 'Require WEP'],
+    correctIndex: 1, explanation: 'Puppet/Chef agents check in to a master; Ansible pushes over SSH without an agent.', type: 'definition', concept: 'automation',
+  },
+  // CKU-FLOATING-STATIC (3)
+  {
+    id: 'trap-float-1', ckuId: 'CKU-FLOATING-STATIC', trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.', objectiveId: '3.3',
+    question: 'R1 learns 10.0.0.0/8 via OSPF (AD 110). Which static backup installs only when OSPF fails?', choices: ['`ip route 10.0.0.0 255.0.0.0 192.168.1.1 90`', '`ip route 10.0.0.0 255.0.0.0 192.168.1.1 130`', '`ip route 10.0.0.0 0.255.255.255 192.168.1.1`', '`ip route 0.0.0.0 0.0.0.0 192.168.1.1`'],
+    correctIndex: 1, explanation: 'AD 130 is higher than OSPF AD 110 — the static is backup-only. AD 90 would always beat OSPF.', type: 'application', concept: 'static-routing',
+  },
+  {
+    id: 'trap-float-2', ckuId: 'CKU-FLOATING-STATIC', trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.', objectiveId: '3.3',
+    question: 'A floating static to back up EIGRP (AD 90) should use administrative distance…', choices: ['Lower than 90', 'Exactly 90', 'Higher than 90 (e.g. 120)', '255 only'],
+    correctIndex: 2, explanation: 'Floating statics must float above the primary protocol AD — lower AD would become primary.', type: 'definition', concept: 'static-routing',
+  },
+  {
+    id: 'trap-float-3', ckuId: 'CKU-FLOATING-STATIC', trapLabel: 'A floating static needs AD HIGHER than the dynamic protocol.', objectiveId: '3.3',
+    question: 'OSPF route to 172.16.0.0/16 is active. A static `ip route 172.16.0.0 255.255.0.0 10.1.1.1 1` also exists. Which is used?', choices: ['The static (AD 1)', 'OSPF (AD 110)', 'Both load-balanced', 'Neither — conflict'],
+    correctIndex: 0, explanation: 'Lowest AD wins for the same prefix length — AD 1 static beats OSPF even if you intended a backup.', type: 'scenario', concept: 'static-routing',
+  },
+  // CKU-PASSIVE-INTERFACE (3)
+  {
+    id: 'trap-passive-1', ckuId: 'CKU-PASSIVE-INTERFACE', trapLabel: '`passive-interface` advertises a network but stops hellos.', objectiveId: '3.4',
+    question: 'Gi0/0 faces user PCs; you want OSPF to advertise the subnet but not form neighbors with hosts. What do you configure?', choices: ['`shutdown` on Gi0/0', '`passive-interface Gi0/0` under router ospf', '`no ip ospf network`', '`ip ospf priority 0` on PCs'],
+    correctIndex: 1, explanation: 'Passive-interface advertises the prefix into OSPF but suppresses hellos on that interface.', type: 'application', concept: 'ospf',
+  },
+  {
+    id: 'trap-passive-2', ckuId: 'CKU-PASSIVE-INTERFACE', trapLabel: '`passive-interface` advertises a network but stops hellos.', objectiveId: '3.4',
+    question: 'After `passive-interface default` and `no passive-interface Gi0/1`, which interfaces send OSPF hellos?', choices: ['None — default blocks all', 'Only Gi0/1', 'All except Gi0/1', 'Only loopbacks'],
+    correctIndex: 1, explanation: 'Passive default silences all; `no passive-interface` re-enables hellos on listed interfaces only.', type: 'application', concept: 'ospf',
+  },
+  {
+    id: 'trap-passive-3', ckuId: 'CKU-PASSIVE-INTERFACE', trapLabel: '`passive-interface` advertises a network but stops hellos.', objectiveId: '3.4',
+    question: 'A LAN interface is OSPF passive. `show ip ospf interface` still lists the network. Why?', choices: ['Passive removes the network from OSPF', 'Passive stops hellos but the subnet is still advertised', 'OSPF is broken', 'DR election failed'],
+    correctIndex: 1, explanation: 'Passive does not withdraw the prefix — it only stops multicast hellos toward connected hosts.', type: 'scenario', concept: 'ospf',
+  },
+  // CKU-LOAD-BALANCING (3)
+  {
+    id: 'trap-ecmp-1', ckuId: 'CKU-LOAD-BALANCING', trapLabel: 'Assuming only the first equal-cost route is installed.', objectiveId: '3.6',
+    question: 'Two static routes to 10.10.10.0/24 via 10.0.0.1 and 10.0.0.2 share the same AD. What does the routing table show?', choices: ['Only the first configured route', 'Both next-hops installed for equal-cost load balancing', 'Router rejects the duplicate', 'Higher next-hop IP wins'],
+    correctIndex: 1, explanation: 'Equal AD and cost statics both install — IOS load-balances per destination (or per packet).', type: 'scenario', concept: 'routing',
+  },
+  {
+    id: 'trap-ecmp-2', ckuId: 'CKU-LOAD-BALANCING', trapLabel: 'Assuming only the first equal-cost route is installed.', objectiveId: '3.6',
+    question: 'OSPF shows two paths to 192.168.50.0/24 with identical total cost. How are they treated?', choices: ['Only lowest Router ID path is used', 'Both paths are in the table for ECMP', 'OSPF picks one at random permanently', 'BDR blocks the second path'],
+    correctIndex: 1, explanation: 'OSPF installs multiple equal-cost routes (up to platform max) when SPF finds ties.', type: 'definition', concept: 'ospf',
+  },
+  {
+    id: 'trap-ecmp-3', ckuId: 'CKU-LOAD-BALANCING', trapLabel: 'Assuming only the first equal-cost route is installed.', objectiveId: '3.6',
+    question: 'You add a second static default via a different ISP with the same AD as the first. Expected forwarding behavior?', choices: ['First default only', 'Traffic may share across both defaults (ECMP)', 'Router enters err-disabled', 'AD automatically increments on the second route'],
+    correctIndex: 1, explanation: 'Same prefix, same AD → multiple next-hops install unless you raise AD on one to prefer a primary.', type: 'application', concept: 'routing',
+  },
+  // CKU-NETWORK-MASK (3)
+  {
+    id: 'trap-netmask-1', ckuId: 'CKU-NETWORK-MASK', trapLabel: 'Using a subnet mask in the OSPF `network` command.', objectiveId: '3.4',
+    question: 'Which OSPF network statement correctly enables 192.168.1.0/24 in area 0?', choices: ['`network 192.168.1.0 255.255.255.0 area 0`', '`network 192.168.1.0 0.0.0.255 area 0`', '`network 192.168.1.0 0.255.255.255 area 0`', '`network 0.0.0.0 255.255.255.0 area 0`'],
+    correctIndex: 1, explanation: 'OSPF `network` uses a wildcard (inverse) mask — /24 = 0.0.0.255, not 255.255.255.0.', type: 'application', concept: 'ospf',
+  },
+  {
+    id: 'trap-netmask-2', ckuId: 'CKU-NETWORK-MASK', trapLabel: 'Using a subnet mask in the OSPF `network` command.', objectiveId: '3.4',
+    question: '`network 10.0.0.0 255.0.0.0 area 1` is entered under `router ospf 1`. What is wrong?', choices: ['Area 1 cannot be used', 'Second octet should be wildcard 0.255.255.255, not subnet mask 255.0.0.0', 'Process ID must match area', '10.0.0.0 requires area 0'],
+    correctIndex: 1, explanation: '255.0.0.0 is a subnet mask — OSPF expects wildcard 0.255.255.255 for 10.0.0.0/8.', type: 'troubleshooting', concept: 'ospf',
+  },
+  {
+    id: 'trap-netmask-3', ckuId: 'CKU-NETWORK-MASK', trapLabel: 'Using a subnet mask in the OSPF `network` command.', objectiveId: '3.4',
+    question: 'To match every interface on a router with one OSPF statement, which wildcard is correct?', choices: ['`network 0.0.0.0 255.255.255.255 area 0`', '`network 0.0.0.0 0.0.0.0 area 0`', '`network 255.255.255.255 0.0.0.0 area 0`', '`network any any area 0`'],
+    correctIndex: 0, explanation: 'Wildcard 255.255.255.255 matches all addresses — the inverse of a /0 mask.', type: 'application', concept: 'ospf',
+  },
+  // CKU-OSPF-NEIGHBOR (3)
+  {
+    id: 'trap-ospf-nbr-1', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
+    question: 'On a serial point-to-point OSPF link, what DR/BDR roles exist?', choices: ['DR and BDR are elected', 'No DR/BDR — point-to-point adjacency only', 'BDR only', 'DR on the higher bandwidth side'],
+    correctIndex: 1, explanation: 'Point-to-point networks skip DR/BDR election — neighbors go straight to Full.', type: 'definition', concept: 'ospf',
+  },
+  {
+    id: 'trap-ospf-nbr-2', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
+    question: 'Four routers on a multi-access Ethernet segment. R3 has priority 200, highest RID. R4 has priority 0. Who becomes DR?', choices: ['R4 (priority 0 is special)', 'R3 (highest priority)', 'Lowest IP address', 'First router to boot'],
+    correctIndex: 1, explanation: 'Highest OSPF priority wins DR election; priority 0 never becomes DR/BDR.', type: 'scenario', concept: 'ospf',
+  },
+  {
+    id: 'trap-ospf-nbr-3', ckuId: 'CKU-OSPF-NEIGHBOR', trapLabel: 'Expecting DR/BDR on point-to-point links.', objectiveId: '3.4',
+    question: 'Two OSPF routers on Ethernet tie on priority 1. Tie-breaker for DR is…', choices: ['Lowest MAC', 'Highest Router ID', 'Lowest interface IP', 'Random selection'],
+    correctIndex: 1, explanation: 'Equal priority → highest Router ID becomes DR; second highest becomes BDR.', type: 'application', concept: 'ospf',
+  },
+  // CKU-DTP (3)
+  {
+    id: 'trap-dtp-1', ckuId: 'CKU-DTP', trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.', objectiveId: '2.2',
+    question: 'A trunk port has `switchport mode trunk` and `switchport nonegotiate`. The neighbor still sends DTP. What happens on this port?', choices: ['This port reverts to access mode', 'This port ignores DTP and stays trunk — no negotiation', 'VTP blocks the trunk', 'STP disables the link'],
+    correctIndex: 1, explanation: 'Nonegotiate stops outbound DTP but the configured trunk mode remains — the port does not auto-fallback to access.', type: 'scenario', concept: 'trunk',
+  },
+  {
+    id: 'trap-dtp-2', ckuId: 'CKU-DTP', trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.', objectiveId: '2.2',
+    question: 'SW1: `switchport mode dynamic desirable`. SW2: `switchport mode trunk` + `switchport nonegotiate`. Likely result?', choices: ['Trunk forms via DTP on both sides', 'Link may not trunk — desirable expects negotiation; nonegotiate side will not respond', 'Access on both', 'EtherChannel forms instead'],
+    correctIndex: 1, explanation: 'Dynamic desirable needs DTP agreement — a nonegotiate trunk peer will not negotiate, often leaving a mismatch.', type: 'troubleshooting', concept: 'trunk',
+  },
+  {
+    id: 'trap-dtp-3', ckuId: 'CKU-DTP', trapLabel: 'Expecting DTP to negotiate when `switchport nonegotiate` is set.', objectiveId: '2.2',
+    question: 'Which command disables DTP on an interface while keeping an administratively set trunk?', choices: ['no switchport trunk', 'switchport nonegotiate', 'no dtp enable', 'switchport mode access'],
+    correctIndex: 1, explanation: 'Use `switchport nonegotiate` after setting trunk mode — DTP frames are not sent.', type: 'definition', concept: 'trunk',
+  },
+  // CKU-FLEXCONNECT (3)
+  {
+    id: 'trap-flex-1', ckuId: 'CKU-FLEXCONNECT', trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.', objectiveId: '2.6',
+    question: 'A branch office loses WAN connectivity to the WLC. FlexConnect APs are configured with local switching. Client traffic to the local VLAN…', choices: ['Stops entirely until WAN returns', 'Can continue switching locally at the AP for locally switched WLANs', 'Must tunnel to the data center', 'Falls back to autonomous IOS on the AP'],
+    correctIndex: 1, explanation: 'FlexConnect local switching keeps branch VLAN traffic on-site when the CAPWAP tunnel to the WLC is down.', type: 'scenario', concept: 'wireless',
+  },
+  {
+    id: 'trap-flex-2', ckuId: 'CKU-FLEXCONNECT', trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.', objectiveId: '2.6',
+    question: 'When is central switching at the WLC preferred over FlexConnect local switching?', choices: ['Always — WLC must switch every frame', 'When uniform policy enforcement and hairpin routing at the WLC are required', 'Only for 2.4 GHz SSIDs', 'Never — FlexConnect replaces all WLC switching'],
+    correctIndex: 1, explanation: 'Central switching keeps all client traffic anchored at the WLC — FlexConnect trades survivability for local offload.', type: 'application', concept: 'wireless',
+  },
+  {
+    id: 'trap-flex-3', ckuId: 'CKU-FLEXCONNECT', trapLabel: 'Believing all WLAN traffic must switch centrally at the WLC.', objectiveId: '2.6',
+    question: 'FlexConnect is primarily designed for which deployment?', choices: ['Core data center aggregation', 'Branch offices that need local survivability when WAN to WLC fails', 'Home consumer Wi-Fi', 'Replacing all Ethernet switches'],
+    correctIndex: 1, explanation: 'FlexConnect targets remote sites — local VLAN switching when the controller path is unavailable.', type: 'definition', concept: 'wireless',
+  },
+  // CKU-WPA3 (3)
+  {
+    id: 'trap-wpa3-1', ckuId: 'CKU-WPA3', trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.', objectiveId: '2.8',
+    question: 'Corporate policy requires per-user certificates via RADIUS. Which WLAN security is appropriate?', choices: ['WPA3-Personal (SAE/PSK)', 'WPA2-Enterprise (802.1X)', 'Open with MAC filtering', 'WEP shared key'],
+    correctIndex: 1, explanation: 'Enterprise 802.1X with RADIUS assigns unique credentials — PSK is one shared passphrase for all users.', type: 'scenario', concept: 'wireless-security',
+  },
+  {
+    id: 'trap-wpa3-2', ckuId: 'CKU-WPA3', trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.', objectiveId: '2.8',
+    question: 'A guest network needs a simple passphrase printed on a sign. Best fit?', choices: ['WPA3-Enterprise', 'WPA3-Personal (SAE)', '802.1X with machine certs', 'Open authentication'],
+    correctIndex: 1, explanation: 'WPA3-Personal (SAE) improves PSK security for shared-passphrase guest WLANs — enterprise 802.1X is overkill.', type: 'application', concept: 'wireless-security',
+  },
+  {
+    id: 'trap-wpa3-3', ckuId: 'CKU-WPA3', trapLabel: 'Choosing WPA3-Personal when enterprise 802.1X is required.', objectiveId: '2.8',
+    question: 'WPA3-Personal primarily improves which weakness of WPA2-PSK?', choices: ['Offline dictionary attacks on the captured 4-way handshake', 'Need for a RADIUS server', 'VLAN assignment per SSID', 'Channel bonding on 5 GHz'],
+    correctIndex: 0, explanation: 'SAE (WPA3-Personal) resists offline PSK cracking better than WPA2 PSK — it does not replace 802.1X.', type: 'definition', concept: 'wireless-security',
+  },
+  // CKU-LACP-MODE (3)
+  {
+    id: 'trap-lacp-1', ckuId: 'CKU-LACP-MODE', trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.', objectiveId: '2.4',
+    question: 'SW1 interfaces are `channel-group 1 mode active`. SW2 are `channel-group 1 mode passive`. Expected result?', choices: ['Bundle forms — active negotiates with passive', 'No bundle — both must be active', 'PAgP takes over', 'STP blocks one link only'],
+    correctIndex: 0, explanation: 'LACP active initiates; passive responds — active/passive is a valid LACP pairing.', type: 'scenario', concept: 'etherchannel',
+  },
+  {
+    id: 'trap-lacp-2', ckuId: 'CKU-LACP-MODE', trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.', objectiveId: '2.4',
+    question: 'Both switches use `channel-group 1 mode passive`. What happens?', choices: ['Port-channel forms immediately', 'LACP cannot start — both sides wait; bundle fails to form', 'Falls back to PAgP desirable', 'On mode is auto-enabled'],
+    correctIndex: 1, explanation: 'Passive/passive never initiates LACP — at least one side must be active (or use mode on).', type: 'troubleshooting', concept: 'etherchannel',
+  },
+  {
+    id: 'trap-lacp-3', ckuId: 'CKU-LACP-MODE', trapLabel: 'Mismatched LACP active/passive modes prevent channel formation.', objectiveId: '2.4',
+    question: 'Which LACP mode pairing will NOT form a channel?', choices: ['active + passive', 'active + active', 'passive + passive', 'on + on'],
+    correctIndex: 2, explanation: 'Passive on both ends waits forever — active/passive or active/active (or on/on) is required.', type: 'definition', concept: 'etherchannel',
+  },
+  // CKU-ROOT-GUARD (3)
+  {
+    id: 'trap-rootguard-1', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
+    question: 'Root Guard is enabled on a distribution switch port toward access switches. A new switch advertises superior BPDU. That port…', choices: ['Becomes the new root port', 'Moves to root-inconsistent (blocking) — prevents rogue root', 'Enters err-disabled immediately', 'Converts to trunk'],
+    correctIndex: 1, explanation: 'Root Guard blocks superior BPDUs on designated ports — port goes root-inconsistent, not forwarding.', type: 'scenario', concept: 'stp',
+  },
+  {
+    id: 'trap-rootguard-2', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
+    question: 'Where should Root Guard be applied?', choices: ['On every port including the known root bridge uplink', 'On downstream/designated ports where a rogue root must not appear', 'Only on access ports with PortFast', 'On router WAN interfaces'],
+    correctIndex: 1, explanation: 'Apply Root Guard toward access layers — never on the port that should accept the real root BPDU.', type: 'application', concept: 'stp',
+  },
+  {
+    id: 'trap-rootguard-3', ckuId: 'CKU-ROOT-GUARD', trapLabel: 'Enabling Root Guard on the actual root bridge uplink.', objectiveId: '2.5',
+    question: 'Root Guard is configured on the uplink toward the legitimate root bridge. Effect?', choices: ['Improves convergence', 'Blocks valid root BPDUs — network may lose root path', 'Enables BPDU filtering', 'Replaces BPDU Guard'],
+    correctIndex: 1, explanation: 'Root Guard on the real root-facing port rejects superior BPDUs — breaks proper STP topology.', type: 'troubleshooting', concept: 'stp',
+  },
+  // CKU-CAPWAP (3)
+  {
+    id: 'trap-capwap-1', ckuId: 'CKU-CAPWAP', trapLabel: 'Confusing CAPWAP control and data tunnel ports.', objectiveId: '2.6',
+    question: 'Lightweight APs tunnel management to a WLC using CAPWAP. Which UDP ports are used?', choices: ['TCP 443 and TCP 8443', 'UDP 5246 (control) and UDP 5247 (data)', 'UDP 67 and UDP 68', 'TCP 22 and TCP 23'],
+    correctIndex: 1, explanation: 'CAPWAP uses UDP 5246 for control/management and UDP 5247 for data between AP and WLC.', type: 'definition', concept: 'wireless',
+  },
+  {
+    id: 'trap-capwap-2', ckuId: 'CKU-CAPWAP', trapLabel: 'Confusing CAPWAP control and data tunnel ports.', objectiveId: '2.6',
+    question: 'A firewall blocks UDP 5246 but permits UDP 5247. What fails first?', choices: ['Client Wi-Fi data only', 'AP join and WLC management — control tunnel cannot form', 'DHCP for wireless clients', 'DNS resolution on the WLC'],
+    correctIndex: 1, explanation: 'Control tunnel (5246) carries join, config, and keepalive — without it the AP cannot join the WLC.', type: 'scenario', concept: 'wireless',
+  },
+  {
+    id: 'trap-capwap-3', ckuId: 'CKU-CAPWAP', trapLabel: 'Confusing CAPWAP control and data tunnel ports.', objectiveId: '2.6',
+    question: 'CAPWAP replaced which legacy Cisco lightweight AP protocol?', choices: ['802.1X', 'LWAPP', 'WEP', 'LLDP'],
+    correctIndex: 1, explanation: 'CAPWAP (RFC 5415) superseded LWAPP as the standard AP-to-controller tunnel protocol.', type: 'definition', concept: 'wireless',
+  },
+  // CKU-DNS-RECORDS (3)
+  {
+    id: 'trap-dnsrec-1', ckuId: 'CKU-DNS-RECORDS', trapLabel: 'Using an A record when reverse lookup is required.', objectiveId: '4.3',
+    question: 'Which DNS record maps a hostname to an IPv4 address?', choices: ['PTR', 'A', 'MX', 'CNAME'],
+    correctIndex: 1, explanation: 'A records map names to IPv4 — PTR records map IP addresses back to names (reverse lookup).', type: 'definition', concept: 'dns',
+  },
+  {
+    id: 'trap-dnsrec-2', ckuId: 'CKU-DNS-RECORDS', trapLabel: 'Using an A record when reverse lookup is required.', objectiveId: '4.3',
+    question: 'Mail delivery uses which DNS record type to find the mail server for a domain?', choices: ['A', 'AAAA', 'MX', 'NS'],
+    correctIndex: 2, explanation: 'MX (Mail Exchange) records point to the hostname that receives email for the domain.', type: 'application', concept: 'dns',
+  },
+  {
+    id: 'trap-dnsrec-3', ckuId: 'CKU-DNS-RECORDS', trapLabel: 'Using an A record when reverse lookup is required.', objectiveId: '4.3',
+    question: 'www.example.com is an alias for server1.example.com. Which record type is used?', choices: ['A', 'CNAME', 'PTR', 'TXT'],
+    correctIndex: 1, explanation: 'CNAME creates an alias — multiple names can point to one canonical A record.', type: 'definition', concept: 'dns',
+  },
+  // CKU-NTP-STRATUM (3)
+  {
+    id: 'trap-ntpstr-1', ckuId: 'CKU-NTP-STRATUM', trapLabel: 'Thinking stratum 1 means the local router is the reference clock.', objectiveId: '4.2',
+    question: 'A router syncs to an NTP server at stratum 2. What stratum does the router report?', choices: ['Stratum 1', 'Stratum 2', 'Stratum 3', 'Stratum 16 (unsynchronized)'],
+    correctIndex: 2, explanation: 'Client stratum = server stratum + 1 — stratum 1 is the reference clock (GPS/atomic), not the client.', type: 'scenario', concept: 'ntp',
+  },
+  {
+    id: 'trap-ntpstr-2', ckuId: 'CKU-NTP-STRATUM', trapLabel: 'Thinking stratum 1 means the local router is the reference clock.', objectiveId: '4.2',
+    question: 'Which stratum level represents a directly connected reference clock source?', choices: ['Stratum 0', 'Stratum 1', 'Stratum 2', 'Stratum 15'],
+    correctIndex: 1, explanation: 'Stratum 1 servers attach directly to reference clocks — stratum 0 is the clock itself (not assigned to NTP peers).', type: 'definition', concept: 'ntp',
+  },
+  {
+    id: 'trap-ntpstr-3', ckuId: 'CKU-NTP-STRATUM', trapLabel: 'Thinking stratum 1 means the local router is the reference clock.', objectiveId: '4.2',
+    question: 'Lower NTP stratum number means…', choices: ['Farther from the reference clock — less accurate', 'Closer to the reference clock — more authoritative', 'The server is unsynchronized', 'The server uses manual `clock set`'],
+    correctIndex: 1, explanation: 'Stratum increases with each hop from the reference — lower stratum = closer to the authoritative time source.', type: 'definition', concept: 'ntp',
+  },
+  // CKU-EXTENDED-ACL (3)
+  {
+    id: 'trap-extacl-1', ckuId: 'CKU-EXTENDED-ACL', trapLabel: 'Placing extended ACLs close to the destination instead of the source.', objectiveId: '5.5',
+    question: 'Where should an extended ACL filtering traffic FROM subnet A be applied?', choices: ['On the router interface closest to subnet A (source)', 'On the router interface closest to the destination', 'On the DHCP server', 'On every switch in the path'],
+    correctIndex: 0, explanation: 'Extended ACLs go near the source — filter unwanted traffic before it consumes bandwidth across the network.', type: 'application', concept: 'acl',
+  },
+  {
+    id: 'trap-extacl-2', ckuId: 'CKU-EXTENDED-ACL', trapLabel: 'Placing extended ACLs close to the destination instead of the source.', objectiveId: '5.5',
+    question: 'Standard ACLs (1–99) should generally be placed…', choices: ['Near the source of traffic', 'Near the destination of traffic', 'On the DHCP relay interface', 'On loopback interfaces only'],
+    correctIndex: 1, explanation: 'Standard ACLs match source only — place near destination to avoid blocking transit traffic unintentionally.', type: 'definition', concept: 'acl',
+  },
+  {
+    id: 'trap-extacl-3', ckuId: 'CKU-EXTENDED-ACL', trapLabel: 'Placing extended ACLs close to the destination instead of the source.', objectiveId: '5.5',
+    question: 'An extended ACL on R2 (between sites) blocks Telnet from Site A to Site B. Best placement?', choices: ['Inbound on R2 interface toward Site B', 'Outbound on R1 interface leaving Site A', 'On the Site B access switch', 'On the DNS server'],
+    correctIndex: 1, explanation: 'Apply outbound on the source-side router — Telnet is stopped before crossing the WAN link.', type: 'scenario', concept: 'acl',
+  },
+  // CKU-DHCP-SNOOPING (3)
+  {
+    id: 'trap-dhcpsnoop-1', ckuId: 'CKU-DHCP-SNOOPING', trapLabel: 'Marking all access ports as DHCP snooping trusted.', objectiveId: '5.6',
+    question: 'Which ports should be configured as DHCP snooping trusted?', choices: ['All access ports facing end users', 'Only ports connected to legitimate DHCP servers or uplinks toward them', 'Every port on the switch', 'Only trunk ports'],
+    correctIndex: 1, explanation: 'Trusted ports allow DHCP server messages — typically uplinks toward the real DHCP server, not client-facing access ports.', type: 'definition', concept: 'layer2-security',
+  },
+  {
+    id: 'trap-dhcpsnoop-2', ckuId: 'CKU-DHCP-SNOOPING', trapLabel: 'Marking all access ports as DHCP snooping trusted.', objectiveId: '5.6',
+    question: 'A rogue DHCP server connects to an untrusted access port. DHCP snooping will…', choices: ['Permit all DHCP offers', 'Drop DHCP OFFER/ACK from untrusted ports', 'Disable the VLAN', 'Convert the port to trunk'],
+    correctIndex: 1, explanation: 'Snooping blocks DHCP server messages on untrusted ports — only trusted ports can send offers/acks.', type: 'scenario', concept: 'layer2-security',
+  },
+  {
+    id: 'trap-dhcpsnoop-3', ckuId: 'CKU-DHCP-SNOOPING', trapLabel: 'Marking all access ports as DHCP snooping trusted.', objectiveId: '5.6',
+    question: 'DHCP snooping builds a binding table used by which companion feature?', choices: ['VTP pruning', 'Dynamic ARP Inspection (DAI)', 'EtherChannel LACP', 'OSPF passive-interface'],
+    correctIndex: 1, explanation: 'DAI validates ARP against the DHCP snooping binding table — stops ARP spoofing on untrusted ports.', type: 'application', concept: 'layer2-security',
+  },
+]
