@@ -52,7 +52,7 @@ import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import {
   resolveQuizTrapDrillPrefill,
   QUIZ_PROMPT_SYSTEM,
-  CONFIDENCE_OPTIONS,
+  ConfidenceRatingStrip,
   quizFeedbackA11y,
   QuizCompleteCard,
 } from './quizTabChrome.jsx'
@@ -796,39 +796,12 @@ export function QuizTab({
         <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>
       )}
       {revealed && (
-        <div className="ccna-confidence-strip" style={{ marginBottom: 10 }}>
-          {overconfidentCallout && (
-            <div style={{ ...styles.small, marginBottom: 8, padding: '8px 10px', borderRadius: 8, border: `1px solid ${COLORS.amberBorder}`, background: COLORS.amberDim, color: COLORS.amber }}>
-              You marked this <strong>Easy</strong> but missed it — a common exam trap. Re-read the explanation before moving on.
-            </div>
-          )}
-          <div className="ccna-confidence-strip__label" style={{ ...styles.small, marginBottom: 6 }}>How confident did you feel?</div>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            {CONFIDENCE_OPTIONS.map(opt => {
-              const active = rating === opt.value
-              return (
-                <button
-                  key={opt.value}
-                  onClick={() => rate(opt.value)}
-                  style={{
-                    flex: '1 1 auto', minHeight: 44, borderRadius: 10, cursor: 'pointer',
-                    background: active ? opt.dim : COLORS.surface,
-                    border: `1px solid ${active ? opt.border : COLORS.border}`,
-                    color: active ? opt.accent : COLORS.silverMid,
-                    fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 6px', fontFamily: 'inherit',
-                  }}
-                >
-                  {opt.label}
-                </button>
-              )
-            })}
-          </div>
-          {confidenceHint && (
-            <div style={{ ...styles.small, marginTop: 8, color: COLORS.sky, lineHeight: 1.4 }}>
-              {confidenceHint}
-            </div>
-          )}
-        </div>
+        <ConfidenceRatingStrip
+          overconfidentCallout={overconfidentCallout}
+          rating={rating}
+          confidenceHint={confidenceHint}
+          rate={rate}
+        />
       )}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next question'}</button>}
     </div>
