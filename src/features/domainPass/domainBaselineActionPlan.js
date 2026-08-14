@@ -10,7 +10,6 @@ import { domainPassStatus } from './domainPassConfig.js'
  *   notChecked: string[],
  *   nextLessons: string[],
  *   nextMissDrill: boolean,
- *   readyForPass: boolean,
  *   primaryCta: 'baseline' | 'study' | 'fix_misses' | 'pass' | 'burn' | 'practice',
  *   primaryLabel: string,
  * }}
@@ -57,7 +56,6 @@ export function buildDomainActionPlan({
     notChecked,
     nextLessons: [...weak, ...notChecked].slice(0, 5),
     nextMissDrill: missCount > 0,
-    readyForPass: hasBaseline && missCount < 8,
     primaryCta,
     primaryLabel,
     passStatus,
