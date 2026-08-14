@@ -410,7 +410,6 @@ export default function MetricsDashboard({ progress, missed, dueCount = 0, onBac
             </div>
             {retention.map(r => {
               const m = RETENTION_META[r.state]
-              const c = accentColors(m.accent)
               return (
                 <button key={r.id} onClick={() => open(r.objective)} style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 10, textAlign: 'left', background: 'none', border: 'none', borderTop: `1px solid ${COLORS.border}`, cursor: 'pointer', padding: '10px 2px', fontFamily: 'inherit' }}>
                   <span style={{ fontSize: 'var(--ccna-type-lg)' }} aria-hidden="true">{m.icon}</span>

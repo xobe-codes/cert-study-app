@@ -3,7 +3,7 @@
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { COLORS, styles } from '../ui/appTheme.js'
+import { COLORS } from '../ui/appTheme.js'
 
 export default function LabTerminal({
   checkpoint,
@@ -12,7 +12,6 @@ export default function LabTerminal({
   isLoading = false,
   validationFeedback = null,
   previousCommands = [],
-  onCommandSelect,
 }) {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState([])

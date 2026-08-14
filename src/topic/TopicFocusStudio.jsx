@@ -17,7 +17,6 @@ import {
   loadFocusSets,
   loadPinnedConcepts,
   saveFocusSet,
-  togglePinnedConcept,
 } from './topicFocusStorage.js'
 
 const SORT_OPTIONS = [
@@ -251,11 +250,6 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
     setSaveName('')
     setShowSave(false)
     return entry
-  }
-
-  async function handlePin(conceptId) {
-    const next = await togglePinnedConcept(conceptId)
-    setPinned(next)
   }
 
   function startQuiz() {

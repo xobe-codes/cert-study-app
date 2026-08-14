@@ -10,7 +10,6 @@ export default function LabReadinessChecklist({
   isReady = false,
   onSubmit,
   submitting = false,
-  readinessValidation = null,
 }) {
   const completedCount = checkpointStatuses.filter((s) => s.completed).length
   const totalCount = checkpointStatuses.length

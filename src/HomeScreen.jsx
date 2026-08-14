@@ -16,10 +16,8 @@ import {
 import StudyNextStrip from './home/StudyNextStrip.jsx'
 import TrapHeatmapStrip from './home/TrapHeatmapStrip.jsx'
 import HomeTopBar from './home/HomeTopBar.jsx'
-import StatusLabel from './components/StatusLabel.jsx'
 import ProgressRing from './components/ProgressRing.jsx'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
-import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
 import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
 import DomainBaselinePrompt from './features/domainPlacement/DomainBaselinePrompt.jsx'
@@ -78,7 +76,6 @@ function ContentTrustCard() {
 }
 
 function YourProgressCard({
-  progress,
   readiness,
   onOpenStats,
   glance = null,
@@ -259,89 +256,6 @@ function ExamTrapWidget() {
   )
 }
 
-/* ---- Session recap card (#16) ---- */
-function TopTrapPatterns({ missed, onOpenMissed }) {
-  const trapGroups = useMemo(() => groupMissedByTrap(missed || []), [missed])
-  const top = trapGroups.slice(0, 3)
-  if (!top.length) return null
-
-  return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, letterSpacing: 0.5 }}>⚠️ YOUR TOP TRAP PATTERNS</div>
-        <button
-          type="button"
-          onClick={onOpenMissed}
-          style={{ background: 'none', border: 'none', color: COLORS.rose, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
-        >
-          Review missed →
-        </button>
-      </div>
-      {top.map((g, i) => (
-        <div
-          key={g.trap}
-          style={{
-            display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: i < top.length - 1 ? 8 : 0,
-            paddingBottom: i < top.length - 1 ? 8 : 0,
-            borderBottom: i < top.length - 1 ? `1px solid ${COLORS.roseBorder}` : 'none',
-          }}
-        >
-          <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{g.count}×</span>
-          <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45 }}>{g.trap}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function SessionRecapCard() {
-  const [dismissed, setDismissed] = useState(isRecapDismissed())
-  // Read session data once on mount (HomeScreen remounts on each return to Home)
-  const data = useMemo(() => getSessionStudy(), [])
-
-  const total = data.correct + data.incorrect
-  if (dismissed || total === 0) return null
-
-  const parts = []
-  if (total > 0) parts.push(`${total} question${total === 1 ? '' : 's'}`)
-  if (data.objectives.length > 0) parts.push(`${data.objectives.length} objective${data.objectives.length === 1 ? '' : 's'}`)
-  if (data.mastered.length > 0) parts.push(`${data.mastered.length} mastered 🎉`)
-
-  function dismiss() { dismissSessionRecap(); setDismissed(true) }
-
-  return (
-    <div style={{
-      ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`,
-      marginBottom: 12, position: 'relative', display: 'flex', alignItems: 'center', gap: 10,
-    }}>
-      <button
-        onClick={dismiss}
-        style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0 }}
-        aria-label="Dismiss"
-      >×</button>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 2 }}>📊 Last session</div>
-        <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{parts.join(' · ')}</div>
-        {total > 0 && (
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>
-            {data.correct} correct · {data.incorrect} incorrect
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function StudyModeCard({ title, subtitle, children }) {
-  return (
-    <div style={{ ...styles.card, marginBottom: 10, padding: 12 }}>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 2 }}>{title}</div>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 10 }}>{subtitle}</div>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{children}</div>
-    </div>
-  )
-}
-
 function StudyModeBtn({ onClick, children, primary, disabled }) {
   return (
     <button
@@ -361,7 +275,7 @@ function StudyModeBtn({ onClick, children, primary, disabled }) {
   )
 }
 
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, premiumUnlocked = false, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, commandDrills = {}, theme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, offlineReady, openDomain, premiumUnlocked = false, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, commandDrills = {}, theme }) {
   const {
     onOpenDomain,
     onSelectObjective,
@@ -371,7 +285,6 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     onOpenMissed,
     onOpenTutor,
     onPremiumBlocked,
-    onOpenMetrics,
     onOpenStats,
     onOpenSettings,
     onOpenReview,
@@ -616,7 +529,6 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       <ContentTrustCard />
 
       <YourProgressCard
-        progress={progress}
         readiness={readiness}
         onOpenStats={onOpenStats}
         glance={homeBatchGlance?.glance || null}

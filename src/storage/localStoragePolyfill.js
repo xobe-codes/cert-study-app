@@ -22,7 +22,6 @@ function isQuotaError(err) {
 function report(win, { op, key, error }) {
   const kind = isQuotaError(error) ? 'quota-exceeded' : 'unavailable'
   try {
-    // eslint-disable-next-line no-console
     console.warn(`[storage] ${op} failed for "${key}" (${kind})`, error)
   } catch { /* console can be absent in exotic hosts */ }
   try {

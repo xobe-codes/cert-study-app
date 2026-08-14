@@ -528,7 +528,7 @@ export function AppNavigationLifecycle({
 }
 
 /** Bottom-nav derived state from view + overlay flags. */
-export function bottomNavState({ view, showSettings, showSearch, showNavBack }) {
+export function bottomNavState({ view, showSettings, showSearch }) {
   const active = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : view === 'objective' ? 'home' : null
   const compact = view === 'objective'
   return { active, compact }

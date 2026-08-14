@@ -4,7 +4,7 @@ import { getTopicIndex } from '../topic/topicIndex.js'
 import { getCommandIndex } from '../commands/commandIndex.js'
 import { curatedObjectiveIds, getCurated } from '../data/ccnaCurated.js'
 import { isDraftKbTierText } from '../lesson/readingEnrichment.js'
-import { bestScore, inDomain, norm, scoreQuery, hasTokenMatch } from '../search/textRank.js'
+import { inDomain, norm, scoreQuery, hasTokenMatch } from '../search/textRank.js'
 import { makeChunk, navObjective } from './libraryChunk.js'
 import { detectIntent, INTENT_KIND_BOOST } from './intentDetect.js'
 import {

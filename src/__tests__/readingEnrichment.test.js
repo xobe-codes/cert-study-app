@@ -1,10 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import {
   mergeKbReadingPatch,
-  enrichReadingTiers,
   finalizeReading,
   isDraftKbTierText,
-  isSubstantialAuthoredTiers,
   wordCount,
   shouldDefaultOpenRealWorld,
 } from '../lesson/readingEnrichment.js'

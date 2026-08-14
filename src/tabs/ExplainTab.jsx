@@ -4,11 +4,11 @@ import { getLessonReference, hasLessonReference } from '../lesson/knowledgeRefer
 import { buildConceptDetail } from '../lesson/conceptDetail.js'
 import { computeCkuCoverage } from '../lesson/quizCoverage.js'
 import {
-  READING_TIERS, computeDefaultReadingTier, getReadingTier, readingTierHint,
+  computeDefaultReadingTier,
   studyMetaToProgress, READING_TIER_KEYS,
 } from '../lesson/readingTier.js'
 import {
-  explanationBodyFromReading, explanationBodyFromAi, resolveBigTakeaway, resolveAiTakeaway,
+  explanationBodyFromAi, resolveAiTakeaway,
 } from '../lesson/explanationFormat.js'
 import CuratedVisualBundle from '../components/CuratedVisualBundle.jsx'
 import CuratedStaticBadge from '../components/CuratedStaticBadge.jsx'
@@ -31,7 +31,6 @@ import {
 } from './tabRuntimeDeps.js'
 import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets, PreAssessment } from './studyQuizShared.jsx'
-import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
 import CuratedUnifiedReading from './CuratedUnifiedReading.jsx'
 
 const TERMS_CACHE_KEY = 'ccna_terms_cache_v1'

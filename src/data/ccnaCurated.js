@@ -20,7 +20,6 @@
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 import { getSkillQuestionsLazy as getSkillQuestions } from './skillQuestionsRegistry.js'
 import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
-import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import { countObjectiveQuestions } from './questionBankCount.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,

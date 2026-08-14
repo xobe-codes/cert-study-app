@@ -76,7 +76,6 @@ export default function StudyModeRoutes({
   onOpenExamTraps,
   onOpenDomainPlacement,
   onOpenCommandHub,
-  onOpenTermsHub,
   onOpenLabs,
   onOpenSubnet,
   onSelectObjective,

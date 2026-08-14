@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { COLORS } from './appTheme.js'
+import React from 'react'
 
 export function Skeleton({ width = '100%', height = 14, style }) {
   return <div className="ccna-skeleton" style={{ width, height, marginBottom: 8, ...style }} />

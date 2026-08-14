@@ -218,15 +218,6 @@ function countParamSlots(tokens) {
   return tokens.filter(isParamSlot).length
 }
 
-/** IOS-style unique prefix — ip must not expand to ipv6. */
-function uniquePrefixExpand(input, opts) {
-  const matches = opts.filter(o => isValidTokenPrefix(input, o))
-  if (!matches.length) return null
-  if (matches.includes(input)) return input
-  if (matches.length === 1) return matches[0]
-  return { ambiguous: true, token: input, candidates: matches }
-}
-
 function expandPattern(inputTokens, patternTokens) {
   const expanded = patternTokens.map((t, i) => (isParamSlot(t) ? inputTokens[i] : t))
   return { resolved: normalizeIosCli(expanded.join(' ')) }
@@ -280,7 +271,6 @@ export function getTabCompletion(line, mode = 'priv') {
 
   const parts = trimmed.split(' ')
   const endsWithSpace = raw.endsWith(' ')
-  const currentIdx = endsWithSpace ? parts.length : parts.length - 1
   const prefixTokens = endsWithSpace ? parts : parts.slice(0, -1)
   const partial = endsWithSpace ? '' : (parts[parts.length - 1] || '')
 

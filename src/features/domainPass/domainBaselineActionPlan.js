@@ -27,7 +27,6 @@ export function buildDomainActionPlan({
   const notChecked = (baselineSummary?.notCheckedObjectives || []).map(x => (typeof x === 'string' ? x : x?.id)).filter(Boolean)
   const hasBaseline = baselineSummary && baselineSummary.domainStatus !== 'not_started'
   const passStatus = domainPassStatus(passRecord)
-  const readyForPass = !!(hasBaseline && (unseenCount === 0 || unseenCount < 999) && missCount < 15)
 
   let primaryCta = 'practice'
   let primaryLabel = 'Practice domain'

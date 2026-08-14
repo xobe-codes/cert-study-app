@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { getCuratedQuestions } from '../data/ccnaCurated.js'
 import {
-  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
-  shuffleArrayCopy, randomizeQuestionOrder, inferSkill, normalizeSelectedIndexes,
+  isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
+  shuffleArrayCopy, randomizeQuestionOrder, normalizeSelectedIndexes,
 } from '../questionUtils.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import McChoices from '../components/McChoices.jsx'

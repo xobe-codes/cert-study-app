@@ -9,8 +9,6 @@ export default function LabCheckpointStatus({
   checkpoint,
   checkpointStatuses = [],
   currentCheckpointIdx = 0,
-  onRetry,
-  onSkip,
 }) {
   const totalCheckpoints = checkpointStatuses.length
   const completedCount = checkpointStatuses.filter((s) => s.completed).length

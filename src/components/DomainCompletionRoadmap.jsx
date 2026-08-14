@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { DOMAINS } from '../data/ccnaDomains.js'
-import { COLORS, styles } from '../ui/appTheme.js'
+import { COLORS } from '../ui/appTheme.js'
 
 /**
  * Domain Completion Roadmap

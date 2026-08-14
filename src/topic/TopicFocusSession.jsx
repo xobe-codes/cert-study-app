@@ -5,7 +5,7 @@ import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import {
   gradeQuestion, isMcQuestion, isCliQuestion, isOrderingQuestion, buildMissedEntry,
-  shuffleArrayCopy, randomizeQuestionOrder,
+  shuffleArrayCopy,
 } from '../questionUtils.js'
 import { loadQuizBank, recordQuizResult } from '../quiz/quizBankStorage.js'
 import { buildTopicFocusQueue } from './topicFocusQuiz.js'

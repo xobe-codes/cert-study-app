@@ -1,5 +1,5 @@
 import React from 'react'
-import { COLORS, accentColors, styles } from '../ui/appTheme.js'
+import { COLORS, styles } from '../ui/appTheme.js'
 import { CONCEPT_KIND_LABEL } from './topicIndex.js'
 
 function kindAccent(kind) {

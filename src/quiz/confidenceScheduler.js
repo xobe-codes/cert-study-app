@@ -51,7 +51,7 @@ export function nextSrsFromCorrect(prev, correct) {
 export function applyConfidenceToSrs(srs, rating, lastCorrect, now = Date.now()) {
   if (!srs) return srs
   const r = String(rating || '').toLowerCase()
-  let { interval, reps, lapses, intervalIndex, due } = srs
+  let { reps, lapses, intervalIndex } = srs
 
   if (r === 'practice') {
     return {

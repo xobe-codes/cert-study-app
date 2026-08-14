@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 
 export default function LabHintPanel({
-  checkpoint,
   attempts = 0,
   hintsUsed = 0,
   currentHintLevel = 0,
@@ -114,7 +113,7 @@ export default function LabHintPanel({
           { level: 1, label: 'Nudge', desc: 'Questions' },
           { level: 2, label: 'Guidance', desc: 'Explanations' },
           { level: 3, label: 'Solution', desc: 'Command' },
-        ].map(({ level, label, desc }) => (
+        ].map(({ level, label }) => (
           <button
             key={level}
             onClick={() => handleRequestHint(level)}

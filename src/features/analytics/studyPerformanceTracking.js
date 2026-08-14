@@ -33,16 +33,10 @@ export async function detectWeakAnchorsThisSession() {
   const interactions = await getSessionInteractions()
   const retryMap = new Map() // objective -> retry count
   const wrongMap = new Map() // objective -> wrong count
-  let consecutiveWrong = 0
-  let lastWrongObjective = null
 
   interactions.forEach(e => {
     if (!e.correct) {
       wrongMap.set(e.objective, (wrongMap.get(e.objective) || 0) + 1)
-      consecutiveWrong++
-      lastWrongObjective = e.objective
-    } else {
-      consecutiveWrong = 0
     }
 
     // Track retries on same question
