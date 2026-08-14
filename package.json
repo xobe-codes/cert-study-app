@@ -87,6 +87,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.61.1",

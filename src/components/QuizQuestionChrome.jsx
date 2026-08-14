@@ -64,7 +64,7 @@ function QuizExhibitBlock({ exhibit, label }) {
         <span className="ccna-quiz-exhibit__dot" aria-hidden />
         <span className="ccna-quiz-exhibit__label">{label || 'Exhibit'}</span>
       </div>
-      <div className="ccna-quiz-exhibit__body ccna-h-scroll">
+      <div className="ccna-quiz-exhibit__body ccna-h-scroll" tabIndex={0} role="group" aria-label={`${label || 'Exhibit'} content, scrollable`}>
         {lines.map((line, i) => {
           if (line.type === 'blank') return <div key={i} className="ccna-quiz-exhibit__blank" />
           if (line.type === 'title') {

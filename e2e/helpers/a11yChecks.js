@@ -1,12 +1,20 @@
 import { expect } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
 
 /**
- * Shared, dependency-free accessibility assertions — not a WCAG audit (that
- * needs a real engine like axe-core, which isn't currently a project
- * dependency), but a systematic sweep of the checks a screen-reader user
- * actually hits first: does every interactive control announce a name, does
- * every image have alt text, is there a heading to orient by. Reused across
- * many routes in a11y-smoke.spec.js instead of duplicating the loop per test.
+ * Shared accessibility assertions for e2e specs.
+ *
+ * assertA11yBasics/assertHasHeading are a fast, dependency-light sweep of
+ * the checks a screen-reader user hits first — accessible names, alt text,
+ * a heading to orient by. assertNoAxeViolations runs the real axe-core WCAG
+ * engine (@axe-core/playwright) for everything those hand-rolled checks
+ * can't see: color contrast, ARIA misuse, duplicate IDs, landmark structure,
+ * heading order, and the rest of the ~90 rules axe ships with. Both layers
+ * are worth keeping — axe is authoritative but only reports what it can
+ * statically detect on the DOM as rendered; the hand-rolled checks stay
+ * useful as a fast, explicit regression net for the properties this app's
+ * own components are most likely to regress (a raw {choice} render losing
+ * its aria-label, an <img> losing its alt).
  */
 export async function assertA11yBasics(page, label) {
   // Every button must expose an accessible name (text content or aria-label).
@@ -66,4 +74,28 @@ export async function assertA11yBasics(page, label) {
 export async function assertHasHeading(page, label) {
   const headingCount = await page.getByRole('heading').count()
   expect(headingCount, `[${label}] expected at least one heading`).toBeGreaterThan(0)
+}
+
+/**
+ * Run the real axe-core WCAG 2.1 AA ruleset against the current page state
+ * and fail with a readable summary (rule id, impact, and up to 3 offending
+ * selectors per violation) if anything is flagged.
+ *
+ * @param {string[]} disableRules — rule IDs to skip for this call, for a
+ *   documented, reviewed exception (not a silent blanket disable) — pass
+ *   the rule id and explain why in a comment at the call site.
+ */
+export async function assertNoAxeViolations(page, label, { disableRules = [] } = {}) {
+  const builder = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+  if (disableRules.length) builder.disableRules(disableRules)
+  const results = await builder.analyze()
+
+  if (results.violations.length) {
+    const summary = results.violations.map(v => {
+      const nodes = v.nodes.slice(0, 3).map(n => n.target.join(' ')).join(' | ')
+      const more = v.nodes.length > 3 ? ` (+${v.nodes.length - 3} more)` : ''
+      return `  - [${v.impact}] ${v.id}: ${v.help} — ${nodes}${more}`
+    }).join('\n')
+    expect(results.violations, `[${label}] axe found ${results.violations.length} violation type(s):\n${summary}`).toEqual([])
+  }
 }
