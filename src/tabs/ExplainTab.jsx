@@ -37,16 +37,18 @@ function ExplainBlock({ icon, title, accent, children, collapsible, defaultOpen 
   const c = accentColors(accent)
   return (
     <div style={{ borderLeft: `3px solid ${c.text}`, background: c.dim, border: `1px solid ${c.border}`, borderRadius: 6, padding: '10px 12px', marginBottom: 8, boxShadow: '0 2px 10px #00000022' }}>
-      <button
-        onClick={() => collapsible && setOpen(o => !o)}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text }}
-      >
-        <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          {icon} {title}
-          <SectionListenButton speechText={speechText} onListen={onListen} />
-        </span>
-        {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>}
-      </button>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+        <button
+          onClick={() => collapsible && setOpen(o => !o)}
+          style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0, background: 'none', border: 'none', padding: 0, cursor: collapsible ? 'pointer' : 'default', color: c.text }}
+        >
+          <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, letterSpacing: 0.3, display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            {icon} {title}
+          </span>
+          {collapsible && <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginLeft: 8 }}>{open ? '−' : '+'}</span>}
+        </button>
+        <SectionListenButton speechText={speechText} onListen={onListen} />
+      </div>
       {open && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-md)', lineHeight: 1.55, color: COLORS.silver }}>{children}</div>}
     </div>
   )
