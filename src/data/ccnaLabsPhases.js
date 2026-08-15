@@ -50,6 +50,7 @@ function mkGuided(opts) {
     commonMistakes: opts.mistakes,
     source: { name: LAB_SOURCES.blueprint, chapter: opts.chapter, confidence: 0.9 },
     metadata: { version: '1', status: 'validated', confidence: 0.9 },
+    ...(opts.cliShowOutput ? { cliShowOutput: opts.cliShowOutput } : {}),
   }
   return guidedBundle(
     lab, opts.topoNodes, opts.topoLinks, opts.required, opts.verifyCmd, opts.verifyExpect,
@@ -160,6 +161,19 @@ const PORT_SECURITY = mkGuided({
   ],
   verify: ['show port-security', 'show port-security interface fa0/5'],
   verifyCmd: 'show port-security interface fa0/5', verifyExpect: 'Port Security: Enabled',
+  cliShowOutput: {
+    'show port-security': `Secure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action
+              (Count)        (Count)      (Count)
+----------------------------------------------------------------------
+   Fa0/5              1              1                  0         Shutdown`,
+    'show port-security interface fa0/5': `Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode              : Shutdown
+Maximum MAC Addresses        : 1
+Total MAC Addresses           : 1
+Sticky MAC Addresses          : 1
+Security Violation Count      : 0`,
+  },
   success: ['Port-security enabled on Fa0/5', 'Maximum 1 sticky MAC', 'Violation mode shutdown'],
   mistakes: ['Port-security on a trunk port', 'Forgetting sticky — MAC table clears on reload', 'restrict mode vs shutdown confusion'],
   topoNodes: [{ id: 'sw1', label: 'SW1', type: 'switch', x: 50, y: 40 }, { id: 'pc', label: 'PC', type: 'pc', x: 50, y: 75 }],
@@ -191,6 +205,16 @@ const EXTENDED_ACL_BUILD = mkGuided({
   ],
   verify: ['show access-lists', 'show ip interface gi0/0'],
   verifyCmd: 'show access-lists WEB_ONLY', verifyExpect: 'WEB_ONLY',
+  cliShowOutput: {
+    'show access-lists WEB_ONLY': `Extended IP access list WEB_ONLY
+    10 permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 80 (18 matches)
+    20 permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 443 (11 matches)
+    30 deny ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 (4 matches)`,
+    'show ip interface gi0/0': `GigabitEthernet0/0 is up, line protocol is up
+  Internet address is 192.168.1.1/24
+  Inbound  access list is WEB_ONLY
+  Outgoing access list is not set`,
+  },
   success: ['HTTP/HTTPS permitted office→servers', 'ACL applied inbound Gi0/0'],
   mistakes: ['Subnet mask instead of wildcard', 'Applying outbound on server interface for source filtering', 'Missing deny — relies only on implicit deny for wrong protocols'],
   topoNodes: [{ id: 'pc', label: 'Office', type: 'pc', x: 20, y: 50 }, { id: 'r1', label: 'R1', type: 'router', x: 50, y: 50 }, { id: 'srv', label: 'Servers', type: 'server', x: 80, y: 50 }],
@@ -402,11 +426,11 @@ const LAB_TS_WLAN = tsLab('LAB-TS-WLAN-VLAN', 'Troubleshoot WLAN Wrong VLAN Mapp
       expectedCommands: ['show client summary'] },
     { id: 't2', order: 2, title: 'WLAN mapping', device: 'WLC1', instruction: 'Run show wlan summary — CORP_WIFI mapped to VLAN10 interface instead of VLAN20.',
       expectedCommands: ['show wlan summary'] },
-    { id: 't3', order: 3, title: 'Root cause', device: 'WLC1', instruction: 'Diagnosis: WLAN dynamic interface points to VLAN10 — clients get 10.x addresses.',
-      expectedCommands: ['show wlan summary'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'WLC1', instruction: 'Run show wlan 1 for full detail — Interface: VLAN10 confirms the dynamic interface mapping is the root cause, not a client-side association issue.',
+      expectedCommands: ['show wlan 1'] },
   ],
   [],
-  ['show client summary', 'show wlan summary'],
+  ['show client summary', 'show wlan summary', 'show wlan 1'],
   ['Mapping SSID to management VLAN instead of user VLAN'])
 
 const TS_WLAN = tsBundle(LAB_TS_WLAN,

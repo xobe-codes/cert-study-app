@@ -116,7 +116,12 @@ function padTasks(tasks, lab, validator) {
   while (existing.length < LAB_QUALITY_MIN.tasks) {
     order += 1
     const base = existing[existing.length - 1] || { device: 'R1', expectedCommands: ['show running-config'] }
-    const fallbackCmd = interpretOnly ? 'show running-config' : (base.expectedCommands?.[0] || 'show running-config')
+    // Reuse the prior task's own command rather than a hardcoded 'show
+    // running-config' fallback — that literal string has no canned output
+    // in any lab's cliShowOutput table, so the padded task previously
+    // rendered "% Output not simulated" instead of the "prior" output its
+    // own instruction text promised.
+    const fallbackCmd = base.expectedCommands?.[0] || 'show running-config'
     existing.push({
       id: `t-pad-${order}`,
       order,

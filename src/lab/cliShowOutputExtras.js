@@ -334,6 +334,16 @@ Negotiation of Trunking: On
 Access Mode VLAN: 1 (default)
 Trunking Native Mode VLAN: 1 (default)
 Trunking VLANs Enabled: 10,20`,
+  'show interfaces gi0/1 switchport': `Name: Gi0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 99 (Inactive)
+Trunking VLANs Enabled: 10,20`,
 }
 
 /** EtherChannel verify for LAB-ETHERCHANNEL (objective 2.4). */
@@ -526,6 +536,12 @@ S   2001:DB8:20::/64 [1/0]
      via 2001:DB8:12::2`,
   'show ipv6 interface brief': `Interface              IPv6-Address                              Status
 GigabitEthernet0/0     2001:DB8:12::1/64                         [up/up]`,
+  'show ipv6 route': `IPv6 Routing Table - default - 3 entries
+Codes: C - Connected, L - Local, S - Static
+C   2001:DB8:12::/64 [0/0]
+     via GigabitEthernet0/0, directly connected
+S   2001:DB8:20::/64 [1/0]
+     via 2001:DB8:12::2`,
 }
 
 /** WLAN SSID verify for LAB-WLAN-SSID (objective 2.8). */
@@ -644,4 +660,53 @@ MAC Address       IP Address      AP Name           SSID
 aabb.cc00.0101    192.168.10.50   AP-Floor1         CORP_WIFI`,
   'show wlan summary': `WLAN ID  SSID        Status    Interface
 1        CORP_WIFI   Enabled   VLAN10`,
+  // Second, genuinely distinct piece of evidence for each "Root cause" task
+  // below — confirms the diagnosis rather than re-running the prior command.
+  'show ip ospf interface brief': `Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Gi0/0        1     1               10.0.12.1/30       1     DOWN  0/0`,
+  'show interfaces gi0/1 switchport': `Name: Gi0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Trunking Native Mode VLAN: 99 (Inactive)`,
+  'show interfaces gi0/0': `GigabitEthernet0/0 is administratively down, line protocol is down (disabled)
+  Internet address is 192.168.1.1/24
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec`,
+  'show ip interface gi0/1': `GigabitEthernet0/1 is up, line protocol is up
+  Internet address is 10.0.0.1/24
+  Inbound  access list is not set
+  Outgoing access list is not set
+  Helper address is not set`,
+  'show ip route 0.0.0.0': `% Network not in table`,
+  'show standby': `GigabitEthernet0/0 - Group 1
+  State is Standby
+  Virtual IP address is 192.168.1.1
+  Active virtual MAC address is 0000.0c07.ac01
+  Hello time 3 sec, hold time 10 sec
+  Preemption disabled
+  Priority 100 (default 100)`,
+  'show running-config interface gi0/0': `interface GigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.128`,
+  'show arp': `Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  10.0.12.2               0   aabb.cc00.0210  ARPA   GigabitEthernet0/1`,
+  'show wlan 1': `WLAN Identifier.................................. 1
+Network Name (SSID)................................ CORP_WIFI
+Status........................................... Enabled
+Interface........................................ VLAN10`,
+  // Third verify step for the labs that only had two real distinct commands,
+  // so the 3-task quality floor is met with real content instead of an
+  // auto-padded re-run of the command directly above.
+  'show running-config | include shutdown': `interface GigabitEthernet0/0
+ shutdown`,
+  'show running-config | section access-list': `ip access-list extended OFFICE_TO_SERVERS
+ permit icmp any any
+ deny ip any any`,
+  'show ip route summary': `IP routing table name is default (0x0)
+Route Source    Networks    Subnets
+connected       1           1
+static          0           0
+Total           1           1`,
+  'show running-config | section standby': `interface GigabitEthernet0/0
+ standby 1 ip 192.168.1.1`,
+  'show running-config | include ip address': ` ip address 192.168.1.1 255.255.255.128`,
 }
