@@ -206,7 +206,13 @@ export default function LabView({
     })
 
     if (result.newlyCompleted.length) {
-      const nextFlags = [...doneFlags]
+      // Pre-size to the task's full command count, not just however many
+      // slots doneFlags already happened to touch — otherwise a task with
+      // N required commands reads as complete (flags.every(Boolean)) the
+      // moment its FIRST command is entered, because the flags array never
+      // grew past length 1 and every() on a 1-element array is vacuously
+      // true for that lone entry.
+      const nextFlags = expected.map((_, i) => doneFlags[i] || false)
       result.newlyCompleted.forEach(i => { nextFlags[i] = true })
       setTaskCmdDone(prev => ({ ...prev, [activeTask.id]: nextFlags }))
     }

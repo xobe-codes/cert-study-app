@@ -921,6 +921,10 @@ ospf 1          18
 
 WAN hub-spoke: branch routers use default route to HQ hub (cost-effective).
 Full mesh: every site has direct links (redundant, expensive).`,
+  'show ip route': `Codes: C - connected, S - static, O - OSPF
+Gateway of last resort is 10.10.1.1 to network 0.0.0.0
+S*   0.0.0.0/0 [1/0] via 10.10.1.1
+C    10.10.1.0/24 is directly connected, GigabitEthernet0/1`,
 }
 
 const LAB_D11_12 = mkInterpretGuided({
@@ -932,6 +936,7 @@ const LAB_D11_12 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'Campus tiers', device: 'SW1', instruction: 'Run show cdp neighbors detail — access switch uplinks to distribution layer.', expectedCommands: ['enable', 'show cdp neighbors detail'] },
     { id: 't2', order: 2, title: 'WAN routing pattern', device: 'R1', instruction: 'Run show ip route summary — branch sites often use static/default routes to a central hub.', expectedCommands: ['show ip route summary'] },
+    { id: 't3', order: 3, title: 'Full route detail', device: 'R1', instruction: 'Run show ip route — the actual static default entry confirms hub-and-spoke in practice, not just in the summary count.', expectedCommands: ['show ip route'] },
   ],
   required: [{ device: 'SW1', command: 'show cdp neighbors detail' }, { device: 'R1', command: 'show ip route summary' }],
   verify: ['show cdp neighbors detail', 'show ip route summary'],
@@ -1045,6 +1050,12 @@ RFC 1918 private ranges (NOT Internet-routable):
 tcp  203.0.113.50:80   10.0.0.10:80       ---                ---
 
 Inside local 10.0.0.10 (private RFC1918) translated to public 203.0.113.50.`,
+  'show ip nat statistics': `Total active translations: 1 (0 static, 1 dynamic; 0 extended)
+Outside interfaces:
+  GigabitEthernet0/1
+Inside interfaces:
+  GigabitEthernet0/0
+Hits: 24  Misses: 0`,
 }
 
 const LAB_D11_17 = mkInterpretGuided({
@@ -1056,9 +1067,10 @@ const LAB_D11_17 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'Private routes', device: 'R1', instruction: 'Run show ip route — identify 10.0.0.0/8 as RFC 1918 private (not Internet-routable).', expectedCommands: ['enable', 'show ip route'] },
     { id: 't2', order: 2, title: 'NAT translation', device: 'R1', instruction: 'Run show ip nat translations — inside-local private address mapped to public global.', expectedCommands: ['show ip nat translations'] },
+    { id: 't3', order: 3, title: 'NAT statistics', device: 'R1', instruction: 'Run show ip nat statistics — hit counts confirm translation is actively happening, not just configured.', expectedCommands: ['show ip nat statistics'] },
   ],
   required: [{ device: 'R1', command: 'show ip route' }, { device: 'R1', command: 'show ip nat translations' }],
-  verify: ['show ip route', 'show ip nat translations'],
+  verify: ['show ip route', 'show ip nat translations', 'show ip nat statistics'],
   verifyCmd: 'show ip route', verifyExpect: '10.0.0.0',
   verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip nat translations', expectedResult: '10.0.0.10 private → 203.0.113.50 public', passCondition: 'NAT private to public' }],
   success: ['RFC 1918 10/8 identified as private', 'NAT maps private to public for Internet', 'APIPA 169.254.x.x noted as DHCP failure'],
@@ -1107,6 +1119,15 @@ Address type summary:
   ULA FD00::/8 — private IPv6 (like RFC1918)
   Link-local FE80::/10 — on-link only, never routed
   Multicast FF00::/8 — replaces IPv4 broadcast`,
+  'show ipv6 neighbors': `IPv6 Address                              Age  Link-layer Addr State  Interface
+FE80::2222:22FF:FE00:2                      0   2222.2200.0002  REACH  Gi0/0
+2001:DB8:ACAD:1::2                          0   2222.2200.0002  REACH  Gi0/0`,
+  'show ipv6 route': `IPv6 Routing Table - default - 5 entries
+Codes: C - Connected, L - Local, ND - Neighbor Discovery
+C   2001:DB8:ACAD:1::/64 [0/0]
+     via GigabitEthernet0/0, directly connected
+L   2001:DB8:ACAD:1::1/128 [0/0]
+     via GigabitEthernet0/0, receive`,
 }
 
 const LAB_D11_19 = mkInterpretGuided({
@@ -1117,9 +1138,11 @@ const LAB_D11_19 = mkInterpretGuided({
   goals: ['Classify GUA 2000::/3 vs ULA FD00::/8', 'Explain link-local FE80::/10 scope', 'Identify multicast FF02::1 and FF02::2'],
   tasks: [
     { id: 't1', order: 1, title: 'Address types', device: 'R1', instruction: 'Run show ipv6 interface gi0/0 — list GUA, link-local, and multicast groups.', expectedCommands: ['enable', 'show ipv6 interface gi0/0'] },
+    { id: 't2', order: 2, title: 'Neighbor cache', device: 'R1', instruction: 'Run show ipv6 neighbors — the neighbor\'s link-local address confirms ND uses FE80:: on-link, never the GUA, to resolve link-layer addresses.', expectedCommands: ['show ipv6 neighbors'] },
+    { id: 't3', order: 3, title: 'Routing table', device: 'R1', instruction: 'Run show ipv6 route — the connected C entry for the /64 and local L /128 confirm which address type actually gets installed for forwarding.', expectedCommands: ['show ipv6 route'] },
   ],
   required: [{ device: 'R1', command: 'show ipv6 interface gi0/0' }],
-  verify: ['show ipv6 interface gi0/0'],
+  verify: ['show ipv6 interface gi0/0', 'show ipv6 neighbors', 'show ipv6 route'],
   verifyCmd: 'show ipv6 interface gi0/0', verifyExpect: 'FE80',
   verificationChecks: [
     { id: 'v1', device: 'R1', command: 'show ipv6 interface gi0/0', expectedResult: 'GUA 2001: + link-local FE80 + FF02 groups', passCondition: 'address type classification' },
@@ -1187,6 +1210,10 @@ CORP_WIFI     2.4GHz 6        -72    20 MHz
 Radio 1 (5 GHz):   Channel 36, 80 MHz width, TX power 20 dBm
 
 802.11 standards: n (Wi-Fi 4), ac (Wi-Fi 5), ax (Wi-Fi 6) — increasing speed/OFDMA.`,
+  'show interfaces dot11Radio 0': `Dot11Radio0 is up, line protocol is up
+  Radio type: 802.11n/ac
+  Encryption: WPA2 AES-CCMP
+  0 packets input, 0 packets output`,
 }
 
 const LAB_D11_111 = mkInterpretGuided({
@@ -1198,9 +1225,10 @@ const LAB_D11_111 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'Client associations', device: 'AP1', instruction: 'Run show dot11 associations all-client — note band, channel, RSSI per client.', expectedCommands: ['enable', 'show dot11 associations all-client'] },
     { id: 't2', order: 2, title: 'Radio settings', device: 'AP1', instruction: 'Run show controllers dot11Radio 0 — compare 2.4 vs 5 GHz channel and width.', expectedCommands: ['show controllers dot11Radio 0'] },
+    { id: 't3', order: 3, title: 'Encryption in use', device: 'AP1', instruction: 'Run show interfaces dot11Radio 0 — confirms WPA2 AES-CCMP is actually active on the radio, not just configured in policy.', expectedCommands: ['show interfaces dot11Radio 0'] },
   ],
   required: [{ device: 'AP1', command: 'show dot11 associations all-client' }, { device: 'AP1', command: 'show controllers dot11Radio 0' }],
-  verify: ['show dot11 associations all-client', 'show controllers dot11Radio 0'],
+  verify: ['show dot11 associations all-client', 'show controllers dot11Radio 0', 'show interfaces dot11Radio 0'],
   verifyCmd: 'show dot11 associations all-client', verifyExpect: '5 GHz',
   verificationChecks: [{ id: 'v1', device: 'AP1', command: 'show dot11 associations all-client', expectedResult: 'Dual-band with RSSI and channel width', passCondition: 'RF principles' }],
   success: ['2.4 GHz channels 1/6/11 noted', '5 GHz higher throughput with wider channels', 'RSSI measures signal strength'],
@@ -1341,6 +1369,14 @@ const CLI_D47_47 = {
       Per-Hop Behavior: WRED — drop probability rises as queue fills`,
   'show queueing interface gi0/0': `Queueing strategy: Class-based queueing
   DSCP trust: enabled on Gi0/0 (honor inbound markings at trust boundary)`,
+  'show running-config | section policy-map': `policy-map WAN-EDGE-QOS
+ class VOICE
+  priority percent 10
+ class VIDEO
+  bandwidth percent 30
+ class class-default
+  fair-queue
+  random-detect`,
 }
 
 const LAB_D47_47 = mkInterpretGuided({
@@ -1352,9 +1388,10 @@ const LAB_D47_47 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'Policy map', device: 'R1', instruction: 'Run show policy-map interface gi0/0 — identify LLQ, CBWFQ, WRED per class.', expectedCommands: ['enable', 'show policy-map interface gi0/0'] },
     { id: 't2', order: 2, title: 'Trust boundary', device: 'R1', instruction: 'Run show queueing interface gi0/0 — DSCP trust at WAN edge.', expectedCommands: ['show queueing interface gi0/0'] },
+    { id: 't3', order: 3, title: 'Raw policy config', device: 'R1', instruction: 'Run show running-config | section policy-map — confirms the exact percentages and class actions saved to config, matching what the operational view reported.', expectedCommands: ['show running-config | section policy-map'] },
   ],
   required: [{ device: 'R1', command: 'show policy-map interface gi0/0' }, { device: 'R1', command: 'show queueing interface gi0/0' }],
-  verify: ['show policy-map interface gi0/0', 'show queueing interface gi0/0'],
+  verify: ['show policy-map interface gi0/0', 'show queueing interface gi0/0', 'show running-config | section policy-map'],
   verifyCmd: 'show policy-map interface gi0/0', verifyExpect: 'LLQ',
   verificationChecks: [{ id: 'v1', device: 'R1', command: 'show policy-map interface gi0/0', expectedResult: 'Voice LLQ + video CBWFQ + default WRED', passCondition: 'QoS PHB' }],
   success: ['Voice uses LLQ priority queue', 'Video gets guaranteed CBWFQ bandwidth', 'WRED drops proactively under congestion'],
@@ -1399,6 +1436,10 @@ Smart License: CSL enabled — registration via HTTPS to Cisco cloud (optional).
 Local vs cloud:
   Local = direct CLI/SSH, on-prem controllers, full control offline
   Cloud = dashboard API, simplified ops, requires Internet + provider trust`,
+  'show ip interface brief': `Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     192.168.1.1     YES manual up                    up
+
+R1's data plane keeps forwarding on this interface even if its cloud/NMS management path is down.`,
 }
 
 const LAB_D410_410 = mkInterpretGuided({
@@ -1410,9 +1451,10 @@ const LAB_D410_410 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'Local management', device: 'R1', instruction: 'Run show license summary — local CLI/SNMP and optional Smart Licensing cloud.', expectedCommands: ['enable', 'show license summary'] },
     { id: 't2', order: 2, title: 'Cloud dashboard', device: 'SW1', instruction: 'Run show meraki dashboard status — cloud-managed device check-in.', expectedCommands: ['show meraki dashboard status'] },
+    { id: 't3', order: 3, title: 'Data plane during an outage', device: 'R1', instruction: 'Run show ip interface brief on R1 — traffic keeps forwarding here even if the cloud dashboard connection drops, since only the management plane depends on it.', expectedCommands: ['show ip interface brief'] },
   ],
   required: [{ device: 'R1', command: 'show license summary' }, { device: 'SW1', command: 'show meraki dashboard status' }],
-  verify: ['show license summary', 'show meraki dashboard status'],
+  verify: ['show license summary', 'show meraki dashboard status', 'show ip interface brief'],
   verifyCmd: 'show meraki dashboard status', verifyExpect: 'Connected',
   verificationChecks: [{ id: 'v1', device: 'SW1', command: 'show meraki dashboard status', expectedResult: 'Cloud dashboard connected', passCondition: 'cloud management' }],
   success: ['Local management works offline via CLI', 'Cloud simplifies multi-site ops', 'Cloud requires Internet and provider trust'],
@@ -1435,6 +1477,11 @@ CIA mapping:
   Confidentiality = encryption + access control (ACL deny)
   Integrity = hashing detects unauthorized changes
   Availability = DDoS mitigation, redundancy`,
+  'show access-lists': `Extended IP access list SEC-BLOCK
+    10 deny ip 10.1.1.0 0.0.0.255 any log (203 matches)
+    20 permit ip any any (81400 matches)
+
+Deny counters rising over time show the ACL is the vulnerability's actual mitigation, not just a logging artifact.`,
 }
 
 const LAB_D51_51 = mkInterpretGuided({
@@ -1446,9 +1493,10 @@ const LAB_D51_51 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'ACL security log', device: 'R1', instruction: 'Run show logging — ACL deny protects confidentiality by blocking unauthorized access.', expectedCommands: ['enable', 'show logging | include SEC'] },
     { id: 't2', order: 2, title: 'IPS statistics', device: 'R1', instruction: 'Run show ip ips statistics — SYN flood (availability), malware C2 (confidentiality).', expectedCommands: ['show ip ips statistics'] },
+    { id: 't3', order: 3, title: 'The actual control', device: 'R1', instruction: 'Run show access-lists — rising deny counters confirm the ACL is actively mitigating the vulnerability, not just producing log entries.', expectedCommands: ['show access-lists'] },
   ],
   required: [{ device: 'R1', command: 'show logging | include SEC' }, { device: 'R1', command: 'show ip ips statistics' }],
-  verify: ['show logging | include SEC', 'show ip ips statistics'],
+  verify: ['show logging | include SEC', 'show ip ips statistics', 'show access-lists'],
   verifyCmd: 'show ip ips statistics', verifyExpect: 'SYN Flood',
   verificationChecks: [{ id: 'v1', device: 'R1', command: 'show ip ips statistics', expectedResult: 'DoS hits availability; malware hits confidentiality', passCondition: 'CIA mapping' }],
   success: ['CIA triad applied to log events', 'Vulnerability/threat/exploit distinguished', 'Defense in depth with ACL + IPS noted'],
@@ -1471,6 +1519,9 @@ const CLI_D52_52 = {
 Authorized access only. Violators prosecuted. Report suspicious activity to security@corp.com.
 ^C
 Policy communication supports user awareness program element.`,
+  'show privilege': `Current privilege level is 15
+
+Privilege level enforcement is a technical control that supports — but does not replace — the training and process elements above.`,
 }
 
 const LAB_D52_52 = mkInterpretGuided({
@@ -1482,9 +1533,10 @@ const LAB_D52_52 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'Program elements', device: 'R1', instruction: 'Review security program checklist — training, physical access, IR, risk assessment, AUP.', expectedCommands: ['enable', 'show policy-map type control subscriber'] },
     { id: 't2', order: 2, title: 'User awareness banner', device: 'R1', instruction: 'Run show run | include banner — MOTD communicates acceptable use policy.', expectedCommands: ['show run | include banner'] },
+    { id: 't3', order: 3, title: 'Technology is not the whole program', device: 'R1', instruction: 'Run show privilege — a technical control like privilege enforcement supports the program but is not itself training, physical security, or incident response.', expectedCommands: ['show privilege'] },
   ],
   required: [{ device: 'R1', command: 'show policy-map type control subscriber' }, { device: 'R1', command: 'show run | include banner' }],
-  verify: ['show policy-map type control subscriber', 'show run | include banner'],
+  verify: ['show policy-map type control subscriber', 'show run | include banner', 'show privilege'],
   verifyCmd: 'show run | include banner', verifyExpect: 'banner motd',
   verificationChecks: [{ id: 'v1', device: 'R1', command: 'show policy-map type control subscriber', expectedResult: 'Training, physical, IR, risk assessment listed', passCondition: 'security program' }],
   success: ['User awareness training identified', 'Physical access control noted', 'Incident response and risk assessment understood'],
@@ -1521,6 +1573,10 @@ AAA framework:
   Auth: TACACS+ (ACS-GROUP) — authenticated
   Author: priv 15 — full command authorization
   Acct: session logged — start/stop records sent to TACACS+`,
+  'show running-config | section aaa': `aaa new-model
+aaa authentication login default group ACS-GROUP local
+aaa authorization exec default group ACS-GROUP local
+aaa accounting exec default start-stop group ACS-GROUP`,
 }
 
 const LAB_D57_57 = mkInterpretGuided({
@@ -1532,9 +1588,10 @@ const LAB_D57_57 = mkInterpretGuided({
   tasks: [
     { id: 't1', order: 1, title: 'AAA servers', device: 'R1', instruction: 'Run show aaa servers — RADIUS for user auth; TACACS+ for admin AAA.', expectedCommands: ['enable', 'show aaa servers'] },
     { id: 't2', order: 2, title: 'User AAA session', device: 'R1', instruction: 'Run show aaa user all — auth, author priv 15, acct logging for netadmin.', expectedCommands: ['show aaa user all'] },
+    { id: 't3', order: 3, title: 'Method list config', device: 'R1', instruction: 'Run show running-config | section aaa — separate login, exec, and accounting lines confirm authentication, authorization, and accounting are three distinct configured steps, not one combined check.', expectedCommands: ['show running-config | section aaa'] },
   ],
   required: [{ device: 'R1', command: 'show aaa servers' }, { device: 'R1', command: 'show aaa user all' }],
-  verify: ['show aaa servers', 'show aaa user all'],
+  verify: ['show aaa servers', 'show aaa user all', 'show running-config | section aaa'],
   verifyCmd: 'show aaa servers', verifyExpect: 'RADIUS',
   verificationChecks: [
     { id: 'v1', device: 'R1', command: 'show aaa user all', expectedResult: 'Auth + author priv 15 + acct session log', passCondition: 'AAA three A\'s' },

@@ -254,6 +254,10 @@ logging trap informational`,
     Logging to 192.168.1.100  (udp port 514,  audit disabled,
               authentication disabled, encryption disabled, link up),
               8 message lines logged`,
+  'show ip route 192.168.1.100': `Routing entry for 192.168.1.0/24
+  Known via "connected", distance 0, metric 0
+  Routing Descriptor Blocks:
+  * directly connected, via GigabitEthernet0/1`,
 }
 
 /** TFTP backup verify for LAB-TFTP-CONFIG-49 (objective 4.9). */
@@ -366,6 +370,17 @@ Group Port-channel  Protocol    Ports
   'show interfaces port-channel 1': `Port-channel1 is up, line protocol is up
   Hardware is EtherChannel, address is aabb.cc00.0100
   MTU 1500 bytes, BW 2000000 Kbit/sec`,
+  'show etherchannel port-channel': `Port-channels in the group:
+------------------------
+Port-channel: Po2
+------------
+Age of the Port-channel   = 00d:01h:12m:33s
+Protocol =   PAgP
+Ports in the Port-channel:
+Index   Load   Port     EC state        No of bits
+------+------+------+------------------+-----------
+  0     00     Gi0/1    Desirable-Sl       0
+  1     00     Gi0/2    Desirable-Sl       0`,
 }
 
 /** PortFast / BPDU Guard verify for LAB-STP-PORTFAST (objective 2.5). */
@@ -397,6 +412,12 @@ export const CLI_LLDP_23_SHOW_OUTPUT = {
 SW2              Gi0/1          120        B,R             Gi0/1`,
   'show running-config | include cdp': 'no cdp run',
   'show running-config | include lldp': 'lldp run',
+  'show lldp neighbors detail': `Local Intf: Gi0/1
+Chassis id: SW2
+Port id: Gi0/1
+System Name: SW2
+Capabilities: Bridge, Router
+Management Addresses: 192.168.1.2`,
 }
 
 /** DAI + DHCP snooping verify for LAB-DAI-DHCP-SNOOPING (objective 5.6). */
@@ -500,6 +521,10 @@ GigabitEthernet0/1         yes`,
   'show ip dhcp snooping binding': `MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
 ------------------  ---------------  ----------  -------------  ----  ----------
 aabb.cc00.0101      192.168.1.50     86400       dhcp-snooping  1     FastEthernet0/5`,
+  'show running-config | include ip dhcp snooping': `ip dhcp snooping
+ip dhcp snooping vlan 1
+interface GigabitEthernet0/1
+ ip dhcp snooping trust`,
 }
 
 /** WLC lightweight AP verify for LAB-WIRELESS-ARCH (objective 2.6). */
@@ -556,6 +581,11 @@ AP Name             State
 ------------------  ------
 AP-01               Joined
 AP-02               Joined`,
+  'show wlan CORP_WIFI': `WLAN Identifier.................................. 1
+Network Name (SSID)................................ CORP_WIFI
+Status........................................... Enabled
+Security.......................................... WPA2 PSK, AES-CCMP
+Interface.......................................... VLAN10`,
 }
 
 /** MAC learning verify for LAB-MAC-FORWARD-15 (objective 1.5). */
@@ -583,6 +613,9 @@ Status: Enabled
 Security: WPA2 Personal (PSK)
 Cipher: AES-CCMP
 Interface: VLAN30 (192.168.30.0/24)`,
+  'show client summary': `Number of Clients: 2
+MAC Address       IP Address      AP Name           SSID
+ccdd.ee00.0203    192.168.30.55   AP-Lobby          GUEST_WIFI`,
 }
 
 /** L3 EtherChannel verify for LAB-L3-ETHERCHANNEL (objective 2.4). */
@@ -597,6 +630,9 @@ Group Port-channel  Protocol    Ports
 Port-channel1          10.0.12.1       YES manual up                    up
 GigabitEthernet0/1     unassigned      YES unset  up                    up
 GigabitEthernet0/2     unassigned      YES unset  up                    up`,
+  'show running-config interface port-channel 1': `interface Port-channel1
+ no switchport
+ ip address 10.0.12.1 255.255.255.252`,
 }
 
 /** IPv6 addressing verify for LAB-D11-18 (objective 1.8). */
@@ -608,6 +644,9 @@ GigabitEthernet0/0     2001:DB8:ACAD:1::1/64                     [up/up]
   IPv6 is enabled, link-local address is FE80::1:1FF:FE00:1
   Global unicast address(es):
     2001:DB8:ACAD:1::1, subnet is 2001:DB8:ACAD:1::/64`,
+  'show ipv6 route connected': `IPv6 Routing Table - default - 4 entries
+C   2001:DB8:ACAD:1::/64 [0/0]
+     via GigabitEthernet0/0, directly connected`,
 }
 
 /** TFTP/flash backup verify for LAB-D49-49 (objective 4.9). */
@@ -620,6 +659,15 @@ export const CLI_TFTP_BACKUP_49_SHOW_OUTPUT = {
      Size(b)     Free(b)      Type  Flags  Prefixes
 *   125829120    45000000     flash     rw   flash:
            -           -    opaque     rw   archive:`,
+  'dir flash:': `Directory of flash:/
+
+    1  -rw-   125829120  Mar 01 2025 12:00:00 +00:00  c2960-lanbasek9-mz.152-7.E.bin
+    2  -rw-        4521  Mar 01 2025 12:34:56 +00:00  vlan.dat
+
+125829120 bytes total (45000000 bytes free)`,
+  'show version': `Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.2(7)E
+System image file is "flash:c2960-lanbasek9-mz.152-7.E.bin"
+Uptime is 3 weeks, 2 days, 4 hours, 12 minutes`,
 }
 
 /** Troubleshoot lab show outputs (objective 3.6 TS labs). */

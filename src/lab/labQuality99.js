@@ -120,8 +120,12 @@ function padTasks(tasks, lab, validator) {
     // running-config' fallback — that literal string has no canned output
     // in any lab's cliShowOutput table, so the padded task previously
     // rendered "% Output not simulated" instead of the "prior" output its
-    // own instruction text promised.
-    const fallbackCmd = base.expectedCommands?.[0] || 'show running-config'
+    // own instruction text promised. Use the LAST command in that task, not
+    // the first — multi-command tasks are usually mode-setup ("enable")
+    // followed by the actual verify command, and re-running "enable" as a
+    // fake verification step is meaningless.
+    const baseCmds = base.expectedCommands || []
+    const fallbackCmd = baseCmds[baseCmds.length - 1] || 'show running-config'
     existing.push({
       id: `t-pad-${order}`,
       order,
