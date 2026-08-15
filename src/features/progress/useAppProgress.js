@@ -54,7 +54,13 @@ export function useAppProgress({ setProgress, setMissed }) {
     const drop = new Set((questionIds || []).filter(Boolean))
     if (!drop.size) return
     setMissed(prev => {
-      const next = prev.filter(m => !drop.has(m?.id ?? m?.questionId))
+      // questionId wins — same precedence as questionId()/missedEntryId() in
+      // missedRetestPool.js and MissedRetestSession.jsx. buildMissedEntry()
+      // only ever sets questionId, never id, so this is a no-op today; kept
+      // consistent so a future entry carrying both fields can't silently
+      // survive a "cleared" retest because this filter checked the field the
+      // other two callers don't.
+      const next = prev.filter(m => !drop.has(m?.questionId ?? m?.id))
       saveMissed(next)
       return next
     })

@@ -16,10 +16,10 @@
 | Hand curated | `src/data/ccnaCurated.js` | 53 rich+ |
 | Factory supplements | `curatedReadingSupplement*.js` | 0 thin |
 | KB patches | `kbCompiledPatches.js` | 42 |
-| Clean bank | `data/clean-question-bank/` | 1335 Q |
+| Clean bank | `data/clean-question-bank/` | 1593 Q |
 | Labs | `ccnaLabs*.js` | 82 labs · 53/53 objs |
-| Lab-lite | interpret-only | 57 |
-| App.jsx lines | `src/App.jsx` | ~198 |
+| Lab-lite | interpret-only | 56 |
+| App.jsx lines | `src/App.jsx` | ~150 |
 
 ## Learner storage (localStorage)
 - `ccna_progress_v1` — per-objective mastery, reading tier, SRS

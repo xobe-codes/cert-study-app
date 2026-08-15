@@ -6,6 +6,8 @@ import {
   drillSessionSummary,
 } from './commandDrillQuiz.js'
 import { CliModeBanner } from '../components/QuizQuestionChrome.jsx'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
 const DRILL_FILTERS = [
   { id: 'all', label: 'Mixed' },
@@ -17,6 +19,7 @@ const DRILL_FILTERS = [
 ]
 
 export default function CommandDrillCoach({ index }) {
+  const { recordEngagement } = useMasteryProgress()
   const [quizFilter, setQuizFilter] = useState('all')
   const [session, setSession] = useState(null)
   const [qIdx, setQIdx] = useState(0)
@@ -46,6 +49,13 @@ export default function CommandDrillCoach({ index }) {
     const correct = gradeCommandDrillQuestion(current, answer)
     setResults(r => [...r, { id: current.id, correct }])
     setChecked(true)
+    if (current.objectiveId) {
+      recordEngagement?.(current.objectiveId, {
+        kind: ENGAGEMENT_KINDS.COMMAND_DRILL,
+        correct: correct ? 1 : 0,
+        total: 1,
+      })
+    }
   }
 
   function nextQuestion() {

@@ -15,11 +15,9 @@ export default function ResultsNextAction({
   passed,
   pct,
   weakObjectiveIds = [],
-  topWeakId = null,
   onNextDomain = null,
   onStudyWeak = null,
   onRetake = null,
-  isFocusSession = false,
 }) {
   if (!onNextDomain && !onStudyWeak && !onRetake) {
     return null

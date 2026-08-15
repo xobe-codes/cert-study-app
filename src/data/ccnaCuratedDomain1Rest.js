@@ -29,18 +29,20 @@ export const OBJ_11 = {
   reading: {
     id: 'READ-1.1', ckuIds: ['CKU-ROUTER', 'CKU-SWITCH', 'CKU-FIREWALL', 'CKU-AP-WLAN'], estimatedReadMinutes: 7,
     tiers: {
-      beginner: 'Every network is built from a few key device types. Routers connect different networks at Layer 3. Switches connect devices inside one LAN at Layer 2 (or route between VLANs if they are Layer 3 switches). Firewalls filter traffic for security. Access points give Wi‑Fi clients a path to the wired network. Controllers manage many APs (or other devices) from one place. Endpoints are PCs, phones, and IoT; servers provide services like DNS and web hosting.',
-      intermediate: 'Routers use routing tables to forward IP packets between subnets — they are the default gateway for LANs. L2 switches learn MAC addresses and forward frames within a broadcast domain; L3 switches add SVIs to route between VLANs without an external router. NGFWs do stateful filtering plus application-aware inspection, often with integrated IPS/IDS. APs bridge 802.11 clients to Ethernet — autonomous (standalone) or lightweight (WLC-managed). Controllers (WLC, DNA Center) push config and policy to many devices. Endpoints consume services; servers (DNS, DHCP, web) serve clients.',
-      examReady: 'Know each device’s OSI layer and role: **Router** — L3, inter-network forwarding via routing table, default gateway. **L2 switch** — MAC table, same-VLAN forwarding. **L3 switch** — L2 + inter-VLAN routing via SVIs. **NGFW** — stateful + app-aware filtering, IPS/IDS inline or OOB. **AP** — wireless-to-wired bridge; autonomous vs lightweight (WLC). **Controller** — centralized config/monitoring (WLC for WLAN, DNA Center for automation). **Endpoint** — client device (PC, phone, IoT). **Server** — provides network services (DNS, DHCP, file, web). Exam items often ask which device belongs at a boundary vs inside a LAN.',
+      beginner: 'Every network is built from a few key device types. Routers connect different networks at Layer 3; switches connect devices inside one LAN at Layer 2, routing between VLANs too if they are Layer 3 switches. Firewalls filter traffic for security.\n\nAccess points give Wi‑Fi clients a path to the wired network, and controllers manage many APs (or other devices) from one place. Endpoints are PCs, phones, and IoT; servers provide services like DNS and web hosting.',
+      intermediate: 'Routers use routing tables to forward IP packets between subnets — they are the default gateway for LANs. L2 switches learn MAC addresses and forward frames within a broadcast domain; L3 switches add SVIs to route between VLANs without an external router.\n\nNGFWs do stateful filtering plus application-aware inspection, often with integrated IPS/IDS, while APs bridge 802.11 clients to Ethernet either autonomously or as lightweight devices managed by a WLC. Controllers like WLC and DNA Center push config and policy to many devices, and endpoints consume the services that servers such as DNS, DHCP, and web provide.',
+      examReady: 'Know each device’s OSI layer and where it sits: L2 switches and APs stay inside one broadcast domain, while routers and L3 switches route between them. Exam items often ask which device belongs at a network boundary versus inside a single LAN.',
     },
     definition: 'A modern network combines **routers** (L3 inter-network), **switches** (L2/L3 LAN), **firewalls** (security enforcement), **access points** (wireless access), and **controllers** (centralized management), with **endpoints** and **servers** at the edge.',
     keyPoints: [
-      'Router = Layer 3, routing table, connects subnets.',
-      'L2 switch = MAC table, same broadcast domain.',
-      'L3 switch = switching + SVI-based inter-VLAN routing.',
-      'NGFW = stateful + application-aware filtering, often with IPS/IDS.',
-      'AP bridges wireless to wired; lightweight APs need a WLC.',
-      'Controllers centralize config and monitoring for many devices.',
+      'Router = Layer 3, routing table, connects subnets — the default gateway.',
+      'L2 switch = MAC table, forwards within one broadcast domain.',
+      'L3 switch = L2 switching + SVI-based inter-VLAN routing.',
+      'NGFW = stateful + application-aware filtering, often with inline or out-of-band IPS/IDS.',
+      'AP bridges wireless to wired; lightweight APs register to a WLC, autonomous APs don’t.',
+      'Controller centralizes config/monitoring — WLC for WLAN, DNA Center for campus automation.',
+      'Endpoint = client device (PC, phone, IoT) that consumes network services.',
+      'Server = provides network services (DNS, DHCP, file, web) to endpoints.',
     ],
     realWorld: 'A branch office might use an L3 switch for user VLANs, a router for WAN, an NGFW at the edge, and lightweight APs registered to a WLC. DNS/DHCP run on servers; laptops and phones are endpoints.',
     commonMistakes: [
@@ -142,16 +144,17 @@ export const OBJ_12 = {
   reading: {
     id: 'READ-1.2', ckuIds: ['CKU-CAMPUS-TIER', 'CKU-SPINE-LEAF', 'CKU-WAN-TOPO', 'CKU-CLOUD-ONPREM'], estimatedReadMinutes: 7,
     tiers: {
-      beginner: 'Networks are organized in patterns called topologies. A campus often has access switches for users, distribution for combining links and policy, and a fast core backbone — or just two tiers in smaller buildings. Data centers use spine-leaf: every server switch (leaf) connects to every spine for even paths. WANs can be hub-and-spoke (all traffic through one site) or mesh (every site talks directly). Home/SOHO networks are small and flat. Cloud moves servers off-site; on-prem keeps them local — both can coexist.',
-      intermediate: 'Three-tier campus: Access connects endpoints; Distribution aggregates access layers and is the routing/policy boundary; Core provides high-speed non-blocking transport. Two-tier (collapsed core) merges distribution+core for mid-size sites. Spine-leaf in data centers gives predictable latency — each leaf uplinks to all spines, avoiding oversubscription for east-west VM traffic. WAN hub-and-spoke is cheap but the hub is a single point; full mesh is resilient but costly. SOHO = flat LAN + combo gateway/AP. Cloud models: IaaS (you manage OS/apps), PaaS (you manage apps), SaaS (you use the app) — shared responsibility with the provider.',
-      examReady: 'Match architecture to use case: **Campus 3-tier** — Access / Distribution / Core; **2-tier** — collapsed core for smaller campuses. **Spine-leaf** — DC fabric, every leaf ↔ every spine, non-blocking east-west. **WAN hub-and-spoke** — remote sites via central hub (cheap, hub dependency); **full mesh** — all sites interconnected (expensive, resilient); **dual-homed** — redundant uplinks. **SOHO** — small flat network, often integrated router/firewall/AP. **On-prem vs cloud** — local ownership vs IaaS/PaaS/SaaS with shared responsibility. Exam questions often contrast spine-leaf vs traditional tiered or hub-spoke vs mesh trade-offs.',
+      beginner: 'Networks are organized in patterns called topologies. A campus often has access switches for users, distribution for combining links and policy, and a fast core backbone — or just two tiers in smaller buildings. Data centers use spine-leaf: every server switch (leaf) connects to every spine for even paths.\n\nWANs can be hub-and-spoke (all traffic through one site) or mesh (every site talks directly); home/SOHO networks are just small, flat setups. Cloud moves servers off-site while on-prem keeps them local — both can coexist.',
+      intermediate: 'Three-tier campus: Access connects endpoints; Distribution aggregates access layers and is the routing/policy boundary; Core provides high-speed non-blocking transport. Two-tier (collapsed core) merges distribution+core for mid-size sites. Spine-leaf in data centers gives predictable latency — each leaf uplinks to all spines, avoiding oversubscription for east-west VM traffic.\n\nWAN hub-and-spoke is cheap but the hub is a single point; full mesh is resilient but costly, and SOHO networks are just a flat LAN behind a combo gateway/AP. Cloud models range from IaaS (you manage OS/apps) to PaaS (you manage apps) to SaaS (you just use the app) — always a shared responsibility with the provider.',
+      examReady: 'Architecture choice follows the network’s job: campus tiers (3-tier, or collapsed 2-tier for smaller sites) organize LAN traffic by function, spine-leaf gives data centers predictable non-blocking paths, and WAN topology trades cost against redundancy. Exam questions often contrast spine-leaf against traditional tiered design, or hub-and-spoke against full mesh.',
     },
     definition: '**Topology architecture** describes how devices interconnect — campus tiers (access/distribution/core), **spine-leaf** fabrics for data centers, **WAN** patterns (hub-spoke, mesh), **SOHO** simplicity, and **on-prem vs cloud** deployment models.',
     keyPoints: [
       'Access = endpoints; Distribution = aggregation + policy; Core = fast backbone.',
       'Two-tier campus collapses distribution and core.',
       'Spine-leaf: every leaf connects to every spine — predictable DC scaling.',
-      'Hub-and-spoke WAN = central hub; full mesh = all-to-all (costly).',
+      'Hub-and-spoke WAN = central hub (cheap, single point of dependency); full mesh = all-to-all (costly, resilient).',
+      'Dual-homed = redundant uplinks to two upstream devices for resilience.',
       'SOHO = small flat network, often one combo device.',
       'Cloud: IaaS / PaaS / SaaS with shared responsibility.',
     ],
@@ -254,15 +257,16 @@ export const OBJ_13 = {
     tiers: {
       beginner: 'Ethernet runs over copper cables (UTP) with RJ-45 plugs or over glass/plastic fiber. Copper is cheap and fine for short runs up to about 100 meters. Fiber goes much farther and is immune to electrical interference. You pick straight-through cables for PC-to-switch links and crossover for switch-to-switch on old gear — modern ports often auto-fix the wiring. SFP modules let you plug copper or fiber into the same switch slot.',
       intermediate: 'UTP categories (Cat5e, Cat6, Cat6a) define bandwidth and crosstalk performance — Cat6a handles 10G to 100 m. T568A/B pinouts define pair order; straight-through uses the same standard both ends; crossover swaps transmit/receive pairs. Fiber: single-mode (yellow, 9 µm core, laser, km-scale) vs multimode (orange/aqua, 50/62.5 µm, hundreds of meters). LC is common on SFPs. Choose media by distance, speed, environment, and cost.',
-      examReady: '**Copper UTP** — RJ-45, 100 m max, Cat5e/6/6a (10G on 6a). **Straight-through** — unlike devices (PC↔switch, router↔switch); **crossover** — like devices (switch↔switch, PC↔PC legacy); **auto-MDIX** auto-corrects. **Fiber SM** — yellow, long haul, laser; **MM** — orange/aqua, campus/building, shorter. Connectors: LC, SC, ST. **SFP/SFP+** — modular transceivers for copper or fiber uplinks. Selection criteria: distance, bandwidth, EMI, cost.',
+      examReady: 'Pick media by distance, bandwidth, EMI exposure, and cost: copper UTP is cheap and fine indoors, fiber goes far and shrugs off interference. Exam stems usually give you the scenario (device pairing, run length, environment) and expect you to name the right cable, connector, or transceiver — not just define terms.',
     },
     definition: 'Physical connectivity uses **copper UTP** (RJ-45, 100 m) or **fiber** (SM for distance, MM for shorter high-speed runs), with **straight-through/crossover** pinouts and **SFP** modules for flexible media on switches.',
     keyPoints: [
       'UTP max ~100 m; Cat6a supports 10 Gbps.',
-      'Straight-through = unlike devices; crossover = like devices (legacy).',
-      'SM fiber = long distance/yellow; MM = shorter/orange-aqua.',
-      'LC connector common on SFP modules.',
+      'Straight-through = unlike devices (PC↔switch); crossover = like devices (switch↔switch, legacy) — auto-MDIX self-corrects on modern ports.',
+      'SM fiber = long distance/yellow/laser; MM = shorter/orange-aqua.',
+      'Connectors: LC common on SFPs; also SC and ST.',
       'SFP/SFP+ = hot-swappable copper or fiber transceivers.',
+      'Choose media by distance, bandwidth, EMI exposure, and cost.',
     ],
     realWorld: 'Access switches use copper to desks; building uplinks use fiber SFPs. A wrong cable type (crossover where straight-through is needed) shows link-down until auto-MDIX fixes it or you swap cables.',
     commonMistakes: [
@@ -361,16 +365,17 @@ export const OBJ_14 = {
     id: 'READ-1.4', ckuIds: ['CKU-IF-ERRORS', 'CKU-CRC', 'CKU-DUPLEX-MISMATCH', 'CKU-COLLISIONS'], estimatedReadMinutes: 6,
     tiers: {
       beginner: 'When a link is slow or flapping, check the physical layer first. Commands like show interfaces reveal error counters. CRC errors mean damaged frames — often a bad cable or interference. Collisions happen when two devices talk at once on half-duplex. A duplex mismatch (one side full, one half) causes both CRC errors and collisions even though the link shows “up.”',
-      intermediate: 'Use `show interfaces <int>` or `show interfaces counters errors` for input errors, output errors, CRC, runts, giants, and collisions. Rising CRCs point to L1/L2 issues: faulty cable, dirty fiber, EMI, or duplex mismatch. Duplex mismatch: one end forced full-duplex while the other negotiates half — symptoms include slow throughput and increasing CRC/late collisions. On modern switched full-duplex links, collisions should be near zero; any sustained collisions suggest misconfiguration.',
-      examReady: 'Troubleshoot L1/L2 with **`show interfaces`** / **`show interfaces counters errors`**. **CRC** = frame corruption (bad cable, connector, EMI, duplex mismatch). **Collisions/late collisions** = half-duplex contention or duplex mismatch on a link that should be full-duplex. **Runts/giants** = undersized/oversized frames (often bad NIC or misconfig). Fix: replace cable, clean connectors, match **speed/duplex** (prefer auto-auto or both forced identically), verify SFP compatibility. Link up/down flapping may be separate from error counters — check both status and errors.',
+      intermediate: 'The interface counters — input/output errors, CRC, runts, giants, collisions — show where a link is failing. Rising CRCs point to L1/L2 trouble: faulty cable, dirty fiber, EMI, or a duplex mismatch.\n\nA duplex mismatch — one end forced full-duplex, the other negotiating half — causes slow throughput plus rising CRC and late collisions. On a modern switched full-duplex link, collisions should be near zero; any sustained collisions point to misconfiguration.',
+      examReady: 'Match the symptom to the cause: CRC errors mean frame corruption at L1/L2 (cable, connector, EMI, or duplex mismatch); collisions on a modern full-duplex link almost always mean a duplex mismatch; runts and giants point to a bad NIC or frame-size misconfiguration. Link flapping is a separate symptom from the error counters — the exam sometimes tests them independently, so check both.',
     },
     definition: 'Interface and cable issues surface as **error counters** — especially **CRC**, **collisions**, and **input errors** — often caused by faulty media, EMI, or **duplex/speed mismatch**.',
     keyPoints: [
-      'Verify with show interfaces / show interfaces counters errors.',
+      'Verify with `show interfaces` or `show interfaces counters errors`.',
       'CRC errors → cable, connector, EMI, or duplex mismatch.',
       'Collisions on modern switched ports → suspect duplex mismatch.',
-      'Match speed and duplex on both ends (auto-auto is fine).',
-      'Runts/giants indicate malformed frame sizes.',
+      'Runts/giants indicate malformed frame sizes — often a bad NIC or misconfig.',
+      'Fix: replace/reseat cable, clean connectors, match speed/duplex (auto-auto or both forced identically), verify SFP compatibility.',
+      'Link up/down flapping is a separate check from the error counters.',
     ],
     realWorld: 'A user reports “slow network” on one port; show interfaces Gi0/5 shows thousands of CRCs — the patch cable was damaged. Replacing it cleared errors immediately.',
     commonMistakes: [
@@ -571,9 +576,9 @@ export const OBJ_110 = {
   reading: {
     id: 'READ-1.10', ckuIds: ['CKU-IPCONFIG', 'CKU-PING-TRACE', 'CKU-DNS-GW-ISSUES'], estimatedReadMinutes: 6,
     tiers: {
-      beginner: 'When a PC cannot get online, check its IP settings first. On Windows, ipconfig /all shows address, mask, gateway, and DNS. ping tells you if something responds. tracert shows each router hop along the way. If you can ping an IP but not a website name, DNS is suspect. If you can ping your neighbor but not anything outside the subnet, check the default gateway.',
-      intermediate: 'Verify four parameters: IP address, subnet mask, default gateway, DNS server(s). Windows: `ipconfig /all`; Linux/macOS: `ip addr`, `ip route`, `/etc/resolv.conf` or `scutil --dns`. `ping <ip>` tests L3 reachability; `tracert`/`traceroute` locates the failing hop. Symptom map: local OK / remote fail → gateway; IP OK / name fail → DNS; 169.254.x.x → DHCP; duplicate IP → intermittent drops; wrong mask → partial local failure.',
-      examReady: 'Client verify workflow: (1) **ipconfig /all** (Win) or **ip addr** + **ip route** (Linux) — confirm IP/mask/gateway/DNS/DHCP. (2) **ping** default gateway → ping remote IP (e.g. 8.8.8.8) → **ping name** (tests DNS). (3) **tracert/traceroute** if ping fails mid-path. Common faults: **missing/wrong gateway** (local yes, remote no), **bad DNS** (IP yes, name no), **APIPA 169.254** (DHCP), **duplicate IP**, **wrong mask**. **nslookup/dig** tests DNS directly.',
+      beginner: 'When a PC cannot get online, check its IP settings first — on Windows, ipconfig /all shows address, mask, gateway, and DNS. ping tells you if something responds, and tracert shows each router hop along the way.\n\nIf you can ping an IP but not a website name, DNS is suspect; if you can ping your neighbor but not anything outside the subnet, check the default gateway.',
+      intermediate: 'Verify four parameters: IP address, subnet mask, default gateway, DNS server(s). Windows shows them via ipconfig; Linux/macOS via ip addr, ip route, and the resolver config. Ping tests Layer 3 reachability; traceroute locates the failing hop.\n\nSymptom map: local OK / remote fail → gateway; IP OK / name fail → DNS; 169.254.x.x → DHCP; duplicate IP → intermittent drops; wrong mask → partial local failure.',
+      examReady: 'Client verify workflow: (1) **ipconfig /all** (Win) or **ip addr** + **ip route** (Linux) — confirm IP/mask/gateway/DNS/DHCP. (2) **ping** default gateway → ping a known-good remote IP → **ping name** (tests DNS). (3) **tracert/traceroute** if ping fails mid-path. Common faults: **missing/wrong gateway** (local yes, remote no), **bad DNS** (IP yes, name no), **APIPA 169.254** (DHCP), **duplicate IP**, **wrong mask**. **nslookup/dig** tests DNS directly.',
     },
     definition: 'Verify client connectivity by checking **IP, mask, gateway, and DNS**, then using **ping** and **traceroute** to isolate **gateway vs DNS vs path** failures.',
     keyPoints: [
@@ -681,15 +686,16 @@ export const OBJ_111 = {
   reading: {
     id: 'READ-1.11', ckuIds: ['CKU-WIFI-BANDS', 'CKU-80211-STANDARDS', 'CKU-WPA', 'CKU-WIFI-CHANNELS'], estimatedReadMinutes: 7,
     tiers: {
-      beginner: 'Wi‑Fi uses radio waves in two main bands: 2.4 GHz reaches farther but is crowded (use channels 1, 6, or 11 to avoid overlap). 5 GHz is faster with more channels but shorter range. Standards like 802.11n/ac/ax (Wi‑Fi 4/5/6) get faster over time. The network name is the SSID. Protect it with WPA2 or WPA3 — never WEP. Signal strength (RSSI) and obstacles affect how well clients connect.',
-      intermediate: '2.4 GHz: 3 non-overlapping 20 MHz channels (1, 6, 11); more interference from Bluetooth/microwaves. 5 GHz: many channels, less interference, supports 40/80 MHz widths for higher throughput but fewer non-overlapping choices at wide width. 802.11ax (Wi‑Fi 6) improves efficiency in dense environments. Encryption: WEP broken; WPA2-AES/CCMP common; WPA3-SAE strongest for new networks. RSSI indicates signal; attenuation (walls) and co-channel interference reduce performance.',
-      examReady: '**Bands**: 2.4 GHz — range + interference, channels **1/6/11** non-overlapping; 5 GHz — speed + more channels, shorter range. **Standards**: a/b/g/n/ac/**ax** (Wi‑Fi 4/5/6). **SSID** = network name. **Security**: WEP obsolete; **WPA2 (AES/CCMP)**; **WPA3 (SAE)** preferred. **Channel width** 20/40/80 MHz — wider = faster, fewer non-overlapping channels. **RSSI** = signal strength; **interference/attenuation** affect SNR and throughput. Match band/channel plan to environment (office dense → 5 GHz/ax; IoT far → 2.4 GHz).',
+      beginner: 'Wi‑Fi uses radio waves in two main bands: 2.4 GHz reaches farther but is crowded (use channels 1, 6, or 11 to avoid overlap). 5 GHz is faster with more channels but shorter range. Standards like 802.11n/ac/ax (Wi‑Fi 4/5/6) get faster over time.\n\nThe network name is the SSID, protected with WPA2 or WPA3 — never WEP. Signal strength (RSSI) and obstacles affect how well clients connect.',
+      intermediate: '2.4 GHz: 3 non-overlapping 20 MHz channels (1, 6, 11); more interference from Bluetooth/microwaves. 5 GHz: many channels, less interference, supports 40/80 MHz widths for higher throughput but fewer non-overlapping choices at wide width. 802.11ax (Wi‑Fi 6) improves efficiency in dense environments.\n\nEncryption: WEP broken; WPA2-AES/CCMP common; WPA3-SAE strongest for new networks. RSSI indicates signal; attenuation (walls) and co-channel interference reduce performance.',
+      examReady: 'Match the RF plan to the environment: dense offices favor 5 GHz and 802.11ax for speed and less interference, while devices that need range (IoT, far corners) favor 2.4 GHz. Always prefer WPA2 or WPA3 over WEP, and remember 2.4 GHz has only three non-overlapping channels (1, 6, 11) — plan around that constraint.',
     },
     definition: 'Wireless LANs use **2.4 vs 5 GHz** bands, **802.11 standards**, **SSID** identification, **WPA2/WPA3** encryption, and **channel/width/RSSI** planning for coverage and performance.',
     keyPoints: [
       '2.4 GHz: channels 1, 6, 11 non-overlapping; longer range, more interference.',
       '5 GHz: more channels, higher speed, shorter range.',
       '802.11ax = Wi‑Fi 6; WPA3 (SAE) strongest encryption for new nets.',
+      'SSID = the wireless network name a client connects to.',
       'WEP is broken — do not use.',
       'Wider channel width = higher throughput, fewer non-overlapping channels.',
       'RSSI, interference, and attenuation drive coverage design.',
@@ -788,9 +794,9 @@ export const OBJ_112 = {
   reading: {
     id: 'READ-1.12', ckuIds: ['CKU-HYPERVISOR', 'CKU-CONTAINERS', 'CKU-VRF', 'CKU-NFV'], estimatedReadMinutes: 6,
     tiers: {
-      beginner: 'Virtualization lets you run many logical systems on one physical machine. A hypervisor creates virtual machines (VMs), each with its own operating system. Type 1 hypervisors sit directly on the hardware (like ESXi in a data center); Type 2 runs as an app on your laptop OS. Containers are lighter — they share one OS kernel and pack just an app and its libraries. VRF splits one router into several routing tables. NFV means running firewalls and routers as software instead of buying separate boxes.',
-      intermediate: 'Hypervisor Type 1 (bare metal) = production data centers — ESXi, Hyper-V on hardware. Type 2 (hosted) = labs/desktops — VMware Workstation on Windows. VMs include virtual NICs connected to virtual switches. Containers (Docker) start fast and share the host kernel — not a full guest OS per app. VRF-lite on Cisco routers isolates routing tables for multi-tenant or management separation. NFV deploys vRouter/vFW/vLB on x86 servers, replacing dedicated appliances with scalable software.',
-      examReady: '**Hypervisor**: Type **1** = bare metal (ESXi) — DC production; Type **2** = hosted on OS (Workstation) — lab/dev. **VM** = full guest OS + vNIC/vSwitch. **Containers** = OS-level isolation, shared kernel, fast deploy (Docker). **VRF** = multiple routing tables on one router (tenant isolation). **NFV** = network functions (firewall, router, LB) as software on commodity hardware. Contrast VM (strong isolation, heavier) vs container (lighter, shared kernel). VRF is routing virtualization; NFV is service virtualization.',
+      beginner: 'Virtualization lets you run many logical systems on one physical machine. A hypervisor creates virtual machines (VMs), each with its own operating system. Type 1 hypervisors sit directly on the hardware (like ESXi in a data center); Type 2 runs as an app on your laptop OS.\n\nContainers are lighter — they share one OS kernel and pack just an app and its libraries. VRF splits one router into several routing tables, and NFV means running firewalls and routers as software instead of buying separate boxes.',
+      intermediate: 'Hypervisor Type 1 (bare metal) = production data centers — ESXi, Hyper-V on hardware. Type 2 (hosted) = labs/desktops — VMware Workstation on Windows. VMs include virtual NICs connected to virtual switches.\n\nContainers (Docker) start fast and share the host kernel rather than each carrying a full guest OS, while VRF-lite on Cisco routers isolates routing tables for multi-tenant or management separation. NFV deploys vRouter/vFW/vLB on x86 servers, replacing dedicated appliances with scalable software.',
+      examReady: 'VM vs container is the key exam contrast: a VM gets a full guest OS and strong isolation (heavier), a container shares the host kernel and starts fast (lighter). VRF and NFV are both virtualization, but at different layers — VRF isolates routing tables on one router, NFV replaces whole appliances (firewall, router, load balancer) with software.',
     },
     definition: '**Virtualization** spans **hypervisor VMs** (Type 1/2), lightweight **containers**, routing isolation with **VRF**, and **NFV** software replacing dedicated network appliances.',
     keyPoints: [

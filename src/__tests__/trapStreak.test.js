@@ -33,7 +33,6 @@ describe('recordTrapMiss / streak CTA', () => {
     expect(r1.count).toBe(1)
     expect(r1.shouldPrompt).toBe(false)
     expect(shouldShowTrapStreakCta(r1.state, { trapLabel: 'Implicit deny' })).toBe(false)
-    state = r1.state
   })
 
   it('prompts on ≥2 misses in the same trap family', () => {

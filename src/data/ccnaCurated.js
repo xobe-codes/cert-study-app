@@ -20,7 +20,6 @@
 import { SUPPLEMENTAL_QUESTIONS } from './ccnaQuestionSupplemental.js'
 import { getSkillQuestionsLazy as getSkillQuestions } from './skillQuestionsRegistry.js'
 import { hasCleanBank, getImportedOrCleanQuestions } from './cleanQuestionAdapter.js'
-import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import { countObjectiveQuestions } from './questionBankCount.js'
 import {
   OBJ_11, OBJ_12, OBJ_13, OBJ_14, OBJ_17, OBJ_110, OBJ_111, OBJ_112,
@@ -303,8 +302,8 @@ const OBJ_16 = {
     id: 'READ-1.6', ckuIds: ['CKU-IPV4-ADDRESSING', 'CKU-SUBNET-MASK', 'CKU-SUBNETTING', 'CKU-BLOCK-SIZE'], estimatedReadMinutes: 8,
     tiers: {
       beginner: 'An IPv4 address has 32 bits, shown as four numbers 0–255 (like 192.168.1.10). A subnet mask decides which part is the “network” and which is the “host.” Subnetting just means splitting one network into several smaller ones by moving the dividing line. In every subnet, the first address (all host bits 0) is the network ID and the last (all host bits 1) is the broadcast — neither can be given to a device.',
-      intermediate: 'The mask is 32 bits: 1s mark the network, 0s mark the host, written as /n (CIDR). Hosts per subnet = 2^h − 2 where h is the number of host bits (you subtract the network and broadcast addresses). To subnet, you borrow bits from the host side: borrowing b bits makes 2^b subnets, each smaller. The fastest way to find boundaries is the block size = 256 − the interesting mask octet; subnets start at multiples of that block size.',
-      examReady: 'IPv4 = 32 bits / 4 octets + a mask of contiguous 1s (network) then 0s (host); the prefix /n is the count of 1s. Hosts/subnet = 2^h − 2 (h = host bits; network and broadcast are unusable). Subnets from borrowing b bits = 2^b. Block size (magic number) = 256 − interesting-octet mask value; subnet network IDs are multiples of the block size in that octet. For any address: network = host bits all 0, broadcast = host bits all 1, usable range = everything between. Examples: /26 (`255.255.255.192`) → block 64, 4 subnets (.0/.64/.128/.192), 62 hosts each; /30 (`255.255.255.252`) → block 4, 2 hosts (point-to-point links); /27 (`255.255.255.224`) → block 32, 30 hosts.',
+      intermediate: 'The mask is 32 bits: 1s mark the network, 0s mark the host, written as /n (CIDR). Hosts per subnet = 2^h − 2 where h is the number of host bits (you subtract the network and broadcast addresses).\n\nTo subnet, you borrow bits from the host side: borrowing b bits makes 2^b subnets, each smaller. The fastest way to find boundaries is the block size = 256 − the interesting mask octet; subnets start at multiples of that block size.',
+      examReady: 'IPv4 addresses are 32 bits across 4 octets, with a mask of contiguous 1s (network) then 0s (host) — the prefix /n counts the 1s. Hosts per subnet = 2^h − 2 (h = host bits); subnets from borrowing b bits = 2^b.\n\nBlock size (magic number) = 256 − the interesting mask octet, and subnet network IDs land on multiples of it. For any address: network = host bits all 0, broadcast = host bits all 1, usable range is everything between — see Key Points for worked mask examples.',
     },
     bigTakeaway: 'Block size and 2^h − 2 host math — subnet boundaries follow the mask octet.',
     definition: 'An IPv4 address is **32 bits** split by a **subnet mask** into network + host portions. **Subnetting** borrows host bits to make more, smaller networks; **block size** (`256 − mask octet`) locates subnet boundaries instantly.',
@@ -313,8 +312,9 @@ const OBJ_16 = {
       'Number of subnets when borrowing b bits = `2^b`.',
       'Block size = `256 − interesting mask octet`; subnets start at multiples of it.',
       'Network address = host bits all 0; broadcast = host bits all 1; usable = in between.',
-      'Common masks: `/24`=…0, `/26`=…192, `/27`=…224, `/28`=…240, `/30`=…252.',
-      '`/30` gives 2 usable hosts — ideal for point-to-point router links.',
+      '`/26` (255.255.255.192): block 64 → 4 subnets, 62 hosts each.',
+      '`/27` (255.255.255.224): block 32 → 30 hosts.',
+      '`/30` (255.255.255.252): block 4 → 2 hosts — ideal for point-to-point router links.',
     ],
     realWorld: 'On a router, `ip address 192.168.1.1 255.255.255.0` sets an interface address + mask; `show ip interface brief` confirms it. Connected (`C`) and local (`L`, /32) routes appear automatically once the interface is up/up.',
     commonMistakes: [
@@ -430,16 +430,17 @@ const OBJ_15 = {
     tiers: {
       beginner: 'A switch builds a "phonebook" called the MAC address table that maps device MAC addresses to the switch port they are connected to. It fills this in by watching where frames come FROM (source learning). When a frame arrives, the switch checks its phonebook for the destination — if it finds a match, it sends the frame out only that one port. If it does not find a match (or the frame is a broadcast), it sends the frame out every other port, just to be safe.',
       intermediate: 'On every incoming frame, the switch performs source-address learning: it records the source MAC address + VLAN + ingress port in the MAC address table (dynamically learned entries age out after 300 seconds of inactivity by default). It then makes a forwarding decision based on the destination MAC: if the destination is a KNOWN unicast address in the table, the frame is forwarded out only that port (or filtered/dropped if it maps to the same port the frame arrived on — the devices are on the same segment). If the destination is an UNKNOWN unicast, a broadcast (FFFF.FFFF.FFFF), or a multicast, the switch FLOODS the frame out all other ports in the same VLAN.',
-      examReady: 'Switch frame-forwarding logic = learn, then forward/flood/filter. **Learn**: record source MAC + VLAN + ingress port; dynamic entries age out (default `300` seconds, configurable with `mac address-table aging-time`). **Forward** (known unicast): destination MAC is in the table → send out that one port only. **Filter**: destination MAC maps to the SAME port the frame arrived on → drop (source and destination already share that segment). **Flood** (unknown unicast / broadcast / multicast — "BUM" traffic): send out every port in the VLAN except the ingress port. Verify with `show mac address-table` / `show mac address-table dynamic`; clear with `clear mac address-table dynamic`; configure static entries with `mac address-table static <mac> vlan <id> interface <intf>`.',
+      examReady: 'Switch frame-forwarding logic follows learn, then forward, filter, or flood. It learns by recording the source MAC, VLAN, and ingress port; dynamic entries age out after 300 seconds of inactivity by default.\n\nA known unicast destination is forwarded out that one port only; a same-port match is filtered (dropped, since sender and receiver already share the segment); everything else — unknown unicast, broadcast, or multicast, together called BUM traffic — floods out every port in the VLAN except the ingress port.',
     },
     definition: 'A switch learns which MAC addresses live off which ports by reading the **source MAC** of every frame into its **MAC address table**. It then forwards frames based on the **destination MAC**: known unicast → out one port; unknown unicast, broadcast, or multicast → **flood** out all ports in the VLAN except the one it arrived on.',
     keyPoints: [
       'Learning: source MAC + VLAN + ingress port → MAC address table.',
-      'Dynamic entries age out after `300` seconds by default (no traffic seen).',
+      'Dynamic entries age out after `300` seconds by default (no traffic seen); change with `mac address-table aging-time`.',
       'Known unicast destination → forward out that one port only.',
       'Same-port match → filter/drop (sender and receiver already share that link).',
       'Unknown unicast, broadcast, multicast → flood out all ports in the VLAN except the source port.',
       'Flooding is per-VLAN — it never crosses into another VLAN.',
+      'Verify with `show mac address-table dynamic`; clear with `clear mac address-table dynamic`; add static entries with `mac address-table static <mac> vlan <id> interface <intf>`.',
     ],
     realWorld: 'When a PC first sends traffic, the switch immediately learns its MAC on that port. The very first frame to a brand-new device on the network is flooded (unknown unicast) — once that device replies, its MAC is learned too and future frames to it are forwarded directly, no more flooding.',
     commonMistakes: [
@@ -677,7 +678,7 @@ const OBJ_18 = {
     tiers: {
       beginner: 'IPv6 addresses are much bigger than IPv4 — 128 bits, written as eight blocks of hex separated by colons. Because they are long, you can shorten them: drop leading zeros in a block, and replace one run of all-zero blocks with “::”. The /64 at the end usually marks the network half. Hosts can even build their own address automatically (SLAAC) from information the router advertises.',
       intermediate: 'An IPv6 address is 128 bits = 8 hextets of 4 hex digits. Shortening rules: (1) remove leading zeros within each hextet; (2) replace one contiguous run of all-zero hextets with :: (only once). LANs almost always use a /64 prefix so the lower 64 bits are the interface ID. Hosts get addresses three ways: static, DHCPv6, or SLAAC (form the address from the RA prefix + an interface ID, which can be Modified EUI-64).',
-      examReady: 'IPv6 = 128 bits, 8 hextets of 4 hex digits. Abbreviate by removing leading zeros per hextet and using `::` once for a run of all-zero hextets. Prefix length (e.g. `/64`) marks the network portion; /64 is standard for LANs to allow SLAAC/EUI-64. Three addressing methods: static, DHCPv6 (stateful), SLAAC (stateless, from the Router Advertisement prefix). Modified EUI-64: split the 48-bit MAC, insert `FFFE` in the middle, flip the 7th bit (U/L) of the first byte. Config: `ipv6 address 2001:db8::1/64` on an interface, with `ipv6 unicast-routing` enabled globally.',
+      examReady: 'IPv6 addresses are 128 bits across 8 hextets of 4 hex digits. Abbreviate by removing leading zeros per hextet and using :: once for a run of all-zero hextets. A /64 prefix is standard on LANs, marking the network portion and leaving 64 bits for the interface ID.\n\nHosts get an address three ways: static, DHCPv6 (stateful), or SLAAC (stateless, built from the Router Advertisement prefix). Modified EUI-64 forms that interface ID by splitting the 48-bit MAC, inserting FFFE in the middle, and flipping the 7th bit of the first byte.',
     },
     definition: 'IPv6 addresses are **128 bits**, written as 8 hextets of hex. Abbreviate by dropping leading zeros and using `::` once. The prefix (usually `/64`) marks the network; hosts can self-configure via **SLAAC**.',
     keyPoints: [
@@ -686,7 +687,7 @@ const OBJ_18 = {
       'LAN prefix is almost always `/64`.',
       'Addressing: static, DHCPv6, or SLAAC (from the RA prefix).',
       'Modified EUI-64: insert `FFFE`, flip the 7th bit of the MAC’s first byte.',
-      'Enable routing with `ipv6 unicast-routing`.',
+      'Configure with `ipv6 address 2001:db8::1/64` on an interface; enable routing globally with `ipv6 unicast-routing`.',
     ],
     realWorld: 'Verify with `show ipv6 interface brief`; an interface typically shows a link-local (FE80::) AND a global (2001:…) address. `ipv6 address autoconfig` enables SLAAC on an interface.',
     commonMistakes: [
@@ -896,7 +897,7 @@ const OBJ_21 = {
     tiers: {
       beginner: 'A VLAN lets one physical switch act like several separate switches. Ports put in VLAN 10 can talk to each other; ports in VLAN 20 are a separate group. To let VLAN 10 talk to VLAN 20 you need a router. You assign a normal end-device port to a VLAN by making it an “access” port.',
       intermediate: 'A VLAN is a logical broadcast domain. You create one with `vlan <id>` (and name it), then assign access ports with `switchport mode access` + `switchport access vlan <id>`. Devices in the same VLAN reach each other at Layer 2 across multiple switches (via trunks); devices in different VLANs need a Layer 3 device. VLAN 1 is the default for all ports — best practice is to move user traffic off VLAN 1. An IP phone can use a voice VLAN alongside the data VLAN on one port.',
-      examReady: 'VLAN = logical broadcast domain. Create: `vlan 10` → `name SALES`. Assign an access port: `switchport mode access` + `switchport access vlan 10`. Verify with `show vlan brief`. Inter-VLAN traffic needs a router or L3 switch (SVI / router-on-a-stick). VLAN 1 is the default VLAN AND default native VLAN — best practice is to not use it for user data. Voice VLAN: `switchport voice vlan 20` puts phone traffic in a separate VLAN on the same access port. Normal range = 1–1005; extended = 1006–4094.',
+      examReady: 'A VLAN is a logical Layer 2 broadcast domain. Same-VLAN devices reach each other at Layer 2 even across switches over a trunk; different VLANs need a router or L3 switch (an SVI, or router-on-a-stick) to communicate.\n\nVLAN 1 is both the default VLAN and the default native VLAN — best practice keeps user data off it. A voice VLAN layers phone traffic on the same access port as the data VLAN, kept separate from it. Normal range is 1–1005; extended range is 1006–4094.',
     },
     definition: 'A **VLAN** is a logical Layer 2 broadcast domain. Same-VLAN devices talk at L2 (even across switches via trunks); **different VLANs need a router/L3 switch**. End-device ports are **access ports** assigned to one VLAN.',
     keyPoints: [
@@ -905,7 +906,7 @@ const OBJ_21 = {
       'Same VLAN = same broadcast domain; inter-VLAN needs L3.',
       'Verify with `show vlan brief`.',
       'VLAN 1 = default VLAN and default native VLAN — avoid for user traffic.',
-      'Voice VLAN carries phone traffic separately on an access port.',
+      'Voice VLAN on an access port: `switchport voice vlan <id>`.',
     ],
     realWorld: 'A trunk carries multiple VLANs between switches, so VLAN 10 can span the building. `show vlan brief` confirms port-to-VLAN mapping; a missing VLAN assignment is a top cause of “host can’t reach anyone.”',
     commonMistakes: [
@@ -1000,8 +1001,8 @@ const OBJ_22 = {
     id: 'READ-2.2', ckuIds: ['CKU-TRUNKING', 'CKU-NATIVE-VLAN', 'CKU-DTP'], estimatedReadMinutes: 6,
     tiers: {
       beginner: 'When two switches need to carry several VLANs over a single link between them, that link is a “trunk.” To keep VLANs separate, the switch adds a small tag to each frame saying which VLAN it belongs to. One VLAN — the “native” VLAN — is sent without a tag, and both ends must agree on which one it is.',
-      intermediate: 'A trunk uses 802.1Q to tag frames with their VLAN ID (a 4-byte tag) so multiple VLANs share one link. Configure with `switchport mode trunk`; restrict VLANs with `switchport trunk allowed vlan <list>`; set the untagged native VLAN with `switchport trunk native vlan <id>` (must match both ends). DTP can auto-form trunks but is commonly disabled (`switchport nonegotiate`) to prevent VLAN-hopping. Verify with `show interfaces trunk`.',
-      examReady: 'Trunk = 802.1Q-tagged link carrying multiple VLANs between switches. Config: `switchport mode trunk`, optionally `switchport trunk allowed vlan 10,20`, and `switchport trunk native vlan 99`. The native VLAN crosses UNtagged and must match on both ends (mismatch → CDP warning, traffic leakage). 802.1Q tag = 4 bytes inserted into the Ethernet frame, holding the 12-bit VLAN ID (so 4094 usable VLANs). DTP auto-negotiates trunking; disable with `switchport nonegotiate` for security. Verify: `show interfaces trunk` (mode, native VLAN, allowed/active VLANs).',
+      intermediate: 'A trunk uses 802.1Q to tag frames with their VLAN ID, a 4-byte tag, so multiple VLANs share one link. The port is set to trunk mode, then the allowed VLAN list and the untagged native VLAN are configured — the native VLAN must match on both ends.\n\nDTP can auto-form trunks between switches, but is commonly disabled to prevent an unexpected port from negotiating into a trunk (VLAN hopping).',
+      examReady: 'A trunk is an 802.1Q-tagged link carrying multiple VLANs between switches. The 802.1Q tag is 4 bytes inserted into the Ethernet frame, holding a 12-bit VLAN ID — up to 4094 usable VLANs.\n\nThe native VLAN crosses untagged and must match on both trunk ends, or CDP flags a mismatch and traffic can leak between VLANs. DTP can auto-negotiate a trunk, but is commonly disabled for security so a port never trunks by accident.',
     },
     definition: 'A **trunk** carries multiple VLANs between switches using **802.1Q** tagging (a 4-byte tag with the VLAN ID). One **native VLAN** crosses **untagged** and must match on both ends.',
     keyPoints: [
@@ -1009,8 +1010,9 @@ const OBJ_22 = {
       '802.1Q tag = 4 bytes, 12-bit VLAN ID (up to 4094 VLANs).',
       'Native VLAN is untagged; must match both ends (default VLAN 1).',
       'Restrict VLANs with `switchport trunk allowed vlan <list>`.',
+      'Set native VLAN with `switchport trunk native vlan <id>`.',
       'DTP auto-negotiates trunks; disable with `switchport nonegotiate`.',
-      'Verify with `show interfaces trunk`.',
+      'Verify with `show interfaces trunk` (mode, native VLAN, allowed/active VLANs).',
     ],
     realWorld: 'A native-VLAN mismatch shows up as a CDP error and can leak traffic between VLANs. Pruning the allowed VLAN list limits broadcast scope and is a security best practice.',
     commonMistakes: [
@@ -1106,16 +1108,17 @@ const OBJ_25 = {
     tiers: {
       beginner: 'If you connect switches in a loop for redundancy, frames can circle forever and crash the network. Spanning Tree fixes this by automatically blocking the extra paths, leaving just one active route. If a link fails, it unblocks a backup path. One switch is elected the “root,” and every other switch keeps its best path toward it.',
       intermediate: 'STP prevents Layer 2 loops by electing a root bridge (lowest Bridge ID = priority + MAC) and blocking redundant links. Each non-root switch has one root port (best path to root) and each segment has one designated port; other ports block. Port roles/states converge so exactly one loop-free path exists. Rapid PVST+ (Cisco default) runs a per-VLAN rapid spanning tree that converges in seconds using proposal/agreement. PortFast on access ports skips the listening/learning delay; BPDU Guard shuts a PortFast port if it unexpectedly receives a BPDU.',
-      examReady: 'STP (802.1D) blocks redundant L2 paths to prevent loops. Root bridge = lowest Bridge ID (priority + MAC); default priority 32768; lower wins (ties broken by lowest MAC). Roles: Root Port (one per non-root switch, lowest cost to root), Designated Port (one per segment, forwards), Non-Designated/Alternate (blocks). Path cost by speed (e.g. 10G=2, 1G=4, 100M=19, 10M=100). Rapid PVST+ = Cisco default, per-VLAN, states discarding/learning/forwarding, fast convergence via proposal/agreement. PortFast → access ports skip listening/learning; BPDU Guard → err-disables a PortFast port that receives a BPDU. Set root: `spanning-tree vlan 1 root primary` (or lower the priority). Verify: `show spanning-tree`.',
+      examReady: 'STP (802.1D) blocks redundant Layer 2 paths to prevent loops, electing one switch as root by lowest Bridge ID and giving every other switch exactly one loop-free path toward it. Every non-root switch has one root port; every segment has one designated port that forwards, and any other port blocks.\n\nRapid PVST+ is the Cisco default: a per-VLAN rapid spanning tree that converges in seconds using proposal/agreement instead of waiting out timers. PortFast and BPDU Guard exist for the same reason — fast, safe access-port connectivity — see Key Points for the port-role, cost, and command detail.',
     },
     definition: 'STP prevents **Layer 2 loops** by blocking redundant paths, leaving one path to the **root bridge** (lowest Bridge ID). **Rapid PVST+** (Cisco default) converges in seconds. **PortFast/BPDU Guard** speed up and protect access ports.',
     keyPoints: [
-      'Root bridge = lowest Bridge ID (priority + MAC); default priority `32768`.',
-      'Roles: root port (per switch), designated port (per segment), others block.',
-      'Lower path cost wins; cost by link speed (1G=`4`, 100M=`19`).',
-      'Rapid PVST+ = Cisco default; states discarding/learning/forwarding.',
+      'Root bridge = lowest Bridge ID (priority + MAC); default priority `32768`, ties broken by lowest MAC.',
+      'Roles: root port (one per non-root switch, lowest cost to root), designated port (one per segment, forwards), others block.',
+      'Path cost by link speed: `10G=2`, `1G=4`, `100M=19`, `10M=100` — lower cost wins.',
+      'Rapid PVST+ = Cisco default; port states discarding/learning/forwarding.',
       'PortFast skips listening/learning on access ports.',
       'BPDU Guard err-disables a PortFast port that receives a BPDU.',
+      'Set root deterministically with `spanning-tree vlan 1 root primary` or by lowering priority; verify with `show spanning-tree`.',
     ],
     realWorld: 'Lower a switch’s priority (`spanning-tree vlan 1 priority 4096`) to make it root deterministically. `show spanning-tree` reveals the root, port roles, and which ports are blocking — the first stop when redundant links misbehave.',
     commonMistakes: [
@@ -1211,17 +1214,18 @@ const OBJ_34 = {
     id: 'READ-3.4', ckuIds: ['CKU-OSPF', 'CKU-OSPF-COST', 'CKU-OSPF-NEIGHBOR'], estimatedReadMinutes: 9,
     tiers: {
       beginner: 'OSPF is a routing protocol that lets routers learn paths automatically. Each router tells the others about its links; together they build the same “map” of the network and each calculates the shortest path to every destination. Routers that share a link become “neighbors” and exchange this information. The “cost” of a path is based on link speed — faster links cost less, so OSPF prefers them.',
-      intermediate: 'OSPF is a link-state IGP. Routers flood Link-State Advertisements (LSAs) to build an identical link-state database (LSDB) within an area, then run the SPF (Dijkstra) algorithm to find the lowest-cost path to each prefix. Configure with `router ospf <process-id>` then `network <addr> <wildcard> area 0` (or `ip ospf <pid> area 0` on the interface). The Router ID is the highest loopback IP, else the highest active interface IP, or set with `router-id`. Cost = reference bandwidth ÷ interface bandwidth (lower wins). Neighbors must agree on area, subnet, timers, and auth to reach Full adjacency. `passive-interface` stops hellos toward LAN hosts.',
-      examReady: 'OSPFv2 = link-state IGP, AD `110`, metric = reference-bw (default 100 Mbps) ÷ interface bandwidth (lower cost wins; total = sum of egress interface costs). Config: `router ospf 1` → `network 10.0.0.0 0.0.0.255 area 0` (wildcard mask) or interface `ip ospf 1 area 0`. Router ID: highest loopback IP → highest active interface IP → manual `router-id`. Adjacency requires matching area, subnet/mask, hello/dead timers (default 10/40 on broadcast), and authentication; states Down→Init→2-Way→ExStart→Exchange→Loading→Full. On multi-access links a DR/BDR are elected (highest priority, then highest RID). `passive-interface` advertises a network but sends no hellos. Verify: `show ip ospf neighbor`, `show ip route ospf`.',
+      intermediate: 'OSPF is a link-state IGP. Routers flood Link-State Advertisements (LSAs) to build an identical link-state database (LSDB) within an area, then run the SPF (Dijkstra) algorithm to find the lowest-cost path to each prefix. Cost is the reference bandwidth divided by interface bandwidth, so faster links are preferred.\n\nThe Router ID is the highest loopback IP, else the highest active interface IP, or it can be set manually. Neighbors must agree on area, subnet, timers, and authentication to reach Full adjacency — a passive interface still advertises its network but stops sending hellos toward LAN hosts.',
+      examReady: 'OSPFv2 is a link-state IGP with AD 110: cost is the reference bandwidth divided by interface bandwidth, so a lower total path cost wins. Adjacency requires matching area, subnet/mask, hello/dead timers, and authentication — mismatch on any of those is the top reason two routers never reach Full.\n\nOn multi-access links a DR and BDR are elected to reduce flooding, chosen by highest priority then highest router ID; point-to-point links skip this step entirely. See Key Points for the exact config, Router ID rules, and verification commands.',
     },
     definition: 'OSPFv2 is a **link-state IGP** (AD `110`): routers flood **LSAs** into a shared **LSDB**, then run **SPF** to pick lowest-**cost** paths. Cost = reference-bw ÷ interface-bw. Neighbors must match area, subnet, timers, and auth.',
     keyPoints: [
       'Link-state; AD `110`; metric = reference-bw (100 Mbps) ÷ interface-bw (lower wins).',
-      'Config: `router ospf 1` → `network <addr> <wildcard> area 0`.',
-      'Router ID: highest loopback → highest active IP → manual `router-id`.',
-      'Adjacency needs matching area, subnet/mask, hello/dead timers, auth.',
-      'Neighbor states end at `Full`; DR/BDR elected on multi-access links.',
-      '`passive-interface` advertises a network but stops hellos.',
+      'Config: `router ospf 1` → `network <addr> <wildcard> area 0` (or interface-level `ip ospf 1 area 0`).',
+      'Router ID: highest loopback → highest active interface IP → manual `router-id`.',
+      'Adjacency needs matching area, subnet/mask, hello/dead timers (default 10/40 on broadcast), auth.',
+      'Neighbor states progress Down→Init→2-Way→ExStart→Exchange→Loading→Full; DR/BDR elected on multi-access links.',
+      '`passive-interface` advertises a network but stops hellos on that interface.',
+      'Verify with `show ip ospf neighbor` and `show ip route ospf`.',
     ],
     realWorld: 'Set loopbacks or a manual `router-id` for stable IDs. Default reference bandwidth treats 1G and 10G as equal cost — raise it with `auto-cost reference-bandwidth` on all routers. `show ip ospf neighbor` is the first troubleshooting stop (stuck in Init = one-way hellos; never forming = timer/subnet/area mismatch).',
     commonMistakes: [
@@ -1322,7 +1326,7 @@ const OBJ_41 = {
     tiers: {
       beginner: 'Private IP addresses cannot travel on the public internet, so a router translates them to a public address on the way out. At home, many devices share one public IP using different port numbers — that is PAT.',
       intermediate: 'NAT maps inside local (private) addresses to inside global (public) ones so internal hosts can reach the internet. You mark inside and outside interfaces, then define what to translate. PAT is the common many-to-one method for SOHO networks.',
-      examReady: 'Know static (one server), dynamic pool, and PAT overload for many hosts. The exam tests inside local vs inside global and correct interface roles — not full configuration paste.',
+      examReady: 'Know the three flavors: static (permanent one-to-one, for a server), dynamic (a pool of public addresses), and PAT overload (many hosts sharing one address by port). The exam tests inside local vs inside global terminology and correct interface roles more than full configuration syntax — see Key Points for the exact commands.',
     },
     bigTakeaway: 'NAT lets private hosts reach the internet; PAT shares one public IP across many devices using ports.',
     definition: '**NAT** maps private **inside local** IPs to public **inside global** IPs. **PAT (overload)** shares one public IP across many hosts using ports. Interfaces are marked `ip nat inside` / `ip nat outside`.',
@@ -1442,17 +1446,18 @@ const OBJ_55 = {
     id: 'READ-5.5', ckuIds: ['CKU-ACL', 'CKU-ACL-STANDARD', 'CKU-ACL-EXTENDED', 'CKU-WILDCARD-MASK'], estimatedReadMinutes: 8,
     tiers: {
       beginner: 'An ACL is a list of permit/deny rules a router checks against traffic. It reads the list top to bottom and stops at the first rule that matches. Anything not matched is denied by a hidden rule at the end. Standard ACLs only look at WHERE traffic came from; extended ACLs can also look at where it’s going and which application (port).',
-      intermediate: 'ACLs filter traffic by criteria, processed top-down with first-match-wins and an implicit `deny any` at the end. Standard ACLs (1–99/1300–1999) match source IP only — place them close to the destination. Extended ACLs (100–199/2000–2699 or named) match source/destination IP, protocol, and ports — place them close to the source to drop unwanted traffic early. ACLs use wildcard masks (inverse of subnet masks: 0 = match, 1 = ignore). Apply to an interface with `ip access-group <name|number> in|out`.',
-      examReady: 'ACL = ordered permit/deny rules; top-down, first match wins, implicit `deny any` at the end (so an all-deny ACL blocks everything). Standard (1–99/1300–1999): source IP only → place near the DESTINATION. Extended (100–199/2000–2699 / named): source+dest IP, protocol, ports → place near the SOURCE. Wildcard mask = inverse subnet mask (0 match / 1 don’t-care; host = 0.0.0.0, any = 255.255.255.255). Apply: `ip access-group 100 in` on an interface. Named ACLs allow editing by sequence number. Verify: `show access-lists`, `show ip interface`.',
+      intermediate: 'ACLs filter traffic by criteria, processed top-down with first-match-wins and an implicit deny-all at the end. Standard ACLs match source IP only, so they belong close to the destination. Extended ACLs match source/destination IP, protocol, and ports, so they belong close to the source to drop unwanted traffic early.\n\nACLs use wildcard masks, the inverse of subnet masks, where a 0 bit means match and a 1 bit means ignore. Once written, an ACL is applied inbound or outbound on an interface.',
+      examReady: 'An ACL is an ordered list of permit/deny rules, processed top-down with first match winning — an implicit deny-all sits at the end, so an ACL of only permit lines still blocks everything else. Standard ACLs match source IP only and belong near the destination; extended ACLs match source, destination, protocol, and ports, so they belong near the source to drop unwanted traffic early.\n\nWildcard masks are the inverse of a subnet mask (0 = must match, 1 = don\'t care); a single host is `0.0.0.0` and any address is `255.255.255.255` or the keyword `any`. See Key Points for the numbered ranges, apply syntax, and verify commands.',
     },
     definition: 'An **ACL** is an ordered list of permit/deny rules: **top-down, first match wins**, with an **implicit deny-all** at the end. **Standard** = source only (place near destination); **Extended** = source/dest/protocol/ports (place near source). ACLs use **wildcard masks**.',
     keyPoints: [
       'Top-down, first-match-wins, implicit `deny any` at the end.',
-      'Standard (1–99): source IP only → place near the destination.',
-      'Extended (100–199): src/dst IP, protocol, ports → place near the source.',
+      'Standard (1–99/1300–1999): source IP only → place near the destination.',
+      'Extended (100–199/2000–2699 or named): src/dst IP, protocol, ports → place near the source.',
       'Wildcard mask = inverse subnet mask (`0`=match, `1`=ignore).',
       'Apply: `ip access-group <name|num> in|out` on an interface.',
-      'Host = `0.0.0.0`; any = `255.255.255.255` (or the keyword `any`).',
+      'Host = `0.0.0.0`; any = `255.255.255.255` (or the keyword `any`); named ACLs allow editing by sequence number.',
+      'Verify with `show access-lists` and `show ip interface`.',
     ],
     realWorld: 'Because of the implicit deny, an ACL with only `permit` lines silently blocks everything else — always confirm needed traffic is permitted. Named ACLs let you insert/remove a single line by sequence number without rewriting the whole list.',
     commonMistakes: [
@@ -1575,7 +1580,7 @@ const OBJ_31 = {
     tiers: {
       beginner: 'The routing table is a list of destinations the router knows how to reach. Each row shows how the router learned the route (a letter code like C for connected, S for static, O for OSPF), the destination network, the next router to forward to (next-hop IP), and which interface to exit. When you set up an IP address on an interface it is automatically added.',
       intermediate: 'Each routing table entry contains: a source code, the destination network/prefix in CIDR notation, the [AD/metric] pair in brackets, the next-hop IP and outgoing interface, and an age timer for dynamic routes. Connected (C) routes and local (L) /32 routes are added automatically when an interface reaches up/up state; they have AD 0 and disappear if the interface fails. The longest prefix match rule selects which route is used for a given packet.',
-      examReady: 'Entry anatomy: O 192.168.2.0/24 [110/20] via 10.1.1.1, 00:01:23, Gi0/0 means: O=OSPF source, /24 destination, AD=110 metric=20, next-hop 10.1.1.1, age 1m23s, exit Gi0/0. Source codes: C=connected AD 0, L=local /32 AD 0, S=static AD 1, O=OSPF AD 110, D=EIGRP AD 90, R=RIP AD 120, B=BGP. When an interface comes up/up with an IP, the router installs both a C route (subnet) and an L route (exact /32 for the router own interface IP). These vanish when the interface goes down. An asterisk (*) marks the best candidate. The "gateway of last resort" at the top shows the default route.',
+      examReady: 'Entry anatomy: `O 192.168.2.0/24 [110/20] via 10.1.1.1, 00:01:23, Gi0/0` means O=OSPF source, /24 destination, AD=110 metric=20, next-hop 10.1.1.1, age 1m23s, exit Gi0/0. Source codes: C=connected AD 0, L=local /32 AD 0, S=static AD 1, O=OSPF AD 110, D=EIGRP AD 90, R=RIP AD 120, B=BGP.\n\nWhen an interface comes up/up with an IP, the router installs both a C route (subnet) and an L route (exact /32 for the router own interface IP) — both vanish when the interface goes down. An asterisk (*) marks the best candidate, and the "gateway of last resort" line at the top shows the default route.',
     },
     definition: 'A routing table entry records the **destination prefix**, source **code** (C/L/S/O/D/R/B), **[AD/metric]** trustworthiness/cost pair, **next-hop** IP or exit interface, and age.',
     keyPoints: [
@@ -1716,19 +1721,20 @@ const OBJ_33 = {
     ckuIds: ['CKU-STATIC-ROUTE-SYNTAX', 'CKU-DEFAULT-STATIC-ROUTE', 'CKU-FLOATING-STATIC', 'CKU-IPV6-STATIC-ROUTE'],
     estimatedReadMinutes: 6,
     tiers: {
-      beginner: 'A static route tells the router "to reach network X, forward to Y". They are simple to set up but must be manually updated when the network changes. Use `ip route` with a destination network, its mask, and the next-hop address. A default static route is a catch-all used when no other route matches.',
-      intermediate: 'Syntax: `ip route <destination-network> <subnet-mask> <next-hop-ip-or-interface>`. Prefer next-hop IP over exit-interface on Ethernet so the router does not ARP for every destination. Default static: `ip route 0.0.0.0 0.0.0.0 <next-hop>`. Floating static: add AD > primary protocol AD (e.g. 130 for OSPF backup) — only installs when OSPF route disappears. IPv6: `ipv6 unicast-routing` first, then `ipv6 route <prefix>/<len> <next-hop>`, default is `ipv6 route ::/0 <next-hop>`. Verify: `show ip route static`, `ping`.',
-      examReady: 'IPv4 static: `ip route 10.0.0.0 255.255.255.0 192.168.1.1` — installs S 10.0.0.0/24 [1/0] via 192.168.1.1. Default static: `ip route 0.0.0.0 0.0.0.0 203.0.113.1`. Floating static: `ip route 10.0.0.0 255.255.255.0 192.168.2.1 130` — AD 130 stays out while OSPF (AD 110) is active; installed when OSPF loses the route. Recursive lookup: next-hop IP must itself be in the routing table (via connected or other route) or the static is not installed. IPv6: `ipv6 unicast-routing` required first, then `ipv6 route 2001:db8::/32 2001:db8::1`, default `ipv6 route ::/0 <next-hop>`. Verify: `show ip route static`, `show ipv6 route static`, `ping`.',
+      beginner: 'A static route tells the router "to reach network X, forward to Y". They are simple to set up but must be manually updated when the network changes. Configuring one sets a destination network, its mask, and a next-hop address. A default static route is a catch-all used when no other route matches.',
+      intermediate: 'Static routes are configured with a destination network, mask, and next-hop IP or exit interface — a next-hop IP is preferred over an exit interface on Ethernet so the router does not have to resolve ARP for every destination. A default static route uses an all-zero destination and mask so it matches anything.\n\nA floating static route adds an administrative distance higher than the primary dynamic protocol, so it only activates as a backup once that protocol\'s route disappears — for example, AD 130 to back up OSPF\'s AD 110. IPv6 static routes need unicast routing enabled globally first, then a prefix/length and next-hop, with an all-zero prefix again acting as the default.',
+      examReady: 'A static route to a specific network installs with an administrative distance of 1 by default, shown as an S entry in the routing table. A default static route acts as the gateway of last resort, matching any destination when no more-specific route exists. A floating static route adds an AD higher than the primary dynamic protocol, so it stays unused while that protocol\'s route is active and installs only once it disappears.\n\nEvery static route needs a recursive lookup: the next-hop IP must itself already be reachable via another route, or the static will not install. IPv6 static routes need unicast routing enabled globally before they can be configured — see Key Points for exact syntax.',
     },
     definition: 'A **static route** is a manually configured forwarding entry. Syntax: `ip route <network> <mask> {<next-hop> | <interface>}`. A **default** uses 0.0.0.0/0. A **floating** static adds a higher AD to serve as a dynamic-route backup.',
     keyPoints: [
+      '`ip route 10.0.0.0 255.255.255.0 192.168.1.1` installs as `S 10.0.0.0/24 [1/0] via 192.168.1.1`.',
       '`ip route 0.0.0.0 0.0.0.0 <next-hop>` — default route, gateway of last resort.',
-      'Floating static: set AD > primary protocol AD so it only installs when the primary route fails.',
-      'IPv6: enable `ipv6 unicast-routing` first; then `ipv6 route <prefix>/<len> <next-hop>`.',
+      'Floating static: `ip route 10.0.0.0 255.255.255.0 192.168.2.1 130` — AD 130 stays unused while the AD-110 dynamic route is active.',
+      'IPv6: enable `ipv6 unicast-routing` first; then `ipv6 route <prefix>/<len> <next-hop>` (default: `ipv6 route ::/0 <next-hop>`).',
       'Recursive lookup: the next-hop IP must be reachable or the static route is not installed.',
-      'Verify with `show ip route static` and ping from the correct source interface.',
+      'Verify with `show ip route static` / `show ipv6 route static` and ping from the correct source interface.',
     ],
-    realWorld: 'On a branch router: `ip route 0.0.0.0 0.0.0.0 203.0.113.1` points all internet traffic to the ISP. For a floating backup: `ip route 0.0.0.0 0.0.0.0 198.51.100.1 130` — AD 130 beats OSPF is wrong (130>110 means OSPF wins). Wait — 130 > 110 so OSPF (lower AD) stays preferred. Only when OSPF disappears does the floating static at AD 130 install.',
+    realWorld: 'On a branch router, `ip route 0.0.0.0 0.0.0.0 203.0.113.1` points all internet traffic to the ISP. A floating backup like `ip route 0.0.0.0 0.0.0.0 198.51.100.1 130` stays unused while OSPF (AD 110) is up, since a lower AD always wins — it only installs once OSPF loses that route.',
     commonMistakes: [
       'Using exit interface without next-hop IP on Ethernet — the router ARP-resolves every destination IP inefficiently.',
       'Setting a floating static AD lower than the dynamic protocol AD — it becomes primary, not a backup.',
@@ -1851,15 +1857,19 @@ const OBJ_51 = {
     estimatedReadMinutes: 5,
     tiers: {
       beginner: 'Network security has three goals: keep data private (confidentiality), ensure it is not changed without detection (integrity), and keep systems running (availability) — called the CIA triad. Common threats include ransomware, phishing emails, and floods that take a network offline. Defenses include patching software, firewalls, and training users.',
-      intermediate: 'CIA triad: Confidentiality = encrypt data and restrict access; Integrity = use hashing (MD5, SHA) to detect unauthorized changes; Availability = redundancy, DDoS protection. Key terminology: vulnerability (weakness — unpatched OS), threat (potential danger), exploit (actual attack code), risk (likelihood x impact). Malware types: virus (file-attached, requires user action to spread), worm (self-propagates without files), Trojan (appears legitimate), ransomware (encrypts and demands payment). Social engineering: phishing (email), vishing (voice), smishing (SMS). DoS/DDoS floods exhaust resources. MITM intercepts/alters traffic. Spoofing fakes source identity.',
-      examReady: 'CIA: Confidentiality = encryption (AES, RSA), access control; Integrity = hashing (SHA-256, MD5 deprecated); Availability = FHRP redundancy, DDoS mitigation. Vulnerability vs threat vs exploit: gap vs actor/event vs weapon. Malware: virus (needs host file), worm (self-replicating, no file), Trojan (disguised), ransomware (encrypts + demands payment). Social engineering: phishing/vishing/smishing/tailgating. DoS = single attacker; DDoS = distributed botnet. MITM intercepts and possibly modifies traffic — stopped by encryption (TLS) and certificate validation. Spoofing: IP spoofing (fake src IP), ARP spoofing (fake MAC), DNS spoofing (fake resolution). Mitigations: patching, NGFW, ACLs, port security, DHCP snooping, DAI, AAA, segmentation, user training. Defense in depth = multiple layers.',
+      intermediate: 'The CIA triad frames every security decision: confidentiality means encrypting data and restricting access, integrity means hashing to detect unauthorized changes, and availability means redundancy and DDoS protection. A vulnerability is a weakness like an unpatched OS, a threat is the potential danger, and an exploit is the actual attack code used against it — risk is the combination of likelihood and impact.\n\nCommon threats include malware (viruses, worms, Trojans, ransomware), social engineering (phishing, vishing, smishing), denial-of-service floods that exhaust resources, man-in-the-middle attacks that intercept or alter traffic, and spoofing that fakes a source identity.',
+      examReady: 'Confidentiality relies on encryption (AES, RSA) and access control; integrity relies on hashing (SHA-256 current, MD5 deprecated); availability relies on redundancy — FHRPs, DDoS mitigation. A vulnerability is the underlying gap, a threat is the actor or event that could exploit it, and an exploit is the actual weapon used against it.\n\nExam attack categories — malware, social engineering, denial of service, man-in-the-middle, spoofing — each map to a specific mitigation layer; see Key Points for the full breakdown of types and defenses.',
     },
     definition: 'The **CIA triad** (Confidentiality, Integrity, Availability) frames all security decisions. A **vulnerability** is a weakness; a **threat** is the potential to exploit it; an **exploit** is the actual attack. Defense in depth uses multiple overlapping controls.',
     keyPoints: [
       'CIA: **C**=encryption+access control, **I**=hashing (integrity of data), **A**=redundancy+DDoS (keep systems running).',
       'Vulnerability (gap) vs threat (potential danger) vs exploit (actual attack) — know the distinction.',
       'Malware: virus (file), worm (no file, self-replicates), Trojan (disguised), ransomware (encrypts+demands payment).',
-      'Social engineering / phishing = exploiting human trust — the most common initial attack vector.',
+      'Social engineering variants: phishing (email), vishing (voice), smishing (SMS), tailgating (physical) — exploits human trust, the most common initial attack vector.',
+      'DoS = single attacker; DDoS = distributed botnet — both target availability.',
+      'MITM intercepts/modifies traffic in transit; countered by TLS encryption and certificate validation.',
+      'Spoofing: IP spoofing (fake source IP), ARP spoofing (fake MAC), DNS spoofing (fake resolution).',
+      'Mitigations: patching, NGFW, ACLs, port security, DHCP snooping, DAI, AAA, network segmentation, user training.',
       'Defense in depth: layer multiple controls so no single failure is catastrophic.',
     ],
     realWorld: 'A ransomware attack chain: vulnerability (unpatched OS) + threat (ransomware group) + exploit (phishing email attachment) = breach. Mitigations: patch the OS, train users to spot phishing, back up data offline, segment the network to limit spread.',

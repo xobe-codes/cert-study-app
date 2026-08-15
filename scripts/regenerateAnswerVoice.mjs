@@ -6,6 +6,13 @@ import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
 import { applyAnswerReviewToQuestion } from '../src/answerReviewLogic.js'
 import { sanitizeAnswerText } from './lib/voiceProse.mjs'
+import { loadGoldAnswerReviews } from '../src/answerReview/goldAnswerReviews.js'
+import { loadStemAnchoredTemplates } from '../src/answerReview/stemAnchoredDistractor.js'
+
+// Gold reviews load on demand in the browser; scripts must install them
+// explicitly or they validate/generate against a chain missing its top tier.
+await loadGoldAnswerReviews()
+await loadStemAnchoredTemplates()
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')

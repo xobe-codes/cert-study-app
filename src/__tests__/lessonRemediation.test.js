@@ -7,7 +7,17 @@ import { beginLessonRemediation, consumeLessonRemediation } from '../lesson/less
 
 describe('exact lesson remediation handoff', () => {
   beforeEach(() => {
-    sessionStorage.clear()
+    // vitest runs with environment: 'node' — provide the window.sessionStorage
+    // the module reads, same stub shape as the debrief-resume tests.
+    const store = new Map()
+    globalThis.window = {
+      sessionStorage: {
+        getItem(key) { return store.has(key) ? store.get(key) : null },
+        setItem(key, value) { store.set(key, value) },
+        removeItem(key) { store.delete(key) },
+        clear() { store.clear() },
+      },
+    }
     mocks.logEvent.mockClear()
   })
 

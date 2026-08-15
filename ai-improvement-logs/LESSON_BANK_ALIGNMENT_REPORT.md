@@ -1,6 +1,6 @@
 # Lesson ↔ Question Bank Alignment Report
 
-Generated: 2026-07-28T09:17:33.748Z
+Generated: 2026-08-14T03:05:10.718Z
 Spec: `ai-improvement-logs/LESSON_BANK_ALIGNMENT_99_SPEC.md` (P0 — measure only, no content rewritten)
 
 ## App rollup

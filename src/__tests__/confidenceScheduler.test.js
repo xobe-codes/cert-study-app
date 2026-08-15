@@ -7,6 +7,9 @@ import {
   shouldForceReview,
   confidenceFeedbackCopy,
   SRS_LADDER,
+  RELEARN_INTERVAL,
+  ladderCapForLapses,
+  nextSrsFromCorrect,
 } from '../quiz/confidenceScheduler.js'
 
 describe('confidenceScheduler', () => {
@@ -71,5 +74,59 @@ describe('confidenceScheduler', () => {
     expect(confidenceFeedbackCopy('practice', true)).toMatch(/Pinned/)
     expect(confidenceFeedbackCopy('easy', true)).toMatch(/less often/)
     expect(confidenceFeedbackCopy('easy', false)).toMatch(/close/)
+  })
+})
+
+describe('lapse handling', () => {
+  const days = srs => Math.round((srs.due - Date.now()) / 86400000)
+
+  it('schedules a missed question sooner than a newly learned one', () => {
+    const wrong = nextSrsFromCorrect(undefined, false)
+    const right = nextSrsFromCorrect(undefined, true)
+    expect(days(wrong)).toBe(RELEARN_INTERVAL)
+    expect(days(right)).toBe(SRS_LADDER[0])
+    expect(wrong.interval).toBeLessThan(right.interval)
+  })
+
+  it('drops a mature item to the relearning step when missed', () => {
+    const mature = { interval: 60, reps: 5, lapses: 0, intervalIndex: 4, due: Date.now() }
+    const missed = nextSrsFromCorrect(mature, false)
+    expect(missed.interval).toBe(RELEARN_INTERVAL)
+    expect(missed.lapses).toBe(1)
+    expect(missed.reps).toBe(0)
+  })
+
+  it('counts every miss so repeat lapses accumulate', () => {
+    let srs
+    for (let i = 0; i < 3; i++) srs = nextSrsFromCorrect(srs, false)
+    expect(srs.lapses).toBe(3)
+    expect(srs.interval).toBe(RELEARN_INTERVAL)
+  })
+
+  it('caps the ladder for lapsed items so they never reach the longest interval', () => {
+    expect(ladderCapForLapses(0)).toBe(SRS_LADDER.length - 1)
+    expect(ladderCapForLapses(1)).toBe(SRS_LADDER.length - 2)
+    expect(ladderCapForLapses(2)).toBe(SRS_LADDER.length - 3)
+    expect(ladderCapForLapses(9)).toBe(SRS_LADDER.length - 3)
+
+    let clean, lapsed = { reps: 0, lapses: 3 }
+    for (let i = 0; i < 6; i++) {
+      clean = nextSrsFromCorrect(clean, true)
+      lapsed = nextSrsFromCorrect(lapsed, true)
+    }
+    expect(clean.interval).toBe(60)
+    expect(lapsed.interval).toBe(14)
+  })
+
+  it('keeps easy + correct inside the lapse ceiling', () => {
+    const srs = nextSrs({ interval: 14, reps: 3, lapses: 3, intervalIndex: 2, due: Date.now() }, true, 'easy')
+    expect(srs.interval).toBeLessThanOrEqual(14)
+  })
+
+  it('leaves the clean-history ladder unchanged', () => {
+    let srs
+    const seen = []
+    for (let i = 0; i < 6; i++) { srs = nextSrsFromCorrect(srs, true); seen.push(srs.interval) }
+    expect(seen).toEqual([2, 7, 14, 30, 60, 60])
   })
 })

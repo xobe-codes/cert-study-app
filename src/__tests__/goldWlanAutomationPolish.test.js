@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviews.js'
+import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviewsData.js'
 import { WLAN_AUTOMATION_POLISH_GOLD } from '../answerReview/goldAnswerReviewsWlanAutomationPolish.js'
 
 describe('goldAnswerReviewsWlanAutomationPolish', () => {

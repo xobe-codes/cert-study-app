@@ -3,14 +3,6 @@ import { COLORS } from '../ui/appTheme.js'
 
 const PAD = { top: 18, right: 12, bottom: 28, left: 36 }
 
-function niceTicks(max, count = 4) {
-  const step = Math.max(1, Math.ceil(max / count))
-  const ticks = []
-  for (let v = 0; v <= max; v += step) ticks.push(v)
-  if (ticks[ticks.length - 1] < max) ticks.push(max)
-  return ticks
-}
-
 export default function StatsComboChart({
   points = [],
   barMax = 10,
@@ -37,10 +29,8 @@ export default function StatsComboChart({
   const slot = innerW / n
   const barW = Math.min(28, slot * 0.55)
 
-  const barTicks = niceTicks(barMax, 3)
   const lineTicks = [0, 25, 50, 75, 100]
 
-  const yBar = v => PAD.top + innerH - (v / barMax) * innerH
   const yLine = v => PAD.top + innerH - (v / lineMax) * innerH
   const xCenter = i => PAD.left + slot * i + slot / 2
 

@@ -59,7 +59,11 @@ export default function WeakAreaDashboard({
     return () => { cancelled = true }
   }, [])
 
-  const placementRecords = placementRecordsProp ?? placementLoaded ?? {}
+  // Stable reference across renders — `?? {}` would create a new empty
+  // object every render whenever both sources are nullish, which broke the
+  // `input` useMemo below (placementRecords was always "new") and cascaded
+  // into allRows/visibleRows recomputing on every render for no reason.
+  const placementRecords = useMemo(() => placementRecordsProp ?? placementLoaded ?? {}, [placementRecordsProp, placementLoaded])
 
   const input = useMemo(
     () => ({ missed, readiness, domainPassRecords, mockHistory, placementRecords }),

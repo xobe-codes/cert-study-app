@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { normalizeCliLine } from '../data/ccnaLabs.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
 import CiscoTerminal from '../components/CiscoTerminal.jsx'
@@ -46,7 +45,6 @@ export default function LabView({
   const [phase, setPhase] = useState(examMode ? 'practice' : 'learn')
   useMobileGestureBlock({ pull: phase === 'practice', edge: phase === 'practice' })
   const [mode, setMode] = useState('user')
-  const [entered, setEntered] = useState([])
   const [history, setHistory] = useState([])
   const [input, setInput] = useState('')
   const [taskCmdDone, setTaskCmdDone] = useState(() =>
@@ -208,10 +206,15 @@ export default function LabView({
     })
 
     if (result.newlyCompleted.length) {
-      const nextFlags = [...doneFlags]
+      // Pre-size to the task's full command count, not just however many
+      // slots doneFlags already happened to touch — otherwise a task with
+      // N required commands reads as complete (flags.every(Boolean)) the
+      // moment its FIRST command is entered, because the flags array never
+      // grew past length 1 and every() on a 1-element array is vacuously
+      // true for that lone entry.
+      const nextFlags = expected.map((_, i) => doneFlags[i] || false)
       result.newlyCompleted.forEach(i => { nextFlags[i] = true })
       setTaskCmdDone(prev => ({ ...prev, [activeTask.id]: nextFlags }))
-      setEntered(e => [...e, normalizeCliLine(raw), normalizeCmd(raw)])
     }
   }
 

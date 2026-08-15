@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { COLORS, styles } from '../ui/appTheme.js'
+import { COLORS } from '../ui/appTheme.js'
 import { getSessionInsights } from '../features/analytics/studyPerformanceTracking.js'
 
 /** Session recap strip: shows real-time insights under "Your Progress". */

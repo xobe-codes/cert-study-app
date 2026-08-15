@@ -4,8 +4,10 @@
  */
 import {
   isFallbackExplanation,
+  isGenericStructuredFeedback,
   isGenericTrap,
   isTemplateWhyWrongHere,
+  hasSplicedProse,
 } from './answerReview/answerReviewQuality.js'
 import {
   resolveWrongChoice,
@@ -17,7 +19,8 @@ import { goldAnswerReviewFor } from './answerReview/goldAnswerReviews.js'
 import { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 import { regenIncorrectFor } from './features/explanationIntegration.js'
 import { sanitizeAnswerText } from './lib/voiceProse.js'
-import { isMultiQuestion, multiCorrectIndexes } from './questionUtils.js'
+import { isMultiQuestion, multiCorrectIndexes, correctChoiceText } from './questionUtils.js'
+import { stripRichTextMarkup } from './lesson/richTextParse.js'
 
 export { examTipFor, isGenericExamTip } from './answerReview/examTipLogic.js'
 
@@ -25,7 +28,7 @@ const CHOICE_HEADER_TRUNCATE = 80
 
 /** Trim choice text for AnswerReview block titles (~80 chars). */
 export function truncateChoiceLabel(text, maxLen = CHOICE_HEADER_TRUNCATE) {
-  const s = String(text ?? '').replace(/\s+/g, ' ').trim()
+  const s = stripRichTextMarkup(text).replace(/\s+/g, ' ').trim()
   if (!s) return ''
   if (s.length <= maxLen) return s
   return `${s.slice(0, maxLen - 1)}…`
@@ -52,7 +55,7 @@ function ctx(q) {
   const question = (q.question || '').toLowerCase()
   const concept = (q.concept || '').toLowerCase()
   const expl = (q.explanation || '').toLowerCase()
-  const correct = q.choices?.[q.correctIndex] || ''
+  const correct = correctChoiceText(q)
   const correctLower = correct.toLowerCase()
   return { question, concept, expl, correct, correctLower, blob: `${question} ${concept} ${expl} ${correctLower}` }
 }
@@ -71,6 +74,8 @@ function mergeSadeFields(q, choiceIndex, item = {}, { respectExplicitBoth = fals
     && !isTemplateWhyWrongHere(item.whyWrongHere)
     && !isFallbackExplanation(item.whatItDoes)
     && !isTemplateWhyWrongHere(item.whatItDoes)
+    && !isGenericStructuredFeedback(item.whyWrongHere)
+    && !isGenericStructuredFeedback(item.whatItDoes)
   // Gold (or explicit) fields win only when they are not banned templates.
   if (respectExplicitBoth && storedOk) {
     return { whatItDoes: item.whatItDoes, whyWrongHere: item.whyWrongHere }
@@ -82,8 +87,10 @@ function hasQualityDistractorFields(item) {
   return Boolean(
     item?.whyWrongHere
     && !isTemplateWhyWrongHere(item.whyWrongHere)
+    && !isGenericStructuredFeedback(item.whyWrongHere)
     && item?.whatItDoes
-    && !isFallbackExplanation(item.whatItDoes),
+    && !isFallbackExplanation(item.whatItDoes)
+    && !isGenericStructuredFeedback(item.whatItDoes),
   )
 }
 
@@ -104,7 +111,7 @@ function ensureDistinctExplanations(q, incorrect) {
     }
     if (whyWrongHere && usedWhy.has(whyWrongHere)) {
       const wrong = q.choices?.[item.choiceIndex] || ''
-      const correct = q.choices?.[q.correctIndex] || ''
+      const correct = correctChoiceText(q)
       whyWrongHere = `Unlike **${correct}**, **${wrong}** fails the stem constraint that makes the keyed answer unique.`
     }
     usedExpl.set(explanation, item.choiceIndex)
@@ -118,6 +125,10 @@ function bankIncorrectFor(q, choiceIndex) {
   if (!item) return null
   const resolved = resolveIncorrectItem(q, item)
   if (resolved.genericDebrief || isTemplateWhyWrongHere(resolved.whyWrongHere)) return null
+  if (isGenericStructuredFeedback(resolved.whyWrongHere) || isGenericStructuredFeedback(resolved.whatItDoes)) return null
+  // Stored text can carry splices baked in by an older generator — regenerate
+  // rather than teaching an unrelated topic's boilerplate.
+  if (hasSplicedProse(resolved)) return null
   return resolved
 }
 
@@ -127,6 +138,9 @@ function resolveWrongChoiceForReview(q, choiceIndex, { fromGold = null } = {}) {
     const goldExplicit = hasExplicitSadeFields(fromGold)
       && !isTemplateWhyWrongHere(fromGold.whyWrongHere)
       && !isTemplateWhyWrongHere(fromGold.whatItDoes)
+      && !isGenericStructuredFeedback(fromGold.whyWrongHere)
+      && !isGenericStructuredFeedback(fromGold.whatItDoes)
+      && !hasSplicedProse(fromGold)
       && fromGold.explanation
       && !isFallbackExplanation(fromGold.explanation)
     if (goldExplicit) {
@@ -221,20 +235,21 @@ export function inferTrapForChoice(q, choiceIndex) {
 /** Build structured wrong-choice review with SADE fields when available. */
 export function buildWrongChoiceItem(q, choiceIndex) {
   const wrong = wrongChoice(q, choiceIndex)
-  const correct = q.choices?.[q.correctIndex] || ''
+  const correct = correctChoiceText(q)
   if (!wrong) {
     return { choiceIndex, explanation: 'This option does not fit the scenario.', misconceptionTested: '' }
   }
   if (wrong === correct) {
     const dupIndices = (q.choices || []).map((c, i) => (c === correct ? i : -1)).filter(i => i >= 0)
     if (dupIndices.length > 1 && choiceIndex !== q.correctIndex) {
-      const letter = String.fromCharCode(65 + q.correctIndex)
+      // No choice letters in this copy — display order is shuffled per render,
+      // so a baked-in letter can point at a different option than the learner sees.
       return {
         choiceIndex,
-        explanation: `**${wrong}** matches the keyed correct syntax, but the scored answer is choice ${letter} — duplicate identical options are distractors.`,
-        misconceptionTested: 'Selecting a duplicate correct-looking option when only one letter is keyed',
+        explanation: `**${wrong}** matches the keyed correct syntax, but only one of the identical options is scored — duplicate identical options are distractors.`,
+        misconceptionTested: 'Selecting a duplicate correct-looking option when only one is keyed',
         whatItDoes: `**${wrong}** repeats the same CLI string as the marked correct answer.`,
-        whyWrongHere: `Only choice ${letter} is scored correct when two options show the same command — match the keyed letter, not the duplicate line.`,
+        whyWrongHere: 'Only one option is scored correct when two show the same command — this duplicate is not the keyed one.',
       }
     }
     return { choiceIndex, explanation: 'This is the correct answer, not a distractor.', misconceptionTested: '' }
@@ -373,7 +388,7 @@ export function resolveIncorrectItem(q, item) {
         ? inferTrapForChoice(q, item.choiceIndex)
         : storedTrap,
       needsExplanationReview: item.needsExplanationReview,
-      genericDebrief: isTemplateWhyWrongHere(whyWrongHere),
+      genericDebrief: isTemplateWhyWrongHere(whyWrongHere) || isGenericStructuredFeedback(whyWrongHere),
     }
   }
   const rebuilt = buildWrongChoiceItem(q, item.choiceIndex)

@@ -50,6 +50,7 @@ export const STORAGE_KEYS = {
   trapOwnership: 'ccna_trap_ownership_v1',
   /** WB-2: per-question / per-objective fluency samples. */
   answerFluency: 'ccna_answer_fluency_v1',
+  trapDrillHistory: 'ccna_trap_drill_history_v1',
 }
 
 /** CustomEvent name for dev/e2e trap-drill prefill handoff. */

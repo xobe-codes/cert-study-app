@@ -24,8 +24,6 @@ import { setSkillQuestionsModule } from '../../data/skillQuestionsRegistry.js'
  */
 export function useAppBootstrap({
   setView,
-  setReturnToView,
-  setSelectedObjective,
   nestedApi,
 }) {
   const [progress, setProgress] = useState({})

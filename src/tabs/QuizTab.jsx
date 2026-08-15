@@ -22,11 +22,11 @@ import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
 import { STATIC_COPY } from '../ui/staticContentCopy.js'
 import { useNavHint } from '../components/NavHintProvider.jsx'
 import { NAV_HINT_KEYS } from '../ui/navHintConfig.js'
-import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, loadQuizSessionSize, saveQuizSessionSize, commitSessionSizeDraft, effectiveSessionSize, isSessionSizeDraftSubmittable, sanitizeSessionSizeDraftInput, sessionSizeDraftFromCommitted } from '../quizSessionConfig.js'
+import { DEFAULT_QUIZ_SESSION_SIZE, MAX_QUIZ_SESSION_SIZE, loadQuizSessionSize, saveQuizSessionSize, commitSessionSizeDraft, sanitizeSessionSizeDraftInput, sessionSizeDraftFromCommitted } from '../quizSessionConfig.js'
 import { BOOK_REF } from '../data/bookRefFull.js'
-import { PREMIUM_FEATURES, PREMIUM_COMING_SOON_LABEL } from '../premium/premiumFeatures.js'
+import { PREMIUM_FEATURES } from '../premium/premiumFeatures.js'
 import {
-  askClaudeJSON, MODELS, AiBudgetWarning,
+  askClaudeJSON, MODELS,
   QUIZ_BANK_MIN,
   seedTestedOutReview, logEvent, haptic,
   loadQuizBank, saveQuizBank, mergeIntoBank, reconcileCuratedBank, recordQuizResult,
@@ -52,14 +52,14 @@ import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import {
   resolveQuizTrapDrillPrefill,
   QUIZ_PROMPT_SYSTEM,
-  BankMixDisplay,
-  CONFIDENCE_OPTIONS,
+  ConfidenceRatingStrip,
   quizFeedbackA11y,
   QuizCompleteCard,
 } from './quizTabChrome.jsx'
 import PostPracticeSecondaryTools from '../components/PostPracticeSecondaryTools.jsx'
 import IdkButton from '../components/IdkButton.jsx'
 import { takeLatencyMs, recordAnswerOutcome, unknownMissExtra } from '../features/study/answerOutcome.js'
+import { QuizIdleScreen } from './quizIdleScreen.jsx'
 
 export function QuizTab({
   objective, progress, missed, onMissed, onScoreSaved, nextObjective, onSelectObjective, onOpenMissed, onOpenTrapDrill, onOpenLab, onOpenSubnet, onSwitchTab,
@@ -71,7 +71,7 @@ export function QuizTab({
   const removeMissedByQuestionId = (qid) => removeMissedByQuestionIds?.([qid])
   const doneHintFired = useRef(false)
   const justMasteredRef = useRef(false)
-  const deferredTips = useRef([])
+  const [deferredTips, setDeferredTips] = useState([])
   const [overconfidentCallout, setOverconfidentCallout] = useState(false)
   const [preAssessDone, setPreAssessDone] = useState(false)
   const [phase, setPhase] = useState('idle') // idle | loading | active | done | error
@@ -87,8 +87,7 @@ export function QuizTab({
   const [sourceLabel, setSourceLabel] = useState(null) // where this session's questions came from
   const sessionRatings = useRef([])
   const missedOnce = useRef(new Set()) // question IDs missed once this session → 2nd miss = near-front re-queue
-  const trapStreakRef = useRef(createTrapStreakState())
-  const [trapStreakTick, setTrapStreakTick] = useState(0) // bump to re-render after trap-family miss
+  const [trapStreak, setTrapStreak] = useState(createTrapStreakState())
   const [streak, setStreak] = useState(0) // consecutive correct answers this session
   const sessionQuestionIdsRef = useRef([])
   const exposureRecordedRef = useRef(false)
@@ -101,8 +100,12 @@ export function QuizTab({
     const tip = enriched.answerReview?.examTip
     if (!tip) return
     const trap = selectedIndex != null ? inferTrapForChoice(enriched, selectedIndex) : null
-    deferredTips.current.push({ tip, trap })
+    setDeferredTips(prev => [...prev, { tip, trap }])
   }
+  // A missed question is exactly what spaced repetition is for, so it schedules
+  // immediately. Correct answers still wait for the objective's review gate,
+  // which is what stops an untouched objective flooding Daily Review.
+  const shouldSchedule = correct => (correct ? !!progress?.[objective.id]?.reviewEligible : true)
   const [bankSize, setBankSize] = useState(0)
   const [bankQuestions, setBankQuestions] = useState([])
   const [orderDraft, setOrderDraft] = useState([])
@@ -200,7 +203,7 @@ export function QuizTab({
   const startQuiz = useCallback(async (forceNew) => {
     setError(null)
     sessionRatings.current = []
-    deferredTips.current = []
+    setDeferredTips([])
     setOverconfidentCallout(false)
     try {
       await preloadCleanBankForObjective(objective.id)
@@ -313,9 +316,8 @@ export function QuizTab({
     setConfidenceHint(null)
     setStreak(0)
     sessionRatings.current = []
-    deferredTips.current = []
-    trapStreakRef.current = createTrapStreakState()
-    setTrapStreakTick(0)
+    setDeferredTips([])
+    setTrapStreak(createTrapStreakState())
     setOverconfidentCallout(false)
     missedOnce.current = new Set()
     refreshBankSize()
@@ -326,7 +328,7 @@ export function QuizTab({
       shownAtRef.current = Date.now()
       setUnknownMarked(false)
     }
-  }, [phase, current?.id, current?.question])
+  }, [phase, current?.id, current?.question]) // eslint-disable-line react-hooks/exhaustive-deps -- keyed on content, not the `current` ref
 
   // Optional, backward-compatible diagnosis (pure — reuses existing answer-review resolution).
   function missEntry(question, submittedAnswer, correct, extra) {
@@ -354,7 +356,7 @@ export function QuizTab({
         return q
       })
     }
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     if (current.id) {
       recordQuestionHealthSignal(current.id, objective.id, {
         correct,
@@ -387,9 +389,8 @@ export function QuizTab({
       recordMissClearAttempt(current.id, { correct: false }).catch(() => {})
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, idx)
       if (trapPrefill) {
-        const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
-        trapStreakRef.current = recorded.state
-        setTrapStreakTick(t => t + 1)
+        const recorded = recordTrapMiss(trapStreak, trapPrefill)
+        setTrapStreak(recorded.state)
       }
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
@@ -411,7 +412,7 @@ export function QuizTab({
     haptic([10, 40, 10])
     setStats(s => ({ correct: s.correct, total: s.total + 1, missedCount: s.missedCount + 1 }))
     setStreak(0)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct: false, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct: false, schedule: shouldSchedule(false) })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
@@ -458,7 +459,7 @@ export function QuizTab({
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     if (current.id) {
       recordQuestionHealthSignal(current.id, objective.id, {
         correct,
@@ -481,9 +482,8 @@ export function QuizTab({
       onMissed(missEntry(current, selectedIndexes, correct, { selectedIndexes: [...selectedIndexes] }))
       const trapPrefill = resolveQuizTrapDrillPrefill(current, objective, firstWrong ?? selectedIndexes[0])
       if (trapPrefill) {
-        const recorded = recordTrapMiss(trapStreakRef.current, trapPrefill)
-        trapStreakRef.current = recorded.state
-        setTrapStreakTick(t => t + 1)
+        const recorded = recordTrapMiss(trapStreak, trapPrefill)
+        setTrapStreak(recorded.state)
       }
       const qKey = current.id || current.question
       if (missedOnce.current.has(qKey)) {
@@ -505,7 +505,7 @@ export function QuizTab({
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
@@ -537,7 +537,7 @@ export function QuizTab({
     setStats(s => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1, missedCount: s.missedCount + (correct ? 0 : 1) }))
     const newStreak = correct ? streak + 1 : 0
     setStreak(newStreak)
-    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: !!progress?.[objective.id]?.reviewEligible })
+    if (current.id) recordQuizResult(objective.id, current.id, { correct, schedule: shouldSchedule(correct) })
     recordAnswerOutcome({
       objectiveId: objective.id,
       questionId: current.id,
@@ -628,83 +628,20 @@ export function QuizTab({
   }
 
   if (phase === 'idle') {
-    const hasBank = bankSize >= QUIZ_BANK_MIN
-    const poolMax = hasBank ? bankSize : (curatedPoolSize > 0 ? curatedPoolSize : MAX_QUIZ_SESSION_SIZE)
-    const sessionMax = hasBank ? bankSize : MAX_QUIZ_SESSION_SIZE
-    const pendingSize = effectiveSessionSize(sessionSizeDraft, sessionSize, { max: sessionMax })
-    const reviewCount = hasBank ? Math.min(pendingSize, bankSize) : pendingSize
-    const canStartSession = isSessionSizeDraftSubmittable(sessionSizeDraft, { max: sessionMax })
-    const emptyPool = !hasBank && curatedPoolSize === 0
     return (
-      <div className={`ccna-quiz-idle${hasBank ? ' ccna-quiz-idle--slim' : ''}`}>
-        <p className="ccna-quiz-idle__lead" style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, color: COLORS.silver, margin: '0 0 4px', lineHeight: 1.35 }}>
-          {emptyPool ? 'Ready to practice?' : hasBank ? 'Practice from your bank' : 'How many questions do you want?'}
-        </p>
-        <p style={{ ...styles.small, marginBottom: 10, color: COLORS.silverMid }}>
-          {hasBank ? (
-            <>
-              <strong style={{ color: COLORS.silver }}>{bankSize}</strong> question{bankSize === 1 ? '' : 's'} available in your bank — {STATIC_COPY.bankReview}.
-            </>
-          ) : curatedPoolSize > 0 ? (
-            <>
-              <strong style={{ color: COLORS.silver }}>{curatedPoolSize}</strong> curated question{curatedPoolSize === 1 ? '' : 's'} for this topic — {STATIC_COPY.curatedQuizPool}.
-            </>
-          ) : (
-            <>No questions yet — read the Study tab first{premiumUnlocked ? ', or generate a custom set' : ''}.</>
-          )}
-        </p>
-        {emptyPool && onSwitchTab && (
-          <button type="button" style={{ ...styles.secondaryBtn, marginBottom: 8 }} onClick={() => onSwitchTab('Study')}>
-            ← Back to Study
-          </button>
-        )}
-        {hasBank && <BankMixDisplay questions={bankQuestions} />}
-        {!hasBank && curatedPoolSize === 0 && premiumUnlocked && <AiBudgetWarning />}
-        {!hasBank && curatedPoolSize === 0 && !premiumUnlocked && (
-          <div style={{ ...styles.card, border: `1px solid ${COLORS.border}`, marginBottom: 8, padding: '10px 12px' }}>
-            <p style={{ ...styles.small, margin: 0, lineHeight: 1.45 }}>
-              {PREMIUM_COMING_SOON_LABEL} — AI practice sets unlock with supporter access. Curated topics include free questions automatically.
-            </p>
-          </div>
-        )}
-        <div style={{ marginBottom: 4 }}>
-          <label htmlFor={`quiz-session-size-${objective.id}`} style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 6 }}>This session</label>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            <input
-              id={`quiz-session-size-${objective.id}`}
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              value={sessionSizeDraft}
-              onChange={onSessionSizeInput}
-              onBlur={onSessionSizeBlur}
-              aria-label={`How many questions this session, up to ${poolMax} available`}
-              style={{
-                ...styles.input,
-                width: 56,
-                padding: '4px 8px',
-                fontSize: 'var(--ccna-type-sm)',
-                textAlign: 'center',
-              }}
-            />
-            <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>
-              of {poolMax} available
-            </span>
-          </div>
-        </div>
-        {emptyPool && !premiumUnlocked ? (
-          <button type="button" style={{ ...styles.secondaryBtn, marginTop: 12 }} onClick={() => onSwitchTab?.('Study')}>
-            ← Study this topic first
-          </button>
-        ) : (
-          <button style={{ ...styles.primaryBtn, marginTop: 12 }} disabled={!canStartSession} onClick={() => startPracticeSession(false)}>
-            {hasBank ? `Practice ${reviewCount} question${reviewCount === 1 ? '' : 's'}` : emptyPool ? 'Generate practice set' : 'Start practice'}
-          </button>
-        )}
-        {hasBank && premiumUnlocked && (
-          <button style={{ ...styles.secondaryBtn, marginTop: 8 }} disabled={!canStartSession} onClick={() => startPracticeSession(true)}>Generate new questions</button>
-        )}
-      </div>
+      <QuizIdleScreen
+        objective={objective}
+        bankSize={bankSize}
+        curatedPoolSize={curatedPoolSize}
+        sessionSizeDraft={sessionSizeDraft}
+        sessionSize={sessionSize}
+        premiumUnlocked={premiumUnlocked}
+        onSwitchTab={onSwitchTab}
+        bankQuestions={bankQuestions}
+        onSessionSizeInput={onSessionSizeInput}
+        onSessionSizeBlur={onSessionSizeBlur}
+        startPracticeSession={startPracticeSession}
+      />
     )
   }
   if (phase === 'loading') return <Spinner label="Generating quiz questions..." />
@@ -741,7 +678,7 @@ export function QuizTab({
           }) : undefined}
           onOpenMockExam={onSelectObjective}
         />
-        {examMode && <DeferredExamTips tips={deferredTips.current} />}
+        {examMode && <DeferredExamTips tips={deferredTips} />}
       </>
     )
   }
@@ -836,7 +773,7 @@ export function QuizTab({
                   : selected,
               )
               if (!prefill) return null
-              const streakCta = trapStreakTick >= 0 && shouldShowTrapStreakCta(trapStreakRef.current, prefill)
+              const streakCta = shouldShowTrapStreakCta(trapStreak, prefill)
               if (!streakCta) return null
               return (
                 <button
@@ -859,39 +796,12 @@ export function QuizTab({
         <button style={{ ...styles.primaryBtn, marginBottom: 10 }} onClick={submitCli} disabled={!cliAnswer.trim()}>Check command</button>
       )}
       {revealed && (
-        <div className="ccna-confidence-strip" style={{ marginBottom: 10 }}>
-          {overconfidentCallout && (
-            <div style={{ ...styles.small, marginBottom: 8, padding: '8px 10px', borderRadius: 8, border: `1px solid ${COLORS.amberBorder}`, background: COLORS.amberDim, color: COLORS.amber }}>
-              You marked this <strong>Easy</strong> but missed it — a common exam trap. Re-read the explanation before moving on.
-            </div>
-          )}
-          <div className="ccna-confidence-strip__label" style={{ ...styles.small, marginBottom: 6 }}>How confident did you feel?</div>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            {CONFIDENCE_OPTIONS.map(opt => {
-              const active = rating === opt.value
-              return (
-                <button
-                  key={opt.value}
-                  onClick={() => rate(opt.value)}
-                  style={{
-                    flex: '1 1 auto', minHeight: 44, borderRadius: 10, cursor: 'pointer',
-                    background: active ? opt.dim : COLORS.surface,
-                    border: `1px solid ${active ? opt.border : COLORS.border}`,
-                    color: active ? opt.accent : COLORS.silverMid,
-                    fontSize: 'var(--ccna-type-xs)', fontWeight: 600, padding: '8px 6px', fontFamily: 'inherit',
-                  }}
-                >
-                  {opt.label}
-                </button>
-              )
-            })}
-          </div>
-          {confidenceHint && (
-            <div style={{ ...styles.small, marginTop: 8, color: COLORS.sky, lineHeight: 1.4 }}>
-              {confidenceHint}
-            </div>
-          )}
-        </div>
+        <ConfidenceRatingStrip
+          overconfidentCallout={overconfidentCallout}
+          rating={rating}
+          confidenceHint={confidenceHint}
+          rate={rate}
+        />
       )}
       {revealed && <button style={styles.primaryBtn} onClick={next}>{queue.length === 0 ? 'Finish' : 'Next question'}</button>}
     </div>

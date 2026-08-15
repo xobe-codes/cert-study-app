@@ -4,7 +4,7 @@
  */
 
 function multiQ({
-  id, objectiveId, concept, skill = 'design', difficulty = 'medium',
+  id, concept, skill = 'design', difficulty = 'medium',
   question, choices, correctIndexes, explanation, examTip, incorrect = [], ckuIds = [],
 }) {
   return {

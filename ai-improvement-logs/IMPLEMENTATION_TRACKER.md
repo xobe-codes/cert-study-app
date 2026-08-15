@@ -1,7 +1,7 @@
 # Implementation Tracker — 99+ North Star
 
 **Single source of truth** for current work, queue, scores, and shipped history.
-**Updated:** 2026-07-12 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
+**Updated:** 2026-08-14 · **Overall:** ~99/100 → target **99+** (all areas ≥95)
 
 ---
 
@@ -22,10 +22,9 @@
 | Metric | Value |
 |--------|------:|
 | Objectives | 53 · Tier A **53** · B 0 · C 0 |
-| Labs | 82 (82 interpret · 0 config) |
+| Labs | 82 (56 interpret · 26 config) |
 | Trap / flashcard / cmd gaps | **0 / 0 / 0** |
-| App.jsx | ~149 lines |
-| Command scenarios | ≥3 per domain (6 domains) |
+| App.jsx | ~150 lines |
 
 ---
 
@@ -34,15 +33,15 @@
 | Area | Now | 99+ bar | Signal / gap-closer |
 |------|----:|--------:|---------------------|
 | Coverage breadth | 99 | 97 | Tier-A ratio (53/53) |
-| Coverage depth | 99 | 97 | avg 25 Q · 14 traps/obj |
-| Learning flow | 99 | 97 | Specs 1–15 domain OS + unified lessons |
+| Coverage depth | 100 | 97 | avg 30 Q · 14 traps/obj |
+| Learning flow | 99 | 97 | SRS + stem-replay loops; question volume |
 | Engineer perspective | 99 | 97 | engineer view 53/53 |
-| CLI verification | 99 | 96 | ≥2 verify cmds 53/53 · scenario packs |
+| CLI verification | 99 | 96 | ≥2 verify cmds 53/53 |
 | Exam traps | 100 | 97 | avg 14 traps · floor 0 |
-| Labs / CLI | 99 | 97 | lab/obj + 82 interpret (0 config) + TS |
-| Maintainability | 97 | 96 | App ≤200 · ExplainTab extract · 0 >900L |
-| Mobile / a11y | 99 | 96 | phone diagrams · mobile e2e · a11y ✓ |
-| Tests / CI | 99 | 96 | Terms Hub e2e in ship:full |
+| Labs / CLI | 99 | 97 | lab/obj + 56 interpret + 10 TS |
+| Maintainability | 95 | 96 | App 150L · ObjScreen 182L · 1 files >900L |
+| Mobile / a11y | 99 | 96 | 6 mobile e2e · a11y ✓ |
+| Tests / CI | 99 | 96 | 198 unit files · 48 e2e |
 
 ---
 
@@ -60,23 +59,7 @@
 
 | id | area | work |
 |----|------|------|
-| _(empty)_ | — | Optional polish cleared 2026-07-11 (Terms Hub e2e + scenario density) |
-
-## Recently shipped
-
-- **WB MVP (0/3/4/4b/4c/5/9/10)** — Weak Batch Now + Pass Focus flood; baseline Map tools demoted; Lessons→batch Review; home Now·Pulse·Aim; TTS repair
-- **Specs 8–15** — unified lessons, Terms Hub, Command scenarios, study health, phone diagrams (`ae5abf7`+)
-- **Optional polish** — Terms Hub ship e2e; ≥3 scenarios/domain
-
-## Parked — next phase (do not implement until asked)
-
-See `PLATFORM_NEXT_PHASE.md` for the multi-pack curriculum plan (implement only when explicitly requested).
-
-**Question debrief 99+** — shipped (see `QUESTION_DEBRIEF_99.md` + `COMPLETED_CHANGES`).
-
-**Topology SVG 99+** — shipped (see `TOPOLOGY_SVG_99.md`; landscape e2e + mobile link floors).
-
-**Polish 99+** — shipped (see `POLISH_99.md`; deferred empty).
+| _(empty)_ | — | Polish next-pass cleared (gold 33 + trap wave 23; config labs interpret-only; domain chunks split) |
 
 Full shipped history: `COMPLETED_CHANGES.md`
 
@@ -85,3 +68,4 @@ Full shipped history: `COMPLETED_CHANGES.md`
 ## Do not touch
 
 `.env*` · `src/ui/appTheme.js` · hash routing in `App.jsx` · live AI on load. See `DO_NOT_TOUCH.md`.
+

@@ -1,54 +1,4 @@
 export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
-  "1.1": {
-    "reading": {
-      "tiers": {
-        "beginner": "Network components (routers, switches, firewalls, APs, controllers) shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
-  },
-  "1.2": {
-    "reading": {
-      "tiers": {
-        "beginner": "Network topology architectures shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
-  },
-  "1.7": {
-    "reading": {
-      "bigTakeaway": "Master Describe private IPv4 addressing: know the behavior, the exam trap, and how to verify it."
-    }
-  },
-  "1.10": {
-    "reading": {
-      "tiers": {
-        "beginner": "Verify IP parameters for client OS shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
-  },
-  "1.11": {
-    "reading": {
-      "tiers": {
-        "beginner": "Describe wireless principles shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
-  },
-  "1.12": {
-    "reading": {
-      "tiers": {
-        "beginner": "Explain virtualization fundamentals shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
-  },
-  "2.1": {
-    "reading": {
-      "bigTakeaway": "Master Configure and verify VLANs: know the behavior, the exam trap, and how to verify it."
-    }
-  },
-  "2.2": {
-    "reading": {
-      "bigTakeaway": "Master Configure and verify interswitch connectivity (trunking): know the behavior, the exam trap, and how to verify it."
-    }
-  },
   "2.3": {
     "flashcards": [
       {
@@ -135,12 +85,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Show Lldp Neighbors?",
         "back": "**Exam cue:** Which command will allow you to see LLDP devices connected to a switch? **Key response:** Switch#show lldp neighbor detail. **Why:** show lldp neighbor detail displays LLDP-discovered neighbors, capabilities, and connected interfaces."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Configure and verify Layer 2 discovery protocols (CDP/LLDP) shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "2.4": {
     "flashcards": [
@@ -204,13 +149,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Show Etherchannel?",
         "back": "**Exam cue:** Which command is used to verify the negotiation protocol for a port channel? **Key response:** Switch#show etherchannel. **Why:** show etherchannel displays protocol (LACP/PAgP), port state, and bundle summary."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Configure and verify EtherChannel (LACP): know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Configure and verify EtherChannel (LACP) shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "2.5": {
     "flashcards": [
@@ -338,7 +277,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "definition": "Cisco WLAN architectures place either full control on each AP (autonomous) or centralize control on a Wireless LAN Controller (WLC) with lightweight APs joined by CAPWAP.",
       "tiers": {
         "beginner": "Autonomous APs are standalone — each AP is configured and switched locally. Lightweight APs join a WLC over CAPWAP; the controller owns WLAN policy, RF, and usually client data switching in Local mode.",
-        "intermediate": "Local mode tunnels client data to the WLC (central switching). FlexConnect can switch client data locally at the AP/branch when the CAPWAP tunnel is up or in standalone failover — useful at remote sites. Cloud-managed (e.g. Meraki) APs are managed from a dashboard rather than an on-prem WLC.",
+        "intermediate": "Local mode tunnels client data to the WLC for central switching. FlexConnect can instead switch client data locally at the AP or branch when the CAPWAP tunnel is up or during standalone failover, which matters most at remote sites.\n\nCloud-managed APs (e.g. Meraki) are managed from a dashboard rather than an on-prem WLC.",
         "examReady": "Match the mode to the job: Monitor (scan/interference, no clients), Sniffer (capture), Rogue Detector, SE-Connect, Bridge/Mesh for wireless backhaul. Density and RF coordination favor lightweight APs + WLC over many autonomous APs."
       },
       "keyPoints": [
@@ -409,7 +348,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "definition": "WLAN physical connectivity covers how APs and WLCs attach to the wired campus: access vs trunk ports, management/native VLAN, power (PoE/PoE+), and optional link aggregation to the controller.",
       "tiers": {
         "beginner": "A lightweight AP usually sits on a switch port that can carry the AP management VLAN and, depending on mode, client VLANs. Controllers need enough bandwidth and often a trunk into the distribution/core so multiple SSIDs map to multiple VLANs.",
-        "intermediate": "Many designs trunk the AP port (or use an access port for AP management with FlexConnect local switching on client VLANs). WLC ports facing the network are commonly trunks; LAG/EtherChannel can aggregate multiple GE links for capacity and redundancy. Check PoE budget so APs do not brown out.",
+        "intermediate": "Many designs trunk the AP port, or use an access port for AP management with FlexConnect switching client VLANs locally instead. WLC ports facing the network are commonly trunks, and LAG/EtherChannel can aggregate multiple GE links for capacity and redundancy.\n\nCheck PoE budget too — an AP that browns out from insufficient power looks like a much stranger problem than it actually is.",
         "examReady": "Map the ask: new AP → usually trunk (or access + FlexConnect VLAN design); need more WLC bandwidth → EtherChannel/LAG; multiple departments on one physical WLC link → trunk. Blueprint-adjacent: PoE budget and LLDP-MED power negotiation."
       },
       "keyPoints": [
@@ -509,7 +448,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "2.8-align-f14",
         "ckuId": "CKU-CERTIFICATES",
         "front": "What should you remember about Certificates?",
-        "back": "**Exam cue:** Which type of security can be implemented on a WLAN that requires the host PC to present a certificate before being allowed onto the wireless network? **Key response:** 802.1X. **Why:** 802.1X requires the client to present a certificate (or credentials via EAP) before network access — per-user authentication."
+        "back": "**Exam cue:** What does a digital certificate actually prove, and who vouches for it? **Key response:** A certificate binds a public key to an identity and is signed by a trusted Certificate Authority (CA). **Why:** Presenting a certificate (e.g. in 802.1X EAP-TLS or HTTPS) lets a device or user prove its identity cryptographically, without sending a shared secret over the network — the CA's signature is what the other side trusts."
       },
       {
         "id": "2.8-align-f15",
@@ -539,7 +478,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "2.8-align-f19",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "2.8-align-f20",
@@ -833,13 +772,14 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "definition": "Default forwarding uses the routing table: match the destination to the longest prefix, then send out the next-hop or exit interface for that route.",
       "tiers": {
         "beginner": "When a router receives a packet, it looks at the destination IP and picks the best matching route in its table — usually the most specific (longest) prefix. If nothing matches, it uses a default route (0.0.0.0/0) if one exists.",
-        "intermediate": "Forwarding decision: longest-prefix match wins over AD when prefixes differ. When two sources offer the same prefix, lower administrative distance wins. Confirm with show ip route, then ping/traceroute from the correct source interface.",
-        "examReady": "Forwarding order: longest prefix match first; then AD for the same prefix; then metric within one protocol. Exam trap: confusing AD with metric or with longest-match. Verify: show ip route <dest> — read code, [AD/metric], via/next-hop, and exit interface."
+        "intermediate": "Forwarding decision: longest-prefix match wins over AD when prefixes differ. When two sources offer the same prefix, lower administrative distance wins.\n\nConfirm the result with the routing table, then verify actual reachability with ping or traceroute from the correct source interface.",
+        "examReady": "Forwarding order: longest prefix match first; then AD for the same prefix; then metric within one protocol. The classic exam trap is confusing AD with metric, or confusing either one with longest-match — those are three separate tie-breakers applied in that exact order. See Key Points for the verify commands."
       },
       "keyPoints": [
         "Longest matching prefix selects the route used for forwarding.",
         "Same prefix from multiple sources → lowest administrative distance wins.",
-        "Verify with show ip route, then test reachability with ping/traceroute."
+        "Verify with `show ip route <dest>` — read code, [AD/metric], via/next-hop, and exit interface.",
+        "Test actual reachability with `ping` / `traceroute` after confirming the routing table entry."
       ],
       "related": [
         "3.1 Interpret the components of a routing table",
@@ -1087,12 +1027,13 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "tiers": {
         "beginner": "Hosts use a default gateway. FHRPs let two or more routers share one virtual gateway IP so if the active router dies, a standby takes over without reconfiguring every PC.",
         "intermediate": "HSRP is Cisco-proprietary (active/standby). VRRP is the open standard. GLBP can load-balance across multiple forwarders. Key knobs: priority, preemption, and the virtual IP on the LAN.",
-        "examReady": "Know who is Active vs Standby, when preemption matters, and that hosts ARP for the virtual MAC — not each physical router IP. Verify with show standby / show vrrp."
+        "examReady": "Know who is Active vs Standby, when preemption matters, and that hosts ARP for the shared virtual MAC — not each physical router's own IP. That virtual MAC is the whole reason failover is transparent to hosts."
       },
       "keyPoints": [
         "FHRP = shared virtual default gateway for hosts.",
         "HSRP (Cisco) vs VRRP (open); GLBP can load-balance.",
-        "Priority + preemption decide who becomes active; verify with show standby."
+        "Priority + preemption decide who becomes active.",
+        "Verify with `show standby` (HSRP) or `show vrrp` (VRRP)."
       ],
       "related": [
         "3.1 Interpret the components of a routing table",
@@ -1204,9 +1145,9 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       },
       "keyPoints": [
         "Check interface status and addressing before blaming the routing protocol.",
-        "Confirm the expected prefix is in show ip route with the right code and next-hop.",
-        "For OSPF: verify neighbor state (2-Way can be normal for DROTHER), area, network statements, and passive-interface.",
-        "Use ping/traceroute (and source interface) to find where the path breaks; consider return path and NAT at the edge."
+        "Confirm the expected prefix is in `show ip route` with the right code and next-hop.",
+        "For OSPF: verify neighbor state with `show ip ospf neighbor` (2-Way can be normal for a DROTHER), area, network statements, and passive-interface.",
+        "Use `ping` / `traceroute` (and source interface) to find where the path breaks; consider return path and NAT at the edge."
       ],
       "related": [
         "3.1 Interpret the components of a routing table",
@@ -1283,12 +1224,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Snmp Inform?",
         "back": "**Exam cue:** Which command display an overview of the current number of active NAT translations on the router, as well as other overview information? **Key response:** Router#show ip nat statistics. **Why:** show ip nat statistics summarizes translation counts, hits/misses, and NAT configuration overview — not every individual entry."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Configure and verify inside source NAT shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.2": {
     "flashcards": [
@@ -1334,12 +1270,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Domain Name System?",
         "back": "**Exam cue:** Which is a best practice for setting up NTP? **Key response:** Always configure the time source to a DNS address.. **Why:** Use a DNS hostname for the NTP server — if the server's IP changes, devices follow the name without reconfiguration."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Configure and verify NTP shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.3": {
     "flashcards": [
@@ -1415,12 +1346,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Transport Input?",
         "back": "**Exam cue:** Which transport protocol does DHCP use? **Key response:** UDP. **Why:** DHCP uses UDP — client to server on 67, server to client on 68."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Explain the role of DHCP and DNS shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.4": {
     "flashcards": [
@@ -1484,12 +1410,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Syslog?",
         "back": "**Standard logging to console, buffer, or remote collector**. Severity 0 (emergency) to 7 (debug)."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Explain the function of SNMP shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.5": {
     "flashcards": [
@@ -1547,12 +1468,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Network Address Translation?",
         "back": "**Exam cue:** An administrator configures `ip route 0.0.0.0 0.0.0.0 203.0.113.1` on an edge router but hosts still cannot reach the internet, even though show ip r… **Key response:** 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts. **Why:** A default route being present in the table does not guarantee end-to-end reachability. Common remaining causes are an unreachable next hop or missing NAT/PAT translation for internal private addresses."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Describe the use of syslog features shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.6": {
     "flashcards": [
@@ -1598,12 +1514,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Network Address Translation?",
         "back": "**Exam cue:** An administrator configures `ip route 0.0.0.0 0.0.0.0 203.0.113.1` on an edge router but hosts still cannot reach the internet, even though show ip r… **Key response:** 203.0.113.1 itself may be unreachable, or NAT is not configured for the internal hosts. **Why:** A default route being present in the table does not guarantee end-to-end reachability. Common remaining causes are an unreachable next hop or missing NAT/PAT translation for internal private addresses."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Configure and verify DHCP client and relay shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.7": {
     "flashcards": [
@@ -1691,17 +1602,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Tail Drop?",
         "back": "**Exam cue:** How do congestion avoidance tools help to prevent tail drop? **Key response:** When the queue depth is above the minimum threshold, a percentage of TCP packets are dropped.. **Why:** WRED randomly drops TCP packets when queue depth exceeds the minimum threshold — signals congestion before tail drop."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Explain QoS forwarding per-hop behavior shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
-      "keyPoints": [
-        "QoS per-hop behavior: Classification/marking (DSCP/CoS), queuing (LLQ for voice), shaping vs policing, WRED congestion avoidance",
-        "Trust boundaries define where markings are honored.",
-        "Remember the exam-facing behavior for Explain QoS forwarding per-hop behavior (p"
-      ]
-    }
+    ]
   },
   "4.8": {
     "flashcards": [
@@ -1771,12 +1672,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Transport Input?",
         "back": "**Exam cue:** Which transport protocol does DHCP use? **Key response:** UDP. **Why:** DHCP uses UDP — client to server on 67, server to client on 68."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Configure network devices for remote access using SSH shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "4.9": {
     "flashcards": [
@@ -1828,17 +1724,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Running Config?",
         "back": "**Exam cue:** Which command restore configuration to the running-config for a device from a server? **Key response:** Switch#copy tftp: running-config. **Why:** copy tftp: running-config restores a saved config from TFTP directly into running-config."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Describe TFTP and FTP capabilities shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
-      "keyPoints": [
-        "TFTP (UDP/69) and FTP (TCP/20-21) transfer IOS images and configs",
-        "TFTP is simple/unauthenticated; FTP adds auth but neither encrypts — use SFTP for security.",
-        "Remember the exam-facing behavior for Describe TFTP and FTP capabilities (point "
-      ]
-    }
+    ]
   },
   "4.10": {
     "flashcards": [
@@ -1896,17 +1782,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Zero Touch Provisioning?",
         "back": "**Exam cue:** Which of the following is a typical advantage of cloud-based device management over traditional local management? **Key response:** Zero-touch provisioning — new devices can be shipped to a site and automatically pull their configuration fro…. **Why:** Zero-touch provisioning (ZTP) lets new devices auto-pull config from the cloud on first boot — no console visit required."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Compare local and cloud-based device management shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
-      "keyPoints": [
-        "Local vs cloud management: On-prem CLI/controllers vs cloud dashboards (Meraki, DNA Center)",
-        "Cloud simplifies multi-site ops but needs internet and trust in provider.",
-        "Remember the exam-facing behavior for Compare local and cloud-based device manag"
-      ]
-    }
+    ]
   },
   "5.1": {
     "flashcards": [
@@ -2052,13 +1928,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Wlan Ssid?",
         "back": "**Exam cue:** You need to set up a WLAN for connectivity to send and receive large files to roaming clients. The WLAN will exist with other WLAN traffic. **Key response:** Bronze. **Why:** Large file transfer is bulk/background traffic — Bronze (best effort, no priority) is appropriate alongside other WLANs."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Describe security program elements: know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Describe security program elements shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.3": {
     "flashcards": [
@@ -2162,7 +2032,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.3-align-f17",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.3-align-f18",
@@ -2176,13 +2046,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Tokens?",
         "back": "**Exam cue:** Several office-level users have administrative privileges on the network. Which of the following is the easiest to implement to immediately add secur… **Key response:** Least privilege. **Why:** Least privilege — remove unnecessary admin rights from office users — is the fastest policy win with no new hardware."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Configure and verify device access control: know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Configure and verify device access control shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.4": {
     "flashcards": [
@@ -2196,13 +2060,13 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.4-align-f2",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.4-align-f3",
         "ckuId": "CKU-AAA-COMPARISON",
         "front": "What should you remember about Aaa Comparison?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** Contrast RADIUS and TACACS+ across protocol, encryption, and AAA structure. **Key response:** TACACS+ (TCP/49) separates authentication, authorization, and accounting into distinct processes, encrypts the whole packet, and supports per-command authorization for device administration; RADIUS (UDP 1812/1813) combines authentication and authorization into one response, encrypts only the password, and is used for network access (802.1X, VPN, wireless). **Why:** Pick TACACS+ for admin AAA on the devices themselves; pick RADIUS for authenticating users/devices trying to get onto the network."
       },
       {
         "id": "5.4-align-f4",
@@ -2252,13 +2116,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Method List?",
         "back": "**Exam cue:** A switch is configured with: aaa authentication login default group tacacs+ local. What does this configuration mean? **Key response:** The switch will attempt TACACS+ authentication first, and fall back to the local username/password database i…. **Why:** aaa authentication login default group tacacs+ local — try TACACS+ first, fall back to local database if unreachable."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Configure and verify AAA with TACACS+/RADIUS: know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Configure and verify AAA with TACACS+/RADIUS shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.5": {
     "flashcards": [
@@ -2308,13 +2166,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about SNMP Operations?",
         "back": "**SNMP: Manager, agent, MIB, OID**. Polling (Get) and traps/informs. v1/v2c use community strings; v3 adds auth and encryption."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Configure Layer 2 security features: know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Configure Layer 2 security features shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.7": {
     "flashcards": [
@@ -2340,7 +2192,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.7-align-f4",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.7-align-f5",
@@ -2402,12 +2254,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Remote Access?",
         "back": "**Exam cue:** You need to make a Telnet connection to a remote router from a router you are configuring. Which command will allow you to do this? **Key response:** Router#198.56.33.3. **Why:** From exec mode, type the target IP address directly (Router#198.56.33.3) to open a Telnet session to that host."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Compare authentication, authorization, accounting shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.8": {
     "flashcards": [
@@ -2475,7 +2322,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "id": "5.8-align-f11",
         "ckuId": "CKU-RADIUS",
         "front": "What should you remember about Radius?",
-        "back": "**Exam cue:** Which of the following best describes why an enterprise would choose TACACS+ over RADIUS for managing administrative access to network infrastructure… **Key response:** TACACS+ separates authentication, authorization, and accounting into distinct processes and supports per-comm…. **Why:** TACACS+ separates auth/authz/accounting and supports per-command authorization — ideal for device admin."
+        "back": "**Exam cue:** How does RADIUS differ from TACACS+ in what it encrypts and how it structures AAA? **Key response:** RADIUS encrypts only the password in the access-request packet and combines authentication and authorization into a single response, using UDP ports 1812/1813. **Why:** RADIUS is built for network access (802.1X, VPN, wireless) rather than device administration — it does not separate authentication, authorization, and accounting into distinct steps the way TACACS+ does, and only the password is encrypted, not the full packet."
       },
       {
         "id": "5.8-align-f12",
@@ -2483,13 +2330,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Wlan Ssid?",
         "back": "**Exam cue:** You need to set up a WLAN for connectivity to send and receive large files to roaming clients. The WLAN will exist with other WLAN traffic. **Key response:** Bronze. **Why:** Large file transfer is bulk/background traffic — Bronze (best effort, no priority) is appropriate alongside other WLANs."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Describe wireless security protocols: know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Describe wireless security protocols shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.9": {
     "flashcards": [
@@ -2547,17 +2388,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Wpa3?",
         "back": "**Exam cue:** Which security mode does WPA3-Enterprise use that offers the highest level of security? **Key response:** 192-bit. **Why:** WPA3-Enterprise optional 192-bit security mode (GCMP-256) is the highest strength option in the blueprint."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Configure WLAN using WPA2 PSK shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
-      "keyPoints": [
-        "WPA2-PSK WLAN: WLC WLAN with WPA2-AES, PSK passphrase, VLAN mapping",
-        "4-way handshake derives per-session keys.",
-        "Remember the exam-facing behavior for Configure WLAN using WPA2 PSK (point 3)."
-      ]
-    }
+    ]
   },
   "5.10": {
     "flashcards": [
@@ -2591,12 +2422,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Nhrp?",
         "back": "**Exam cue:** Which protocol helps resolve and direct traffic for DMVPN connections? **Key response:** NHRP. **Why:** NHRP (Next Hop Resolution Protocol) registers spokes and resolves NBMA next hops for DMVPN tunnels."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Differentiate types of VPN and security concepts shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "5.11": {
     "flashcards": [
@@ -2654,18 +2480,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Voice VLAN?",
         "back": "**A second VLAN on an access port for IP phones, so voice and data traffic are separated on the same physical port**."
       }
-    ],
-    "reading": {
-      "bigTakeaway": "Master Describe security concepts of network segmentation: know the behavior, the exam trap, and how to verify it.",
-      "tiers": {
-        "beginner": "Describe security concepts of network segmentation shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
-      "keyPoints": [
-        "Network segmentation: Zones limit blast radius",
-        "Stateful firewalls, NGFW with DPI/IPS, microsegmentation for workload-level policy.",
-        "Remember the exam-facing behavior for Describe security concepts of network segm"
-      ]
-    }
+    ]
   },
   "6.1": {
     "flashcards": [
@@ -2705,12 +2520,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Python Automation?",
         "back": "**Exam cue:** You need to configure a new static route on the existing 20 routers. Which is the best way to do this? **Key response:** Create a Python script to configure each router.. **Why:** At scale (20 routers), a Python script (Ansible, Netmiko, etc.) is repeatable, auditable, and far faster than manual paste."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Explain how automation impacts network management shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   },
   "6.2": {
     "flashcards": [
@@ -2782,9 +2592,6 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
-      "tiers": {
-        "beginner": "Compare traditional networks with controller-based networking shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
       "keyPoints": [
         "Traditional vs controller-based: Distributed control plane per device vs centralized SDN controller (DNA Center, APIC-EM) pushing policy to data-plane devices.",
         "Controller-based: policy and overlay come from the controller; devices keep a local data plane.",
@@ -2908,17 +2715,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Underlay?",
         "back": "**Exam cue:** Which component of an SDN is where the MTU is set? **Key response:** Underlay. **Why:** MTU is configured on the underlay physical/tunnel transport — not overlay logical networks."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Describe controller-based and software defined architectures shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
-      "keyPoints": [
-        "SDN architectures: Northbound APIs (REST to apps), southbound (NETCONF/OpenFlow to devices)",
-        "Control plane centralized; data plane distributed.",
-        "Remember the exam-facing behavior for Describe controller-based and software def"
-      ]
-    }
+    ]
   },
   "6.4": {
     "flashcards": [
@@ -3032,9 +2829,6 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
-      "tiers": {
-        "beginner": "Compare traditional campus management with Cisco DNA Center shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
       "keyPoints": [
         "DNA Center vs traditional: Centralized design, policy, provisioning, assurance, image management, intent-based networking vs box-by-box CLI.",
         "DNA Center workflows: inventory → design → policy → provision → assurance.",
@@ -3184,9 +2978,6 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       }
     ],
     "reading": {
-      "tiers": {
-        "beginner": "Describe characteristics of REST-based APIs shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      },
       "keyPoints": [
         "REST APIs: HTTP GET/POST/PUT/DELETE on resource URLs; JSON payloads; stateless; common codes 200/201/400/401/404/500.",
         "CRUD maps to verbs: Create=POST, Read=GET, Update=PUT/PATCH, Delete=DELETE.",
@@ -3292,11 +3083,6 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
         "front": "What should you remember about Recipe?",
         "back": "**Exam cue:** Which Chef component contains the set of instructions to configure a node? **Key response:** Recipe. **Why:** A Chef recipe is the instruction set that configures a node — recipes live inside cookbooks."
       }
-    ],
-    "reading": {
-      "tiers": {
-        "beginner": "Interpret JSON data and configuration management tools shows up on the exam as a practical decision, not a vocabulary quiz. In plain terms, you identify what the feature does, when it applies, and what breaks if you confuse it with a neighbor concept. Read the stem for the exact behavior being tested, then eliminate choices that describe a related but different technology."
-      }
-    }
+    ]
   }
 }

@@ -77,7 +77,6 @@ export default function CoreStudyRoutes({
   haptic,
   settingsExamMode,
   // mock
-  labsDomainPrefill,
   mockDomainPrefill,
   setMockDomainPrefill,
   mockModePrefill,

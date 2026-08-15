@@ -18,7 +18,7 @@ import { EXAM_SOURCES } from './studyConstants.js'
 import { RichText, Bullets } from './studyQuizShared.jsx'
 import ObjectiveLabCTA from './ObjectiveLabCTA.jsx'
 import { logEvent } from '../eventLog.js'
-import { lessonCkuAnchor, lessonSectionAnchor } from '../lesson/lessonAnchors.js'
+import { lessonCkuAnchor, lessonSectionAnchor, resolveLessonAnchor } from '../lesson/lessonAnchors.js'
 import { consumeLessonRemediation } from '../lesson/lessonRemediation.js'
 
 /** Spec 9+15 curated unified lesson spine (extracted from ExplainTab for size). */
@@ -44,8 +44,14 @@ export default function CuratedUnifiedReading({
     const token = consumeLessonRemediation(data.objectiveId)
     if (!token?.lessonAnchor) return
     const timer = window.setTimeout(() => {
-      document.getElementById(token.lessonAnchor)?.scrollIntoView({ block: 'start', behavior: 'smooth' })
-      document.getElementById(token.lessonAnchor)?.focus?.({ preventScroll: true })
+      // The question's concept may not be one this lesson renders, so fall back
+      // down to the concepts block and finally the top rather than scrolling to
+      // a missing element and appearing to do nothing.
+      const target = resolveLessonAnchor(token, data.objectiveId, id => !!document.getElementById(id))
+      if (!target) return
+      const el = document.getElementById(target)
+      el?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      el?.focus?.({ preventScroll: true })
     }, 0)
     return () => window.clearTimeout(timer)
   }, [data.objectiveId])
@@ -129,17 +135,17 @@ export default function CuratedUnifiedReading({
           <CuratedVisualBundle data={data} />
         </div>
       )}
-      <div id={lessonSectionAnchor(data.objectiveId, 'plain')} style={sectionStyle('plain')} onFocusCapture={() => sectionViewed('plain')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'plain')} tabIndex={-1} style={sectionStyle('plain')} onFocusCapture={() => sectionViewed('plain')}>
         <ExplainBlock icon="📖" title="IN PLAIN ENGLISH" accent="sky" speechText={lesson.plainEnglish} onListen={() => playlistRef.current?.toggle('plain')}>
           <RichText text={lesson.plainEnglish} />
         </ExplainBlock>
       </div>
-      <div id={lessonSectionAnchor(data.objectiveId, 'how')} style={sectionStyle('how')} onFocusCapture={() => sectionViewed('how')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'how')} tabIndex={-1} style={sectionStyle('how')} onFocusCapture={() => sectionViewed('how')}>
         <ExplainBlock icon="⚙️" title="HOW IT WORKS" accent="amber" collapsible defaultOpen speechText={lesson.howItWorks} onListen={() => playlistRef.current?.toggle('how')}>
           <RichText text={lesson.howItWorks} />
         </ExplainBlock>
       </div>
-      <div id={lessonSectionAnchor(data.objectiveId, 'exam')} style={sectionStyle('exam')} onFocusCapture={() => sectionViewed('exam')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'exam')} tabIndex={-1} style={sectionStyle('exam')} onFocusCapture={() => sectionViewed('exam')}>
         <ExplainBlock icon="🎯" title="EXAM / ENGINEER" accent="mint" collapsible defaultOpen speechText={lesson.examEngineer} onListen={() => playlistRef.current?.toggle('exam')}>
           <RichText text={lesson.examEngineer} />
         </ExplainBlock>
@@ -167,7 +173,7 @@ export default function CuratedUnifiedReading({
           </div>
         </ExplainBlock>
       )}
-      <div id={lessonSectionAnchor(data.objectiveId, 'concepts')}>
+      <div id={lessonSectionAnchor(data.objectiveId, 'concepts')} tabIndex={-1}>
         <CoreConceptsBlock
           ckus={(data.ckus || []).map(cku => ({ ...cku, lessonAnchor: lessonCkuAnchor(data.objectiveId, cku.id) }))}
           onConceptViewed={(cku) => sectionViewed('concept', cku.id)}
@@ -188,7 +194,7 @@ function CuratedSources({ data }) {
   const refs = data.reading.sourceRefs
   return (
     <div style={{ ...styles.card, padding: 12, marginTop: 4 }}>
-      <button onClick={() => setOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
+      <button type="button" onClick={() => setOpen(o => !o)} aria-expanded={open} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: COLORS.silver }}>
         <span style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.silverMid }}>📚 SOURCES (verifiable)</span>
         <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid }}>{open ? '−' : '+'}</span>
       </button>

@@ -1,5 +1,3 @@
-import { ALL_OBJECTIVES } from '../../data/ccnaDomains.js'
-
 const RESUME_KEY = 'ccna_placement_debrief_resume_v1'
 
 /** Stash placement debrief so Study → Back returns to results, not a new session. */

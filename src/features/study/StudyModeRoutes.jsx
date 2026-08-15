@@ -22,6 +22,7 @@ const LAB_EXIT_LABELS = {
   domainpass: '‹ Back to domain pass',
   domainplacement: '‹ Back to placement',
   commandhub: '‹ Back to Command Hub',
+  trapdrill: '‹ Back to Trap Drill',
 }
 
 const LabsHub = lazy(() => import('../../lab/LabsHub.jsx'))
@@ -75,7 +76,6 @@ export default function StudyModeRoutes({
   onOpenExamTraps,
   onOpenDomainPlacement,
   onOpenCommandHub,
-  onOpenTermsHub,
   onOpenLabs,
   onOpenSubnet,
   onSelectObjective,
@@ -210,6 +210,9 @@ export default function StudyModeRoutes({
         key={trapDrillPrefill?.ckuId ?? trapDrillPrefill?.trapLabel ?? trapDrillPrefill?.domainId ?? 'hub'}
         prefill={trapDrillPrefill}
         onBack={() => { clearTrapDrillPrefill(); onBack() }}
+        onOpenLab={(id) => onOpenLab(id, 'trapdrill')}
+        onOpenTrapDrill={onOpenTrapDrill}
+        onOpenSubnet={onOpenSubnet}
       />
     )
   }

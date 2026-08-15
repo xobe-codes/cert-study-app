@@ -3,6 +3,8 @@
  */
 import { CLEAN_BANK_OBJECTIVES } from './ccnaCleanBankMeta.js'
 import { isGenericExamTip } from '../answerReview/examTipLogic.js'
+import { loadGoldAnswerReviews } from '../answerReview/goldAnswerReviews.js'
+import { loadStemAnchoredTemplates } from '../answerReview/stemAnchoredDistractor.js'
 
 export const CLEAN_BANK_ENABLED = true
 
@@ -51,16 +53,25 @@ function allDomainsLoaded() {
 export function preloadCleanBank() {
   if (cleanModule && allDomainsLoaded()) return Promise.resolve(cleanModule)
   if (!loadPromise) {
-    loadPromise = Promise.all(
-      Object.keys(DOMAIN_LOADERS).map((d) => ensureDomainLoaded(Number(d))),
-    ).then(() => cleanModule)
+    loadPromise = Promise.all([
+      ...Object.keys(DOMAIN_LOADERS).map((d) => ensureDomainLoaded(Number(d))),
+      // Gold reviews and SADE templates ride along with the bank: both are
+      // only read once a learner reveals an answer, which cannot happen
+      // before this resolves.
+      loadGoldAnswerReviews().catch(() => null),
+      loadStemAnchoredTemplates().catch(() => null),
+    ]).then(() => cleanModule)
   }
   return loadPromise
 }
 
 /** Preload only the domain that contains objectiveId (quiz / topic focus). */
 export function preloadCleanBankForObjective(objectiveId) {
-  return ensureDomainLoaded(objectiveDomain(objectiveId)).then(() => cleanModule)
+  return Promise.all([
+    ensureDomainLoaded(objectiveDomain(objectiveId)),
+    loadGoldAnswerReviews().catch(() => null),
+    loadStemAnchoredTemplates().catch(() => null),
+  ]).then(() => cleanModule)
 }
 
 export function isCleanBankLoaded() {

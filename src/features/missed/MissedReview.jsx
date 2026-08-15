@@ -10,9 +10,9 @@ import {
 import OverflowMarquee from '../../components/OverflowMarquee.jsx'
 import StemReplayCTA from '../stemReplay/StemReplayCTA.jsx'
 import StudyModeHeader from '../../components/StudyModeHeader.jsx'
-import { QuizQuestionStem, CliModeBanner } from '../../components/QuizQuestionChrome.jsx'
+import { QuizQuestionStem, CliModeBanner, QuizRichText } from '../../components/QuizQuestionChrome.jsx'
 import { handoffStudyFromWeakSignal } from '../study/batchHandoff.js'
-import { MISSED_RETEST_PROVE_UNLOCK_MAX } from './missedRetestPool.js'
+import { MISSED_RETEST_PROVE_UNLOCK_MAX, dedupeMissedByQuestionId } from './missedRetestPool.js'
 
 function normalizeQuestionText(q) {
   return (q || '').trim().toLowerCase().replace(/\s+/g, ' ')
@@ -30,7 +30,18 @@ export default function MissedReview({
   placementRecords = {},
   progress = {},
 }) {
-  const bank = Array.isArray(missed) ? missed : []
+  // Stable reference so the useMemo hooks below that depend on `bank` don't
+  // recompute every render — `missed` is falsy between loads, and a fresh []
+  // literal on every render would defeat their memoization entirely.
+  const bank = useMemo(() => (Array.isArray(missed) ? missed : []), [missed])
+  // MISSED_RETEST_PROVE_UNLOCK_MAX's contract is "once the deduped missed
+  // bank shrinks to this size" — the raw bank can hold two rows for one
+  // question (write-time dedup only blocks a duplicate when questionId AND
+  // objectiveId both match; the same question re-recorded under a second
+  // objectiveId isn't caught), so gating on bank.length could keep "Prove
+  // it" locked past the point its own threshold says it should unlock.
+  // PracticeRoutes.jsx already computes the equivalent quantity this way.
+  const proveItGateCount = useMemo(() => dedupeMissedByQuestionId(bank).length, [bank])
   const [revealedIdx, setRevealedIdx] = useState(null)
   const [trapFilter, setTrapFilter] = useState(null)
   const trapGroups = useMemo(() => groupMissedByTrap(bank), [bank])
@@ -77,18 +88,18 @@ export default function MissedReview({
                 ...styles.secondaryBtn,
                 flex: '1 1 auto',
                 marginBottom: 0,
-                opacity: bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX ? 0.55 : 1,
+                opacity: proveItGateCount > MISSED_RETEST_PROVE_UNLOCK_MAX ? 0.55 : 1,
               }}
-              disabled={bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX}
-              title={bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX
-                ? `Unlocks once your missed bank is ${MISSED_RETEST_PROVE_UNLOCK_MAX} or fewer (currently ${bank.length})`
+              disabled={proveItGateCount > MISSED_RETEST_PROVE_UNLOCK_MAX}
+              title={proveItGateCount > MISSED_RETEST_PROVE_UNLOCK_MAX
+                ? `Unlocks once your missed bank is ${MISSED_RETEST_PROVE_UNLOCK_MAX} or fewer (currently ${proveItGateCount})`
                 : undefined}
               onClick={() => onStartRetest('prove', trapFilter)}
             >
               Prove it →
             </button>
           </div>
-          {bank.length > MISSED_RETEST_PROVE_UNLOCK_MAX && (
+          {proveItGateCount > MISSED_RETEST_PROVE_UNLOCK_MAX && (
             <div style={{ ...styles.small, marginTop: 8, color: COLORS.silverMid }}>
               Prove it unlocks at {MISSED_RETEST_PROVE_UNLOCK_MAX} or fewer missed — clear the queue a few times to get there.
             </div>
@@ -149,7 +160,7 @@ export default function MissedReview({
                 {attempt && (
                   <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.rose, marginBottom: 8, lineHeight: 1.5 }}>{attempt}</div>
                 )}
-                <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}>{m.explanation}</div>
+                <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silverMid, marginBottom: 8, lineHeight: 1.5 }}><QuizRichText text={m.explanation} /></div>
                 {(() => {
                   const { trap, domainId } = getMissedTrapInfo(m)
                   if (!isActionableMissedTrap(trap)) return null

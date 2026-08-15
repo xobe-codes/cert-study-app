@@ -73,8 +73,12 @@ function padLearningGoals(goals, lab) {
 }
 
 function padCommonMistakes(mistakes, lab) {
+  // EXAM_TRAP_FILLERS must only be used as padToMin's fallback (added when
+  // real content falls short), not spliced into the base array — doing so
+  // guaranteed all 4 generic strings landed on every lab's commonMistakes
+  // regardless of how many real, specific mistakes were already authored.
   return padToMin(
-    [...(mistakes || []), ...(lab.failureCriteria || []), ...EXAM_TRAP_FILLERS],
+    [...(mistakes || []), ...(lab.failureCriteria || [])],
     LAB_QUALITY_MIN.commonMistakes,
     EXAM_TRAP_FILLERS,
   )
@@ -116,7 +120,16 @@ function padTasks(tasks, lab, validator) {
   while (existing.length < LAB_QUALITY_MIN.tasks) {
     order += 1
     const base = existing[existing.length - 1] || { device: 'R1', expectedCommands: ['show running-config'] }
-    const fallbackCmd = interpretOnly ? 'show running-config' : (base.expectedCommands?.[0] || 'show running-config')
+    // Reuse the prior task's own command rather than a hardcoded 'show
+    // running-config' fallback — that literal string has no canned output
+    // in any lab's cliShowOutput table, so the padded task previously
+    // rendered "% Output not simulated" instead of the "prior" output its
+    // own instruction text promised. Use the LAST command in that task, not
+    // the first — multi-command tasks are usually mode-setup ("enable")
+    // followed by the actual verify command, and re-running "enable" as a
+    // fake verification step is meaningless.
+    const baseCmds = base.expectedCommands || []
+    const fallbackCmd = baseCmds[baseCmds.length - 1] || 'show running-config'
     existing.push({
       id: `t-pad-${order}`,
       order,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { homeCard, homeSectionLabel, homePill, homeBodySm } from '../home/homeUi.js'
+import { homeCard } from '../home/homeUi.js'
 
 /**
  * FocusedLessonBank: Replace the cluttered "Now" section with a compact,
@@ -10,7 +10,6 @@ import { homeCard, homeSectionLabel, homePill, homeBodySm } from '../home/homeUi
  */
 export default function FocusedLessonBank({
   nextObjectives = [],
-  domainId = null,
   onStudy,
   onQuickCheck,
   onOpenLab,

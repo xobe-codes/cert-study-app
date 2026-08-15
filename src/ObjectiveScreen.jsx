@@ -16,7 +16,7 @@ export default function ObjectiveScreen({
   examMode = false,
   premiumUnlocked = false,
   onPremiumBlocked,
-  SectionLabel, StatusLabel, StatusDot, ProgressBar, objectiveTabId, objectivePanelId, commandDrills,
+  SectionLabel, StatusLabel, ProgressBar, objectiveTabId, objectivePanelId, commandDrills,
   computeMastery, logEvent, masteryGate, enableSectionReview, bumpSessionStudy, celebrate, haptic,
   onToggleTheme,
   theme,

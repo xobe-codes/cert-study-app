@@ -1,11 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { isMcQuestion } from '../questionUtils.js'
 import {
   getShelvedPool,
-  getShelvedStats,
-  getPromoteHint,
   isApprovedForPromotion,
 } from '../data/shelvedStudy.js'
 import { SHELVED_BANK } from '../data/ccnaShelvedQuestions.js'

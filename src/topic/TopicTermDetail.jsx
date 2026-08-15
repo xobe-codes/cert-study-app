@@ -1,6 +1,7 @@
 import React from 'react'
-import { COLORS, accentColors, styles } from '../ui/appTheme.js'
+import { COLORS, styles } from '../ui/appTheme.js'
 import { CONCEPT_KIND_LABEL } from './topicIndex.js'
+import { QuizRichText } from '../components/QuizQuestionChrome.jsx'
 
 function kindAccent(kind) {
   if (kind === 'trap') return 'rose'
@@ -49,12 +50,12 @@ export default function TopicTermDetail({
       </div>
 
       <p style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 'var(--ccna-line-read)', color: COLORS.silver, margin: '0 0 12px' }}>
-        {entry.definition}
+        <QuizRichText text={entry.definition} />
       </p>
 
       {entry.note && (
         <div style={{ ...styles.card, padding: '8px 10px', marginBottom: 12, border: `1px solid ${COLORS.amberBorder}`, fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, lineHeight: 1.45 }}>
-          {entry.note}
+          <QuizRichText text={entry.note} />
         </div>
       )}
 

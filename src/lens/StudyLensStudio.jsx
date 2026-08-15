@@ -12,6 +12,8 @@ import { loadSynthesisCache, saveSynthesisCache } from '../lens/lensStorage.js'
 import { loadAllPlacementRecords } from '../features/domainPlacement/domainPlacementStorage.js'
 import { collectBaselineWeakObjectives } from '../features/domainPlacement/domainBaselineStudyPlan.js'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
+import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
+import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 
 const SUGGESTED = [
   'What is longest prefix match?',
@@ -50,6 +52,7 @@ export default function StudyLensStudio({
   scopeObjectiveId = null,
   initialQuery = '',
 }) {
+  const { recordEngagement } = useMasteryProgress()
   const [query, setQuery] = useState(initialQuery)
   const [domainFilter, setDomainFilter] = useState('all')
   const [baselineFocus, setBaselineFocus] = useState(false)
@@ -95,8 +98,10 @@ export default function StudyLensStudio({
 
   const openSource = useCallback((hit) => {
     const oid = hit.objectiveIds?.[0]
-    if (oid) onSelectObjective?.(oid)
-  }, [onSelectObjective])
+    if (!oid) return
+    recordEngagement?.(oid, { kind: ENGAGEMENT_KINDS.STUDY_LENS, correct: 1, total: 1 })
+    onSelectObjective?.(oid)
+  }, [onSelectObjective, recordEngagement])
 
   const runSynthesize = useCallback(async () => {
     if (!searchResult?.hits?.length || synthLoading) return

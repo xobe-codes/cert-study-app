@@ -59,6 +59,15 @@ test.describe('Wrong-answer debrief smoke', () => {
     const lessonCta = page.getByRole('button', { name: /Review the exact lesson concept/i }).first()
     await expect(lessonCta).toBeVisible()
     await lessonCta.click()
-    await expect(page.locator('[id^="lesson-1-5-concept-"]').first()).toBeVisible({ timeout: 20_000 })
+    const lessonTarget = page.locator('[id^="lesson-1-5-concept-"]').first()
+    await expect(lessonTarget).toBeVisible({ timeout: 20_000 })
+    // The CTA scrolls to and focuses the lesson section — a div with no
+    // tabIndex silently no-ops on .focus(), leaving keyboard/screen-reader
+    // users stranded wherever they were before the click. Confirm real
+    // focus actually landed inside the target, not just that it scrolled
+    // into view.
+    await expect
+      .poll(() => page.evaluate(() => document.activeElement?.closest('[id^="lesson-1-5-concept-"]') != null), { timeout: 5_000 })
+      .toBe(true)
   })
 })

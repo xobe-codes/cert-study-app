@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { COLORS, accentColors, styles } from '../ui/appTheme.js'
+import { COLORS, accentColors } from '../ui/appTheme.js'
 import { parseNavHintMessage, resolveNavHint } from '../ui/navHintConfig.js'
 import { NavHintIcon } from './NavHintIcons.jsx'
 

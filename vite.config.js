@@ -38,6 +38,11 @@ export default defineConfig({
           '**/*.{css,ico,svg,webmanifest}',
           'registerSW.js',
           'assets/clean-questions*.js',
+          // Gold reviews are no longer in the startup chunk, so precache them
+          // explicitly or offline debriefs lose their hand-authored copy.
+          'assets/goldAnswerReviewsData*.js',
+          // Same reasoning for the SADE distractor templates.
+          'assets/stemAnchoredTemplates*.js',
           'assets/mock-exam*.js',
           'assets/study-modes*.js',
           'assets/labs*.js',
@@ -215,6 +220,18 @@ export default defineConfig({
           // error and no console output until you probe it. Keeping the whole
           // shared graph in one chunk lets JS resolve the cycle the same way it
           // always has, since it's one file again.
+          // Gold answer-review prose (~1.3MB across 46 batches) is reached only
+          // through the dynamic import in goldAnswerReviews.js, so leave it
+          // unassigned and let Rollup give it its own async chunk — the same
+          // treatment ccnaSkillQuestions gets above. Do NOT give it a manual
+          // chunk *name*: naming this aggregator-of-many-leaves is what
+          // reproduced the same-chunk TDZ described earlier.
+          if (id.includes('/answerReview/goldAnswerReviews')) return undefined
+          // Same treatment: the SADE distractor templates (hundreds of topic-
+          // specific explanation branches) are reached only through the
+          // dynamic import in stemAnchoredDistractor.js's loadStemAnchoredTemplates,
+          // so let Rollup give this its own async chunk instead of bloating core.
+          if (id.includes('/answerReview/stemAnchoredTemplates')) return undefined
           if (id.includes('/src/')) return 'core'
         },
       },
