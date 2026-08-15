@@ -73,8 +73,12 @@ function padLearningGoals(goals, lab) {
 }
 
 function padCommonMistakes(mistakes, lab) {
+  // EXAM_TRAP_FILLERS must only be used as padToMin's fallback (added when
+  // real content falls short), not spliced into the base array — doing so
+  // guaranteed all 4 generic strings landed on every lab's commonMistakes
+  // regardless of how many real, specific mistakes were already authored.
   return padToMin(
-    [...(mistakes || []), ...(lab.failureCriteria || []), ...EXAM_TRAP_FILLERS],
+    [...(mistakes || []), ...(lab.failureCriteria || [])],
     LAB_QUALITY_MIN.commonMistakes,
     EXAM_TRAP_FILLERS,
   )
