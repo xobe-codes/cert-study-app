@@ -1,5 +1,5 @@
 import React from 'react'
-import { COLORS, styles } from '../ui/appTheme.js'
+import { styles } from '../ui/appTheme.js'
 import { useStudyBlock } from './StudyBlockProvider.jsx'
 
 export default function StudyBlockCompleteCard({ objectiveId, masteryPct, onQuiz, onDismiss }) {

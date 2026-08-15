@@ -2,28 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import AppErrorBoundary from './components/AppErrorBoundary.jsx'
+import { createLocalStoragePolyfill } from './storage/localStoragePolyfill.js'
 
 // --- window.storage polyfill (localStorage-backed) ---
 // Provides an async key/value store so the app can run standalone
 // without a host environment that supplies window.storage natively.
 if (!window.storage) {
-  window.storage = {
-    async getItem(key) {
-      const raw = localStorage.getItem(key)
-      if (raw === null) return null
-      try {
-        return JSON.parse(raw)
-      } catch {
-        return raw
-      }
-    },
-    async setItem(key, value) {
-      localStorage.setItem(key, JSON.stringify(value))
-    },
-    async removeItem(key) {
-      localStorage.removeItem(key)
-    },
-  }
+  window.storage = createLocalStoragePolyfill(window)
 }
 
 // Apply the saved theme synchronously before first paint to avoid a flash of

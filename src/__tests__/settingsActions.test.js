@@ -76,6 +76,16 @@ describe('settingsActions', () => {
     expect(await window.storage.getItem(STORAGE_KEYS.onboardDone)).toBeNull()
   })
 
+  it('also clears the event log and CLI stats — Settings promises "erase all progress"', async () => {
+    // Metrics Dashboard reads these directly; leaving them untouched kept
+    // showing pre-reset activity numbers after a reset.
+    await window.storage.setItem(STORAGE_KEYS.events, [{ eventId: 'e1', type: 'user_completed_quiz', at: 1 }])
+    await window.storage.setItem(STORAGE_KEYS.cliStats, { '1.1': { attempts: 5 } })
+    await resetStudyProgress()
+    expect(await window.storage.getItem(STORAGE_KEYS.events)).toEqual([])
+    expect(await window.storage.getItem(STORAGE_KEYS.cliStats)).toEqual({})
+  })
+
   it('persists reduce motion on document root', async () => {
     await saveReduceMotion(true)
     expect(document.documentElement.getAttribute('data-reduce-motion')).toBe('true')

@@ -101,6 +101,21 @@ export function gradeQuestion(q, answer) {
   return answer === q.correctIndex
 }
 
+/**
+ * Plain-text correct answer for debrief prose.
+ * Unlike `correctAnswerLabel` this carries no choice letters — letters are
+ * display-order and shuffle per render, so they must never be baked into text.
+ * Resolves multi-select from `correctIndexes`, which has no `correctIndex` to read.
+ */
+export function correctChoiceText(q) {
+  if (isMultiQuestion(q)) {
+    const texts = multiCorrectIndexes(q).map(i => q.choices?.[i]).filter(Boolean)
+    if (texts.length <= 1) return texts[0] || ''
+    return `${texts.slice(0, -1).join(', ')} and ${texts[texts.length - 1]}`
+  }
+  return q?.choices?.[q?.correctIndex] || ''
+}
+
 export function correctAnswerLabel(q) {
   if (isCliQuestion(q)) {
     const primary = (q.answers || [q.answer]).filter(Boolean)[0]

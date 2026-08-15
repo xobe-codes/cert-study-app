@@ -3,7 +3,6 @@ import { useNavCallbacks } from './context/AppNavigationContext.jsx'
 import { DOMAINS, ALL_OBJECTIVES } from './data/ccnaDomains.js'
 import { COLORS, accentColors, styles } from './ui/appTheme.js'
 import { STORAGE_KEYS } from './storageKeys.js'
-import { getCurated } from './data/ccnaCurated.js'
 import { getShelvedStats } from './data/shelvedStudy.js'
 import { REVIEW_SESSION_CAP } from './home/homeConstants.js'
 import {
@@ -16,10 +15,6 @@ import {
 import StudyNextStrip from './home/StudyNextStrip.jsx'
 import TrapHeatmapStrip from './home/TrapHeatmapStrip.jsx'
 import HomeTopBar from './home/HomeTopBar.jsx'
-import StatusLabel from './components/StatusLabel.jsx'
-import ProgressRing from './components/ProgressRing.jsx'
-import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './home/sessionRecap.js'
-import { groupMissedByTrap } from './missed/missedTrapGroups.js'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
 import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
 import DomainBaselinePrompt from './features/domainPlacement/DomainBaselinePrompt.jsx'
@@ -41,327 +36,22 @@ import {
   homeCard,
   homeSectionLabel,
   homePill,
-  homePillCount,
-  homeLinkBtn,
   homeDismissBtn,
   homeBodySm,
   homeBodyOnAccent,
-  homeTitleSm,
   homeAccentCard,
   homeAccentStrip,
 } from './home/homeUi.js'
 import HomeDomainAccordion from './home/HomeDomainAccordion.jsx'
+import {
+  ContentTrustCard,
+  YourProgressCard,
+  HomeExtrasSection,
+  ExamTrapWidget,
+  StudyModeBtn,
+} from './home/homeScreenCards.jsx'
 
-const ALL_EXAM_TRAPS = (() => {
-  const traps = []
-  ALL_OBJECTIVES.forEach(o => {
-    const data = getCurated(o.id)
-    if (data?.examTraps?.length) {
-      data.examTraps.forEach(t => traps.push({ ...t, objectiveId: o.id, objectiveTitle: o.title, accent: o.accent }))
-    }
-  })
-  return traps
-})()
-
-function ContentTrustCard() {
-  return (
-    <div style={homeCard({ border: `1px solid ${COLORS.mintBorder}`, background: COLORS.mintDim })}>
-      <div style={homeSectionLabel(COLORS.mint)}>BUILT-IN STUDY PACKS</div>
-      <p style={{ ...homeBodySm, margin: '0 0 8px' }}>
-        Most objectives ship with curated reading, practice questions, diagrams, and flashcards — ready instantly, no API wait.
-      </p>
-      <p style={{ ...homeBodySm, margin: 0 }}>
-        AI-generated lessons and custom quizzes are optional extras for topics without a full pack or when you want a fresh angle.
-      </p>
-    </div>
-  )
-}
-
-function YourProgressCard({
-  progress,
-  readiness,
-  onOpenStats,
-  glance = null,
-  onNowClick = null,
-}) {
-  const [dismissed, setDismissed] = useState(isRecapDismissed())
-  const data = useMemo(() => getSessionStudy(), [])
-  const total = data.correct + data.incorrect
-
-  function dismiss() { dismissSessionRecap(); setDismissed(true) }
-
-  return (
-    <div style={homeCard()}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={homeSectionLabel()}>YOUR PROGRESS</div>
-        <button type="button" onClick={onOpenStats} style={homeLinkBtn(COLORS.purpleGlow)}>
-          Stats & trends →
-        </button>
-      </div>
-      {glance && (
-        <div style={{ marginBottom: 12, padding: '10px 12px', borderRadius: 12, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}` }}>
-          <div style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.sky, letterSpacing: 0.4, marginBottom: 4 }}>NOW</div>
-          {onNowClick ? (
-            <button
-              type="button"
-              onClick={onNowClick}
-              style={{
-                display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none',
-                padding: 0, cursor: 'pointer', fontFamily: 'inherit',
-                fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 8, lineHeight: 1.4,
-              }}
-            >
-              {glance.now} →
-            </button>
-          ) : (
-            <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 8, lineHeight: 1.4 }}>
-              {glance.now}
-            </div>
-          )}
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 4, lineHeight: 1.4 }}>
-            <strong style={{ color: COLORS.purple }}>Pulse:</strong> {glance.pulse}
-          </div>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4 }}>
-            <strong style={{ color: COLORS.mint }}>Aim:</strong> {glance.aim}
-          </div>
-        </div>
-      )}
-      <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', marginBottom: !dismissed && total > 0 ? 12 : 0 }}>
-        <ProgressRing value={readiness.score} size={68} accent="purple" caption="Exam readiness" />
-        <div style={{ flex: 1, minWidth: 0 }}>
-          {readiness.domainStats.slice(0, 3).map(d => {
-            const c = accentColors(d.accent)
-            return (
-              <div key={d.id} style={{ marginBottom: 6 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 2 }}>
-                  <span>{d.name}</span>
-                  <span>{Math.round(d.avg * 100)}%</span>
-                </div>
-                <div style={{ height: 5, borderRadius: 999, background: COLORS.surface, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${Math.round(d.avg * 100)}%`, borderRadius: 999, background: c.text }} />
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-      {!dismissed && total > 0 && (
-        <div style={{ ...homeBodySm, padding: '8px 10px', borderRadius: 14, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`, marginBottom: 0, position: 'relative' }}>
-          <button type="button" onClick={dismiss} aria-label="Dismiss session recap" style={homeDismissBtn}>×</button>
-          <strong style={{ color: COLORS.sky }}>Last session:</strong> {total} question{total === 1 ? '' : 's'} · {data.correct} correct
-        </div>
-      )}
-    </div>
-  )
-}
-
-function HomeExtrasSection({ progress, onOpenSettings }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div style={{ marginBottom: HOME_SECTION_GAP }}>
-      <button
-        type="button"
-        onClick={() => setOpen(o => !o)}
-        aria-expanded={open}
-        style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%',
-          background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 14,
-          padding: '12px 14px', cursor: 'pointer', fontFamily: 'inherit', marginBottom: open ? 8 : 0,
-        }}
-      >
-        <span style={{ flex: 1, textAlign: 'left', minWidth: 0 }}>
-          <span style={{ display: 'block', ...homeSectionLabel(), marginBottom: 2 }}>EXAM PREP EXTRAS</span>
-          <span style={{ display: 'block', fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.4 }}>Exam countdown</span>
-        </span>
-        <span style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, flexShrink: 0, lineHeight: 1.3 }}>{open ? '▲' : '▼'}</span>
-      </button>
-      {open && (
-        <div>
-          <ExamCountdown progress={progress} onOpenSettings={onOpenSettings} />
-        </div>
-      )}
-    </div>
-  )
-}
-
-/* =========================================================================
-   EXAM DATE COUNTDOWN — user sets their target exam date once; stored locally.
-   Shows days remaining and a simple daily target (objectives to study per day).
-   ========================================================================= */
-function ExamCountdown({ progress, onOpenSettings }) {
-  const [examDate, setExamDate] = useState(null)
-
-  useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      const saved = await window.storage.getItem(STORAGE_KEYS.examDate)
-      if (!cancelled && saved) setExamDate(saved)
-    })()
-    return () => { cancelled = true }
-  }, [])
-
-  if (!examDate) {
-    return (
-      <div style={homeCard({ border: `1px solid ${COLORS.border}` })}>
-        <div style={{ ...homeTitleSm, marginBottom: 8 }}>📅 No exam date set</div>
-        <button type="button" style={{ ...styles.secondaryBtn, fontSize: 'var(--ccna-type-sm)' }} onClick={onOpenSettings}>Set exam date in Settings →</button>
-      </div>
-    )
-  }
-
-  const target = new Date(examDate)
-  const now = new Date()
-  const daysLeft = Math.ceil((target - now) / 86400000)
-  if (daysLeft < 0) return (
-    <div style={homeCard({ border: `1px solid ${COLORS.mintBorder}` })}>
-      <div style={{ ...homeTitleSm, color: COLORS.mint }}>🎓 Exam date passed — good luck with results!</div>
-      <button type="button" style={{ ...homeLinkBtn(COLORS.silverMid), minHeight: 0, padding: '4px 0', marginTop: 4 }} onClick={onOpenSettings}>Update in Settings</button>
-    </div>
-  )
-
-  const unstudied = ALL_OBJECTIVES.filter(o => !progress[o.id] || progress[o.id].status === 'unseen').length
-  const objPerDay = daysLeft > 0 ? Math.ceil(unstudied / Math.max(daysLeft, 1)) : unstudied
-  const urgency = daysLeft <= 7 ? 'rose' : daysLeft <= 30 ? 'amber' : 'mint'
-
-  return (
-    <div style={homeCard({ border: `1px solid ${accentColors(urgency).border}`, background: accentColors(urgency).dim })}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div>
-          <div style={{ fontSize: 'var(--ccna-type-xl)', fontWeight: 700, color: accentColors(urgency).text }}>{daysLeft} day{daysLeft !== 1 ? 's' : ''}</div>
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid }}>until exam · {target.toLocaleDateString()}</div>
-        </div>
-        <button type="button" style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', fontFamily: 'inherit' }} onClick={onOpenSettings}>Edit</button>
-      </div>
-      {unstudied > 0 && daysLeft > 0 && (
-        <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.silver }}>
-          {unstudied} objectives not started · aim for ~{objPerDay}/day to cover all before exam
-        </div>
-      )}
-      {unstudied === 0 && <div style={{ marginTop: 8, fontSize: 'var(--ccna-type-xs)', color: COLORS.mint }}>All objectives started — focus on mastery and daily reviews.</div>}
-    </div>
-  )
-}
-
-function ExamTrapWidget() {
-  if (!ALL_EXAM_TRAPS.length) return null
-  // Deterministic daily pick — changes each calendar day, consistent within the day
-  const dayIndex = Math.floor(Date.now() / 86400000)
-  const trap = ALL_EXAM_TRAPS[dayIndex % ALL_EXAM_TRAPS.length]
-  return (
-    <div style={homeCard({ border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim })}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
-        <span style={homePill('rose')}>⚠️ EXAM TRAP OF THE DAY</span>
-        <span style={{ ...homePillCount('silver'), color: COLORS.silverMid }}>{trap.objectiveId}</span>
-      </div>
-      <div style={{ ...homeTitleSm, color: COLORS.rose, marginBottom: 6 }}>{trap.trap}</div>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}>{trap.correction}</div>
-    </div>
-  )
-}
-
-/* ---- Session recap card (#16) ---- */
-function TopTrapPatterns({ missed, onOpenMissed }) {
-  const trapGroups = useMemo(() => groupMissedByTrap(missed || []), [missed])
-  const top = trapGroups.slice(0, 3)
-  if (!top.length) return null
-
-  return (
-    <div style={{ ...styles.card, marginBottom: 12, border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.rose, letterSpacing: 0.5 }}>⚠️ YOUR TOP TRAP PATTERNS</div>
-        <button
-          type="button"
-          onClick={onOpenMissed}
-          style={{ background: 'none', border: 'none', color: COLORS.rose, fontSize: 'var(--ccna-type-xs)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}
-        >
-          Review missed →
-        </button>
-      </div>
-      {top.map((g, i) => (
-        <div
-          key={g.trap}
-          style={{
-            display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: i < top.length - 1 ? 8 : 0,
-            paddingBottom: i < top.length - 1 ? 8 : 0,
-            borderBottom: i < top.length - 1 ? `1px solid ${COLORS.roseBorder}` : 'none',
-          }}
-        >
-          <span style={{ ...styles.pill('rose'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0 }}>{g.count}×</span>
-          <span style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45 }}>{g.trap}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function SessionRecapCard() {
-  const [dismissed, setDismissed] = useState(isRecapDismissed())
-  // Read session data once on mount (HomeScreen remounts on each return to Home)
-  const data = useMemo(() => getSessionStudy(), [])
-
-  const total = data.correct + data.incorrect
-  if (dismissed || total === 0) return null
-
-  const parts = []
-  if (total > 0) parts.push(`${total} question${total === 1 ? '' : 's'}`)
-  if (data.objectives.length > 0) parts.push(`${data.objectives.length} objective${data.objectives.length === 1 ? '' : 's'}`)
-  if (data.mastered.length > 0) parts.push(`${data.mastered.length} mastered 🎉`)
-
-  function dismiss() { dismissSessionRecap(); setDismissed(true) }
-
-  return (
-    <div style={{
-      ...styles.card, background: COLORS.skyDim, border: `1px solid ${COLORS.skyBorder}`,
-      marginBottom: 12, position: 'relative', display: 'flex', alignItems: 'center', gap: 10,
-    }}>
-      <button
-        onClick={dismiss}
-        style={{ position: 'absolute', top: 8, right: 10, background: 'none', border: 'none', color: COLORS.silverMid, fontSize: 'var(--ccna-type-lg)', cursor: 'pointer', lineHeight: 1, padding: 0 }}
-        aria-label="Dismiss"
-      >×</button>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.sky, marginBottom: 2 }}>📊 Last session</div>
-        <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver }}>{parts.join(' · ')}</div>
-        {total > 0 && (
-          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 2 }}>
-            {data.correct} correct · {data.incorrect} incorrect
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function StudyModeCard({ title, subtitle, children }) {
-  return (
-    <div style={{ ...styles.card, marginBottom: 10, padding: 12 }}>
-      <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 700, color: COLORS.silver, marginBottom: 2 }}>{title}</div>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 10 }}>{subtitle}</div>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{children}</div>
-    </div>
-  )
-}
-
-function StudyModeBtn({ onClick, children, primary, disabled }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      style={{
-        ...(primary ? styles.primaryBtn : styles.secondaryBtn),
-        flex: '1 1 calc(50% - 4px)',
-        minWidth: 0,
-        fontSize: 'var(--ccna-type-sm)',
-        marginBottom: 0,
-      }}
-    >
-      {children}
-    </button>
-  )
-}
-
-export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, apiOnline, offlineReady, openDomain, premiumUnlocked = false, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, commandDrills = {}, theme }) {
+export default function HomeScreen({ progress, streak, missed, missedCount, dueCount, offlineReady, openDomain, premiumUnlocked = false, domainPassPassedCount = 0, placementBaselineCount = 0, placementTestedOutCount = 0, placementRecords = {}, domainPassRecords = {}, examDate = null, commandDrills = {}, theme }) {
   const {
     onOpenDomain,
     onSelectObjective,
@@ -371,7 +61,6 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
     onOpenMissed,
     onOpenTutor,
     onPremiumBlocked,
-    onOpenMetrics,
     onOpenStats,
     onOpenSettings,
     onOpenReview,
@@ -405,7 +94,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       }
     })()
     return () => { cancelled = true }
-  }, [progress, missed])
+  }, [progress, missed, commandDrills])
 
   // Retention health feeds the Exam Readiness score below — reload whenever
   // progress changes (a finished quiz can shift a section's SRS state).
@@ -616,7 +305,6 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
       <ContentTrustCard />
 
       <YourProgressCard
-        progress={progress}
         readiness={readiness}
         onOpenStats={onOpenStats}
         glance={homeBatchGlance?.glance || null}

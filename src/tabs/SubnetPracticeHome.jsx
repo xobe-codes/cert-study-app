@@ -1,5 +1,4 @@
 import React from 'react'
-import { styles } from '../ui/appTheme.js'
 import { SubnettingTab } from './subnetPracticeTabs.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
 

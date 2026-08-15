@@ -66,6 +66,11 @@ export async function resetStudyProgress() {
     window.storage.setItem(STORAGE_KEYS.streak, { count: 0, lastStudyDate: null }),
     window.storage.setItem(STORAGE_KEYS.quizBank, {}),
     window.storage.removeItem?.(STORAGE_KEYS.onboardDone),
+    // The confirm prompt for this action says "erase all progress" — these
+    // two were previously left untouched, so Metrics Dashboard's activity
+    // and CLI-skill sections kept showing pre-reset numbers after a reset.
+    window.storage.setItem(STORAGE_KEYS.events, []),
+    window.storage.setItem(STORAGE_KEYS.cliStats, {}),
   ])
 }
 

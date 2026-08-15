@@ -19,11 +19,11 @@ test.describe('Study Practice smoke', () => {
     await input.click()
     await input.fill('')
     await expect(input).toHaveValue('')
-    await expect(page.getByRole('button', { name: /Start practice/i })).toBeDisabled()
+    await expect(page.getByRole('button', { name: /(?:Practice \d+ questions?|Start practice)/i })).toBeDisabled()
 
     await input.fill('3')
     await expect(input).toHaveValue('3')
-    await expect(page.getByRole('button', { name: /Start practice/i })).toBeEnabled()
+    await expect(page.getByRole('button', { name: /(?:Practice \d+ questions?|Start practice)/i })).toBeEnabled()
 
     await input.blur()
     await expect(input).toHaveValue('3')
@@ -69,6 +69,9 @@ test.describe('Study Practice smoke', () => {
 
     expect(reviewVisible).toBe(true)
     await expect(page.locator('.ccna-answer-review').first()).toBeVisible()
-    await expect(page.getByText(/What this choice implies/i)).toBeVisible()
+    // A revealed question can show a structured debrief for more than one
+    // wrong choice at once (accordion reveal), so more than one heading is
+    // legitimate — assert the first is visible, not that there's exactly one.
+    await expect(page.getByText(/What this choice implies/i).first()).toBeVisible()
   })
 })

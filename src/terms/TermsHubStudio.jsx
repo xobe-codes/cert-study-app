@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import { DOMAINS } from '../data/ccnaDomains.js'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
+import McChoices from '../components/McChoices.jsx'
+import { McChoiceShuffleProvider } from '../context/McChoiceShuffleContext.jsx'
 import { buildTermsCatalog, filterTermsCatalog } from './termsCatalog.js'
 import {
   buildFlashItems,
@@ -12,6 +14,8 @@ import {
 import { useMasteryProgress } from '../features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from '../features/progress/masteryEngagement.js'
 import { speak, stopSpeaking, isTtsSupported } from '../lib/browserTts.js'
+import { QuizRichText } from '../components/QuizQuestionChrome.jsx'
+import { stripRichTextMarkup } from '../lesson/richTextParse.js'
 
 const MODES = [
   { id: 'browse', label: 'Browse' },
@@ -115,14 +119,14 @@ export default function TermsHubStudio({ onBack, domainPrefill = null }) {
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
                 <div style={{ fontWeight: 700, color: COLORS.sky }}>{card.term}</div>
                 {isTtsSupported() && (
-                  <button type="button" style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 28, padding: '2px 8px', fontSize: 'var(--ccna-type-micro)' }} onClick={() => { stopSpeaking(); speak(`${card.term}. ${card.definition}`, { rate: 0.95 }) }}>
+                  <button type="button" style={{ ...styles.secondaryBtn, width: 'auto', minHeight: 28, padding: '2px 8px', fontSize: 'var(--ccna-type-micro)' }} onClick={() => { stopSpeaking(); speak(`${card.term}. ${stripRichTextMarkup(card.definition)}`, { rate: 0.95 }) }}>
                     ▶ Hear
                   </button>
                 )}
               </div>
-              <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45, marginTop: 6 }}>{card.definition}</div>
+              <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, lineHeight: 1.45, marginTop: 6 }}><QuizRichText text={card.definition} /></div>
               {card.dontConfuse && (
-                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, marginTop: 6 }}>{card.dontConfuse}</div>
+                <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.amber, marginTop: 6 }}><QuizRichText text={card.dontConfuse} /></div>
               )}
               {card.objectiveId && (
                 <div style={{ fontSize: 'var(--ccna-type-micro)', color: COLORS.silverMid, marginTop: 6 }}>{card.objectiveId}</div>
@@ -178,28 +182,26 @@ export default function TermsHubStudio({ onBack, domainPrefill = null }) {
         <div style={styles.card}>
           <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginBottom: 8 }}>{idx + 1}/{items.length}</div>
           <div style={{ fontWeight: 700, color: COLORS.sky, marginBottom: 10 }}>{current.prompt}</div>
-          {current.choices.map((c, i) => (
-            <button
-              key={i}
-              type="button"
-              disabled={picked != null}
-              onClick={() => {
+          <McChoiceShuffleProvider q={current}>
+            <McChoices
+              q={current}
+              selected={picked}
+              revealed={picked != null}
+              onSelect={i => {
+                if (picked != null) return
                 setPicked(i)
                 const ok = i === current.correctIndex
                 record(current.card, ok)
                 setStats(s => ({ correct: s.correct + (ok ? 1 : 0), total: s.total + 1 }))
-                setTimeout(() => { setPicked(null); setIdx(x => x + 1) }, 500)
               }}
-              style={{
-                ...styles.secondaryBtn,
-                textAlign: 'left',
-                marginBottom: 6,
-                borderColor: picked == null ? COLORS.border : (i === current.correctIndex ? COLORS.mintBorder : (picked === i ? COLORS.roseBorder : COLORS.border)),
-              }}
-            >
-              {c}
+              shuffleChoices={false}
+            />
+          </McChoiceShuffleProvider>
+          {picked != null && (
+            <button type="button" style={{ ...styles.primaryBtn, marginTop: 10 }} onClick={() => { setPicked(null); setIdx(x => x + 1) }}>
+              {idx + 1 >= items.length ? 'See results' : 'Next'}
             </button>
-          ))}
+          )}
         </div>
       )}
     </div>

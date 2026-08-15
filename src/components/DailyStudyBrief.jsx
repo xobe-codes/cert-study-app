@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { COLORS, styles } from '../ui/appTheme.js'
+import { COLORS } from '../ui/appTheme.js'
 import { STORAGE_KEYS } from '../storageKeys.js'
 
 /** Phase 4: Daily study brief - morning summary with recommendations. */

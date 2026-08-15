@@ -3,7 +3,7 @@ import { COLORS, styles } from '../ui/appTheme.js'
 import { TYPE_LABEL, SKILL_LABEL, inferSkill } from '../questionUtils.js'
 import { cliStringsEquivalent } from '../lab/cliGrading.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
-import { splitQuizStem, parseExhibitLines } from '../quiz/quizStemExhibit.js'
+import { splitQuizStem, parseExhibitLines, looksLikeCliChoice } from '../quiz/quizStemExhibit.js'
 import { resolveCliModeContext, CLI_MODES } from '../lab/cliModeContext.js'
 
 export function QuizRichText({ text }) {
@@ -20,6 +20,23 @@ export function QuizRichText({ text }) {
     }
     return <span key={i}>{seg.value}</span>
   })
+}
+
+/**
+ * Same as QuizRichText, plus a whole-choice monospace treatment when the
+ * text itself reads as IOS CLI syntax (looksLikeCliChoice) — even when the
+ * bank content has no explicit `code` markup, which is the common case for
+ * answer choices (see quizStemExhibit.js for why this is heuristic rather
+ * than markup-only: choices are atomic, either all-CLI or all-prose, unlike
+ * a stem sentence that mixes the two and needs authors to mark spans).
+ */
+export function QuizChoiceText({ text }) {
+  if (!looksLikeCliChoice(text)) return <QuizRichText text={text} />
+  return (
+    <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: COLORS.sky, fontSize: 'var(--ccna-type-sm)' }}>
+      <QuizRichText text={text} />
+    </span>
+  )
 }
 
 const ROUTE_CODE_COLOR = {
@@ -47,7 +64,7 @@ function QuizExhibitBlock({ exhibit, label }) {
         <span className="ccna-quiz-exhibit__dot" aria-hidden />
         <span className="ccna-quiz-exhibit__label">{label || 'Exhibit'}</span>
       </div>
-      <div className="ccna-quiz-exhibit__body ccna-h-scroll">
+      <div className="ccna-quiz-exhibit__body ccna-h-scroll" tabIndex={0} role="group" aria-label={`${label || 'Exhibit'} content, scrollable`}>
         {lines.map((line, i) => {
           if (line.type === 'blank') return <div key={i} className="ccna-quiz-exhibit__blank" />
           if (line.type === 'title') {
@@ -185,7 +202,7 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
             }}
           >
             <span style={{ ...styles.pill('purple'), fontSize: 'var(--ccna-type-micro)', flexShrink: 0, minWidth: 22, textAlign: 'center' }}>{idx + 1}</span>
-            <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word' }}>{item}</span>
+            <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word' }}><QuizChoiceText text={item} /></span>
             {!revealed && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2, flexShrink: 0 }}>
                 <button type="button" onClick={() => reorder(idx, idx - 1)} disabled={idx === 0}
@@ -198,7 +215,14 @@ export function OrderingQuestion({ items, onChange, revealed, correctOrder }) {
         )
       })}
       {revealed && correctOrder && (
-        <div style={{ ...styles.small, marginTop: 4 }}>Correct order: {correctOrder.map((s, i) => `${i + 1}. ${s}`).join(' → ')}</div>
+        <div style={{ ...styles.small, marginTop: 4 }}>
+          Correct order: {correctOrder.map((s, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && ' → '}
+              {i + 1}. <QuizChoiceText text={s} />
+            </React.Fragment>
+          ))}
+        </div>
       )}
     </div>
   )

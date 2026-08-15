@@ -11,6 +11,7 @@ import {
 import { STATIC_COPY } from './ui/staticContentCopy.js'
 import { COLORS } from './ui/appTheme.js'
 import StudyModeHeader from './components/StudyModeHeader.jsx'
+import { QuizRichText } from './components/QuizQuestionChrome.jsx'
 import { TRAP_DOMAIN_NUMBERS, trapDomainMeta } from './study/trapDomainConstants.js'
 import { useMasteryProgress } from './features/progress/MasteryProgressContext.jsx'
 import { ENGAGEMENT_KINDS } from './features/progress/masteryEngagement.js'
@@ -144,7 +145,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
   const traps = useMemo(() => {
     let raw = domainTraps
     const matched = matchExamTraps(raw, trapFilter)
-    if (matched.length) return matched
+    if (matched.length) return randomizeQuestionOrder(matched)
     if (objectiveFilter) raw = raw.filter(t => t.objectiveId === objectiveFilter)
     return randomizeQuestionOrder(raw)
   }, [domainTraps, trapFilter, objectiveFilter])
@@ -262,7 +263,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
               }}
             >
               <span style={{ ...styles.pill(i === idx ? 'sky' : 'silver'), fontSize: 'var(--ccna-type-micro)', marginRight: 6 }}>{i + 1}</span>
-              <span style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}>{t.trap || t.title}</span>
+              <span style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.4 }}><QuizRichText text={t.trap || t.title} /></span>
             </button>
           ))}
         </div>
@@ -270,7 +271,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
 
       <div style={{ ...styles.card, marginTop: 4 }}>
         <div style={{ ...styles.pill('amber'), fontSize: 'var(--ccna-type-micro)', marginBottom: 8 }}>TRAP {idx + 1} / {traps.length}</div>
-        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 12 }}>{trap.trap || trap.title}</div>
+        <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 600, marginBottom: 12 }}><QuizRichText text={trap.trap || trap.title} /></div>
         {!revealed
           ? <button type="button" style={styles.primaryBtn} onClick={() => {
             setRevealed(true)
@@ -280,7 +281,7 @@ export default function ExamTrapStudyMode({ styles, onBack, prefill, onPrefillCo
           }}>Reveal how to avoid it</button>
           : (
             <div style={{ fontSize: 'var(--ccna-type-sm)', lineHeight: 1.5 }}>
-              {trap.avoid || trap.correction || trap.explanation || 'Review the related objective reading and quiz explanations.'}
+              <QuizRichText text={trap.avoid || trap.correction || trap.explanation || 'Review the related objective reading and quiz explanations.'} />
             </div>
           )}
       </div>

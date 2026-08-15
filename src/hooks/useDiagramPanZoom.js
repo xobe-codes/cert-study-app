@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   applyPan,
   applyPinchZoom,
@@ -27,7 +27,13 @@ function touchMidpoint(a, b, rect) {
 export function useDiagramPanZoom({ enabled = true } = {}) {
   const [state, setState] = useState(createDiagramPanZoomState)
   const stateRef = useRef(state)
-  stateRef.current = state
+  // Touch handlers below are native-event callbacks, not part of render, so
+  // they read stateRef rather than closing over `state` directly. The mirror
+  // is written in an effect (runs after commit, before any touch can fire)
+  // instead of the render body, which is not the right place for it.
+  useEffect(() => {
+    stateRef.current = state
+  }, [state])
   const gesture = useRef({ mode: null, startDist: 0, startScale: 1, lastX: 0, lastY: 0, lastTap: 0 })
 
   const reset = useCallback(() => {

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   applyEdgeDragResistance,
-  EDGE_BACK_THRESHOLD,
   isHorizontalSwipe,
   isInEdgeBackZone,
   isEdgeBackExcludedTarget,

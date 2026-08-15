@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { COLORS, styles } from '../ui/appTheme.js'
+import { COLORS } from '../ui/appTheme.js'
 import { getSessionInsights } from '../features/analytics/studyPerformanceTracking.js'
 
 /** Phase 3: Confidence calibration alert - accuracy doesn't match rating. */

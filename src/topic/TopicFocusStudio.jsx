@@ -12,6 +12,8 @@ import { loadAllPlacementRecords } from '../features/domainPlacement/domainPlace
 import { collectBaselineWeakObjectives } from '../features/domainPlacement/domainBaselineStudyPlan.js'
 import TopicTermDetail from './TopicTermDetail.jsx'
 import StudyModeHeader from '../components/StudyModeHeader.jsx'
+import { QuizRichText } from '../components/QuizQuestionChrome.jsx'
+import { stripRichTextMarkup } from '../lesson/richTextParse.js'
 import {
   deleteFocusSet,
   loadFocusSets,
@@ -32,6 +34,12 @@ function kindAccent(kind) {
   if (kind === 'flashcard') return 'mint'
   if (kind === 'mnemonic') return 'amber'
   return 'purple'
+}
+
+/** Card-preview truncation — strip markup first so `**`/`` ` `` never gets cut mid-token. */
+function truncatePlainDefinition(text, maxLen) {
+  const plain = stripRichTextMarkup(text)
+  return plain.length > maxLen ? `${plain.slice(0, maxLen)}…` : plain
 }
 
 function selectEntryForQuiz(entry, setSelectedConcepts, setSelectedObjectives) {
@@ -388,7 +396,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
                   <button type="button" onClick={() => openCluster(term)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left', color: COLORS.silver, fontFamily: 'inherit', width: '100%' }}>
                     <div style={{ fontSize: 'var(--ccna-type-md)', fontWeight: 700, marginBottom: 6 }}>{term.term}</div>
                     <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45, marginBottom: 8 }}>
-                      {term.definition.slice(0, 160)}{term.definition.length > 160 ? '…' : ''}
+                      {truncatePlainDefinition(term.definition, 160)}
                     </div>
                   </button>
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
@@ -429,7 +437,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
                     <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, marginTop: 4 }}>{concept.label}</div>
                     {concept.definition && (
                       <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.45, marginTop: 4 }}>
-                        {concept.definition.slice(0, 120)}{concept.definition.length > 120 ? '…' : ''}
+                        {truncatePlainDefinition(concept.definition, 120)}
                       </div>
                     )}
                   </div>
@@ -476,7 +484,7 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
                 </div>
                 <div style={{ fontSize: 'var(--ccna-type-sm)', fontWeight: 600, marginBottom: 6 }}>{entry.term}</div>
                 <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, lineHeight: 1.5 }}>
-                  {entry.definition}
+                  <QuizRichText text={entry.definition} />
                 </div>
               </button>
               <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
@@ -521,21 +529,40 @@ export default function TopicFocusStudio({ onBack, onStart, missed = [], haptic 
                     const isWeak = con.ckuIds?.some(k => weakCkUs.has(k))
                     const isPin = pinned.includes(con.id)
                     return (
-                      <button
+                      <div
                         key={con.id}
-                        type="button"
                         className={sel && flashConceptId === con.id ? 'topic-focus-concept-pill--selected' : undefined}
-                        onClick={() => toggleConcept(con.id)}
                         style={{
                           ...styles.pill(sel ? kindAccent(con.kind) : 'silver'),
                           border: sel ? 'none' : `1px solid ${COLORS.border}`,
-                          cursor: 'pointer', fontFamily: 'inherit', maxWidth: '100%',
-                          textAlign: 'left', lineHeight: 1.3, padding: '6px 10px',
+                          display: 'flex', alignItems: 'center', gap: 4, maxWidth: '100%', padding: '4px 4px 4px 10px',
                         }}
                       >
-                        <span style={{ fontSize: 'var(--ccna-type-micro)', opacity: 0.85 }}>{CONCEPT_KIND_LABEL[con.kind]} · {con.objectiveId}</span>
-                        <div style={{ fontSize: 'var(--ccna-type-xs)' }}>{con.label}{isWeak ? ' · weak' : ''}{isPin ? ' · 📌' : ''}</div>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleConcept(con.id)}
+                          style={{
+                            background: 'none', border: 'none', padding: '2px 0', margin: 0, color: 'inherit',
+                            cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', lineHeight: 1.3, minWidth: 0,
+                          }}
+                        >
+                          <span style={{ fontSize: 'var(--ccna-type-micro)', opacity: 0.85 }}>{CONCEPT_KIND_LABEL[con.kind]} · {con.objectiveId}</span>
+                          <div style={{ fontSize: 'var(--ccna-type-xs)' }}>{con.label}{isWeak ? ' · weak' : ''}</div>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handlePin(con.id)}
+                          aria-label={isPin ? `Unpin ${con.label}` : `Pin ${con.label}`}
+                          aria-pressed={isPin}
+                          style={{
+                            background: 'none', border: 'none', padding: 4, margin: 0, cursor: 'pointer',
+                            fontSize: 'var(--ccna-type-sm)', lineHeight: 1, flexShrink: 0, opacity: isPin ? 1 : 0.4,
+                            minWidth: 28, minHeight: 28,
+                          }}
+                        >
+                          📌
+                        </button>
+                      </div>
                     )
                   })}
                 </div>

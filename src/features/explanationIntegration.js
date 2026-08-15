@@ -1,6 +1,8 @@
 import {
   isFallbackExplanation,
+  isGenericStructuredFeedback,
   isTemplateWhyWrongHere,
+  hasSplicedProse,
 } from '../answerReview/answerReviewQuality.js'
 
 /** Map regen JSON fields → runtime answerReview.incorrect[] shape. */
@@ -25,7 +27,9 @@ export function mapRegenToIncorrectItem(regenItem) {
 
 function regenItemPassesQuality(item) {
   if (!item?.whyWrongHere || isTemplateWhyWrongHere(item.whyWrongHere)) return false
-  if (item.whatItDoes && isFallbackExplanation(item.whatItDoes)) return false
+  if (isGenericStructuredFeedback(item.whyWrongHere)) return false
+  if (item.whatItDoes && (isFallbackExplanation(item.whatItDoes) || isGenericStructuredFeedback(item.whatItDoes))) return false
+  if (hasSplicedProse(item)) return false
   return true
 }
 

@@ -456,8 +456,10 @@ const LAB_SYSLOG = {
       expectedCommands: ['show running-config | include logging'] },
     { id: 't2', order: 2, title: 'Remote logging state', device: 'R1', instruction: 'Run show logging — confirm Logging to 192.168.1.100 udp port 514.',
       expectedCommands: ['show logging'] },
+    { id: 't3', order: 3, title: 'Reachability', device: 'R1', instruction: 'Run show ip route 192.168.1.100 — confirms R1 actually has a route to the syslog server, not just a logging host line sitting unreachable in the config.',
+      expectedCommands: ['show ip route 192.168.1.100'] },
   ],
-  verificationCommands: ['show logging'],
+  verificationCommands: ['show logging', 'show ip route 192.168.1.100'],
   successCriteria: ['logging host 192.168.1.100 present', 'Trap level informational'],
   failureCriteria: ['No logging host — logs stay console-only'],
   commonMistakes: ['Confusing logging console vs logging host', 'Trap level too restrictive (errors only)'],
@@ -507,11 +509,11 @@ const LAB_TS_OSPF = tsLab('LAB-TS-OSPF-AREA', 'Troubleshoot OSPF Area Mismatch',
       expectedCommands: ['show ip ospf neighbor'] },
     { id: 't2', order: 2, title: 'OSPF config', device: 'R2', instruction: 'Run show running-config | section router ospf — network 10.0.12.0 is in area 1 instead of area 0.',
       expectedCommands: ['show running-config | section router ospf'] },
-    { id: 't3', order: 3, title: 'Root cause', device: 'R2', instruction: 'Diagnosis: area mismatch — R2 advertises the link in area 1 while R1 uses area 0.',
-      expectedCommands: ['show running-config | section router ospf'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R2', instruction: 'Run show ip ospf interface brief — Gi0/0 is directly assigned to Area 1, confirming the network statement error rather than a display artifact.',
+      expectedCommands: ['show ip ospf interface brief'] },
   ],
   [],
-  ['show ip ospf neighbor', 'show running-config | section router ospf'],
+  ['show ip ospf neighbor', 'show running-config | section router ospf', 'show ip ospf interface brief'],
   ['Wildcard mask off by one bit', 'Network statement in wrong area'])
 
 const LAB_TS_TRUNK = tsLab('LAB-TS-NATIVE-VLAN', 'Troubleshoot Native VLAN Mismatch', '3.6', 'connectivity',
@@ -521,11 +523,11 @@ const LAB_TS_TRUNK = tsLab('LAB-TS-NATIVE-VLAN', 'Troubleshoot Native VLAN Misma
       expectedCommands: ['show cdp neighbors detail'] },
     { id: 't2', order: 2, title: 'Trunk status', device: 'SW2', instruction: 'Run show interfaces trunk — compare native VLAN on both ends of the trunk.',
       expectedCommands: ['show interfaces trunk'] },
-    { id: 't3', order: 3, title: 'Root cause', device: 'SW2', instruction: 'Diagnosis: SW2 native VLAN 99 does not match SW1 native VLAN 1.',
-      expectedCommands: ['show interfaces trunk'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'SW2', instruction: 'Run show interfaces gi0/1 switchport on SW2 — Trunking Native Mode VLAN: 99 confirms the explicit mismatch against SW1\'s default VLAN 1.',
+      expectedCommands: ['show interfaces gi0/1 switchport'] },
   ],
   [],
-  ['show cdp neighbors detail', 'show interfaces trunk'],
+  ['show cdp neighbors detail', 'show interfaces trunk', 'show interfaces gi0/1 switchport'],
   ['Changing allowed VLAN list instead of native VLAN'])
 
 const LAB_TS_IF = tsLab('LAB-TS-SHUTDOWN-IF', 'Troubleshoot Shutdown Interface', '3.6', 'connectivity',
@@ -533,11 +535,13 @@ const LAB_TS_IF = tsLab('LAB-TS-SHUTDOWN-IF', 'Troubleshoot Shutdown Interface',
   [
     { id: 't1', order: 1, title: 'Interface status', device: 'R1', instruction: 'Run show ip interface brief — Gi0/0 is administratively down.',
       expectedCommands: ['show ip interface brief'] },
-    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: Gi0/0 is shutdown — line protocol down until no shutdown is applied.',
-      expectedCommands: ['show ip interface brief'] },
+    { id: 't2', order: 2, title: 'Full interface detail', device: 'R1', instruction: 'Run show interfaces gi0/0 for full detail — "administratively down" confirms someone issued shutdown; there is no Layer 1 cabling fault involved.',
+      expectedCommands: ['show interfaces gi0/0'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Run show running-config | include shutdown — the shutdown line is present in the saved config, confirming this is a deliberate setting, not a transient link flap.',
+      expectedCommands: ['show running-config | include shutdown'] },
   ],
   [],
-  ['show ip interface brief'],
+  ['show ip interface brief', 'show interfaces gi0/0', 'show running-config | include shutdown'],
   ['Fixing IP address when the issue is simply shutdown'])
 
 const LAB_TS_ACL = tsLab('LAB-TS-ACL-PLACEMENT', 'Troubleshoot ACL Blocking Return Traffic', '3.6', 'connectivity',
@@ -545,11 +549,13 @@ const LAB_TS_ACL = tsLab('LAB-TS-ACL-PLACEMENT', 'Troubleshoot ACL Blocking Retu
   [
     { id: 't1', order: 1, title: 'ACL hit counters', device: 'R1', instruction: 'Run show access-lists — note deny ip any any counters incrementing on return traffic.',
       expectedCommands: ['show access-lists'] },
-    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: extended ACL permits icmp out but explicit deny ip any any blocks return IP traffic.',
-      expectedCommands: ['show access-lists'] },
+    { id: 't2', order: 2, title: 'ACL placement', device: 'R1', instruction: 'Run show ip interface gi0/1 (server side) — no ACL is applied there, ruling out placement and confirming the fault is in the entries of the one ACL that exists.',
+      expectedCommands: ['show ip interface gi0/1'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Run show running-config | section access-list — the raw ACL only permits icmp, confirming the fix is adding a permit for the return IP traffic, not moving the ACL.',
+      expectedCommands: ['show running-config | section access-list'] },
   ],
   [],
-  ['show access-lists'],
+  ['show access-lists', 'show ip interface gi0/1', 'show running-config | section access-list'],
   ['Moving ACL to wrong interface instead of fixing entries'])
 
 const LAB_TS_ROUTE = tsLab('LAB-TS-MISSING-ROUTE', 'Troubleshoot Missing Default Route', '3.6', 'connectivity',
@@ -557,11 +563,13 @@ const LAB_TS_ROUTE = tsLab('LAB-TS-MISSING-ROUTE', 'Troubleshoot Missing Default
   [
     { id: 't1', order: 1, title: 'Routing table', device: 'R1', instruction: 'Run show ip route — Gateway of last resort is not set.',
       expectedCommands: ['show ip route'] },
-    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: no default static route (0.0.0.0/0) toward ISP next-hop.',
-      expectedCommands: ['show ip route'] },
+    { id: 't2', order: 2, title: 'Default network lookup', device: 'R1', instruction: 'Run show ip route 0.0.0.0 — the default network is not in the table at all, confirming no default static route is configured anywhere.',
+      expectedCommands: ['show ip route 0.0.0.0'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Run show ip route summary — static shows 0 networks, confirming no static route of any kind exists rather than one that failed to install.',
+      expectedCommands: ['show ip route summary'] },
   ],
   [],
-  ['show ip route'],
+  ['show ip route', 'show ip route 0.0.0.0', 'show ip route summary'],
   ['Static route to wrong next-hop'])
 
 const LAB_TS_DHCP = tsLab('LAB-TS-DHCP-RELAY', 'Troubleshoot Missing DHCP Relay', '3.6', 'connectivity',
@@ -571,11 +579,11 @@ const LAB_TS_DHCP = tsLab('LAB-TS-DHCP-RELAY', 'Troubleshoot Missing DHCP Relay'
       expectedCommands: ['show ip dhcp binding'] },
     { id: 't2', order: 2, title: 'R2 interface', device: 'R2', instruction: 'Run show running-config interface gi0/1 — no ip helper-address toward DHCP server.',
       expectedCommands: ['show running-config interface gi0/1'] },
-    { id: 't3', order: 3, title: 'Root cause', device: 'R2', instruction: 'Diagnosis: missing ip helper-address 10.0.0.1 on client-facing Gi0/1.',
-      expectedCommands: ['show running-config interface gi0/1'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R2', instruction: 'Run show ip interface gi0/1 on R2 — "Helper address is not set" confirms no relay is configured on the client-facing interface.',
+      expectedCommands: ['show ip interface gi0/1'] },
   ],
   [],
-  ['show ip dhcp binding', 'show running-config interface gi0/1'],
+  ['show ip dhcp binding', 'show running-config interface gi0/1', 'show ip interface gi0/1'],
   ['Helper on server interface instead of client LAN'])
 
 const LAB_TS_HSRP = tsLab('LAB-TS-HSRP-PRIORITY', 'Troubleshoot HSRP Active on Wrong Router', '3.6', 'connectivity',
@@ -583,11 +591,13 @@ const LAB_TS_HSRP = tsLab('LAB-TS-HSRP-PRIORITY', 'Troubleshoot HSRP Active on W
   [
     { id: 't1', order: 1, title: 'Standby roles', device: 'R1', instruction: 'Run show standby brief — R2 is Active unexpectedly; R1 is Standby.',
       expectedCommands: ['show standby brief'] },
-    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: R1 lacks preempt and/or higher priority — R2 won Active role.',
-      expectedCommands: ['show standby brief'] },
+    { id: 't2', order: 2, title: 'Standby detail', device: 'R1', instruction: 'Run show standby (full detail) on R1 — Preemption disabled and Priority 100 (default) confirm R1 never contends for Active even though it should be primary.',
+      expectedCommands: ['show standby'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Run show running-config | section standby — no priority or preempt lines exist, confirming R1 is running pure HSRP defaults while R2 was configured with a higher priority.',
+      expectedCommands: ['show running-config | section standby'] },
   ],
   [],
-  ['show standby brief'],
+  ['show standby brief', 'show standby', 'show running-config | section standby'],
   ['Changing virtual IP instead of priority/preempt'])
 
 const LAB_TS_MASK = tsLab('LAB-TS-WRONG-MASK', 'Troubleshoot Wrong Subnet Mask', '3.6', 'connectivity',
@@ -595,11 +605,13 @@ const LAB_TS_MASK = tsLab('LAB-TS-WRONG-MASK', 'Troubleshoot Wrong Subnet Mask',
   [
     { id: 't1', order: 1, title: 'Interface mask', device: 'R1', instruction: 'Run show ip interface gi0/0 — mask is /25 (255.255.255.128) instead of /24.',
       expectedCommands: ['show ip interface gi0/0'] },
-    { id: 't2', order: 2, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: router /25 does not match PC /24 — same subnet math fails.',
-      expectedCommands: ['show ip interface gi0/0'] },
+    { id: 't2', order: 2, title: 'Confirm in raw config', device: 'R1', instruction: 'Run show running-config interface gi0/0 — the configured mask 255.255.255.128 confirms the /25 is a real config error, not a display artifact.',
+      expectedCommands: ['show running-config interface gi0/0'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Run show running-config | include ip address — isolating just the address line removes any doubt: the mask is genuinely /25, not a terminal rendering issue.',
+      expectedCommands: ['show running-config | include ip address'] },
   ],
   [],
-  ['show ip interface gi0/0'],
+  ['show ip interface gi0/0', 'show running-config interface gi0/0', 'show running-config | include ip address'],
   ['Changing PC mask when router mask is wrong'])
 
 function tsBundle(lab, nodes, links, verifyCmds) {
@@ -1751,11 +1763,11 @@ const LAB_TS_STATIC_NH = tsLab('LAB-TS-STATIC-NH', 'Troubleshoot Static Route wi
       expectedCommands: ['show ip route 172.16.50.0', 'show ip route static'] },
     { id: 't2', order: 2, title: 'Bad next-hop', device: 'R1', instruction: 'Run show running-config | include ip route — next-hop 10.0.12.99. Run show ip interface brief — Gi0/1 is 10.0.12.1/30; only .2 is reachable.',
       expectedCommands: ['show running-config | include ip route', 'show ip interface brief'] },
-    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Diagnosis: static route references unreachable next-hop 10.0.12.99 — IOS will not install it.',
-      expectedCommands: ['show running-config | include ip route'] },
+    { id: 't3', order: 3, title: 'Root cause', device: 'R1', instruction: 'Run show arp on R1 — only 10.0.12.2 has a resolved entry; 10.0.12.99 never appears, confirming that next-hop does not exist on the subnet so IOS will not install the route.',
+      expectedCommands: ['show arp'] },
   ],
   [],
-  ['show ip route static', 'show running-config | include ip route'],
+  ['show ip route static', 'show running-config | include ip route', 'show arp'],
   ['Changing OSPF instead of fixing static next-hop', 'Assuming config in running-config always installs into RIB'])
 
 const TS_STATIC_NH = tsBundle(LAB_TS_STATIC_NH,

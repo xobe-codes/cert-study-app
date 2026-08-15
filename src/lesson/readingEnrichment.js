@@ -32,8 +32,15 @@ function isDraftKbKeyPoint(text) {
   return /^Exam Topic \d+\.\d+ —/i.test(String(text || '').trim())
 }
 
+/** Generic realWorld filler from the readingFactory.js fallback generator — carries no real content. */
+function isFactoryRealWorld(text) {
+  return /^Apply .+ concepts during troubleshooting and exam scenarios\.$/i.test(String(text || '').trim())
+}
+
 function plainForTier(text) {
-  return stripMd(text).replace(/`[^`]+`/g, '').replace(/\s+/g, ' ').trim()
+  // Keep inline-code content as plain text (matches how ** bold markers are stripped
+  // but their text kept) — dropping the whole span left dangling fragments like "/ .".
+  return stripMd(text).replace(/`([^`]+)`/g, '$1').replace(/\s+/g, ' ').trim()
 }
 
 function limitSentences(text, max = 4) {
@@ -100,7 +107,7 @@ function expandThinExamReady(reading, pack = {}) {
   const ckuSummaries = [...new Set(ckus.map(c => plainForTier(c.summary)).filter(Boolean))]
   const keyPlain = [...new Set((reading?.keyPoints || []).map(plainForTier).filter(Boolean))]
   const advanced = plainForTier(reading?.advanced)
-  const realWorld = plainForTier(reading?.realWorld)
+  const realWorld = isFactoryRealWorld(reading?.realWorld) ? '' : plainForTier(reading?.realWorld)
   const title = pack.title || ''
   const titleLead = title
     ? `For CCNA, ${title.replace(/^(Configure and verify|Configure|Describe|Explain|Compare|Troubleshoot|Differentiate|Interpret)\s+/i, '').toLowerCase()} requires knowing purpose, typical configuration, and how to verify it works.`
@@ -139,7 +146,7 @@ export function enrichReadingTiers(reading, pack = {}) {
   if (wordCount(tiers.beginner) < 40) {
     tiers.beginner = limitSentences(joinSentences([
       def || (ckus[0] ? `${ckus[0].title}: ${firstCku}` : ''),
-      plainForTier(reading?.realWorld),
+      isFactoryRealWorld(reading?.realWorld) ? '' : plainForTier(reading?.realWorld),
     ], 80), 3)
   }
 

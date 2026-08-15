@@ -11,7 +11,10 @@
  *   ai-improvement-logs/LESSON_BANK_ALIGNMENT_REPORT.md
  *
  * Flags:
- *   --queue   also seed FAIL objectives into IMPLEMENTATION_QUEUE.json (lesson-align-{id})
+ *   --queue   also seed FAIL objectives into IMPLEMENTATION_QUEUE.json (lesson-align-{id}),
+ *             and close any pending lesson-align-{id} item whose objective now grades PASS
+ *             (queue entries otherwise never learn that later content work already fixed them —
+ *             see LESSON_BANK_ALIGNMENT_99_SPEC.md's "Baseline caution" note)
  *
  * Exit code: always 0 for P0 (inventory pass, not a gate).
  */
@@ -254,6 +257,32 @@ function updateQueue(failRows) {
   return { added, updated, total: scored.length }
 }
 
+/** Close pending lesson-align-{id} queue rows whose objective now grades PASS. */
+function closeStalePassed(rows) {
+  if (!existsSync(QUEUE_PATH)) return { closed: 0 }
+  let queue
+  try { queue = JSON.parse(readFileSync(QUEUE_PATH, 'utf8')) } catch { return { closed: 0 } }
+  const items = Array.isArray(queue.items) ? queue.items : []
+  const passIds = new Set(rows.filter(r => r.grade === 'PASS').map(r => r.objectiveId))
+
+  let closed = 0
+  for (const item of items) {
+    if (!item.id?.startsWith('lesson-align-')) continue
+    if (item.status !== 'pending') continue
+    if (!passIds.has(item.objectiveNumber)) continue
+    item.status = 'done'
+    item.summary = 'Closed by audit:lesson-bank --queue: objective now grades PASS (reverse CKU coverage >=95%, prose floors clear).'
+    closed += 1
+  }
+
+  if (closed > 0) {
+    queue.items = items
+    queue.generatedAt = new Date().toISOString()
+    writeFileSync(QUEUE_PATH, JSON.stringify(queue, null, 2))
+  }
+  return { closed }
+}
+
 function buildReport(rows, generatedAt) {
   const byDomain = new Map()
   for (const r of rows) {
@@ -380,11 +409,15 @@ function main() {
   console.log(`  Report: ai-improvement-logs/LESSON_BANK_ALIGNMENT_REPORT.md`)
 
   const failRows = rows.filter(r => r.grade !== 'PASS')
-  if (wantsQueue && failRows.length > 0) {
-    const { added, updated, total } = updateQueue(failRows)
-    console.log(`  Queue: ${added} added · ${updated} refreshed · ${total} lesson-align-* pending (IMPLEMENTATION_QUEUE.json)`)
-  } else if (wantsQueue) {
-    console.log('  Queue: no FAIL objectives — nothing to seed')
+  if (wantsQueue) {
+    if (failRows.length > 0) {
+      const { added, updated, total } = updateQueue(failRows)
+      console.log(`  Queue: ${added} added · ${updated} refreshed · ${total} lesson-align-* pending (IMPLEMENTATION_QUEUE.json)`)
+    } else {
+      console.log('  Queue: no FAIL objectives — nothing to seed')
+    }
+    const { closed } = closeStalePassed(rows)
+    if (closed > 0) console.log(`  Queue: ${closed} stale lesson-align-* item(s) closed (objective now PASS)`)
   }
 
   process.exit(0)

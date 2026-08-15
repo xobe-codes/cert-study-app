@@ -1,6 +1,7 @@
 import { STORAGE_KEYS } from '../../storageKeys.js'
 import { computeMastery } from '../../netUtils.js'
 import { quizQuestionKey } from '../../quiz/quizBankStorage.js'
+import { EVENT_LOG_CAP } from '../../eventLog.js'
 
 const SYNC_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 
@@ -14,16 +15,18 @@ export function generateSyncCode() {
 }
 
 export async function loadSyncBundle() {
-  const [progress, missed, quizBank, cliStats, streak] = await Promise.all([
+  const [progress, missed, quizBank, cliStats, streak, events] = await Promise.all([
     window.storage.getItem(STORAGE_KEYS.progress),
     window.storage.getItem(STORAGE_KEYS.missed),
     window.storage.getItem(STORAGE_KEYS.quizBank),
     window.storage.getItem(STORAGE_KEYS.cliStats),
     window.storage.getItem(STORAGE_KEYS.streak),
+    window.storage.getItem(STORAGE_KEYS.events),
   ])
   return {
     progress: progress || {}, missed: missed || [], quizBank: quizBank || {},
     cliStats: cliStats || {}, streak: streak || { count: 0, lastStudyDate: null },
+    events: events || [],
   }
 }
 
@@ -34,6 +37,10 @@ export async function saveSyncBundle(b) {
     window.storage.setItem(STORAGE_KEYS.quizBank, b.quizBank),
     window.storage.setItem(STORAGE_KEYS.cliStats, b.cliStats),
     window.storage.setItem(STORAGE_KEYS.streak, b.streak),
+    // events is optional on the bundle so callers that only touch the other
+    // keys (doSync's remote pull, which never carried events historically)
+    // don't have to pass it — omit rather than clobber the log with [].
+    ...(b.events !== undefined ? [window.storage.setItem(STORAGE_KEYS.events, b.events)] : []),
   ])
 }
 
@@ -116,6 +123,25 @@ export function mergeStreak(a = { count: 0 }, b = { count: 0 }) {
   return (b?.count || 0) > (a?.count || 0) ? b : a
 }
 
+/**
+ * Union two learning-event logs by eventId (falling back to the legacy `id`
+ * field), sorted chronologically and capped the same as the live log —
+ * without this, a Raw Data restore or a cross-device sync silently dropped
+ * ccna_events_v1 (no reference to STORAGE_KEYS.events existed anywhere in
+ * this file), leaving Metrics Dashboard's activity/CLI-skill sections
+ * showing stale or zeroed data after an otherwise-successful restore.
+ */
+export function mergeEvents(a = [], b = []) {
+  const byId = new Map()
+  for (const e of [...a, ...b]) {
+    const key = e?.eventId || e?.id
+    if (key == null) continue
+    if (!byId.has(key)) byId.set(key, e)
+  }
+  const merged = [...byId.values()].sort((x, y) => (x.at || 0) - (y.at || 0))
+  return merged.length > EVENT_LOG_CAP ? merged.slice(-EVENT_LOG_CAP) : merged
+}
+
 export function mergeSyncData(local, remote = {}) {
   return {
     progress: mergeProgress(local.progress, remote.progress || {}),
@@ -123,6 +149,7 @@ export function mergeSyncData(local, remote = {}) {
     quizBank: mergeQuizBank(local.quizBank, remote.quizBank || {}),
     cliStats: mergeCliStats(local.cliStats, remote.cliStats || {}),
     streak: mergeStreak(local.streak, remote.streak || { count: 0, lastStudyDate: null }),
+    events: mergeEvents(local.events || [], remote.events || []),
   }
 }
 

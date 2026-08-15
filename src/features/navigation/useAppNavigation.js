@@ -55,26 +55,38 @@ export function useAppNavigation() {
   const prevViewRef = useRef('home')
   const placementExpandOnReturnRef = useRef(null)
 
+  // Imperative escape hatch for hash-route handlers that need the latest
+  // setters without listing all of them as effect dependencies. Assigned in
+  // an effect rather than the render body — writing a ref during render is
+  // a side effect happening at the wrong time, even though these setters are
+  // themselves referentially stable across renders.
   const nestedApi = useRef(null)
-  nestedApi.current = {
-    setSelectedLab,
-    setTopicFocusConfig,
-    setActiveDomainPassId,
-    setDomainPassFocusPickerId,
-    setDomainPassFocusConfig,
-    setActiveDomainPlacementId,
-    setPlacementSessionMode,
-    setMockDomainPrefill,
-    setLabsDomainPrefill,
-    setCommandHubDomainPrefill,
-    setCommandHubTabPrefill,
-    setCommandHubPackPrefill,
-    setExamTrapPrefill,
-    setTrapDrillPrefill,
-    setSelectedObjective,
-    setReturnToView,
-    setView,
-  }
+  useEffect(() => {
+    nestedApi.current = {
+      setSelectedLab,
+      setTopicFocusConfig,
+      setActiveDomainPassId,
+      setDomainPassFocusPickerId,
+      setDomainPassFocusConfig,
+      setActiveDomainPlacementId,
+      setPlacementSessionMode,
+      setMockDomainPrefill,
+      setLabsDomainPrefill,
+      setCommandHubDomainPrefill,
+      setCommandHubTabPrefill,
+      setCommandHubPackPrefill,
+      setExamTrapPrefill,
+      setTrapDrillPrefill,
+      setSelectedObjective,
+      setReturnToView,
+      setView,
+    }
+    // Every setter above is a plain useState setter, guaranteed referentially
+    // stable by React for the component's lifetime — so running this once on
+    // mount produces the exact same nestedApi.current as re-running it after
+    // every render (nothing in it can ever actually change). `[]` avoids the
+    // pointless per-render reassignment without changing behavior.
+  }, [])
 
   const openLab = useCallback((labId, from = 'labs') => {
     setSelectedLab(labId)
@@ -351,7 +363,6 @@ export function useAppNavigation() {
     openCommandHub,
     openTermsHub,
     termsHubDomainPrefill,
-    clearCommandHubLaunch,
     clearExamTrapPrefill,
     clearTrapDrillPrefill,
     consumeTrapDrillPrefill,
@@ -522,7 +533,7 @@ export function AppNavigationLifecycle({
 }
 
 /** Bottom-nav derived state from view + overlay flags. */
-export function bottomNavState({ view, showSettings, showSearch, showNavBack }) {
+export function bottomNavState({ view, showSettings, showSearch }) {
   const active = showSettings ? 'more' : showSearch ? 'search' : view === 'home' ? 'home' : view === 'objective' ? 'home' : null
   const compact = view === 'objective'
   return { active, compact }

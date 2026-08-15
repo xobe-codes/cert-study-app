@@ -1,6 +1,6 @@
 # Software Engineering Audit
 
-- App.jsx ~198 lines — tutor/search/modals extracted to src/features/.
-- ObjectiveScreen.jsx ~170 lines — candidate for next extract.
+- App.jsx ~150 lines — tutor/search/modals extracted to src/features/.
+- ObjectiveScreen.jsx ~182 lines — candidate for next extract.
 - Mastery math duplicated across netUtils, learnerHome, statsSeries.
 

@@ -17,6 +17,9 @@ export const ENGAGEMENT_KINDS = {
   TOPIC_FOCUS: 'topic_focus',
   TERMS: 'terms',
   MISSED_RETEST: 'missed_retest',
+  ROUTING_DECODER: 'routing_decoder',
+  COMMAND_DRILL: 'command_drill',
+  STUDY_LENS: 'study_lens',
 }
 
 export const ENGAGEMENT_KIND_LABELS = {
@@ -34,6 +37,9 @@ export const ENGAGEMENT_KIND_LABELS = {
   [ENGAGEMENT_KINDS.TOPIC_FOCUS]: 'Topic focus',
   [ENGAGEMENT_KINDS.TERMS]: 'Terms Hub',
   [ENGAGEMENT_KINDS.MISSED_RETEST]: 'Missed retest',
+  [ENGAGEMENT_KINDS.ROUTING_DECODER]: 'Routing Table Decoder',
+  [ENGAGEMENT_KINDS.COMMAND_DRILL]: 'Command Drill',
+  [ENGAGEMENT_KINDS.STUDY_LENS]: 'Study Lens',
 }
 
 const MAX_ENGAGEMENT = 40

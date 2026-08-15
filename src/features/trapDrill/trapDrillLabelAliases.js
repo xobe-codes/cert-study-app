@@ -13,6 +13,21 @@ export const TRAP_DRILL_LABEL_ALIASES = {
   'subnetting confusion': 'CKU-SUBNETTING',
   'routing confusion': 'CKU-ADMINISTRATIVE-DISTANCE',
   'switching confusion': 'CKU-ARP',
+  // Real q.concept values (src/data/*.js, clean-question-bank) that reach
+  // trapForMissed's `${concept} confusion` fallback with a real matching CKU
+  // in trapDrillQuestions.js — previously unmapped, so "Drill this trap"
+  // dead-ended with "No drill questions match this scope" despite a genuine
+  // CKU existing for the topic.
+  'hsrp preempt confusion': 'CKU-HSRP',
+  'hsrp priority confusion': 'CKU-HSRP',
+  'portfast confusion': 'CKU-PORTFAST',
+  'wpa3 confusion': 'CKU-WPA3',
+  'snmp confusion': 'CKU-SNMPv2',
+  'trunking confusion': 'CKU-VLAN-TRUNK',
+  'inter-vlan confusion': 'CKU-INTER-VLAN',
+  'inter-vlan policy enforcement confusion': 'CKU-INTER-VLAN',
+  'vlan segmentation confusion': 'CKU-SEGMENTATION',
+  'segmentation purpose confusion': 'CKU-SEGMENTATION',
 
   // Common weakness / misconception strings
   'root bridge confusion': 'CKU-STP-ROOT',

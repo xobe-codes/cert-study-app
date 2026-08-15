@@ -2,6 +2,7 @@
  * Choice-specific wrong-answer resolvers — CKU traps, devices, numbers, protocols.
  */
 import { CKU_TRAP_INDEX } from './ckuTrapIndex.js'
+import { correctChoiceText } from '../questionUtils.js'
 import { buildStemAnchoredIncorrect } from './stemAnchoredDistractor.js'
 
 const DEVICE_ROLES = [
@@ -77,7 +78,7 @@ export function resolveDeviceMismatch(wrong) {
 
 export function resolveKeywordRule(q, wrong) {
   const stem = q.question || ''
-  const correct = q.choices?.[q.correctIndex] || ''
+  const correct = correctChoiceText(q)
   for (const rule of CHOICE_KEYWORD_RULES) {
     if (!rule.wrongRe.test(wrong)) continue
     if (rule.stemRe && !rule.stemRe.test(stem)) continue

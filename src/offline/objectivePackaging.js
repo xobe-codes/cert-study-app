@@ -1,4 +1,4 @@
-import { getCurated, hasCuratedReading, hasCuratedQuestions, getCuratedQuestions } from '../data/ccnaCurated.js'
+import { getCurated, hasCuratedReading, getCuratedQuestions } from '../data/ccnaCurated.js'
 import { ALL_OBJECTIVES } from '../data/ccnaDomains.js'
 import { BOOK_REF } from '../data/bookRefFull.js'
 import { STORAGE_KEYS } from '../storageKeys.js'

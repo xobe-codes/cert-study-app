@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { getCuratedQuestions } from '../data/ccnaCurated.js'
 import {
-  TYPE_LABEL, SKILL_LABEL, isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
-  shuffleArrayCopy, randomizeQuestionOrder, inferSkill, normalizeSelectedIndexes,
+  isOrderingQuestion, isMcQuestion, isCliQuestion, isMultiQuestion, gradeQuestion,
+  shuffleArrayCopy, randomizeQuestionOrder, normalizeSelectedIndexes,
 } from '../questionUtils.js'
 import { parseRichTextSegments } from '../lesson/richTextParse.js'
 import McChoices from '../components/McChoices.jsx'
@@ -29,21 +29,36 @@ import {
   recordSeen,
 } from '../features/domainPass/domainQuestionExposure.js'
 
-// Renders `inline code` and **bold** segments in lesson prose.
-export function RichText({ text }) {
-  if (text == null) return null
+function renderRichTextSegments(text, keyPrefix = '') {
   const segments = parseRichTextSegments(text)
   return segments.map((seg, i) => {
+    const key = `${keyPrefix}${i}`
     if (seg.type === 'code') {
       return (
-        <code key={i} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{seg.value}</code>
+        <code key={key} style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', background: COLORS.surface, border: `1px solid ${COLORS.border}`, borderRadius: 5, padding: '1px 5px', fontSize: 'var(--ccna-type-sm)', color: COLORS.sky, overflowWrap: 'anywhere', wordBreak: 'break-word', whiteSpace: 'pre-wrap' }}>{seg.value}</code>
       )
     }
     if (seg.type === 'bold') {
-      return <strong key={i} style={{ color: COLORS.silver, fontWeight: 700 }}>{seg.value}</strong>
+      return <strong key={key} style={{ color: COLORS.silver, fontWeight: 700 }}>{seg.value}</strong>
     }
-    return <span key={i}>{seg.value}</span>
+    return <span key={key}>{seg.value}</span>
   })
+}
+
+// Renders `inline code` and **bold** segments in lesson prose. A blank line
+// (\n\n) splits long narrative tiers into separate paragraphs for mobile
+// scannability — single-paragraph text (the common case) renders exactly as
+// before, an inline flow with no extra wrapper, so existing call sites are
+// unaffected.
+export function RichText({ text }) {
+  if (text == null) return null
+  const paragraphs = String(text).split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+  if (paragraphs.length <= 1) return renderRichTextSegments(text)
+  return paragraphs.map((p, i) => (
+    <p key={i} style={{ margin: i === paragraphs.length - 1 ? 0 : '0 0 0.85em' }}>
+      {renderRichTextSegments(p, `${i}-`)}
+    </p>
+  ))
 }
 export function Bullets({ items }) {
   return <ul style={{ margin: 0, paddingLeft: 18 }}>{(items || []).map((t, i) => <li key={i} style={{ marginBottom: 4 }}><RichText text={t} /></li>)}</ul>

@@ -5,6 +5,7 @@ import {
 } from './commandWorkflows.js'
 import { speak, stopSpeaking, isTtsSupported } from '../lib/browserTts.js'
 import { pickScenarioSession } from './commandScenarioQuiz.js'
+import { QuizRichText, QuizChoiceText } from '../components/QuizQuestionChrome.jsx'
 
 async function copyText(text) {
   try {
@@ -127,7 +128,7 @@ export default function CommandDetailPanel({
           <div style={{ fontSize: 'var(--ccna-type-xs)', fontWeight: 700, color: COLORS.purple, marginBottom: 6 }}>
             SCENARIO {scenarioIdx + 1}/{scenarios.length}
           </div>
-          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 8, lineHeight: 1.45 }}>{scenario.stem}</div>
+          <div style={{ fontSize: 'var(--ccna-type-sm)', color: COLORS.silver, marginBottom: 8, lineHeight: 1.45 }}><QuizRichText text={scenario.stem} /></div>
           {scenario.choices.map((c, i) => (
             <button
               key={i}
@@ -148,11 +149,11 @@ export default function CommandDetailPanel({
                   : (i === scenario.correctIndex ? COLORS.mintBorder : (scenarioPick === i ? COLORS.roseBorder : COLORS.border)),
               }}
             >
-              {c}
+              <QuizChoiceText text={c} />
             </button>
           ))}
           {scenarioPick != null && (
-            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}>{scenario.why}</div>
+            <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silverMid, marginTop: 4 }}><QuizRichText text={scenario.why} /></div>
           )}
         </div>
       )}

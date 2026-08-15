@@ -10,7 +10,6 @@ import { domainPassStatus } from './domainPassConfig.js'
  *   notChecked: string[],
  *   nextLessons: string[],
  *   nextMissDrill: boolean,
- *   readyForPass: boolean,
  *   primaryCta: 'baseline' | 'study' | 'fix_misses' | 'pass' | 'burn' | 'practice',
  *   primaryLabel: string,
  * }}
@@ -27,7 +26,6 @@ export function buildDomainActionPlan({
   const notChecked = (baselineSummary?.notCheckedObjectives || []).map(x => (typeof x === 'string' ? x : x?.id)).filter(Boolean)
   const hasBaseline = baselineSummary && baselineSummary.domainStatus !== 'not_started'
   const passStatus = domainPassStatus(passRecord)
-  const readyForPass = !!(hasBaseline && (unseenCount === 0 || unseenCount < 999) && missCount < 15)
 
   let primaryCta = 'practice'
   let primaryLabel = 'Practice domain'
@@ -58,7 +56,6 @@ export function buildDomainActionPlan({
     notChecked,
     nextLessons: [...weak, ...notChecked].slice(0, 5),
     nextMissDrill: missCount > 0,
-    readyForPass: hasBaseline && missCount < 8,
     primaryCta,
     primaryLabel,
     passStatus,

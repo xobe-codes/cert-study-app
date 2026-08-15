@@ -1,10 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import {
   mergeKbReadingPatch,
-  enrichReadingTiers,
   finalizeReading,
   isDraftKbTierText,
-  isSubstantialAuthoredTiers,
   wordCount,
   shouldDefaultOpenRealWorld,
 } from '../lesson/readingEnrichment.js'
@@ -55,7 +53,11 @@ describe('reading enrichment', () => {
       const c = getCurated(oid)
       if (wordCount(c?.reading?.tiers?.examReady) >= 40) enriched += 1
     }
-    expect(enriched).toBeGreaterThan(45)
+    // Threshold recalibrated after removing readingFactory.js's generic
+    // "Apply X concepts during troubleshooting and exam scenarios." filler from
+    // synthesis input — that sentence was padding word counts on a few thin
+    // objectives without adding real content, so the honest count is lower.
+    expect(enriched).toBeGreaterThan(40)
   })
 
   it('configure objectives default-open real-world section', () => {

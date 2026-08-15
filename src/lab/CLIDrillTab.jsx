@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
 import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import CiscoTerminal from '../components/CiscoTerminal.jsx'
@@ -13,7 +13,11 @@ import { useMobileGestureBlock } from '../ui/useMobileGestureBlock.js'
 
 export default function CLIDrillTab({ objective }) {
   const { recordEngagement } = useMasteryProgress()
-  const drills = COMMAND_DRILLS[objective.id] || []
+  // Stable reference across renders — COMMAND_DRILLS[id] || [] would create a
+  // new empty array every render when an objective has no drills defined,
+  // which breaks the reset() useCallback's memoization below and re-triggers
+  // its useEffect (and the state updates inside it) on every render.
+  const drills = useMemo(() => COMMAND_DRILLS[objective.id] || [], [objective.id])
   const host = cliHostnameForObjective(objective.id)
 
   const [mode, setMode] = useState('user')

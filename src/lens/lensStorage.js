@@ -1,5 +1,3 @@
-import { STORAGE_KEYS } from '../storageKeys.js'
-
 const LENS_CACHE_KEY = 'ccna_study_lens_cache_v1'
 const CACHE_CAP = 40
 

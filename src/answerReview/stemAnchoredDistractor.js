@@ -2,6 +2,7 @@
  * Stem-Anchored Distractor Engine (SADE) — choice-specific wrong-answer reviews
  * anchored to stem hooks, correct answer contrast, and distractor text.
  */
+import { correctChoiceText } from '../questionUtils.js'
 
 const STOP_WORDS = new Set([
   'which', 'what', 'when', 'where', 'that', 'this', 'with', 'from', 'does', 'have',
@@ -21,7 +22,7 @@ const TECH_PATTERNS = [
   /\b(?:inside local|inside global|outside local|outside global)\b/gi,
 ]
 
-function normalize(text) {
+export function normalize(text) {
   return String(text || '').replace(/\*\*/g, '').trim()
 }
 
@@ -75,180 +76,29 @@ export function extractStemHooks(question, explanation, concept) {
   return [...hooks].slice(0, 8)
 }
 
-function hookPhrase(hooks, fallback) {
+export function hookPhrase(hooks, fallback) {
   if (!hooks.length) return fallback
   const preferred = hooks.find(h => h.length >= 8 && h.length <= 72)
   return preferred || hooks[0] || fallback
 }
 
-function isStpPortStateSequence(text) {
+export function isStpPortStateSequence(text) {
   const t = String(text || '')
   return /discarding|blocking|listening|learning|forwarding/i.test(t) && /,/.test(t)
 }
 
-function mentionsBothMacAddresses(text) {
+export function mentionsBothMacAddresses(text) {
   const w = String(text || '').toLowerCase()
   if (/\bboth sides\b/i.test(w)) return false
   return /\bboth\b/.test(w) || (/source/.test(w) && /destination/.test(w))
 }
 
-function impliesDropOrDiscard(text) {
+export function impliesDropOrDiscard(text) {
   const w = String(text || '')
   if (isStpPortStateSequence(w)) return false
   return /drop|discard/i.test(w)
 }
 
-function contrastWithCorrect({ wrong, correct, hooks, fact, blob }) {
-  const hook = hookPhrase(hooks, fact.split(/[.!?]/)[0]?.trim() || 'the scenario constraint')
-  const w = wrong.toLowerCase()
-  const c = correct.toLowerCase()
-  const b = String(blob || '').toLowerCase()
-
-  if (impliesDropOrDiscard(w) && /flood|forward/i.test(c)) {
-    return `In this stem (${hook}), the switch should **${correct}** — not discard traffic for unknown or normal unicast handling.`
-  }
-  if (/back to the source|echo/i.test(w) && /flood|forward/i.test(c)) {
-    return `Ethernet switching (${hook}) does not echo frames to the sender — **${correct}** is how unknown destinations are handled.`
-  }
-  if (/flood|broadcast|all ports/i.test(w) && /forward|mapped|only the|single port/i.test(c)) {
-    return `Here (${hook}), the destination is handled with **${correct}** because flooding is for unknown destinations, not known mapped MACs.`
-  }
-  if (/default gateway|router only/i.test(w) && /switch|flood|mac|frame|vlan/i.test(hook.toLowerCase() + b)) {
-    return `This stem tests Layer 2 behavior (${hook}). **${correct}** applies locally — default-gateway forwarding is for inter-subnet routing, not this decision.`
-  }
-  if (/destination/.test(w) && !/source/.test(w) && /source|learn/i.test(c + ' ' + hook.toLowerCase())) {
-    return `The stem asks what gets **learned** (${hook}). Switches record the **source MAC** on ingress — destination MAC is for lookup, not learning.`
-  }
-  if (mentionsBothMacAddresses(w)) {
-    return `CAM learning stores one mapping per arrival (${hook}): **${correct}** — not both addresses as table entries.`
-  }
-  if (/ip address|only ip|neither|layer 3/i.test(w) && /mac|frame|switch|layer 2/i.test(hook.toLowerCase() + b)) {
-    return `This is a Layer 2 process (${hook}). **${correct}** uses Ethernet addresses — not IP headers.`
-  }
-  if (/routing table/i.test(w) && /mac|cam|switch|frame/i.test(hook.toLowerCase() + b)) {
-    return `Routers use routing tables; this stem is about switch forwarding (${hook}). **${correct}** is the right table/process here.`
-  }
-  if (/mac address table|cam/i.test(w) && /routing|router|ip route|layer 3/i.test(hook.toLowerCase() + b)) {
-    return `The stem targets router behavior (${hook}). **${correct}** uses IP routing — not a switch CAM table.`
-  }
-  if (isStpPortStateSequence(w)) {
-    return `For this RSTP/STP scenario (${hook}), the valid transition order is **${correct}** — **${wrong}** inserts blocking/listening states or wrong ordering.`
-  }
-  if (/access port|untagged|native vlan/i.test(w) && /trunk|802\.1q|tagged/i.test(c + b)) {
-    return `Trunk vs access (${hook}): **${correct}** carries VLAN tags on inter-switch links — **${wrong}** describes access-port behavior.`
-  }
-  if (/trunk|802\.1q|tagged/i.test(w) && /access|untagged/i.test(c + b)) {
-    return `This stem (${hook}) targets access-port behavior — **${correct}** is correct; **${wrong}** applies trunk tagging where a single VLAN is expected.`
-  }
-  if (/inside local|inside global|outside local|outside global/i.test(w) && /nat|pat|translation/i.test(b)) {
-    return `NAT address roles (${hook}) are fixed — **${correct}** matches the stem's inside/outside and local/global pairing; **${wrong}** swaps roles.`
-  }
-  if (/overload|pat|port translation/i.test(w) && /static nat|one-to-one/i.test(c + b)) {
-    return `NAT type (${hook}): **${correct}** fits the stem — **${wrong}** describes PAT/overload when the question tests a different translation style.`
-  }
-  if (/discover|offer|request|acknowledge|nak/i.test(w) && /dhcp/i.test(b)) {
-    return `DHCP message order (${hook}): **${correct}** is the step this stem describes — **${wrong}** is another DORA phase.`
-  }
-  if (/relay|ip helper|giaddr/i.test(w) && /dhcp server|scope|pool/i.test(c + b)) {
-    return `DHCP roles (${hook}): **${correct}** matches who acts in this scenario — **${wrong}** confuses relay/helper with server or client duties.`
-  }
-  if (/standard acl|extended acl|access-list \d+/i.test(w) && /acl|access.?list/i.test(b)) {
-    return `ACL placement/match (${hook}): **${correct}** uses the right ACL type and position — **${wrong}** mismatches standard vs extended rules.`
-  }
-  if (/permit any|deny any|wildcard/i.test(w) && /acl|access.?list/i.test(b)) {
-    return `ACL syntax (${hook}): **${correct}** matches the required match fields — **${wrong}** uses the wrong wildcard or match scope.`
-  }
-  if (/ssid|mac filter|port security/i.test(w) && /wpa|wireless|802\.11|wifi|wlan/i.test(b)) {
-    return `WLAN security (${hook}): **${correct}** provides the admission control the stem requires — **${wrong}** does not authenticate and protect the wireless join.`
-  }
-  if (/wep\b|tkip\b|open authentication/i.test(w) && /wpa|wireless|802\.11|wifi/i.test(b)) {
-    return `WLAN security (${hook}): **${correct}** meets the security requirement — **${wrong}** is deprecated or too weak for the scenario.`
-  }
-  if (/2\.4\s*ghz|5\s*ghz|6\s*ghz|channel width/i.test(w) && /wireless|wifi|802\.11|wlan/i.test(b)) {
-    return `Wireless band/channel (${hook}): **${correct}** fits range, overlap, and standard needs — **${wrong}** picks the wrong band or channel plan.`
-  }
-  if (/\bwlc\b|lightweight ap|capwap/i.test(w) && /autonomous|standalone ap/i.test(c + b)) {
-    return `WLAN architecture (${hook}): **${correct}** matches the deployment model — **${wrong}** mixes controller-based and standalone AP roles.`
-  }
-  if (/\bdr\b|\bbdr\b|designated router|backup designated/i.test(w) && /ospf/i.test(b)) {
-    return `OSPF DR/BDR (${hook}): **${correct}** follows election rules on this segment — **${wrong}** misstates who becomes DR/BDR or when.`
-  }
-  if (/eigrp|rip|bgp|isis/i.test(w) && /ospf/i.test(b)) {
-    return `This stem tests **OSPF** (${hook}) — **${correct}** is protocol-specific; **${wrong}** applies another IGP's behavior.`
-  }
-  if (/area \d+|stub|nssa|backbone/i.test(w) && /ospf/i.test(b)) {
-    return `OSPF area rules (${hook}): **${correct}** satisfies area type and connectivity — **${wrong}** violates area/backbone constraints.`
-  }
-  if (/json|yaml|xml|rest|ansible|terraform|netconf|gnmi|python/i.test(w) && /automation|controller|api|sdn/i.test(b)) {
-    return `Automation tooling (${hook}): **${correct}** matches the API or tool named in the stem — **${wrong}** swaps REST, NETCONF, or orchestration roles.`
-  }
-  if (/telnet\b/i.test(w) && /ssh|secure|management/i.test(b)) {
-    return `Device management (${hook}): **${correct}** protects credentials in transit — **${wrong}** uses cleartext remote access.`
-  }
-  if (/arp request|gratuitous arp/i.test(w) && /switch|mac|frame|forward/i.test(b)) {
-    return `Layer 2 forwarding (${hook}): **${correct}** handles the frame — switches do not substitute **${wrong}** for normal MAC lookup/flood behavior.`
-  }
-  if (/show (?:ip|mac|vlan|cdp|ospf|run)|display/i.test(w) && /show|verify|display|troubleshoot/i.test(b)) {
-    return `Verification command (${hook}): **${correct}** inspects the right table or state — **${wrong}** shows unrelated information.`
-  }
-  if (/\/\d{1,3}|ipv6|slaac|fe80|link-local/i.test(w) && /ipv6|prefix|address/i.test(b)) {
-    return `IPv6 addressing (${hook}): **${correct}** matches prefix, shortening, or assignment rules — **${wrong}** breaks IPv6 syntax or prefix length.`
-  }
-  if (/tcp\b|udp\b|icmp\b|port \d+/i.test(w) && /tcp|udp|transport|port|socket/i.test(b)) {
-    return `Transport protocol (${hook}): **${correct}** matches reliability, ports, or connection behavior — **${wrong}** picks the wrong L4 protocol or port role.`
-  }
-  if (/ffff\.ffff\.ffff|broadcast mac|multicast/i.test(w) && /broadcast|mac|frame/i.test(b)) {
-    return `Ethernet addressing (${hook}): **${correct}** is the broadcast/multicast form this stem expects — **${wrong}** uses the wrong MAC pattern.`
-  }
-  if (/\bhub\b/i.test(w) && /switch|mac|forward|flood/i.test(b)) {
-    return `Switch vs hub (${hook}): **${correct}** segments or selectively forwards — a hub repeats every frame to all ports.`
-  }
-  if (/aging|timer|\d+\s*seconds/i.test(w) && /aging|mac|timer|timeout/i.test(b)) {
-    return `MAC aging (${hook}): **${correct}** is the default or configured timer — **${wrong}** states the wrong timeout value or behavior.`
-  }
-  if (/svi|inter-vlan|vlan interface|router-on-a-stick/i.test(w) && /vlan|subnet|inter/i.test(b)) {
-    return `Inter-VLAN routing (${hook}): **${correct}** provides L3 between VLANs — **${wrong}** leaves traffic unrouted or uses the wrong L3 interface.`
-  }
-  if (/snmp v1|snmp v2|trap|inform|community/i.test(w) && /snmp/i.test(b)) {
-    return `SNMP (${hook}): **${correct}** matches version, trap/inform, or security — **${wrong}** mixes SNMPv2/v3 features or trap types.`
-  }
-  if (/severity|facility|syslog/i.test(w) && /syslog/i.test(b)) {
-    return `Syslog (${hook}): **${correct}** reflects severity or facility rules — **${wrong}** reverses severity numbering or mislabels the level.`
-  }
-  if (/static route|ip route/i.test(w) && /floating|default route|next-hop|exit interface/i.test(b)) {
-    return `Static routing (${hook}): **${correct}** uses the right next-hop or exit interface — **${wrong}** misconfigures recursive or floating static behavior.`
-  }
-  if (/wildcard|0\.0\.0\.|255\.255\.|\/\d{1,2}/i.test(w) && /acl|ospf|mask|subnet|wildcard/i.test(b)) {
-    return `Mask/wildcard (${hook}): **${correct}** uses the mask style this stem requires — **${wrong}** confuses subnet mask with ACL/OSPF wildcard bits.`
-  }
-  if (/standard acl|extended acl|access-list|access list/i.test(w + ' ' + c) && /acl|access.?list|filter/i.test(b)) {
-    return `ACL type/placement (${hook}): **${correct}** matches match fields and placement — **${wrong}** mixes standard vs extended rules or position.`
-  }
-  if (/root bridge|root port|designated|alternate|blocked|discarding/i.test(w) && /stp|rstp|spanning/i.test(b)) {
-    return `STP roles (${hook}): **${correct}** is the role/state this topology elects — **${wrong}** swaps root, designated, or blocked behavior.`
-  }
-  if (/native vlan|access port|trunk/i.test(w) && /vlan|802\.1q|trunk|access/i.test(b)) {
-    return `VLAN tagging (${hook}): **${correct}** matches access vs trunk/native behavior — **${wrong}** applies the wrong tagging model.`
-  }
-  if (/shutdown|restrict|protect|violation/i.test(w) && /port.?security|sticky|mac/i.test(b)) {
-    return `Port security (${hook}): **${correct}** is the violation mode or learning rule tested — **${wrong}** picks a different violation action.`
-  }
-  if (/lacp|pagp|mode on|etherchannel|port-channel/i.test(w) && /etherchannel|lacp|pagp|bundle|channel/i.test(b)) {
-    return `EtherChannel (${hook}): **${correct}** matches negotiation mode — **${wrong}** mixes LACP, PAgP, or static on.`
-  }
-  if (/hsrp|vrrp|glbp|standby|virtual ip|priority/i.test(w) && /hsrp|vrrp|glbp|fhrp|first.?hop|gateway/i.test(b)) {
-    return `FHRP (${hook}): **${correct}** matches the protocol and failover behavior — **${wrong}** swaps HSRP/VRRP/GLBP roles or timers.`
-  }
-  if (/neighbor|adjacency|hello|dead interval|area/i.test(w) && /ospf/i.test(b)) {
-    return `OSPF adjacency (${hook}): **${correct}** satisfies neighbor requirements — **${wrong}** breaks area, timers, or network type matching.`
-  }
-  if (/discover|offer|request|ack|relay|helper/i.test(w) && /dhcp/i.test(b)) {
-    return `DHCP (${hook}): **${correct}** is the message or role this stem describes — **${wrong}** is a different DORA step or relay/server mix-up.`
-  }
-
-  const evidence = normalize(fact).slice(0, 180) || `${correct} is the keyed result for ${hook}`
-  return `The explanation establishes: **${evidence}** Therefore **${correct}** fits the tested condition, while **${wrong}** would produce a different routing or protocol result.`
-}
 
 function inferMisconception({ wrong, correct, hooks, blob }) {
   const w = wrong.toLowerCase()
@@ -280,136 +130,73 @@ function inferMisconception({ wrong, correct, hooks, blob }) {
   return `Applying "${normalize(wrong).slice(0, 36)}" without matching ${hook}`
 }
 
-function buildWhatItDoes(wrong, hooks, blob) {
-  const choice = normalize(wrong)
-  const w = choice.toLowerCase()
-  const hook = hookPhrase(hooks, 'this scenario')
-  const b = String(blob || '').toLowerCase()
 
-  if (impliesDropOrDiscard(w)) {
-    return `**${choice}** implies the device should discard the frame instead of forwarding or flooding it.`
-  }
-  if (/back to the source|echo/i.test(w)) {
-    return `**${choice}** implies the switch returns the frame to the sender instead of flooding or forwarding it.`
-  }
-  if (isStpPortStateSequence(choice)) {
-    return `**${choice}** lists an RSTP/STP port-state transition order that does not match the default sequence tested here.`
-  }
-  if (/ssid.*broadcast|broadcast.*ssid/i.test(w) && /wpa|wireless|802\.11|wifi|wlan/i.test(b)) {
-    return `**${choice}** hides the network name from ordinary discovery, but it does not authenticate clients or encrypt their traffic.`
-  }
-  if (/flood|all ports|broadcast/i.test(w) && /switch|frame|mac|cam|vlan|layer 2|ethernet/i.test(b)) {
-    return `**${choice}** describes flooding the frame to multiple ports in the VLAN.`
-  }
-  if (/default gateway/i.test(w)) {
-    return `**${choice}** sends the decision to a router/default gateway rather than handling it at Layer 2.`
-  }
-  if (/destination mac/i.test(w)) {
-    return `**${choice}** treats the destination MAC as the address recorded during learning.`
-  }
-  if (/both source and destination|both.*mac/i.test(w)) {
-    return `**${choice}** claims the switch learns both source and destination MACs into the CAM table.`
-  }
-  if (/ip address|only ip|neither/i.test(w)) {
-    return `**${choice}** shifts the answer to IP/Layer 3 addressing instead of Ethernet MAC learning.`
-  }
-  if (/routing table/i.test(w)) {
-    return `**${choice}** relies on a router routing table rather than switch MAC/CAM forwarding.`
-  }
-  if (/mac address table|cam table/i.test(w)) {
-    return `**${choice}** expects router forwarding to use a MAC/CAM table lookup.`
-  }
-  if (/access port|untagged/i.test(w)) {
-    return `**${choice}** treats the port as a single-VLAN access link without 802.1Q tagging.`
-  }
-  if (/trunk|802\.1q|tagged/i.test(w)) {
-    return `**${choice}** expects VLAN tags on a link that should behave as access-only in this stem.`
-  }
-  if (/inside local|inside global|outside local|outside global/i.test(w)) {
-    return `**${choice}** assigns a specific NAT address role (inside/outside, local/global) that may not match the stem.`
-  }
-  if (/overload|pat|port address/i.test(w)) {
-    return `**${choice}** implies many-inside-to-few-outside PAT/overload translation.`
-  }
-  if (/discover|offer|request|acknowledge|nak/i.test(w)) {
-    return `**${choice}** names a DHCP DORA message step that may not be the phase described in the stem.`
-  }
-  if (/relay|ip helper|giaddr/i.test(w)) {
-    return `**${choice}** forwards DHCP broadcasts toward a remote server rather than acting as the DHCP server itself.`
-  }
-  if (/standard acl|extended acl|access-list \d+/i.test(w)) {
-    return `**${choice}** applies an ACL type (standard vs extended) or number range that may not match placement rules here.`
-  }
-  if (/wep\b|tkip\b|open authentication/i.test(w)) {
-    return `**${choice}** selects a weak or deprecated WLAN security option.`
-  }
-  if (/2\.4\s*ghz|5\s*ghz|6\s*ghz|channel width/i.test(w)) {
-    return `**${choice}** picks a wireless band or channel plan that may not fit range, overlap, or standard requirements.`
-  }
-  if (/\bwlc\b|lightweight ap|capwap/i.test(w)) {
-    return `**${choice}** assumes a centralized WLC/CAPWAP architecture rather than standalone AP operation.`
-  }
-  if (/\bdr\b|\bbdr\b|designated router|backup designated/i.test(w)) {
-    return `**${choice}** states an OSPF DR/BDR election outcome or role that may not apply on this segment.`
-  }
-  if (/eigrp|rip|bgp|isis/i.test(w)) {
-    return `**${choice}** applies another routing protocol's behavior instead of OSPF-specific rules.`
-  }
-  if (/json|yaml|xml|rest|ansible|terraform|netconf|gnmi|python/i.test(w)) {
-    return `**${choice}** names an automation tool, data format, or API style that may not match the stem's orchestration model.`
-  }
-  if (/telnet\b/i.test(w)) {
-    return `**${choice}** uses cleartext Telnet for remote device management.`
-  }
-  if (/arp request|gratuitous arp/i.test(w)) {
-    return `**${choice}** expects the switch to originate ARP instead of forwarding based on MAC lookup.`
-  }
-  if (/show (?:ip|mac|vlan|cdp|ospf|run)|display/i.test(w)) {
-    return `**${choice}** is a verification command that inspects a different table or feature than the stem asks about.`
-  }
-  if (/\/\d{1,3}|ipv6|slaac|fe80|link-local/i.test(w)) {
-    return `**${choice}** states an IPv6 address, prefix length, or assignment method that may not follow shortening rules.`
-  }
-  if (/tcp\b|udp\b|icmp\b|port \d+/i.test(w)) {
-    return `**${choice}** names a transport protocol or port behavior that may not match reliability or connection requirements.`
-  }
-  if (/ffff\.ffff\.ffff|broadcast mac|multicast/i.test(w)) {
-    return `**${choice}** gives a broadcast or multicast MAC pattern that may not be the all-ones form tested here.`
-  }
-  if (/\bhub\b/i.test(w)) {
-    return `**${choice}** treats a hub's repeat-all-ports behavior as equivalent to selective switch forwarding.`
-  }
-  if (/aging|timer|\d+\s*seconds/i.test(w)) {
-    return `**${choice}** states a MAC aging timer or timeout value that may not match the default or configured setting.`
-  }
-  if (/svi|inter-vlan|vlan interface|router-on-a-stick/i.test(w)) {
-    return `**${choice}** describes an inter-VLAN routing approach (SVI or router-on-a-stick) that may not fit this topology.`
-  }
-  if (/snmp v1|snmp v2|trap|inform|community/i.test(w)) {
-    return `**${choice}** mixes SNMP version, trap/inform, or community/security features.`
-  }
-  if (/severity|facility|syslog/i.test(w)) {
-    return `**${choice}** assigns a syslog severity or facility level that may reverse the lower-number-is-more-severe rule.`
-  }
-  if (/static route|ip route/i.test(w)) {
-    return `**${choice}** configures static routing with a next-hop or exit interface that may not satisfy recursive lookup here.`
-  }
-  if (/^true$|^false$/i.test(w.trim())) {
-    return `**${choice}** states the opposite of the tested fact about ${hookPhrase(hooks, 'this topic')}.`
-  }
-  if (/^\d+$/.test(w.trim()) || /\d+\s*(?:seconds?|ms|mbps|ghz|mhz)/i.test(w)) {
-    return `**${choice}** gives a numeric value (timer, prefix, or rate) that may not match the fact tested in ${hook}.`
-  }
+/** Build structured stem-anchored review for one wrong choice. */
+/**
+ * Choice text used inside a generated sentence. Trailing sentence punctuation
+ * is stripped because every template continues the clause after it — without
+ * this, an authored choice ending in a period splices two sentences together.
+ */
+function clause(text) {
+  return normalize(text).replace(/[.!?;:,]+$/, '')
+}
 
+/**
+ * The hundreds of topic-specific templates in contrastWithCorrect/
+ * buildWhatItDoes account for the large majority of this module's size, so
+ * they live in a lazily-loaded sibling (stemAnchoredTemplates.js) instead of
+ * the eager bundle. cleanQuestionAdapter.preloadCleanBank() awaits this
+ * alongside the question bank and gold reviews, so by the time a learner can
+ * reach a question, the templates are already resident — this fallback path
+ * exists only for the (should-be-unreachable) case of a caller that renders
+ * before that preload resolves, e.g. a script that forgot to await it.
+ */
+let templatesModule = null
+let templatesLoadPromise = null
+
+export function loadStemAnchoredTemplates() {
+  if (templatesModule) return Promise.resolve(templatesModule)
+  if (!templatesLoadPromise) {
+    templatesLoadPromise = import('./stemAnchoredTemplates.js')
+      .then((mod) => {
+        templatesModule = mod
+        return mod
+      })
+      .catch((err) => {
+        templatesLoadPromise = null
+        throw err
+      })
+  }
+  return templatesLoadPromise
+}
+
+export function isStemAnchoredTemplatesLoaded() {
+  return templatesModule !== null
+}
+
+/** Test seam — lets suites install the templates synchronously. */
+export function setStemAnchoredTemplatesModule(mod) {
+  templatesModule = mod
+  templatesLoadPromise = mod ? Promise.resolve(mod) : null
+}
+
+function fallbackWhatItDoes(choice, hook) {
   return `**${choice}** points to a related idea, but not the specific behavior or value required for ${hook}.`
 }
 
-/** Build structured stem-anchored review for one wrong choice. */
+function fallbackContrastWithCorrect(wrong, correct, hook) {
+  return `**${correct}** is the keyed result for ${hook}. **${wrong}** would produce a different result.`
+}
+
 export function buildStemAnchoredIncorrect({ q, choiceIndex }) {
-  const wrong = q.choices?.[choiceIndex] || ''
-  const correct = q.choices?.[q.correctIndex] || ''
-  const fact = (q.explanation || '').trim()
-  const hooks = extractStemHooks(q.question, q.explanation, q.concept)
+  const wrong = clause(q.choices?.[choiceIndex] || '')
+  const correct = clause(correctChoiceText(q))
+  // Some clean-bank questions carry no top-level explanation but do carry a
+  // rich one on the correct choice's answerReview entry — fall back to that
+  // rather than starving the hook extractor (and the templates below) of any
+  // real content to anchor on.
+  const fact = (q.explanation || q.answerReview?.correct?.explanation || '').trim()
+  const hooks = extractStemHooks(q.question, fact, q.concept)
   const blob = `${q.question || ''} ${q.concept || ''} ${fact} ${correct}`.toLowerCase()
 
   if (!wrong || wrong === correct) {
@@ -421,8 +208,13 @@ export function buildStemAnchoredIncorrect({ q, choiceIndex }) {
     }
   }
 
-  const whatItDoes = buildWhatItDoes(wrong, hooks, blob)
-  const whyWrongHere = contrastWithCorrect({ wrong, correct, hooks, fact, blob })
+  const hook = hookPhrase(hooks, 'the scenario constraint')
+  const whatItDoes = templatesModule
+    ? templatesModule.buildWhatItDoes(wrong, hooks, blob, fact)
+    : fallbackWhatItDoes(wrong, hook)
+  const whyWrongHere = templatesModule
+    ? templatesModule.contrastWithCorrect({ wrong, correct, hooks, fact, blob })
+    : fallbackContrastWithCorrect(wrong, correct, hook)
   const misconceptionTested = inferMisconception({ wrong, correct, hooks, blob })
   const explanation = `${whatItDoes} ${whyWrongHere}`.trim()
 

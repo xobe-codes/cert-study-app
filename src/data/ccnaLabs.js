@@ -937,6 +937,23 @@ const LAB_ACL_DEF = {
   ],
   source: { name: LAB_SOURCES.blueprint, chapter: '5.5 Access Control Lists', confidence: 0.95 },
   metadata: { version: '1', status: 'validated', confidence: 0.95 },
+  cliShowOutput: {
+    'show access-lists': `Standard IP access list 10
+    10 deny   host 192.168.1.50
+    20 permit 192.168.1.0, wildcard bits 0.0.0.255 (14 matches)
+Extended IP access list OFFICE_TO_SERVERS
+    10 permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 80 (22 matches)
+    20 permit tcp 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 eq 443 (9 matches)
+    30 deny ip 192.168.1.0 0.0.0.255 10.0.0.0 0.0.0.255 (6 matches)`,
+    'show ip interface gi0/0': `GigabitEthernet0/0 is up, line protocol is up
+  Internet address is 192.168.1.1/24
+  Inbound  access list is OFFICE_TO_SERVERS
+  Outgoing access list is not set`,
+    'show ip interface gi0/2': `GigabitEthernet0/2 is up, line protocol is up
+  Internet address is unnumbered
+  Inbound  access list is not set
+  Outgoing access list is 10`,
+  },
 }
 const TOPO_ACL = {
   id: 'TOPO-ACL', title: 'ACL Lab topology', objectiveId: '5.5',

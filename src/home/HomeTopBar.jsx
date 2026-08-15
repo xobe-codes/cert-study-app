@@ -44,7 +44,7 @@ export default function HomeTopBar({
         </div>
       )}
 
-      <div className="ccna-home-topbar__chips ccna-h-scroll" role="list" aria-label="Objective progress">
+      <div className="ccna-home-topbar__chips ccna-h-scroll" role="list" aria-label="Objective progress" tabIndex={0}>
         {chips.map(chip => (
           <span key={chip.label} role="listitem" style={homePill(chip.accent)}>
             {chip.label}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { COLORS, styles } from '../ui/appTheme.js'
-import { homeBodySm } from '../home/homeUi.js'
 
 /**
  * CompactLessonsList: Replace large lesson cards with efficient 1-line rows.

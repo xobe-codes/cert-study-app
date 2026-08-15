@@ -7,6 +7,24 @@ const EXHIBIT_LABEL = /^(Routing table excerpt|show ip route|IOS output|Exhibit|
 const ROUTE_LINE = /^([A-Z*]{1,4}(?:\s+[A-Z0-9*]{1,4})?)\s{2,}(\S+)\s*(.*)$/
 const QUESTION_START = /^(what|which|how|why|where|when|for |identify|select|given |based on|according to|looking at|from the|in the|the |a |an )/i
 
+// A device prompt fragment ("RouterA(config)#…", "R1#", "Switch>") is an
+// unambiguous CLI signal on its own — real bank content has no space after
+// the prompt char ("...#ip nat..."), so this must not require trailing
+// whitespace the way a sentence-boundary check normally would.
+const CLI_PROMPT = /\(config[\w-]*\)[>#]|^[A-Za-z][\w.-]*[>#](?:\s|$)/
+// Multi-word IOS command prefixes only — deliberately excludes bare single
+// words like "show"/"no"/"enable" that collide with ordinary prose
+// ("No connectivity at all", "Enable OSPF", "Reload the router").
+const CLI_COMMAND_PREFIX = /^(show |ip route |ip nat |ip access-list |ip helper-address|ip default-gateway|access-list \d|no shutdown\b|no ip |no switchport|no spanning-tree|interface (?:g|f|s|e|vl|lo|tu)|switchport |spanning-tree |router (?:ospf|eigrp|rip|bgp|isis)\b|line (?:vty|con|aux)|banner motd|crypto |snmp-server|hostname \S+$|vlan \d|enable secret|enable password|service password|logging (?:host|trap|buffered|console)|copy (?:running|startup))/i
+
+/** Whole-choice heuristic: does this answer choice read as IOS CLI syntax? */
+export function looksLikeCliChoice(text) {
+  const t = String(text || '').trim()
+  if (!t) return false
+  if (CLI_PROMPT.test(t)) return true
+  return CLI_COMMAND_PREFIX.test(t)
+}
+
 export function dedupeStemParagraphs(text) {
   const parts = String(text || '').replace(/\r\n/g, '\n').trim().split(/\n\n+/)
   const out = []

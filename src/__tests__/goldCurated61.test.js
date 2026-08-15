@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { CURATED61_GOLD } from '../answerReview/goldAnswerReviewsCurated61.js'
-import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviews.js'
+import { GOLD_ANSWER_REVIEWS } from '../answerReview/goldAnswerReviewsData.js'
 
 const ROOT = join(import.meta.dirname, '..', '..')
 const CLEAN_ROOT = join(ROOT, 'data', 'clean-question-bank')

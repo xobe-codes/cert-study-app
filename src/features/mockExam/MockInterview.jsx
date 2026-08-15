@@ -57,7 +57,7 @@ export default function MockInterview({
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
   }, [messages, loading, streamingText, expandedId])
 
-  function useCardPrompt(card) {
+  function applyCardPrompt(card) {
     setExpandedId(card.id)
     if (!premiumUnlocked) return
     setInput(card.prompt)
@@ -136,7 +136,7 @@ export default function MockInterview({
                   </div>
                   <button
                     type="button"
-                    onClick={() => useCardPrompt(card)}
+                    onClick={() => applyCardPrompt(card)}
                     style={{
                       ...styles.secondaryBtn,
                       width: '100%',

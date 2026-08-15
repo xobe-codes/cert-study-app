@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { classifyFluency, takeLatencyMs, FLUENCY_FAST_MS, FLUENCY_SLOW_MS } from '../answerOutcome.js'
 import { FLUENCY, isObjectiveFluentInStore, objectiveFluencyFromStore } from '../answerFluency.js'
 import { handoffStudyFromWeakSignal, handoffPassFocusBatch, domainForObjectiveId } from '../batchHandoff.js'
