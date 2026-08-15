@@ -46,6 +46,7 @@ import { TIER_B_TRAP_WAVE22_PATCHES } from './tierBTrapWave22Patches.js'
 import { TIER_B_TRAP_WAVE23_PATCHES } from './tierBTrapWave23Patches.js'
 import { MULTI_SELECT_QUESTION_PATCHES } from './multiSelectQuestionPatches.js'
 import { PRACTICE_EXAM_PATCHES } from './practiceExamPatches.js'
+import { DOMAIN_CONTENT_REPAIR_PATCHES } from './domainContentRepairPatches.js'
 
 const ENGINEER_VIEW_WAVE_SUPPLEMENTS = [
   FACTORY_ENGINEER_VIEW_WAVE3_SUPPLEMENTS,
@@ -604,7 +605,8 @@ export function applyContentEnrichment(base, objectiveId) {
   const readability = LESSON_READABILITY_PASS_PATCHES[objectiveId]
   const baWave1 = BLUEPRINT_ADJACENT_WAVE1_PATCHES[objectiveId]
   const baWave2 = BLUEPRINT_ADJACENT_WAVE2_PATCHES[objectiveId]
-  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !trapWave21 && !trapWave22 && !trapWave23 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11 && !wave12 && !readability && !baWave1 && !baWave2) return base
+  const contentRepair = DOMAIN_CONTENT_REPAIR_PATCHES[objectiveId]
+  if (!factory && !patch && !wave3 && !wave4 && !wave5 && !wave6 && !wave7 && !wave8 && !wave9 && !trapWave4 && !trapWave5 && !trapWave6 && !trapWave7 && !trapWave8 && !trapWave9 && !trapWave10 && !trapWave11 && !trapWave12 && !trapWave13 && !trapWave14 && !trapWave15 && !trapWave16 && !trapWave17 && !trapWave18 && !trapWave19 && !trapWave20 && !trapWave21 && !trapWave22 && !trapWave23 && !wlanWave5 && !readingW1 && !readingW2 && !wave10 && !wave11 && !wave12 && !readability && !baWave1 && !baWave2 && !contentRepair) return base
   const mergeList = (a, b) => (b?.length ? [...(a || []), ...b] : a)
   const mergeUniqueStrings = (a, b) => {
     if (!b?.length) return a
@@ -723,6 +725,24 @@ export function applyContentEnrichment(base, objectiveId) {
       tiers: { ...reading.tiers, ...(rp.tiers || {}) },
       keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading.keyPoints,
       commonMistakes: mergeUniqueStrings(reading.commonMistakes, rp.commonMistakes),
+    }
+  }
+  // Content-repair patches replace factory-stub reading payloads (objectives
+  // that had no hand-authored tiers at all) wholesale. This must stay the
+  // last reading merge so it always wins over the factory synthesis chain
+  // above, which otherwise regenerates duplicated filler for these ids.
+  if (contentRepair?.reading && reading) {
+    const rp = contentRepair.reading
+    reading = {
+      ...reading,
+      ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
+      ...(rp.definition ? { definition: rp.definition } : {}),
+      tiers: { ...reading.tiers, ...(rp.tiers || {}) },
+      keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading.keyPoints,
+      ...(rp.realWorld ? { realWorld: rp.realWorld } : {}),
+      commonMistakes: rp.commonMistakes?.length ? mergeUniqueStrings(rp.commonMistakes, reading.commonMistakes) : reading.commonMistakes,
+      related: rp.related?.length ? mergeUniqueStrings(rp.related, reading.related) : reading.related,
+      ...(rp.advanced ? { advanced: rp.advanced } : {}),
     }
   }
   const readingMerged = [

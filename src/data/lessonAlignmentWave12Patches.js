@@ -277,7 +277,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "definition": "Cisco WLAN architectures place either full control on each AP (autonomous) or centralize control on a Wireless LAN Controller (WLC) with lightweight APs joined by CAPWAP.",
       "tiers": {
         "beginner": "Autonomous APs are standalone — each AP is configured and switched locally. Lightweight APs join a WLC over CAPWAP; the controller owns WLAN policy, RF, and usually client data switching in Local mode.",
-        "intermediate": "Local mode tunnels client data to the WLC (central switching). FlexConnect can switch client data locally at the AP/branch when the CAPWAP tunnel is up or in standalone failover — useful at remote sites. Cloud-managed (e.g. Meraki) APs are managed from a dashboard rather than an on-prem WLC.",
+        "intermediate": "Local mode tunnels client data to the WLC for central switching. FlexConnect can instead switch client data locally at the AP or branch when the CAPWAP tunnel is up or during standalone failover, which matters most at remote sites.\n\nCloud-managed APs (e.g. Meraki) are managed from a dashboard rather than an on-prem WLC.",
         "examReady": "Match the mode to the job: Monitor (scan/interference, no clients), Sniffer (capture), Rogue Detector, SE-Connect, Bridge/Mesh for wireless backhaul. Density and RF coordination favor lightweight APs + WLC over many autonomous APs."
       },
       "keyPoints": [
@@ -348,7 +348,7 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "definition": "WLAN physical connectivity covers how APs and WLCs attach to the wired campus: access vs trunk ports, management/native VLAN, power (PoE/PoE+), and optional link aggregation to the controller.",
       "tiers": {
         "beginner": "A lightweight AP usually sits on a switch port that can carry the AP management VLAN and, depending on mode, client VLANs. Controllers need enough bandwidth and often a trunk into the distribution/core so multiple SSIDs map to multiple VLANs.",
-        "intermediate": "Many designs trunk the AP port (or use an access port for AP management with FlexConnect local switching on client VLANs). WLC ports facing the network are commonly trunks; LAG/EtherChannel can aggregate multiple GE links for capacity and redundancy. Check PoE budget so APs do not brown out.",
+        "intermediate": "Many designs trunk the AP port, or use an access port for AP management with FlexConnect switching client VLANs locally instead. WLC ports facing the network are commonly trunks, and LAG/EtherChannel can aggregate multiple GE links for capacity and redundancy.\n\nCheck PoE budget too — an AP that browns out from insufficient power looks like a much stranger problem than it actually is.",
         "examReady": "Map the ask: new AP → usually trunk (or access + FlexConnect VLAN design); need more WLC bandwidth → EtherChannel/LAG; multiple departments on one physical WLC link → trunk. Blueprint-adjacent: PoE budget and LLDP-MED power negotiation."
       },
       "keyPoints": [
@@ -772,13 +772,14 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "definition": "Default forwarding uses the routing table: match the destination to the longest prefix, then send out the next-hop or exit interface for that route.",
       "tiers": {
         "beginner": "When a router receives a packet, it looks at the destination IP and picks the best matching route in its table — usually the most specific (longest) prefix. If nothing matches, it uses a default route (0.0.0.0/0) if one exists.",
-        "intermediate": "Forwarding decision: longest-prefix match wins over AD when prefixes differ. When two sources offer the same prefix, lower administrative distance wins. Confirm with show ip route, then ping/traceroute from the correct source interface.",
-        "examReady": "Forwarding order: longest prefix match first; then AD for the same prefix; then metric within one protocol. Exam trap: confusing AD with metric or with longest-match. Verify: show ip route <dest> — read code, [AD/metric], via/next-hop, and exit interface."
+        "intermediate": "Forwarding decision: longest-prefix match wins over AD when prefixes differ. When two sources offer the same prefix, lower administrative distance wins.\n\nConfirm the result with the routing table, then verify actual reachability with ping or traceroute from the correct source interface.",
+        "examReady": "Forwarding order: longest prefix match first; then AD for the same prefix; then metric within one protocol. The classic exam trap is confusing AD with metric, or confusing either one with longest-match — those are three separate tie-breakers applied in that exact order. See Key Points for the verify commands."
       },
       "keyPoints": [
         "Longest matching prefix selects the route used for forwarding.",
         "Same prefix from multiple sources → lowest administrative distance wins.",
-        "Verify with show ip route, then test reachability with ping/traceroute."
+        "Verify with `show ip route <dest>` — read code, [AD/metric], via/next-hop, and exit interface.",
+        "Test actual reachability with `ping` / `traceroute` after confirming the routing table entry."
       ],
       "related": [
         "3.1 Interpret the components of a routing table",
@@ -1026,12 +1027,13 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       "tiers": {
         "beginner": "Hosts use a default gateway. FHRPs let two or more routers share one virtual gateway IP so if the active router dies, a standby takes over without reconfiguring every PC.",
         "intermediate": "HSRP is Cisco-proprietary (active/standby). VRRP is the open standard. GLBP can load-balance across multiple forwarders. Key knobs: priority, preemption, and the virtual IP on the LAN.",
-        "examReady": "Know who is Active vs Standby, when preemption matters, and that hosts ARP for the virtual MAC — not each physical router IP. Verify with show standby / show vrrp."
+        "examReady": "Know who is Active vs Standby, when preemption matters, and that hosts ARP for the shared virtual MAC — not each physical router's own IP. That virtual MAC is the whole reason failover is transparent to hosts."
       },
       "keyPoints": [
         "FHRP = shared virtual default gateway for hosts.",
         "HSRP (Cisco) vs VRRP (open); GLBP can load-balance.",
-        "Priority + preemption decide who becomes active; verify with show standby."
+        "Priority + preemption decide who becomes active.",
+        "Verify with `show standby` (HSRP) or `show vrrp` (VRRP)."
       ],
       "related": [
         "3.1 Interpret the components of a routing table",
@@ -1143,9 +1145,9 @@ export const LESSON_ALIGNMENT_WAVE12_PATCHES = {
       },
       "keyPoints": [
         "Check interface status and addressing before blaming the routing protocol.",
-        "Confirm the expected prefix is in show ip route with the right code and next-hop.",
-        "For OSPF: verify neighbor state (2-Way can be normal for DROTHER), area, network statements, and passive-interface.",
-        "Use ping/traceroute (and source interface) to find where the path breaks; consider return path and NAT at the edge."
+        "Confirm the expected prefix is in `show ip route` with the right code and next-hop.",
+        "For OSPF: verify neighbor state with `show ip ospf neighbor` (2-Way can be normal for a DROTHER), area, network statements, and passive-interface.",
+        "Use `ping` / `traceroute` (and source interface) to find where the path breaks; consider return path and NAT at the edge."
       ],
       "related": [
         "3.1 Interpret the components of a routing table",

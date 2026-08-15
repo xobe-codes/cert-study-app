@@ -117,9 +117,9 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.2', ckuIds: ['CKU-NTP'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'Accurate device clocks matter for log timestamps and certificates. NTP syncs router and switch clocks to trusted time sources on the network.',
-        intermediate: 'A device acts as an NTP client toward one or more servers. Stratum tells you how many hops from the reference clock — lower is closer. Set the local timezone for display; verify sync before trusting syslog times.',
-        examReady: 'Expect stratum basics, client vs manual clock set, and why time sync matters for syslog — not a full NTP architecture deep dive.',
+        beginner: 'Accurate device clocks matter for log timestamps and certificates. NTP syncs router and switch clocks to trusted time sources on the network, the same way your phone quietly corrects its own clock.',
+        intermediate: 'A device acts as an NTP client toward one or more servers, and stratum tells you how many hops from the reference clock it is — lower is closer, with stratum 1 sitting right next to an atomic or GPS source.\n\nSet the local timezone for display purposes only; it does not affect the underlying synchronized time. Always verify sync before trusting syslog timestamps for correlation.',
+        examReady: 'Expect stratum basics (each hop from the reference adds one), client vs manual clock set, and why time sync matters for syslog correlation — not a full NTP architecture deep dive. A device configured as a client toward a server inherits that server\'s stratum plus one, and authentication can optionally verify the source is trusted.',
       },
       bigTakeaway: 'NTP keeps device clocks aligned so logs and security events can be trusted.',
       definition: '**NTP** synchronizes network device clocks to stratum-ranked time sources for consistent logging and authentication.',
@@ -141,9 +141,9 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.3', ckuIds: ['CKU-DHCP', 'CKU-DNS'], estimatedReadMinutes: 5,
       tiers: {
-        beginner: 'DHCP automatically gives devices an IP address, mask, default gateway, and DNS server. DNS translates names like www.example.com into IP addresses browsers can reach.',
-        intermediate: 'DHCP follows a simple four-step exchange so clients learn their address and options. DNS resolves hostnames hierarchically — DHCP often hands clients the DNS server to use.',
-        examReady: 'Know DORA at a high level, that DHCP can deliver gateway and DNS options, and that relays forward requests across subnets — details live in Key Points.',
+        beginner: 'DHCP automatically gives devices an IP address, mask, default gateway, and DNS server so nobody has to configure a laptop by hand. DNS translates names like www.example.com into IP addresses browsers can actually reach.',
+        intermediate: 'DHCP follows a simple four-step exchange — Discover, Offer, Request, Acknowledge — so clients learn their address and options without any manual setup. DNS resolves hostnames hierarchically, walking from root to top-level domain to the specific name.\n\nDHCP often hands clients the DNS server to use as one of its options, so the two protocols end up working together on nearly every network.',
+        examReady: 'Know DORA at a high level, that DHCP can deliver gateway and DNS options alongside the IP address, and that a relay is required to forward requests across subnets when no local server exists. DNS itself just resolves names to IPs over UDP port 53 — the exam favors recognizing the workflow over memorizing packet formats.',
       },
       bigTakeaway: 'DHCP assigns addressing; DNS resolves names — they usually work together on the network.',
       definition: '**DHCP** automates host addressing (DORA); **DNS** resolves hostnames — often delivered together via DHCP options.',
@@ -164,9 +164,9 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.5', ckuIds: ['CKU-SYSLOG'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'Syslog sends router and switch log messages to a central server so you can search events and spot problems across the network.',
-        intermediate: 'Devices can log locally and forward copies to a remote collector. Severity levels rank urgency — lower numbers mean more critical. Accurate timestamps require clocks synced with NTP.',
-        examReady: 'Recognize severity scale direction, remote logging purpose, and why NTP matters for correlation — command syntax is in Key Points.',
+        beginner: 'Syslog sends router and switch log messages to a central server so you can search events and spot problems across the whole network from one place instead of logging into every device.',
+        intermediate: 'Devices can log locally to a buffer and forward copies to a remote collector at the same time. Severity levels rank urgency, with lower numbers meaning more critical — emergency sits at 0, routine debug detail at 7.\n\nAccurate timestamps require clocks synced with NTP; without that, correlating events across devices during an incident becomes guesswork.',
+        examReady: 'Recognize that the severity scale runs from 0 (most critical) to 7 (most verbose), that remote logging centralizes events for correlation across many devices, and that NTP is a prerequisite for timestamps to mean anything across a fleet. Command syntax for filtering and destinations lives in Key Points.',
       },
       bigTakeaway: 'Syslog centralizes device events by severity so operators can monitor and troubleshoot at scale.',
       definition: '**Syslog** forwards device messages by **severity level** to local buffer or remote collectors for operations and security monitoring.',
@@ -187,9 +187,9 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-4.6', ckuIds: ['CKU-DHCP-RELAY'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'When the DHCP server sits on a different subnet than clients, a router relays their broadcast requests to reach it.',
-        intermediate: 'Configure relay on the interface facing the client subnet. The router converts the broadcast into a unicast toward the server, then returns the offer to the client.',
-        examReady: 'Know when relay is required (remote server), which interface gets the helper, and that this is a common CCNA troubleshooting scenario.',
+        beginner: 'When the DHCP server sits on a different subnet than the clients asking for an address, a router has to relay their broadcast requests so they actually reach it.',
+        intermediate: 'DHCP requests start as broadcasts, and broadcasts do not cross router boundaries — that is the whole reason relay exists. Configure it on the interface facing the client subnet, and the router converts the broadcast into a unicast toward the server, then returns the offer to the client.',
+        examReady: 'Know when relay is required (the DHCP server lives on a remote subnet), which interface gets the helper address (the one facing the clients, not the server), and that this exact scenario is a common CCNA troubleshooting item. One central DHCP server can serve many VLANs this way, each with its own relay entry.',
       },
       bigTakeaway: 'DHCP relay forwards client requests to a remote server when no DHCP server is on the local subnet.',
       definition: '**DHCP relay** (`ip helper-address`) forwards client DHCP broadcasts to a remote server across subnets.',
@@ -210,9 +210,9 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-5.2', ckuIds: ['CKU-SECURITY-PROGRAM'], estimatedReadMinutes: 4,
       tiers: {
-        beginner: 'A security program combines people, processes, and technology — not just firewalls.',
-        intermediate: 'Elements: security policy, user training (phishing awareness), physical security, incident response plan, risk assessment, and change management.',
-        examReady: 'CCNA focuses on: user awareness/training, physical access control, incident response, risk assessment, and maintaining security policies. Technology (ACLs, 802.1X) supports but does not replace these.',
+        beginner: 'A security program combines people, processes, and technology — not just firewalls and ACLs. Training staff to spot a phishing email matters just as much as any device configuration.',
+        intermediate: 'The elements include a written security policy, user training such as phishing awareness, physical security for equipment and facilities, an incident response plan for when something goes wrong, risk assessment to prioritize what gets fixed first, and change management so configuration changes are reviewed rather than made ad hoc.',
+        examReady: 'CCNA focuses on user awareness and training, physical access control, incident response, risk assessment, and maintaining security policies as ongoing program elements, not one-time setup. Technology like ACLs and 802.1X supports these goals but does not replace them — a technically secure network can still be breached through an untrained user or an unlocked server room.',
       },
       definition: 'A **security program** layers **people, process, and technology** controls including training, physical security, and incident response.',
       keyPoints: ['User awareness reduces social engineering risk.', 'Physical security protects assets.', 'Incident response = detect, contain, recover.', 'Risk assessment prioritizes controls.'],
@@ -256,9 +256,9 @@ export const READING_SUPPLEMENTS = {
     reading: {
       id: 'READ-5.6', ckuIds: ['CKU-PORT-SECURITY', 'CKU-DHCP-SNOOPING'], estimatedReadMinutes: 6,
       tiers: {
-        beginner: 'L2 security stops rogue devices and DHCP servers from harming the LAN.',
-        intermediate: 'Port security: `switchport port-security`, `maximum`, sticky MAC, violation shutdown. DHCP snooping: trusted uplinks, untrusted access ports, builds binding table used by DAI/IPSG.',
-        examReady: 'Port security on access ports: `switchport mode access` → `switchport port-security` → `maximum 1` → `violation shutdown`. Sticky learns MAC. Recovery: `shutdown`/`no shutdown`. DHCP snooping: `ip dhcp snooping`, trusted on router/uplink, untrusted on user ports.',
+        beginner: 'Layer 2 security stops rogue devices and rogue DHCP servers from harming the LAN. Port security limits which MAC addresses can use a port; DHCP snooping only trusts DHCP replies coming from the real server.',
+        intermediate: 'Port security caps how many MAC addresses an access port learns, learns them as sticky entries so they survive a reload, and reacts to a violation by shutting the port down. DHCP snooping treats uplink ports as trusted and access ports as untrusted, building a binding table of IP-to-MAC-to-port that only trusted ports may hand out DHCP offers.\n\nThat binding table also feeds other Layer 2 defenses, so getting it right matters beyond just DHCP.',
+        examReady: 'Port security on access ports limits the number of learned MAC addresses and shuts the port down on a violation by default, with sticky learning keeping the entries through a reload. DHCP snooping marks the uplink toward the real DHCP server as trusted and every user-facing port as untrusted, dropping any DHCP server traffic that shows up on an untrusted port — see Key Points for the exact commands and violation modes.',
       },
       definition: '**Port security** restricts MAC learning on access ports; **DHCP snooping** blocks rogue DHCP servers and feeds **DAI/IPSG** binding tables.',
       keyPoints: ['Port security: limit MACs, violation shutdown common.', 'Sticky MAC survives reload.', 'DHCP snooping: trusted vs untrusted ports.', 'Err-disabled port needs bounce after violation.'],

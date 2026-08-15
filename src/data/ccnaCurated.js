@@ -1326,7 +1326,7 @@ const OBJ_41 = {
     tiers: {
       beginner: 'Private IP addresses cannot travel on the public internet, so a router translates them to a public address on the way out. At home, many devices share one public IP using different port numbers — that is PAT.',
       intermediate: 'NAT maps inside local (private) addresses to inside global (public) ones so internal hosts can reach the internet. You mark inside and outside interfaces, then define what to translate. PAT is the common many-to-one method for SOHO networks.',
-      examReady: 'Know static (one server), dynamic pool, and PAT overload for many hosts. The exam tests inside local vs inside global and correct interface roles — not full configuration paste.',
+      examReady: 'Know the three flavors: static (permanent one-to-one, for a server), dynamic (a pool of public addresses), and PAT overload (many hosts sharing one address by port). The exam tests inside local vs inside global terminology and correct interface roles more than full configuration syntax — see Key Points for the exact commands.',
     },
     bigTakeaway: 'NAT lets private hosts reach the internet; PAT shares one public IP across many devices using ports.',
     definition: '**NAT** maps private **inside local** IPs to public **inside global** IPs. **PAT (overload)** shares one public IP across many hosts using ports. Interfaces are marked `ip nat inside` / `ip nat outside`.',
