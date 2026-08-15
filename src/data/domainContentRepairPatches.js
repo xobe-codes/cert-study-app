@@ -9,6 +9,18 @@
  * applyContentEnrichment so it always wins over the factory stub.
  */
 export const DOMAIN_CONTENT_REPAIR_PATCHES = {
+  // These objectives had no explicit bigTakeaway, so ensureBigTakeaway()'s
+  // fallback (readingEnrichment.js) used their first keyPoints entry
+  // verbatim — for several that meant "WHY IT MATTERS" rendered as a bare
+  // CLI fragment (e.g. "`username secret` + `login local` on VTY.") instead
+  // of an actual explanatory sentence. Only bigTakeaway is set here.
+  '1.4': { reading: { bigTakeaway: 'Interface counters — CRC errors, collisions, drops — reveal cabling and duplex problems before users ever notice a slowdown.' } },
+  '1.10': { reading: { bigTakeaway: "A client's IP, mask, gateway, and DNS settings are the first thing to check when troubleshooting connectivity, and one command shows all of them at once." } },
+  '2.1': { reading: { bigTakeaway: 'VLANs split one physical switch into separate broadcast domains — same-VLAN devices reach each other at Layer 2, different VLANs need a router.' } },
+  '2.2': { reading: { bigTakeaway: 'A trunk carries multiple VLANs across one link using 802.1Q tags, so switches share bandwidth instead of needing a separate cable per VLAN.' } },
+  '3.3': { reading: { bigTakeaway: 'A static route is a manually pinned path in the routing table — reliable and simple, but it never adapts on its own if the network changes.' } },
+  '5.3': { reading: { bigTakeaway: 'Console and VTY lines are the front door to every device — securing them with local accounts and SSH instead of Telnet is the first hardening step.' } },
+
   // These four already had solid hand-authored tiers (from wave12/readability
   // patches), but their realWorld and commonMistakes fields were never
   // touched by any patch, so they still carried readingFromRef()'s literal
