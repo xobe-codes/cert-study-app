@@ -13,7 +13,6 @@ import {
   loadRetentionHealth,
 } from './home/learnerHome.js'
 import StudyNextStrip from './home/StudyNextStrip.jsx'
-import TrapHeatmapStrip from './home/TrapHeatmapStrip.jsx'
 import HomeTopBar from './home/HomeTopBar.jsx'
 import DomainPassCompleteCard from './features/domainPass/DomainPassCompleteCard.jsx'
 import WeakAreaDashboard from './features/home/WeakAreaDashboard.jsx'
@@ -47,7 +46,7 @@ import {
   ContentTrustCard,
   YourProgressCard,
   HomeExtrasSection,
-  ExamTrapWidget,
+  TrapAlertsCard,
   StudyModeBtn,
 } from './home/homeScreenCards.jsx'
 
@@ -298,9 +297,7 @@ export default function HomeScreen({ progress, streak, missed, missedCount, dueC
         />
       )}
 
-      <TrapHeatmapStrip missed={missed} onOpenTrapDrill={onOpenTrapDrill} onOpenExamTraps={onOpenExamTraps} onOpenMissed={onOpenMissed} onSelectObjective={onSelectObjective} />
-
-      <ExamTrapWidget />
+      <TrapAlertsCard missed={missed} onOpenTrapDrill={onOpenTrapDrill} onOpenExamTraps={onOpenExamTraps} onOpenMissed={onOpenMissed} onSelectObjective={onSelectObjective} />
 
       <ContentTrustCard />
 

@@ -6,6 +6,9 @@ import { getCurated } from '../data/ccnaCurated.js'
 import ProgressRing from '../components/ProgressRing.jsx'
 import { getSessionStudy, isRecapDismissed, dismissSessionRecap } from './sessionRecap.js'
 import { QuizRichText } from '../components/QuizQuestionChrome.jsx'
+import { computeTrapWeakness, trapWeakTap } from '../weaknessUtils.js'
+import { buildStudyObjectiveHandoff } from '../study/studyObjectiveHandoff.js'
+import OverflowMarquee from '../components/OverflowMarquee.jsx'
 import {
   HOME_SECTION_GAP,
   homeCard,
@@ -207,19 +210,104 @@ function ExamCountdown({ progress, onOpenSettings }) {
   )
 }
 
-export function ExamTrapWidget() {
-  if (!ALL_EXAM_TRAPS.length) return null
-  // Deterministic daily pick — changes each calendar day, consistent within the day
-  const dayIndex = Math.floor(Date.now() / 86400000)
-  const trap = ALL_EXAM_TRAPS[dayIndex % ALL_EXAM_TRAPS.length]
+/**
+ * One card for everything trap-related on Home. Folds the personalized
+ * "traps you keep missing" list and the daily trap-of-the-day pick into a
+ * single rose card instead of two separately-bordered cards stacked back
+ * to back — same information, one visual unit.
+ */
+export function TrapAlertsCard({ missed, onOpenTrapDrill, onOpenExamTraps, onOpenMissed, onSelectObjective }) {
+  const traps = computeTrapWeakness(missed || []).slice(0, 4)
+  const hasWeakness = traps.length > 0
+
+  let dailyTrap = null
+  if (ALL_EXAM_TRAPS.length) {
+    // Deterministic daily pick — changes each calendar day, consistent within the day
+    const dayIndex = Math.floor(Date.now() / 86400000)
+    dailyTrap = ALL_EXAM_TRAPS[dayIndex % ALL_EXAM_TRAPS.length]
+  }
+  if (!hasWeakness && !dailyTrap) return null
+
+  function handleTrapTap(trap) {
+    trapWeakTap(trap, missed, {
+      onOpenTrapDrill,
+      onOpenExamTraps,
+      onStudyObjective: (objectiveId) => {
+        const handoff = buildStudyObjectiveHandoff(objectiveId, { tab: 'Practice' })
+        if (handoff) onSelectObjective?.(handoff)
+      },
+    })
+  }
+
+  const maxCount = traps[0]?.count || 1
+
   return (
     <div style={homeCard({ border: `1px solid ${COLORS.roseBorder}`, background: COLORS.roseDim })}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
-        <span style={homePill('rose')}>⚠️ EXAM TRAP OF THE DAY</span>
-        <span style={homePillCount('silver')}>{trap.objectiveId}</span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 6, marginBottom: hasWeakness ? 8 : 6, flexWrap: 'wrap' }}>
+        <span style={homePill('rose')}>⚠️ TRAP ALERTS</span>
+        {hasWeakness && onOpenMissed && (
+          <button
+            type="button"
+            onClick={onOpenMissed}
+            style={{ ...homeLinkBtn(COLORS.rose), padding: 0, minHeight: 0 }}
+          >
+            All missed →
+          </button>
+        )}
       </div>
-      <div style={{ ...homeTitleSm, color: COLORS.rose, marginBottom: 6 }}><QuizRichText text={trap.trap} /></div>
-      <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}><QuizRichText text={trap.correction} /></div>
+
+      {hasWeakness && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: dailyTrap ? 10 : 0 }}>
+          {traps.map(({ trap, count }) => {
+            const intensity = Math.max(0.25, count / maxCount)
+            return (
+              <button
+                key={trap}
+                type="button"
+                className="ccna-hover"
+                onClick={() => handleTrapTap(trap)}
+                style={{
+                  width: '100%',
+                  textAlign: 'left',
+                  cursor: onOpenTrapDrill ? 'pointer' : 'default',
+                  background: COLORS.surface,
+                  border: `1px solid ${COLORS.roseBorder}`,
+                  borderRadius: 10,
+                  padding: '8px 10px',
+                  fontFamily: 'inherit',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                  <span style={{ ...homePillCount('rose'), flexShrink: 0 }}>{count}×</span>
+                  <OverflowMarquee
+                    text={trap}
+                    style={{ flex: 1, fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.35 }}
+                  />
+                  <div
+                    aria-hidden="true"
+                    style={{ width: 40, height: 6, borderRadius: 999, background: COLORS.surface2 || COLORS.surface, overflow: 'hidden', flexShrink: 0 }}
+                  >
+                    <div style={{ height: '100%', width: `${Math.round(intensity * 100)}%`, background: COLORS.rose, borderRadius: 999 }} />
+                  </div>
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      )}
+
+      {dailyTrap && (
+        <div style={hasWeakness ? { borderTop: `1px solid ${COLORS.roseBorder}`, paddingTop: 8 } : undefined}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 'var(--ccna-type-micro)', fontWeight: 700, color: COLORS.silverMid, letterSpacing: 0.4 }}>
+              EXAM TRAP OF THE DAY
+            </span>
+            <span style={homePillCount('silver')}>{dailyTrap.objectiveId}</span>
+          </div>
+          <div style={{ ...homeTitleSm, color: COLORS.rose, marginBottom: 6 }}><QuizRichText text={dailyTrap.trap} /></div>
+          <div style={{ fontSize: 'var(--ccna-type-xs)', color: COLORS.silver, lineHeight: 1.5 }}><QuizRichText text={dailyTrap.correction} /></div>
+        </div>
+      )}
     </div>
   )
 }
