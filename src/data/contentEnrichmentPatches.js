@@ -733,6 +733,12 @@ export function applyContentEnrichment(base, objectiveId) {
   // above, which otherwise regenerates duplicated filler for these ids.
   if (contentRepair?.reading && reading) {
     const rp = contentRepair.reading
+    // Drop readingFromRef()'s generic factory boilerplate before merging so
+    // it cannot reappear behind real content — genuine additive mistakes
+    // from later waves (e.g. "Blueprint-adjacent: ...") are kept.
+    const nonFactoryMistakes = (reading.commonMistakes || []).filter(
+      m => !/^Confusing terms within/i.test(m),
+    )
     reading = {
       ...reading,
       ...(rp.bigTakeaway ? { bigTakeaway: rp.bigTakeaway } : {}),
@@ -740,7 +746,7 @@ export function applyContentEnrichment(base, objectiveId) {
       tiers: { ...reading.tiers, ...(rp.tiers || {}) },
       keyPoints: rp.keyPoints?.length ? rp.keyPoints : reading.keyPoints,
       ...(rp.realWorld ? { realWorld: rp.realWorld } : {}),
-      commonMistakes: rp.commonMistakes?.length ? mergeUniqueStrings(rp.commonMistakes, reading.commonMistakes) : reading.commonMistakes,
+      commonMistakes: rp.commonMistakes?.length ? mergeUniqueStrings(rp.commonMistakes, nonFactoryMistakes) : nonFactoryMistakes,
       related: rp.related?.length ? mergeUniqueStrings(rp.related, reading.related) : reading.related,
       ...(rp.advanced ? { advanced: rp.advanced } : {}),
     }

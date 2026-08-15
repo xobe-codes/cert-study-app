@@ -9,6 +9,50 @@
  * applyContentEnrichment so it always wins over the factory stub.
  */
 export const DOMAIN_CONTENT_REPAIR_PATCHES = {
+  // These four already had solid hand-authored tiers (from wave12/readability
+  // patches), but their realWorld and commonMistakes fields were never
+  // touched by any patch, so they still carried readingFromRef()'s literal
+  // factory boilerplate ("Apply X concepts during troubleshooting and exam
+  // scenarios." / "Confusing terms within X — review blueprint subtopics
+  // carefully."). Only those two fields are overridden here; tiers are
+  // intentionally left alone.
+  '2.6': {
+    reading: {
+      realWorld: 'A branch office with an unreliable WAN link deploys FlexConnect so a CAPWAP outage does not take down local Wi-Fi, while the main campus uses Local mode for simpler centralized policy.',
+      commonMistakes: [
+        'Assuming FlexConnect and Local mode are interchangeable — FlexConnect specifically enables local switching during a WAN or controller outage.',
+        'Forgetting that specialty modes like Monitor and Sniffer stop serving clients entirely while active.',
+      ],
+    },
+  },
+  '2.7': {
+    reading: {
+      realWorld: 'A new AP install fails silently until someone checks the switch\'s power-inline status and finds the port is only negotiating a lower PoE class than the AP actually needs.',
+      commonMistakes: [
+        'Checking only whether a port supports PoE, not whether the switch or stack has enough total power budget left.',
+        'Assuming an AP uplink must always be a trunk — some designs work fine with an access port plus FlexConnect.',
+      ],
+    },
+  },
+  '2.8': {
+    reading: {
+      realWorld: 'A disabled WLAN is the most common reason a client can see other SSIDs but not the expected one — checking WLAN status is the first troubleshooting step, before RF or client settings.',
+      commonMistakes: [
+        'Forgetting to check WLAN status (enabled/disabled) before troubleshooting RF or client-side settings.',
+        'Mixing up which QoS profile applies to which traffic type — voice needs Platinum, not bulk data\'s Bronze/Silver.',
+      ],
+    },
+  },
+  '3.6': {
+    reading: {
+      realWorld: 'A remote site loses connectivity and the fix turns out to be a wrong wildcard mask in an OSPF network statement, not the WAN link everyone assumed had failed.',
+      commonMistakes: [
+        'Assuming OSPF stuck at 2-Way is a failure — that is normal for a DROTHER on a multi-access network.',
+        'Jumping straight to the routing protocol before verifying interface state and addressing first.',
+      ],
+    },
+  },
+
   '4.4': {
     reading: {
       bigTakeaway: 'SNMP lets a central manager poll devices for status and receive traps when something changes on its own.',
